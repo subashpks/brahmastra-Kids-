@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PageProps } from '../types';
 
@@ -43,14 +44,14 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                     </div>
 
                     {/* Column 2: Quick Links */}
-                    <div className="hidden md:flex flex-col items-start">
+                    <div className="flex flex-col items-center md:items-start">
                          <h3 className="text-lg font-semibold mb-4">Explore</h3>
                          <div className="flex flex-col space-y-2 text-sm">
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }} className="text-slate-200 hover:text-white transition-colors">Home</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('aeronautics'); }} className="text-slate-200 hover:text-white transition-colors">Aeronautics</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('astronautics'); }} className="text-slate-200 hover:text-white transition-colors">Astronautics</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('satellites'); }} className="text-slate-200 hover:text-white transition-colors">Satellites</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('drones'); }} className="text-slate-200 hover:text-white transition-colors">Drones</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="text-slate-200 hover:text-white transition-colors">About Us</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="text-slate-200 hover:text-white transition-colors">Age Category</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('streams'); }} className="text-slate-200 hover:text-white transition-colors">Streams</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="text-slate-200 hover:text-white transition-colors">Free Courses</a>
                         </div>
                     </div>
 

@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const WhatsAppIcon = () => (
@@ -33,7 +34,7 @@ const HeroIllustration = () => (
     </div>
 );
 
-export const WeekendCoursesPage: React.FC = () => {
+export const FreeCoursesPage: React.FC = () => {
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
         const targetElement = document.getElementById(targetId);

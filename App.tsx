@@ -6,7 +6,10 @@ import { AeronauticsPage } from './components/Services';
 import { AstronauticsPage } from './components/OurProcess';
 import { SatellitesPage } from './components/WhySpeedMatters';
 import { DronesPage } from './components/Testimonials';
-import { WeekendCoursesPage } from './components/WeekendCourses';
+import { FreeCoursesPage } from './components/WeekendCourses';
+import { AboutUsPage } from './components/AboutUs';
+import { AgeCategoryPage } from './components/AgeCategory';
+import { StreamsPage } from './components/Streams';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
@@ -29,8 +32,14 @@ function App() {
         return <SatellitesPage />;
       case 'drones':
         return <DronesPage />;
-      case 'weekend':
-        return <WeekendCoursesPage />;
+      case 'freecourses':
+        return <FreeCoursesPage />;
+      case 'about':
+        return <AboutUsPage />;
+      case 'age':
+        return <AgeCategoryPage />;
+      case 'streams':
+        return <StreamsPage />;
       case 'home':
       default:
         return <HomePage navigate={navigate} />;
@@ -38,14 +47,13 @@ function App() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-slate-50">
       <Header navigate={navigate} currentPage={currentPage} />
       <main className="flex-grow">
         {renderPage()}
         {currentPage === 'home' && <FAQ />}
-        {(currentPage === 'home' || currentPage === 'weekend') && <Contact />}
+        {currentPage === 'freecourses' && <Contact />}
       </main>
-      {/* FIX: The Footer component was used without being imported. */}
       <Footer navigate={navigate}/>
     </div>
   );
