@@ -11,5 +11,6 @@ steps:
     app_location: "/" 
     api_location: ""
     output_location: "dist"
+    app_build_command: "npm cache clean --force && npm install && npm run build"
     azure_static_web_apps_api_token: $(deployment_token)
   displayName: 'Deploy to Azure Static Web Apps'
