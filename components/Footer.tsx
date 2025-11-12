@@ -27,7 +27,7 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                     <div className="flex flex-col items-center md:items-start space-y-4">
                         <img 
                             src="https://files.catbox.moe/p929y5.png" 
-                            alt="Brahmastra Aerospace & Defence Logo" 
+                            alt="Brahmastra Logo White" 
                             className="h-10 w-auto cursor-pointer" 
                             onClick={() => navigate('home')} 
                         />
@@ -43,7 +43,7 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                     </div>
 
                     {/* Column 2: Quick Links */}
-                    <div className="flex flex-col items-center md:items-start">
+                    <div className="hidden md:flex flex-col items-start">
                          <h3 className="text-lg font-semibold mb-4">Explore</h3>
                          <div className="flex flex-col space-y-2 text-sm">
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }} className="text-slate-200 hover:text-white transition-colors">Home</a>

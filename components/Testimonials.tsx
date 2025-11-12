@@ -27,7 +27,7 @@ export const DronesPage: React.FC = () => {
                 </p>
             </div>
             <div className="flex justify-center">
-                <img src="https://static.vecteezy.com/system/resources/previews/024/761/008/original/cute-drone-cartoon-illustration-png.png" alt="Cartoon Drone" className="w-full max-w-sm" />
+                <img src="https://i.postimg.cc/kG8tWCsC/drone.png" alt="Cartoon Drone" className="w-full max-w-sm" />
             </div>
         </div>
         

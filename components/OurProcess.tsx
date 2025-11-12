@@ -27,7 +27,7 @@ export const AstronauticsPage: React.FC = () => {
                 </p>
             </div>
             <div className="flex justify-center">
-                <img src="https://static.vecteezy.com/system/resources/previews/025/086/813/original/cute-cartoon-rocket-in-outer-space-png.png" alt="Cartoon Rocket" className="w-full max-w-xs" />
+                <img src="https://i.postimg.cc/8z4ZKm4K/rocket.png" alt="Cartoon Rocket" className="w-full max-w-xs" />
             </div>
         </div>
         

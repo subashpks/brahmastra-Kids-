@@ -7,7 +7,7 @@ const AstronautIllustration = () => (
       <div className="absolute -top-4 -left-4 w-48 h-48 bg-brand-sky rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob"></div>
       <div className="absolute -top-4 -right-4 w-48 h-48 bg-brand-sun rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-48 h-48 bg-green-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-        <img src="https://static.vecteezy.com/system/resources/previews/021/659/973/original/cute-astronaut-in-space-cartoon-illustration-png.png" alt="Cartoon Astronaut Floating" className="relative animate-float" />
+        <img src="https://files.catbox.moe/vwlnrr.png" alt="Illustration of a child wearing an astronaut helmet looking at a holographic solar system" className="relative animate-float" />
     </div>
 );
 
@@ -27,7 +27,7 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left order-2 lg:order-1">
               <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">AGES 6-17</span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
                 Explore the Universe From Your Room
@@ -36,12 +36,12 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
                 Blast off on an adventure! Our fun, hands-on courses make learning about planes, rockets, stars, and drones an exciting journey for every curious mind.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                <a href="#topics" className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
+                <a href="#faq" className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
                   Choose Your Mission
                 </a>
               </div>
             </div>
-            <div>
+            <div className="order-1 lg:order-2">
                 <AstronautIllustration />
             </div>
           </div>

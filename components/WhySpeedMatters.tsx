@@ -27,7 +27,7 @@ export const SatellitesPage: React.FC = () => {
                 </p>
             </div>
             <div className="flex justify-center">
-                <img src="https://static.vecteezy.com/system/resources/previews/028/916/896/original/cute-satellite-in-space-cartoon-illustration-png.png" alt="Cartoon Satellite" className="w-full max-w-sm" />
+                <img src="https://i.postimg.cc/W3d7bVhk/satellite.png" alt="Cartoon Satellite" className="w-full max-w-sm" />
             </div>
         </div>
         
