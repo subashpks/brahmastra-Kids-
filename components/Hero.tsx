@@ -46,7 +46,10 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
                 Blast off on an adventure! Our fun, hands-on courses make learning about planes, rockets, stars, and drones an exciting journey for every curious mind.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                <a href="#topics" className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
+                <a 
+                    href="#" 
+                    onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} 
+                    className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
                   Choose Your Mission
                 </a>
               </div>
