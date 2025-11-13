@@ -29,21 +29,21 @@ function App() {
   const renderPage = () => {
     switch (currentPage) {
       case 'aeronautics':
-        return <AeronauticsPage />;
+        return <AeronauticsPage navigate={navigate} />;
       case 'rocketry':
-        return <AstronauticsPage />;
+        return <AstronauticsPage navigate={navigate} />;
       case 'satellites':
-        return <SatellitesPage />;
+        return <SatellitesPage navigate={navigate} />;
       case 'drones':
-        return <DronesPage />;
+        return <DronesPage navigate={navigate} />;
       case 'maths':
-        return <MathsPage />;
+        return <MathsPage navigate={navigate} />;
       case 'physics':
-        return <PhysicsPage />;
+        return <PhysicsPage navigate={navigate} />;
       case 'chemistry':
-        return <ChemistryPage />;
+        return <ChemistryPage navigate={navigate} />;
       case 'astrobiology':
-        return <AstrobiologyPage />;
+        return <AstrobiologyPage navigate={navigate} />;
       case 'philosophy':
         return <Differentiators navigate={navigate} />;
       case 'freecourses':
@@ -51,7 +51,7 @@ function App() {
       case 'about':
         return <AboutUsPage />;
       case 'age':
-        return <AgeCategoryPage />;
+        return <AgeCategoryPage navigate={navigate} />;
       case 'home':
       default:
         return <HomePage navigate={navigate} />;

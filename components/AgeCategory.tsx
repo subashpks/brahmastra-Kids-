@@ -1,5 +1,7 @@
+
 import React from 'react';
 import { InterestForm } from './InterestForm';
+import { PageProps } from '../types';
 
 const categories = [
     {
@@ -44,7 +46,7 @@ const CategoryCard: React.FC<{ category: typeof categories[0] }> = ({ category }
 );
 
 
-export const AgeCategoryPage: React.FC = () => {
+export const AgeCategoryPage: React.FC<PageProps> = ({ navigate }) => {
   return (
     <>
         <section id="age-category" className="py-16 md:py-24 animate-fade-in-up bg-slate-50">
@@ -59,6 +61,20 @@ export const AgeCategoryPage: React.FC = () => {
             </div>
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {categories.map(cat => <CategoryCard key={cat.title} category={cat} />)}
+            </div>
+            <div className="mt-16 text-center max-w-3xl mx-auto bg-white p-8 rounded-2xl shadow-lg border-t-4 border-brand-space">
+                <h2 className="text-2xl font-bold text-slate-800">Why Choose Brahmastra?</h2>
+                <p className="mt-4 text-slate-600">
+                    We believe in a different approach to learning—one that puts curiosity first and builds confidence for life. 
+                    Before you join, learn about what makes us unique.
+                </p>
+                <a 
+                    href="#" 
+                    onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} 
+                    className="mt-6 inline-block bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg"
+                >
+                  Discover Our Philosophy
+                </a>
             </div>
           </div>
         </section>

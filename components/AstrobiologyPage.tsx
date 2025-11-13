@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ASTROBIOLOGY_COURSES } from '../constants';
-import { Course } from '../types';
+import { Course, PageProps } from '../types';
 
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
     <div className="bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-l-4 border-lime-500">
@@ -14,7 +14,7 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
     </div>
 );
 
-export const AstrobiologyPage: React.FC = () => {
+export const AstrobiologyPage: React.FC<PageProps> = ({ navigate }) => {
   return (
     <section id="astrobiology" className="py-16 md:py-24 animate-fade-in-up">
       <div className="container mx-auto px-6">
@@ -38,6 +38,18 @@ export const AstrobiologyPage: React.FC = () => {
                 {ASTROBIOLOGY_COURSES.map((course, index) => (
                     <CourseCard key={index} course={course} />
                 ))}
+            </div>
+            <div className="mt-12 text-center">
+                <a 
+                    href="#" 
+                    onClick={(e) => { e.preventDefault(); navigate('age'); }} 
+                    className="inline-block bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-10 py-4 rounded-full text-lg shadow-lg transform hover:scale-105"
+                >
+                    Join Waitlist
+                </a>
+                <p className="mt-4 text-sm text-slate-500">
+                    Limited seats available. Secure your spot!
+                </p>
             </div>
         </div>
       </div>
