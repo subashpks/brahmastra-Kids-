@@ -1,6 +1,8 @@
+
+
 import React from 'react';
 import { PageProps } from '../types';
-import { PlaneIcon, RocketIcon, SatelliteIcon, DroneIcon } from '../constants';
+import { STREAMS_DATA } from '../constants';
 
 const AstronautIllustration = () => (
     <div className="relative w-full max-w-sm mx-auto lg:max-w-md">
@@ -12,9 +14,17 @@ const AstronautIllustration = () => (
 );
 
 
-const TopicCard: React.FC<{ icon: React.ReactNode; title: string; description: string; color: string; onClick: () => void }> = ({ icon, title, description, color, onClick }) => (
-    <div onClick={onClick} className={`bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer border-t-4 ${color}`}>
-        <div className="mb-4">{icon}</div>
+const TopicCard: React.FC<{ emoji: string; title: string; description: string; color: string; onClick: () => void; isComingSoon?: boolean; }> = ({ emoji, title, description, color, onClick, isComingSoon }) => (
+    <div 
+        onClick={!isComingSoon ? onClick : undefined} 
+        className={`relative bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 border-t-4 ${color} ${isComingSoon ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-xl hover:-translate-y-2 cursor-pointer'}`}
+    >
+        {isComingSoon && (
+            <div className="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md transform -rotate-12">
+                Coming Soon
+            </div>
+        )}
+        <div className="text-4xl mb-4">{emoji}</div>
         <h3 className="text-xl font-bold text-slate-800 mb-2">{title}</h3>
         <p className="text-slate-500">{description}</p>
     </div>
@@ -36,7 +46,7 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
                 Blast off on an adventure! Our fun, hands-on courses make learning about planes, rockets, stars, and drones an exciting journey for every curious mind.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                <a href="#faq" className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
+                <a href="#topics" className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
                   Choose Your Mission
                 </a>
               </div>
@@ -59,37 +69,21 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
                 </p>
             </div>
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <TopicCard 
-                    icon={<PlaneIcon className="w-10 h-10 text-brand-sky"/>}
-                    title="Aeronautics"
-                    description="Learn how things fly, from paper planes to jumbo jets."
-                    color="border-brand-sky"
-                    onClick={() => navigate('aeronautics')}
-                />
-                 <TopicCard 
-                    icon={<RocketIcon className="w-10 h-10 text-brand-sun"/>}
-                    title="Astronautics"
-                    description="Build rockets and explore the secrets of space travel."
-                    color="border-brand-sun"
-                    onClick={() => navigate('astronautics')}
-                />
-                 <TopicCard 
-                    icon={<SatelliteIcon className="w-10 h-10 text-brand-space"/>}
-                    title="Satellites"
-                    description="Discover the technology that connects our world."
-                    color="border-brand-space"
-                    onClick={() => navigate('satellites')}
-                />
-                 <TopicCard 
-                    icon={<DroneIcon className="w-10 h-10 text-green-500"/>}
-                    title="Drones"
-                    description="Pilot the future and see the world from a new angle."
-                    color="border-green-500"
-                    onClick={() => navigate('drones')}
-                />
+                {STREAMS_DATA.map((stream) => (
+                    <TopicCard 
+                        key={stream.title}
+                        emoji={stream.emoji}
+                        title={stream.title}
+                        description={stream.description}
+                        color={stream.color}
+                        onClick={() => navigate(stream.page)}
+                        isComingSoon={stream.isComingSoon}
+                    />
+                ))}
             </div>
         </div>
       </section>
+      
     </>
   );
 };

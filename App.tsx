@@ -9,10 +9,14 @@ import { DronesPage } from './components/Testimonials';
 import { FreeCoursesPage } from './components/WeekendCourses';
 import { AboutUsPage } from './components/AboutUs';
 import { AgeCategoryPage } from './components/AgeCategory';
-import { StreamsPage } from './components/Streams';
 import { FAQ } from './components/FAQ';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
+import { MathsPage } from './components/MathsPage';
+import { PhysicsPage } from './components/PhysicsPage';
+import { ChemistryPage } from './components/ChemistryPage';
+import { AstrobiologyPage } from './components/AstrobiologyPage';
+import { Differentiators } from './components/Differentiators';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -26,20 +30,28 @@ function App() {
     switch (currentPage) {
       case 'aeronautics':
         return <AeronauticsPage />;
-      case 'astronautics':
+      case 'rocketry':
         return <AstronauticsPage />;
       case 'satellites':
         return <SatellitesPage />;
       case 'drones':
         return <DronesPage />;
+      case 'maths':
+        return <MathsPage />;
+      case 'physics':
+        return <PhysicsPage />;
+      case 'chemistry':
+        return <ChemistryPage />;
+      case 'astrobiology':
+        return <AstrobiologyPage />;
+      case 'philosophy':
+        return <Differentiators navigate={navigate} />;
       case 'freecourses':
         return <FreeCoursesPage />;
       case 'about':
         return <AboutUsPage />;
       case 'age':
         return <AgeCategoryPage />;
-      case 'streams':
-        return <StreamsPage />;
       case 'home':
       default:
         return <HomePage navigate={navigate} />;
