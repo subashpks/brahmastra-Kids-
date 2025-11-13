@@ -51,13 +51,13 @@ export const DroneIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export const AERONAUTICS_COURSES: Course[] = [
   {
     title: 'Junior Pilot Program',
-    ageGroup: '6-10',
+    ageGroup: 'Ages 5-8',
     description: 'Learn the basics of flight! Build paper airplanes, discover how wings work, and design your first aircraft.',
     icon: <PlaneIcon className="w-8 h-8 text-brand-sky" />,
   },
   {
     title: 'Aerodynamics Mastery',
-    ageGroup: '11-17',
+    ageGroup: 'Ages 9-15',
     description: 'Dive deep into the forces of flight. Explore lift, drag, thrust, and weight with advanced simulators and model building.',
     icon: <PlaneIcon className="w-8 h-8 text-brand-sky" />,
   },
@@ -66,13 +66,13 @@ export const AERONAUTICS_COURSES: Course[] = [
 export const ASTRONAUTICS_COURSES: Course[] = [
   {
     title: 'Rocket Racers',
-    ageGroup: '6-10',
+    ageGroup: 'Ages 5-8',
     description: '3... 2... 1... Blast off! Construct and launch your own model rockets while learning about space exploration.',
     icon: <RocketIcon className="w-8 h-8 text-brand-sun" />,
   },
   {
     title: 'Orbital Mechanics',
-    ageGroup: '11-17',
+    ageGroup: 'Ages 9-15',
     description: 'Chart a course to the stars. Understand how spacecraft travel, orbit planets, and navigate the vastness of space.',
     icon: <RocketIcon className="w-8 h-8 text-brand-sun" />,
   },
@@ -81,13 +81,13 @@ export const ASTRONAUTICS_COURSES: Course[] = [
 export const SATELLITES_COURSES: Course[] = [
     {
       title: 'Backyard Constellations',
-      ageGroup: '6-10',
+      ageGroup: 'Ages 5-8',
       description: 'Discover the unseen helpers in the sky. Learn how satellites help us with weather, maps, and talking to friends far away.',
       icon: <SatelliteIcon className="w-8 h-8 text-brand-space" />,
     },
     {
       title: 'Satellite Engineering',
-      ageGroup: '11-17',
+      ageGroup: 'Ages 9-15',
       description: 'Design, build, and deploy a virtual satellite. Learn about communication systems, orbits, and data transmission.',
       icon: <SatelliteIcon className="w-8 h-8 text-brand-space" />,
     },
@@ -96,13 +96,13 @@ export const SATELLITES_COURSES: Course[] = [
   export const DRONES_COURSES: Course[] = [
     {
       title: 'Drone Playground',
-      ageGroup: '6-10',
+      ageGroup: 'Ages 5-8',
       description: 'Take to the skies! Learn to fly mini-drones through obstacle courses and complete fun, aerial challenges safely.',
       icon: <DroneIcon className="w-8 h-8 text-green-500" />,
     },
     {
       title: 'Drone Programming & Cinematography',
-      ageGroup: '11-17',
+      ageGroup: 'Ages 9-15',
       description: 'Go beyond flying. Program drones for autonomous flight, and learn the art of capturing stunning aerial photos and videos.',
       icon: <DroneIcon className="w-8 h-8 text-green-500" />,
     },
@@ -115,7 +115,7 @@ export const FAQ_DATA: FaqItem[] = [
     },
     {
         question: "Who are the courses for?",
-        answer: "Our courses are designed for two main age groups: Junior Explorers (ages 6-10) and Senior Aviators (ages 11-17). Each course is tailored to be age-appropriate, engaging, and educational."
+        answer: "Our courses are designed for three main age groups: Early Learners (ages 5-8), Junior Explorers (ages 9-12), and Young Innovators (ages 13-15). Each course is tailored to be age-appropriate, engaging, and educational."
     },
     {
         question: "Are the courses safe?",

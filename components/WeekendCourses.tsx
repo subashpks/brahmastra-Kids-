@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 
 const WhatsAppIcon = () => (
@@ -8,8 +9,8 @@ const WhatsAppIcon = () => (
 );
 
 const courses = [
-    { title: "Astronomy For Kids", age: "Age 6-11", date: "15th & 16th November", time: "05:30 PM - 06:30 PM IST" },
-    { title: "Rocket Science for Kids", age: "Age 12 - 16", date: "15th & 16th November", time: "05:30 PM - 06:30 PM IST" }
+    { title: "Astronomy For Kids", age: "Ages 5-8", date: "15th & 16th November", time: "05:30 PM - 06:30 PM IST" },
+    { title: "Rocket Science for Kids", age: "Ages 9-15", date: "15th & 16th November", time: "05:30 PM - 06:30 PM IST" }
 ];
 
 const CourseCard: React.FC<{ course: { title: string; age: string; date: string; time: string; } }> = ({ course }) => (
