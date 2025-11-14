@@ -1,6 +1,4 @@
 
-
-
 import React from 'react';
 import { EnrollmentForm } from './Contact';
 
@@ -33,14 +31,6 @@ const CourseCard: React.FC<{ course: typeof courses[0] }> = ({ course }) => (
         <h3 className="text-xl font-bold text-slate-800 mt-3 mb-2 flex-grow">{course.title}</h3>
         <p className="text-slate-600 font-medium">{course.date}</p>
         <p className="text-slate-600 font-medium">{course.time}</p>
-        <div className="mt-4 border-t border-slate-200 pt-3">
-            <p className="text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wider">Medium of Instruction:</p>
-            <div className="flex gap-2">
-                {course.mediums.map(medium => (
-                    <span key={medium} className="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">{medium}</span>
-                ))}
-            </div>
-        </div>
     </div>
 );
 
@@ -115,7 +105,10 @@ export const FreeCoursesPage: React.FC = () => {
             <section id="upcoming-courses" className="py-16 md:py-24">
                 <div className="container mx-auto px-6">
                     <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-brand-space max-w-5xl mx-auto">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-8">Upcoming Free Courses</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-2">Upcoming Free Courses</h2>
+                        <p className="text-center text-sm text-slate-600 mb-8">
+                            Note: We conduct separate, fully interactive classes for each language to ensure the best learning experience.
+                        </p>
                         <div className="flex flex-col md:flex-row gap-8 justify-center">
                             {courses.map((course, index) => (
                                 <CourseCard key={index} course={course} />
