@@ -1,22 +1,22 @@
 
 import React, { useState } from 'react';
-import { Header } from './components/Header';
-import { HomePage } from './components/Hero';
-import { AeronauticsPage } from './components/Services';
-import { AstronauticsPage } from './components/OurProcess';
-import { SatellitesPage } from './components/WhySpeedMatters';
-import { DronesPage } from './components/Testimonials';
-import { FreeCoursesPage } from './components/WeekendCourses';
-import { AboutUsPage } from './components/AboutUs';
-import { AgeCategoryPage } from './components/AgeCategory';
-import { FAQ } from './components/FAQ';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
-import { MathsPage } from './components/MathsPage';
-import { PhysicsPage } from './components/PhysicsPage';
-import { ChemistryPage } from './components/ChemistryPage';
-import { AstrobiologyPage } from './components/AstrobiologyPage';
-import { Differentiators } from './components/Differentiators';
+import { Header } from './Header';
+import { HomePage } from './Hero';
+import { AeronauticsPage } from './Services';
+import { AstronauticsPage } from './OurProcess';
+import { SatellitesPage } from './WhySpeedMatters';
+import { DronesPage } from './Testimonials';
+import { FreeCoursesPage } from './WeekendCourses';
+import { AboutUsPage } from './AboutUs';
+import { AgeCategoryPage } from './AgeCategory';
+import { FAQ } from './FAQ';
+import { Contact } from './Contact';
+import { Footer } from './Footer';
+import { MathsPage } from './MathsPage';
+import { PhysicsPage } from './PhysicsPage';
+import { ChemistryPage } from './ChemistryPage';
+import { AstrobiologyPage } from './AstrobiologyPage';
+import { Differentiators } from './Differentiators';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
