@@ -112,8 +112,8 @@ export const EnrollmentForm: React.FC = () => {
                             <label htmlFor="selectedCourse" className="block text-sm font-medium mb-1 text-slate-700">Select Course <span className="text-red-500">*</span></label>
                             <select id="selectedCourse" name="SelectedCourse" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                 <option value="" disabled>Choose a course</option>
-                                <option value="Astronomy For Kids (Ages 5-8)">Astronomy For Kids (Ages 5-8)</option>
-                                <option value="Rocket Science for Kids (Ages 9-15)">Rocket Science for Kids (Ages 9-15)</option>
+                                <option value="Astronomy For Kids (Ages 6-10)">Astronomy For Kids (Ages 6-10)</option>
+                                <option value="Rocket Science for Kids (Ages 11-17)">Rocket Science for Kids (Ages 11-17)</option>
                             </select>
                         </div>
                          <div>

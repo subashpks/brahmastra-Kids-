@@ -12,6 +12,32 @@ const AstronautIllustration = () => (
     </div>
 );
 
+const WhatsAppCta: React.FC = () => (
+    <section className="bg-white pb-16 md:pb-0">
+        <div className="container mx-auto px-6">
+            <div className="bg-slate-50 rounded-2xl shadow-lg p-8 md:p-12 text-center max-w-3xl mx-auto">
+                <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-slate-900">
+                    Get regular updates and free Activities for your kids
+                </h2>
+                <p className="mt-4 text-lg text-slate-600">
+                    Join our WhatsApp channel for the latest news on upcoming courses, free workshops, and fun aerospace activities.
+                </p>
+                <div className="mt-8">
+                    <a 
+                        href="https://whatsapp.com/channel/0029Vb6qN88JuyA4MCaa5K01" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 bg-green-500 text-white hover:bg-green-600 transition-colors font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06c0 1.66.43 3.24 1.21 4.6l-1.36 4.95 5.07-1.33c1.32.75 2.82 1.18 4.38 1.18h.01c5.5 0 9.96-4.49 9.96-10.02S17.5 2.04 12 2.04zM16.51 13.96c-.22-.11-.78-.38-1.02-.43-.24-.05-.42-.08-.59.16-.18.24-.38.43-.47.54-.08.11-.17.13-.33.08-.16-.05-1.02-.37-1.95-1.2-.72-.64-1.21-1.44-1.36-1.68-.15-.24-.02-.38.07-.5.08-.11.17-.28.26-.42.09-.14.12-.24.18-.4.06-.16.03-.29-.02-.39-.05-.11-.59-1.42-.81-1.94-.21-.52-.43-.45-.59-.45-.15 0-.32-.03-.49-.03s-.42 0-1.08.5c-.66.5-1.02 1.23-1.02 2.4s1.05 2.78 1.2 2.97c.15.19 2.11 3.2 5.1 4.48.71.3 1.27.48 1.71.61.73.22 1.39.19 1.9.11.57-.08 1.76-.72 2-1.42.24-.7.24-1.3.17-1.42-.08-.12-.3-.19-.52-.3z"/></svg>
+                        Follow on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+
 const ContactCta: React.FC<PageProps> = ({ navigate }) => (
     <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6">
@@ -187,6 +213,8 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
       <Testimonials />
 
       <FAQ />
+
+      <WhatsAppCta />
 
       <ContactCta navigate={navigate} />
     </>

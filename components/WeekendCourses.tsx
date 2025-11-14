@@ -1,5 +1,6 @@
 
 
+
 import React from 'react';
 import { EnrollmentForm } from './Contact';
 
@@ -10,16 +11,36 @@ const WhatsAppIcon = () => (
 );
 
 const courses = [
-    { title: "Astronomy For Kids", age: "Ages 5-8", date: "15th & 16th November", time: "05:30 PM - 06:30 PM IST" },
-    { title: "Rocket Science for Kids", age: "Ages 9-15", date: "15th & 16th November", time: "05:30 PM - 06:30 PM IST" }
+    { 
+        title: "Astronomy For Kids", 
+        age: "Ages 6-10", 
+        date: "15th & 16th November", 
+        time: "05:30 PM - 06:30 PM IST",
+        mediums: ['தமிழ்', 'हिंदी'] 
+    },
+    { 
+        title: "Rocket Science for Kids", 
+        age: "Ages 11-17", 
+        date: "15th & 16th November", 
+        time: "05:30 PM - 06:30 PM IST",
+        mediums: ['தமிழ்', 'हिंदी'] 
+    }
 ];
 
-const CourseCard: React.FC<{ course: { title: string; age: string; date: string; time: string; } }> = ({ course }) => (
-    <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-brand-sun flex-1">
-        <span className="font-bold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full text-sm">{course.age}</span>
-        <h3 className="text-xl font-bold text-slate-800 mt-3 mb-2">{course.title}</h3>
+const CourseCard: React.FC<{ course: typeof courses[0] }> = ({ course }) => (
+    <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-brand-sun flex-1 flex flex-col">
+        <span className="font-bold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full text-sm self-start">{course.age}</span>
+        <h3 className="text-xl font-bold text-slate-800 mt-3 mb-2 flex-grow">{course.title}</h3>
         <p className="text-slate-600 font-medium">{course.date}</p>
         <p className="text-slate-600 font-medium">{course.time}</p>
+        <div className="mt-4 border-t border-slate-200 pt-3">
+            <p className="text-xs font-semibold text-slate-500 mb-2 uppercase tracking-wider">Medium of Instruction:</p>
+            <div className="flex gap-2">
+                {course.mediums.map(medium => (
+                    <span key={medium} className="bg-slate-200 text-slate-700 text-sm font-medium px-3 py-1 rounded-full">{medium}</span>
+                ))}
+            </div>
+        </div>
     </div>
 );
 
@@ -113,8 +134,10 @@ export const FreeCoursesPage: React.FC = () => {
                 </div>
             </section>
 
+            <EnrollmentForm />
+
             {/* Social Media Prompt */}
-            <section className="pb-16 md:pb-24">
+            <section className="pt-16 md:pt-24 pb-16">
                 <div className="container mx-auto px-6">
                     <div className="text-center max-w-2xl mx-auto bg-slate-100 p-8 rounded-2xl">
                         <h3 className="text-xl font-bold text-slate-800">Get regular updates and free Activities for your kids</h3>
@@ -130,7 +153,6 @@ export const FreeCoursesPage: React.FC = () => {
                     </div>
                 </div>
             </section>
-            <EnrollmentForm />
         </div>
     );
 };
