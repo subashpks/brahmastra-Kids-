@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { HomePage } from './Hero';
 import { AeronauticsPage } from './Services';
@@ -18,13 +18,36 @@ import { AstrobiologyPage } from './AstrobiologyPage';
 import { Differentiators } from './Differentiators';
 import { StreamsPage } from './Streams';
 import { AstronomyPage } from './AstronomyPage';
+import { FreeCoursePopup } from './FreeCoursePopup';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
+  const [showPopup, setShowPopup] = useState(false);
+
+  useEffect(() => {
+    const popupShown = sessionStorage.getItem('popupShown');
+    if (!popupShown) {
+      const timer = setTimeout(() => {
+        setShowPopup(true);
+        sessionStorage.setItem('popupShown', 'true');
+      }, 3000); // Show after 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const navigate = (page: string) => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
+  const handlePopupRedirect = () => {
+    navigate('freecourses');
+    setShowPopup(false);
   };
 
   const renderPage = () => {
@@ -67,6 +90,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
+      {showPopup && <FreeCoursePopup onClose={handleClosePopup} onRedirect={handlePopupRedirect} />}
       <Header navigate={navigate} currentPage={currentPage} />
       <main className="flex-grow">
         {renderPage()}
