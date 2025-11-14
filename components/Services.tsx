@@ -6,7 +6,7 @@ import { Course, PageProps } from '../types';
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
     <div className="bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-l-4 border-brand-sky">
         <div className="flex items-center gap-4 mb-4">
-            {course.icon}
+            <span className="text-4xl">{course.icon}</span>
             <span className="font-bold bg-sky-100 text-brand-sky px-2 py-0.5 rounded-full text-sm">{course.ageGroup}</span>
         </div>
         <h3 className="text-xl font-bold text-slate-800 mb-2">{course.title}</h3>

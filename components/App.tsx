@@ -3,21 +3,21 @@ import React, { useState } from 'react';
 import { Header } from './Header';
 import { HomePage } from './Hero';
 import { AeronauticsPage } from './Services';
-import { AstronauticsPage } from './OurProcess';
+import { RocketSciencePage } from './RocketSciencePage';
 import { SatellitesPage } from './WhySpeedMatters';
-import { DronesPage } from './Testimonials';
 import { FreeCoursesPage } from './WeekendCourses';
 import { AboutUsPage } from './AboutUs';
 import { AgeCategoryPage } from './AgeCategory';
 import { FaqPage } from './FaqPage';
 import { ContactPage } from './ContactPage';
 import { Footer } from './Footer';
-import { MathsPage } from './MathsPage';
-import { PhysicsPage } from './PhysicsPage';
-import { ChemistryPage } from './ChemistryPage';
+import { DataMathematicsPage } from './DataMathematicsPage';
+import { QuantumPhysicsPage } from './QuantumPhysicsPage';
+import { MolecularChemistryPage } from './MolecularChemistryPage';
 import { AstrobiologyPage } from './AstrobiologyPage';
 import { Differentiators } from './Differentiators';
 import { StreamsPage } from './Streams';
+import { AstronomyPage } from './AstronomyPage';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -31,23 +31,23 @@ function App() {
     switch (currentPage) {
       case 'aeronautics':
         return <AeronauticsPage navigate={navigate} />;
-      case 'rocketry':
-        return <AstronauticsPage navigate={navigate} />;
+      case 'rocket-science':
+        return <RocketSciencePage navigate={navigate} />;
       case 'satellites':
         return <SatellitesPage navigate={navigate} />;
-      case 'drones':
-        return <DronesPage navigate={navigate} />;
-      case 'maths':
-        return <MathsPage navigate={navigate} />;
-      case 'physics':
-        return <PhysicsPage navigate={navigate} />;
-      case 'chemistry':
-        return <ChemistryPage navigate={navigate} />;
+      case 'data-mathematics':
+        return <DataMathematicsPage navigate={navigate} />;
+      case 'quantum-physics':
+        return <QuantumPhysicsPage navigate={navigate} />;
+      case 'molecular-chemistry':
+        return <MolecularChemistryPage navigate={navigate} />;
       case 'astrobiology':
         return <AstrobiologyPage navigate={navigate} />;
+      case 'astronomy':
+        return <AstronomyPage navigate={navigate} />;
       case 'philosophy':
         return <Differentiators navigate={navigate} />;
-      case 'courses':
+      case 'streams':
         return <StreamsPage navigate={navigate} />;
       case 'freecourses':
         return <FreeCoursesPage />;

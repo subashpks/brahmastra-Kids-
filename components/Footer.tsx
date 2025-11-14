@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PageProps } from '../types';
 
@@ -56,7 +55,7 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                          <div className="flex flex-col space-y-2 text-sm">
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }} className="transition-opacity hover:opacity-75">Home</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="transition-opacity hover:opacity-75">About Us</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('courses'); }} className="transition-opacity hover:opacity-75">Courses</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('streams'); }} className="transition-opacity hover:opacity-75">Streams</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="transition-opacity hover:opacity-75">Age Groups</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('faq'); }} className="transition-opacity hover:opacity-75">FAQ</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="transition-opacity hover:opacity-75">Enroll</a>

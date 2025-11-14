@@ -74,7 +74,7 @@ export const InterestForm: React.FC = () => {
             });
 
             if (response.ok) {
-                setStatusMessage(`✅ Thank you for your interest! We've added you to our waitlist. We'll contact you soon with details about our next batch.`);
+                setStatusMessage(`✅ Thank you! We've received your details. Our experts will review your submission to match your child with a hand-selected learning group. Please wait for a confirmation email from our team.`);
                 setStatusIsError(false);
                 form.reset();
             } else {
@@ -96,7 +96,7 @@ export const InterestForm: React.FC = () => {
                         Join Our Waitlist
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        We curate small batches to ensure every child gets focused attention. Express your interest below, and we'll notify you as soon as a spot opens up!
+                        Every batch is curated—not crowded. Join the waitlist, and our experts will match your child to a hand-selected learning group. Because spaces are limited, you’ll receive a confirmation email only after we review your child’s details.
                     </p>
                 </div>
                 <div className="mt-12 max-w-2xl mx-auto bg-slate-50 p-8 rounded-xl shadow-lg">
@@ -170,8 +170,8 @@ export const InterestForm: React.FC = () => {
                             </div>
                         )}
                         <div>
-                            <button type="submit" disabled={isSubmitting} className="w-full bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-6 py-3 rounded-md shadow-md disabled:bg-slate-400 disabled:cursor-not-allowed">
-                                {isSubmitting ? 'Submitting...' : 'Express Interest'}
+                            <button type="submit" disabled={isSubmitting} className="w-full bg-[#e40917] hover:bg-[#c10714] transition-colors text-white font-semibold px-6 py-3 rounded-md shadow-md disabled:bg-slate-400 disabled:cursor-not-allowed">
+                                {isSubmitting ? 'Submitting...' : 'Join the Waitlist'}
                             </button>
                         </div>
                     </form>

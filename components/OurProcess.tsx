@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { ASTRONAUTICS_COURSES } from '../constants';
+// FIX: ASTRONAUTICS_COURSES is not an exported member of ../constants. Using ROCKET_SCIENCE_COURSES as an alias.
+import { ROCKET_SCIENCE_COURSES as ASTRONAUTICS_COURSES } from '../constants';
 import { Course, PageProps } from '../types';
 
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => (

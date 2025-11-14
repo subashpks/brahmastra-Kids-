@@ -1,9 +1,7 @@
-
-
 import React from 'react';
 import { PageProps } from '../types';
-import { STREAMS_DATA } from '../constants';
 import { FAQ } from './FAQ';
+import { Testimonials } from './Testimonials';
 
 const AstronautIllustration = () => (
     <div className="relative w-full max-w-sm mx-auto lg:max-w-md">
@@ -11,23 +9,6 @@ const AstronautIllustration = () => (
       <div className="absolute -top-4 -right-4 w-48 h-48 bg-brand-sun rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-48 h-48 bg-green-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         <img src="https://files.catbox.moe/vwlnrr.png" alt="A friendly cartoon astronaut floating in space with planets in the background" className="relative animate-float" />
-    </div>
-);
-
-
-const TopicCard: React.FC<{ emoji: string; title: string; description: string; color: string; onClick: () => void; isComingSoon?: boolean; }> = ({ emoji, title, description, color, onClick, isComingSoon }) => (
-    <div 
-        onClick={!isComingSoon ? onClick : undefined} 
-        className={`relative bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 border-t-4 ${color} ${isComingSoon ? 'opacity-60 cursor-not-allowed' : 'hover:shadow-xl hover:-translate-y-2 cursor-pointer'}`}
-    >
-        {isComingSoon && (
-            <div className="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md transform -rotate-12">
-                Coming Soon
-            </div>
-        )}
-        <div className="text-4xl mb-4">{emoji}</div>
-        <h3 className="text-xl font-bold text-slate-800 mb-2">{title}</h3>
-        <p className="text-slate-500">{description}</p>
     </div>
 );
 
@@ -56,8 +37,120 @@ const ContactCta: React.FC<PageProps> = ({ navigate }) => (
     </section>
 );
 
+const SparkleIcon = () => (
+    <div className="p-3 bg-brand-sky/20 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-sky" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.293 2.293a1 1 0 010 1.414L11 11.414l-2.293-2.293a1 1 0 010-1.414L11 5z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M11 5l2.293 2.293a1 1 0 010 1.414L11 11.414l-2.293-2.293a1 1 0 010-1.414L11 5zM19 13l2.293 2.293a1 1 0 010 1.414L19 19.414l-2.293-2.293a1 1 0 010-1.414L19 13z" />
+        </svg>
+    </div>
+);
+const AcademicCapIcon = () => (
+    <div className="p-3 bg-amber-500/20 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0l-.07.002z" />
+        </svg>
+    </div>
+);
+const BrainIcon = () => (
+    <div className="p-3 bg-lime-500/20 rounded-full">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-lime-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+    </div>
+);
+
+const AboutSection = () => (
+    <section id="about-brahmastra" className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+                <div className="order-2 lg:order-1 animate-fade-in-up">
+                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-brand-space font-['Montserrat']">
+                        brahmàstra<span className="text-[#e40917]">.</span>
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600">
+                        Brahmastra was born to make aerospace education accessible and replace rote learning with real-world wonder. Here's how we do it:
+                    </p>
+                    <ul className="mt-6 space-y-6">
+                        <li className="flex items-start gap-4">
+                            <div className="flex-shrink-0"><SparkleIcon /></div>
+                            <div>
+                                <h4 className="font-bold text-lg text-slate-800">Real-World Learning</h4>
+                                <p className="text-slate-600 mt-1">We replace rote learning with hands-on projects that build real skills and turn screen time into skill time.</p>
+                            </div>
+                        </li>
+                        <li className="flex items-start gap-4">
+                            <div className="flex-shrink-0"><AcademicCapIcon /></div>
+                            <div>
+                                <h4 className="font-bold text-lg text-slate-800">Expert Mentorship</h4>
+                                <p className="text-slate-600 mt-1">Our mentors are real aerospace engineers who teach kids to think, build, and problem-solve.</p>
+                            </div>
+                        </li>
+                        <li className="flex items-start gap-4">
+                            <div className="flex-shrink-0"><BrainIcon /></div>
+                            <div>
+                                <h4 className="font-bold text-lg text-slate-800">Curiosity-Driven</h4>
+                                <p className="text-slate-600 mt-1">We don't chase marks; we chase "aha!" moments, igniting a genuine passion for innovation.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div className="order-1 lg:order-2 animate-fade-in-up">
+                     <div className="relative w-full h-0 pb-[54.4118%] shadow-lg rounded-lg overflow-hidden">
+                         <iframe 
+                            loading="lazy" 
+                            className="absolute top-0 left-0 w-full h-full border-0"
+                            src="https://www.canva.com/design/DAEcK5gOp6s/view?embed" 
+                            allowFullScreen
+                            allow="fullscreen">
+                          </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+);
+
+const impactStats = [
+  { emoji: '👨‍👩‍👧‍👦', number: '85,000+', description: "India's Biggest Aerospace Community", color: 'text-brand-space', borderColor: 'border-brand-space' },
+  { emoji: '🎓', number: '30,000+', description: 'Students Passed Out in 6 Years', color: 'text-brand-sky', borderColor: 'border-brand-sky' },
+  { emoji: '🧑‍🚀', number: '3,000+', description: 'Aerospace Engineers Trained Personally', color: 'text-brand-sun', borderColor: 'border-brand-sun' },
+  { emoji: '🌍', number: '40+', description: 'Countries Our Alumni Work In', color: 'text-green-500', borderColor: 'border-green-500' },
+  { emoji: '🗺️', number: '10+', description: 'States Served in India', color: 'text-purple-500', borderColor: 'border-purple-500' },
+  { emoji: '🤝', number: '6+', description: 'Years of Trust in the Aerospace Community', color: 'text-[#e40917]', borderColor: 'border-[#e40917]' }
+];
+
+const StatsSection = () => (
+    <section className="py-16 md:py-24 bg-slate-100">
+        <div className="container mx-auto px-6">
+            <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                    Our Impact
+                </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                {impactStats.map((stat, index) => (
+                    <div key={index} className={`bg-white p-8 rounded-2xl shadow-lg border-t-4 ${stat.borderColor} transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}>
+                        <p className="text-4xl mb-4">{stat.emoji}</p>
+                        <h3 className={`text-4xl font-extrabold ${stat.color}`}>{stat.number}</h3>
+                        <p className="mt-2 text-base text-slate-600">{stat.description}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
 
 export const HomePage: React.FC<PageProps> = ({ navigate }) => {
+    const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+        e.preventDefault();
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
   return (
     <>
       <section className="py-16 md:py-24">
@@ -73,10 +166,10 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
               </p>
               <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                 <a 
-                    href="#" 
-                    onClick={(e) => { e.preventDefault(); navigate('courses'); }} 
+                    href="#about-brahmastra" 
+                    onClick={(e) => handleScrollClick(e, 'about-brahmastra')}
                     className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
-                  Choose Your Mission
+                  Explore Now
                 </a>
               </div>
             </div>
@@ -87,32 +180,12 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
         </div>
       </section>
 
-      <section id="topics" className="py-16 md:py-24 bg-slate-100">
-        <div className="container mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                    What Will You Discover Today?
-                </h2>
-                <p className="mt-4 text-lg text-slate-600">
-                    Pick a topic and start your adventure. Each path is filled with exciting projects and amazing facts!
-                </p>
-            </div>
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                {STREAMS_DATA.map((stream) => (
-                    <TopicCard 
-                        key={stream.title}
-                        emoji={stream.emoji}
-                        title={stream.title}
-                        description={stream.description}
-                        color={stream.color}
-                        onClick={() => navigate(stream.page)}
-                        isComingSoon={stream.isComingSoon}
-                    />
-                ))}
-            </div>
-        </div>
-      </section>
+      <AboutSection />
+
+      <StatsSection />
       
+      <Testimonials />
+
       <FAQ />
 
       <ContactCta navigate={navigate} />

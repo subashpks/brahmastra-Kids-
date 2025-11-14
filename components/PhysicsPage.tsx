@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { PHYSICS_COURSES } from '../constants';
+// FIX: PHYSICS_COURSES is not an exported member of ../constants. Using QUANTUM_PHYSICS_COURSES as an alias.
+import { QUANTUM_PHYSICS_COURSES as PHYSICS_COURSES } from '../constants';
 import { Course, PageProps } from '../types';
 
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => (

@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Course, FaqItem } from './types';
+import { Course, FaqItem, Testimonial } from './types';
 
 export const RocketIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -30,21 +30,12 @@ export const SatelliteIcon = (props: React.SVGProps<SVGSVGElement>) => (
     </svg>
 );
 
-export const DroneIcon = (props: React.SVGProps<SVGSVGElement>) => (
+export const TelescopeIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
-        <path d="M51 22.5c-1.4 0-2.5-1.1-2.5-2.5V13c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v7c0 1.4-1.1 2.5-2.5 2.5z" fill="#6b7280"/>
-        <path d="M51 61.5c-1.4 0-2.5-1.1-2.5-2.5V52c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v7c0 1.4-1.1 2.5-2.5 2.5z" fill="#6b7280"/>
-        <path d="M13 22.5c-1.4 0-2.5-1.1-2.5-2.5V13c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v7c0 1.4-1.1 2.5-2.5 2.5z" fill="#6b7280"/>
-        <path d="M13 61.5c-1.4 0-2.5-1.1-2.5-2.5V52c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5v7c0 1.4-1.1 2.5-2.5 2.5z" fill="#6b7280"/>
-        <path d="M61.5 51h-7c-1.4 0-2.5-1.1-2.5-2.5s1.1-2.5 2.5-2.5h7c1.4 0 2.5 1.1 2.5 2.5S62.9 51 61.5 51z" fill="#4b5563"/>
-        <path d="M15.5 51h-7C7.1 51 6 49.9 6 48.5S7.1 46 8.5 46h7c1.4 0 2.5 1.1 2.5 2.5S16.9 51 15.5 51z" fill="#4b5563"/>
-        <path d="M61.5 13h-7c-1.4 0-2.5-1.1-2.5-2.5S53.1 8 54.5 8h7C62.9 8 64 9.1 64 10.5S62.9 13 61.5 13z" fill="#4b5563"/>
-        <path d="M15.5 13h-7C7.1 13 6 11.9 6 10.5S7.1 8 8.5 8h7c1.4 0 2.5 1.1 2.5 2.5S16.9 13 15.5 13z" fill="#4b5563"/>
-        <path d="M51 46H13c-5 0-9-4-9-9V27c0-5 4-9 9-9h38c5 0 9 4 9 9v10c0 5-4 9-9 9z" fill="#d1d5db"/>
-        <circle cx="32" cy="36" r="10" fill="#4b5563"/>
-        <circle cx="32" cy="36" r="4" fill="#ef4444"/>
-        <path d="M53.5 2.5c-1.4 0-2.5-1.1-2.5-2.5 0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z" transform="translate(0 4)" fill="#22c55e"/>
-        <path d="M10.5 2.5C9.1 2.5 8 1.4 8 0c0-1.4 1.1-2.5 2.5-2.5s2.5 1.1 2.5 2.5-1.1 2.5-2.5 2.5z" transform="translate(0 4)" fill="#22c55e"/>
+        <path d="M56.3,47.8l-7.5-7.5-4,4,7.5,7.5a4.2,4.2,0,0,0,6,0,4.2,4.2,0,0,0,0-6Z" fill="#94a3b8"/>
+        <path d="M54.9,25.1,38.2,8.4a4.2,4.2,0,0,0-6,0L18.4,22.2a4.2,4.2,0,0,0,0,6l1.4,1.4,11.3-11.3,16,16-11.3,11.3,1.4,1.4a4.2,4.2,0,0,0,6,0L54.9,31.1a4.2,4.2,0,0,0,0-6Z" fill="#475569"/>
+        <path d="M28.3,31.7,16.9,43.1a4.2,4.2,0,0,0,0,6l1.4,1.4,11.4-11.4Z" fill="#64748b"/>
+        <path d="M12.7,47.3a4.2,4.2,0,0,0-6,0L2.9,51.1a4.2,4.2,0,0,0,0,6l4.2,4.2a4.2,4.2,0,0,0,6,0l4.2-4.2a4.2,4.2,0,0,0,0-6Z" fill="#94a3b8"/>
     </svg>
 );
 
@@ -62,22 +53,21 @@ export const AstrobiologyIcon = (props: React.SVGProps<SVGSVGElement>) => (
 );
 
 
-// FIX: Added `isComingSoon` property to each stream object to resolve TypeScript errors.
 export const STREAMS_DATA = [
     { 
-        title: 'Rocketry',
-        description: 'Build rockets and explore the secrets of space travel.',
-        emoji: '🚀',
-        color: 'border-brand-sun',
-        page: 'rocketry',
+        title: 'Aeronautics',
+        description: 'Learn how things fly, from paper planes to jumbo jets.',
+        emoji: '✈️',
+        color: 'border-brand-sky',
+        page: 'aeronautics',
         isComingSoon: false,
     },
-    { 
-        title: 'Drones',
-        description: 'Pilot the future and see the world from a new angle.',
-        emoji: '🚁',
-        color: 'border-green-500',
-        page: 'drones',
+    {
+        title: 'Astronomy',
+        description: 'Gaze at the stars and unravel the mysteries of the cosmos.',
+        emoji: '🔭',
+        color: 'border-indigo-500',
+        page: 'astronomy',
         isComingSoon: false,
     },
     { 
@@ -89,35 +79,11 @@ export const STREAMS_DATA = [
         isComingSoon: false,
     },
     { 
-        title: 'Aeronautics',
-        description: 'Learn how things fly, from paper planes to jumbo jets.',
-        emoji: '✈️',
-        color: 'border-brand-sky',
-        page: 'aeronautics',
-        isComingSoon: false,
-    },
-    { 
-        title: 'Maths',
-        description: 'Unlock the equations that power the universe.',
-        emoji: '🧮',
-        color: 'border-purple-500',
-        page: 'maths',
-        isComingSoon: false,
-    },
-    { 
-        title: 'Physics',
-        description: 'Explore the fundamental laws of reality and motion.',
-        emoji: '⚛️',
-        color: 'border-orange-500',
-        page: 'physics',
-        isComingSoon: false,
-    },
-    { 
-        title: 'Chemistry',
-        description: 'Mix, react, and discover the building blocks of matter.',
-        emoji: '🧪',
-        color: 'border-teal-500',
-        page: 'chemistry',
+        title: 'Rocket Science',
+        description: 'Build rockets and explore the secrets of space travel.',
+        emoji: '🚀',
+        color: 'border-brand-sun',
+        page: 'rocket-science',
         isComingSoon: false,
     },
     { 
@@ -128,6 +94,30 @@ export const STREAMS_DATA = [
         page: 'astrobiology',
         isComingSoon: false,
     },
+    { 
+        title: 'Quantum Physics',
+        description: 'Explore the fundamental laws of reality and motion.',
+        emoji: '⚛️',
+        color: 'border-orange-500',
+        page: 'quantum-physics',
+        isComingSoon: false,
+    },
+    { 
+        title: 'Molecular Chemistry',
+        description: 'Mix, react, and discover the building blocks of matter.',
+        emoji: '🧪',
+        color: 'border-teal-500',
+        page: 'molecular-chemistry',
+        isComingSoon: false,
+    },
+    { 
+        title: 'Data Mathematics',
+        description: 'Unlock the equations that power the universe.',
+        emoji: '🧮',
+        color: 'border-purple-500',
+        page: 'data-mathematics',
+        isComingSoon: false,
+    },
 ];
 
 export const AERONAUTICS_COURSES: Course[] = [
@@ -135,28 +125,28 @@ export const AERONAUTICS_COURSES: Course[] = [
     title: 'Junior Pilot Program',
     ageGroup: 'Ages 5-8',
     description: 'Learn the basics of flight! Build paper airplanes, discover how wings work, and design your first aircraft.',
-    icon: <PlaneIcon className="w-8 h-8 text-brand-sky" />,
+    icon: '✈️',
   },
   {
     title: 'Aerodynamics Mastery',
     ageGroup: 'Ages 9-15',
     description: 'Dive deep into the forces of flight. Explore lift, drag, thrust, and weight with advanced simulators and model building.',
-    icon: <PlaneIcon className="w-8 h-8 text-brand-sky" />,
+    icon: '✈️',
   },
 ];
 
-export const ASTRONAUTICS_COURSES: Course[] = [
+export const ROCKET_SCIENCE_COURSES: Course[] = [
   {
     title: 'Rocket Racers',
     ageGroup: 'Ages 5-8',
     description: '3... 2... 1... Blast off! Construct and launch your own model rockets while learning about space exploration.',
-    icon: <RocketIcon className="w-8 h-8 text-brand-sun" />,
+    icon: '🚀',
   },
   {
     title: 'Orbital Mechanics',
     ageGroup: 'Ages 9-15',
     description: 'Chart a course to the stars. Understand how spacecraft travel, orbit planets, and navigate the vastness of space.',
-    icon: <RocketIcon className="w-8 h-8 text-brand-sun" />,
+    icon: '🚀',
   },
 ];
 
@@ -165,72 +155,57 @@ export const SATELLITES_COURSES: Course[] = [
       title: 'Backyard Constellations',
       ageGroup: 'Ages 5-8',
       description: 'Discover the unseen helpers in the sky. Learn how satellites help us with weather, maps, and talking to friends far away.',
-      icon: <SatelliteIcon className="w-8 h-8 text-brand-space" />,
+      icon: '🛰️',
     },
     {
       title: 'Satellite Engineering',
       ageGroup: 'Ages 9-15',
       description: 'Design, build, and deploy a virtual satellite. Learn about communication systems, orbits, and data transmission.',
-      icon: <SatelliteIcon className="w-8 h-8 text-brand-space" />,
+      icon: '🛰️',
     },
   ];
   
-  export const DRONES_COURSES: Course[] = [
+export const DATA_MATHEMATICS_COURSES: Course[] = [
     {
-      title: 'Drone Playground',
+      title: 'Data Detectives',
       ageGroup: 'Ages 5-8',
-      description: 'Take to the skies! Learn to fly mini-drones through obstacle courses and complete fun, aerial challenges safely.',
-      icon: <DroneIcon className="w-8 h-8 text-green-500" />,
-    },
-    {
-      title: 'Drone Programming & Cinematography',
-      ageGroup: 'Ages 9-15',
-      description: 'Go beyond flying. Program drones for autonomous flight, and learn the art of capturing stunning aerial photos and videos.',
-      icon: <DroneIcon className="w-8 h-8 text-green-500" />,
-    },
-  ];
-
-export const MATHS_COURSES: Course[] = [
-    {
-      title: 'Number Ninjas',
-      ageGroup: 'Ages 5-8',
-      description: 'Embark on a quest to master numbers through fun games, puzzles, and activities that make learning math an exciting adventure.',
+      description: 'Embark on a quest to find patterns in numbers, create cool charts, and solve real-world mysteries using data.',
       icon: '🧮',
     },
     {
-      title: 'Equation Explorers',
+      title: 'Algorithm Architects',
       ageGroup: 'Ages 9-15',
-      description: 'Unlock the power of algebra and geometry. Solve real-world problems, from building structures to planning space missions.',
+      description: 'Learn the logic behind algorithms and use mathematical models to predict outcomes, from game scores to weather patterns.',
       icon: '🧮',
     },
 ];
 
-export const PHYSICS_COURSES: Course[] = [
+export const QUANTUM_PHYSICS_COURSES: Course[] = [
     {
-      title: 'Force Finders',
+      title: 'Quantum Leap Jr.',
       ageGroup: 'Ages 5-8',
-      description: 'Play with the invisible forces that shape our world. Discover gravity, magnetism, and motion through hands-on experiments.',
+      description: 'Play with the weird and wonderful rules of the quantum world. Discover particles that can be in two places at once!',
       icon: '⚛️',
     },
     {
-      title: 'Cosmic Cadets',
+      title: 'Reality Builders',
       ageGroup: 'Ages 9-15',
-      description: 'Journey from the atom to the entire cosmos. Explore concepts like energy, light, and the basics of quantum mechanics.',
+      description: 'Journey from the atom to the cosmos, exploring concepts like wave-particle duality, superposition, and quantum entanglement.',
       icon: '⚛️',
     },
 ];
 
-export const CHEMISTRY_COURSES: Course[] = [
+export const MOLECULAR_CHEMISTRY_COURSES: Course[] = [
     {
-      title: 'Potion Masters',
+      title: 'Molecule Kidz',
       ageGroup: 'Ages 5-8',
-      description: 'Mix safe, everyday ingredients to create amazing reactions! Make slimes, volcanoes, and colorful concoctions.',
+      description: 'Mix safe, everyday ingredients to see how molecules bond, react, and create amazing changes you can see!',
       icon: '🧪',
     },
     {
-      title: 'Molecule Makers',
+      title: 'Atomic Architects',
       ageGroup: 'Ages 9-15',
-      description: 'Dive into the periodic table and discover how elements combine. Build molecules and understand chemical reactions.',
+      description: 'Dive into the periodic table, build 3D molecules on-screen, and understand the chemical bonds that create everything around us.',
       icon: '🧪',
     },
 ];
@@ -250,6 +225,21 @@ export const ASTROBIOLOGY_COURSES: Course[] = [
     },
 ];
 
+export const ASTRONOMY_COURSES: Course[] = [
+    {
+      title: 'Star Gazers Club',
+      ageGroup: 'Ages 5-8',
+      description: 'Learn to identify constellations, discover the planets of our solar system, and understand the phases of the moon.',
+      icon: '🔭',
+    },
+    {
+      title: 'Cosmic Voyager',
+      ageGroup: 'Ages 9-15',
+      description: 'Explore deep-space objects like nebulae and galaxies. Learn about black holes, star life cycles, and the Big Bang theory.',
+      icon: '🔭',
+    },
+  ];
+
 export const FAQ_DATA: FaqItem[] = [
     {
         question: "What is Brahmastra Aerospace Academy?",
@@ -267,4 +257,47 @@ export const FAQ_DATA: FaqItem[] = [
         question: "Do we need to buy any special equipment?",
         answer: "Some courses may recommend simple materials like paper and scissors, or optional kits for model building. Any requirements will be clearly listed on the course description page. Many courses can be completed with no extra equipment at all!"
     }
+];
+
+export const TESTIMONIALS_DATA: Testimonial[] = [
+  {
+    quote: "Brahmastra truly speaks the language of kids. My son used to be shy, but now he's asking questions about space I never would have imagined. They answered everything with such patience and excitement.",
+    studentName: "Vasudev S.",
+    parentName: "Sabarigirisan N.",
+    schoolName: "MS Dhoni Global School",
+    district: "Hosur",
+    state: "Tamil Nadu"
+  },
+  {
+    quote: "The hands-on projects are fantastic. It's not just theory; they're actually building and learning. Zain is always excited to show me what he's made. We've never seen him so engaged in learning.",
+    studentName: "Zain A.",
+    parentName: "Subeer Abdul Kadhar",
+    schoolName: "Velavan Nursery & Primary School",
+    district: "Tiruppur",
+    state: "Tamil Nadu"
+  },
+  {
+    quote: "The mentors are actual aerospace engineers, and it shows. The depth of knowledge and the passion they bring is incredible. It feels like my child is getting a glimpse into a real-world career.",
+    studentName: "Aditya S.",
+    parentName: "Arun Singh",
+    schoolName: "Orchids The International School",
+    district: "Gurugram",
+    state: "Haryana"
+  },
+  {
+    quote: "I was worried it would be another high-pressure class, but it's the complete opposite. The focus on curiosity and collaboration is a breath of fresh air. Harshiv is learning so much without any of the stress.",
+    studentName: "Harshiv V.",
+    parentName: "Vigneshwaran M.",
+    schoolName: "KRM Public School",
+    district: "Chennai",
+    state: "Tamil Nadu"
+  },
+  {
+    quote: "Seeing my son's confidence grow has been the best part. The small batch size means he gets the attention he needs and isn't afraid to speak up. Highly recommend!",
+    studentName: "Dheeran K.",
+    parentName: "Nantha Kumar T.",
+    schoolName: "Sarvodaya Vidyalaya",
+    district: "Tiruppur",
+    state: "Tamil Nadu"
+  }
 ];

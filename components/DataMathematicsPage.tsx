@@ -1,7 +1,6 @@
 
 import React from 'react';
-// FIX: MATHS_COURSES is not an exported member of ../constants. Using DATA_MATHEMATICS_COURSES as an alias.
-import { DATA_MATHEMATICS_COURSES as MATHS_COURSES } from '../constants';
+import { DATA_MATHEMATICS_COURSES } from '../constants';
 import { Course, PageProps } from '../types';
 
 const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
@@ -15,17 +14,17 @@ const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
     </div>
 );
 
-export const MathsPage: React.FC<PageProps> = ({ navigate }) => {
+export const DataMathematicsPage: React.FC<PageProps> = ({ navigate }) => {
   return (
-    <section id="maths" className="py-16 md:py-24 animate-fade-in-up">
+    <section id="data-mathematics" className="py-16 md:py-24 animate-fade-in-up">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-purple-600">
-                    Maths: The Language of the Universe
+                    Data Mathematics: The Numbers Behind the Code
                 </h2>
                 <p className="mt-4 text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
-                    From counting stars to launching rockets, math is the secret code behind everything. Join us to solve puzzles, play with shapes, and see how numbers create worlds.
+                    From coding spacecraft trajectories to analyzing stellar data, numbers are the backbone of modern exploration. Learn to find patterns, build models, and use data to solve cosmic puzzles.
                 </p>
             </div>
             <div className="flex justify-center">
@@ -34,9 +33,9 @@ export const MathsPage: React.FC<PageProps> = ({ navigate }) => {
         </div>
         
         <div className="mt-16">
-            <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">Your Calculation Crew</h3>
+            <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">Your Data Mission</h3>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {MATHS_COURSES.map((course, index) => (
+                {DATA_MATHEMATICS_COURSES.map((course, index) => (
                     <CourseCard key={index} course={course} />
                 ))}
             </div>

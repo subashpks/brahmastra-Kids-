@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { STREAMS_DATA } from '../constants';
 
 interface HeaderProps {
   navigate: (page: string) => void;
@@ -9,7 +8,6 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isAboutSubMenuOpen, setAboutSubMenuOpen] = useState(false);
-    const [isCoursesSubMenuOpen, setCoursesSubMenuOpen] = useState(false);
 
     const navLinkClasses = (page: string, isParent = false) => 
         `px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
@@ -22,7 +20,6 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
         navigate(page);
         setIsMenuOpen(false);
         setAboutSubMenuOpen(false);
-        setCoursesSubMenuOpen(false);
     };
     
     const ArrowDownIcon = () => (
@@ -39,15 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                 </div>
             </div>
 
-            <div className="relative group">
-                <div className={navLinkClasses('courses-parent', true)}>Courses <ArrowDownIcon/></div>
-                <div className="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    {STREAMS_DATA.map(course => (
-                        <a key={course.page} href="#" onClick={(e) => { e.preventDefault(); navigate(course.page); }} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">{course.title}</a>
-                    ))}
-                </div>
-            </div>
-
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('streams')}} className={navLinkClasses('streams')}>Streams</a>
             <a href="#" onClick={(e) => {e.preventDefault(); navigate('freecourses')}} className={navLinkClasses('freecourses')}>Free Courses</a>
             <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="ml-2 inline-block bg-[#e40917] hover:bg-[#c10714] transition-colors text-white font-semibold px-5 py-2 rounded-full text-sm shadow-md">
                 Join Waitlist
@@ -68,16 +57,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                     </div>
                 )}
                 
-                <button onClick={() => setCoursesSubMenuOpen(!isCoursesSubMenuOpen)} className="flex justify-between items-center w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">
-                    <span>Courses</span> <ArrowDownIcon/>
-                </button>
-                {isCoursesSubMenuOpen && (
-                    <div className="pl-4 border-l-2 border-slate-200">
-                        {STREAMS_DATA.map(course => (
-                            <a key={course.page} href="#" onClick={(e) => { e.preventDefault(); handleMobileNav(course.page); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-600 hover:bg-slate-200">{course.title}</a>
-                        ))}
-                    </div>
-                )}
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('streams'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Streams</a>
 
                 <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Free Courses</a>
                 <div className="p-2">

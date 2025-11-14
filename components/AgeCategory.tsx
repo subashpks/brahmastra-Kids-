@@ -139,10 +139,10 @@ export const AgeCategoryPage: React.FC<PageProps> = ({ navigate }) => {
                 <div className="mt-8">
                     <a 
                         href="#" 
-                        onClick={(e) => { e.preventDefault(); navigate('courses'); }} 
+                        onClick={(e) => { e.preventDefault(); navigate('streams'); }} 
                         className="inline-block bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg"
                     >
-                        View All Courses
+                        View All Streams
                     </a>
                 </div>
             </div>

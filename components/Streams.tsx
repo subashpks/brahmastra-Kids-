@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PageProps } from '../types';
 import { STREAMS_DATA } from '../constants';
@@ -25,10 +24,10 @@ export const StreamsPage: React.FC<PageProps> = ({ navigate }) => {
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
-              What Will You Discover Today?
+              Explore Our Learning Streams
             </h1>
             <p className="mt-6 text-lg text-slate-600">
-              Pick a topic and start your adventure. Each path is filled with exciting projects and amazing facts!
+              We call our courses 'Streams' because learning should flow naturally, guided by curiosity. Before we can truly harness tools like AI, we must first understand our place in the cosmos. True innovation begins with asking the fundamental questions: Why are we here? What is our universe? Each stream is a journey into a fascinating area of aerospace and STEM, designed to answer these questions through hands-on, engaging experiences. Pick a stream and let the adventure begin!
             </p>
         </div>
 
@@ -44,6 +43,28 @@ export const StreamsPage: React.FC<PageProps> = ({ navigate }) => {
                     isComingSoon={stream.isComingSoon}
                 />
             ))}
+        </div>
+
+        {/* CTA Section */}
+        <div className="mt-20 text-center bg-white p-10 rounded-2xl shadow-xl max-w-4xl mx-auto border-t-4 border-brand-space">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
+                Ready to Launch Your Child's Journey?
+            </h2>
+            <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+                Every batch is curated—not crowded. Join the waitlist, and our experts will match your child to a hand-selected learning group. Because spaces are limited, you’ll receive a confirmation email only after we review your child’s details.
+            </p>
+            <div className="mt-8">
+                <a 
+                    href="#" 
+                    onClick={(e) => { e.preventDefault(); navigate('age'); }} 
+                    className="inline-block bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-10 py-4 rounded-full text-lg shadow-lg transform hover:scale-105"
+                >
+                    Join Waitlist
+                </a>
+                <p className="mt-4 text-sm text-slate-500">
+                    Limited seats available. Secure your spot!
+                </p>
+            </div>
         </div>
       </div>
     </section>
