@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { STREAMS_DATA } from '../constants';
 
@@ -32,12 +31,10 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
 
     const DesktopNav = () => (
         <nav className="hidden lg:flex items-center space-x-2">
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('home')}} className={navLinkClasses('home')}>Home</a>
-
             <div className="relative group">
                 <div className={navLinkClasses('about-parent', true)}>About Us <ArrowDownIcon/></div>
                 <div className="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Our Story</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Our Journey</a>
                     <a href="#" onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Our Philosophy</a>
                 </div>
             </div>
@@ -51,24 +48,22 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                 </div>
             </div>
 
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('age')}} className={navLinkClasses('age')}>Age Groups</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('faq')}} className={navLinkClasses('faq')}>FAQ</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('freecourses')}} className={navLinkClasses('freecourses')}>Enroll</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('contact')}} className={navLinkClasses('contact')}>Contact Us</a>
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('freecourses')}} className={navLinkClasses('freecourses')}>Free Courses</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="ml-2 inline-block bg-[#e40917] hover:bg-[#c10714] transition-colors text-white font-semibold px-5 py-2 rounded-full text-sm shadow-md">
+                Join Waitlist
+            </a>
         </nav>
     );
     
     const MobileNav = () => (
          <div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-xl animate-fade-in-up transition-all duration-300">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('home'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Home</a>
-                
                 <button onClick={() => setAboutSubMenuOpen(!isAboutSubMenuOpen)} className="flex justify-between items-center w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">
                     <span>About Us</span> <ArrowDownIcon/>
                 </button>
                 {isAboutSubMenuOpen && (
                     <div className="pl-4 border-l-2 border-slate-200">
-                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('about'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-600 hover:bg-slate-200">Our Story</a>
+                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('about'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-600 hover:bg-slate-200">Our Journey</a>
                         <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('philosophy'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-600 hover:bg-slate-200">Our Philosophy</a>
                     </div>
                 )}
@@ -84,10 +79,10 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                     </div>
                 )}
 
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('age'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Age Groups</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('faq'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">FAQ</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Enroll</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('contact'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Contact Us</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Free Courses</a>
+                <div className="p-2">
+                    <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('age'); }} className="block w-full text-center px-4 py-3 rounded-md text-base font-medium text-white bg-[#e40917] hover:bg-[#c10714]">Join Waitlist</a>
+                </div>
             </div>
         </div>
     );

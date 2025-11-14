@@ -3,6 +3,7 @@
 import React from 'react';
 import { PageProps } from '../types';
 import { STREAMS_DATA } from '../constants';
+import { FAQ } from './FAQ';
 
 const AstronautIllustration = () => (
     <div className="relative w-full max-w-sm mx-auto lg:max-w-md">
@@ -28,6 +29,33 @@ const TopicCard: React.FC<{ emoji: string; title: string; description: string; c
         <h3 className="text-xl font-bold text-slate-800 mb-2">{title}</h3>
         <p className="text-slate-500">{description}</p>
     </div>
+);
+
+const ContactCta: React.FC<PageProps> = ({ navigate }) => (
+    <section className="py-16 md:py-24">
+        <div className="container mx-auto px-6">
+            <div className="bg-gradient-to-r from-brand-space to-brand-sky rounded-2xl p-10 md:p-16 text-center relative overflow-hidden">
+                <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full" aria-hidden="true"></div>
+                <div className="absolute -bottom-16 -right-5 w-48 h-48 bg-white/10 rounded-full" aria-hidden="true"></div>
+                <div className="relative z-10">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white max-w-2xl mx-auto">
+                        Have Questions?
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-200 max-w-xl mx-auto">
+                        Our team is ready to help with any inquiries. Reach out for more information about our courses, philosophy, or anything else.
+                    </p>
+                    <div className="mt-8">
+                        <a 
+                            href="#" 
+                            onClick={(e) => { e.preventDefault(); navigate('contact'); }}
+                            className="bg-white text-brand-space hover:bg-slate-200 transition-colors font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
+                            Contact Us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 );
 
 
@@ -87,6 +115,9 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
         </div>
       </section>
       
+      <ContactCta navigate={navigate} />
+
+      <FAQ />
     </>
   );
 };
