@@ -9,14 +9,15 @@ import { DronesPage } from './Testimonials';
 import { FreeCoursesPage } from './WeekendCourses';
 import { AboutUsPage } from './AboutUs';
 import { AgeCategoryPage } from './AgeCategory';
-import { FAQ } from './FAQ';
-import { Contact } from './Contact';
+import { FaqPage } from './FaqPage';
+import { ContactPage } from './ContactPage';
 import { Footer } from './Footer';
 import { MathsPage } from './MathsPage';
 import { PhysicsPage } from './PhysicsPage';
 import { ChemistryPage } from './ChemistryPage';
 import { AstrobiologyPage } from './AstrobiologyPage';
 import { Differentiators } from './Differentiators';
+import { StreamsPage } from './Streams';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
@@ -46,12 +47,18 @@ function App() {
         return <AstrobiologyPage navigate={navigate} />;
       case 'philosophy':
         return <Differentiators navigate={navigate} />;
+      case 'courses':
+        return <StreamsPage navigate={navigate} />;
       case 'freecourses':
         return <FreeCoursesPage />;
       case 'about':
         return <AboutUsPage />;
       case 'age':
-        return <AgeCategoryPage />;
+        return <AgeCategoryPage navigate={navigate} />;
+      case 'faq':
+        return <FaqPage />;
+      case 'contact':
+        return <ContactPage />;
       case 'home':
       default:
         return <HomePage navigate={navigate} />;
@@ -63,8 +70,6 @@ function App() {
       <Header navigate={navigate} currentPage={currentPage} />
       <main className="flex-grow">
         {renderPage()}
-        {currentPage === 'home' && <FAQ />}
-        {currentPage === 'freecourses' && <Contact />}
       </main>
       <Footer navigate={navigate}/>
     </div>

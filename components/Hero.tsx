@@ -48,7 +48,7 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
               <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                 <a 
                     href="#" 
-                    onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} 
+                    onClick={(e) => { e.preventDefault(); navigate('courses'); }} 
                     className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
                   Choose Your Mission
                 </a>

@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import { EnrollmentForm } from './Contact';
 
 const WhatsAppIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -129,6 +130,7 @@ export const FreeCoursesPage: React.FC = () => {
                     </div>
                 </div>
             </section>
+            <EnrollmentForm />
         </div>
     );
 };

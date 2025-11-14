@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PageProps } from '../types';
 
@@ -54,9 +55,12 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                          <h3 className="text-lg font-semibold mb-4">Explore</h3>
                          <div className="flex flex-col space-y-2 text-sm">
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }} className="transition-opacity hover:opacity-75">Home</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} className="transition-opacity hover:opacity-75">Our Philosophy</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="transition-opacity hover:opacity-75">About Us</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="transition-opacity hover:opacity-75">Free Courses</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('courses'); }} className="transition-opacity hover:opacity-75">Courses</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="transition-opacity hover:opacity-75">Age Groups</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('faq'); }} className="transition-opacity hover:opacity-75">FAQ</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="transition-opacity hover:opacity-75">Enroll</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('contact'); }} className="transition-opacity hover:opacity-75">Contact Us</a>
                         </div>
                     </div>
 

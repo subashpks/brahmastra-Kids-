@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { InterestForm } from './InterestForm';
+import { PageProps } from '../types';
 
 const categories = [
     {
@@ -117,7 +118,7 @@ const FaqItemComponent: React.FC<{
     );
 };
 
-export const AgeCategoryPage: React.FC = () => {
+export const AgeCategoryPage: React.FC<PageProps> = ({ navigate }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const handleToggle = (index: number) => {
@@ -135,6 +136,15 @@ export const AgeCategoryPage: React.FC = () => {
                 <p className="mt-6 text-lg text-slate-600">
                   We believe in nurturing passion at the right pace. Our programs are designed to match your child's developmental stage, ensuring they get the most engaging and effective learning experience. Find the perfect launchpad for their journey below.
                 </p>
+                <div className="mt-8">
+                    <a 
+                        href="#" 
+                        onClick={(e) => { e.preventDefault(); navigate('courses'); }} 
+                        className="inline-block bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg"
+                    >
+                        View All Courses
+                    </a>
+                </div>
             </div>
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {categories.map(cat => <CategoryCard key={cat.title} category={cat} />)}

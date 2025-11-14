@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 
-export const Contact: React.FC = () => {
+export const EnrollmentForm: React.FC = () => {
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [statusIsError, setStatusIsError] = useState<boolean>(false);

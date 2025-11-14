@@ -1,4 +1,6 @@
+
 import React, { useState } from 'react';
+import { STREAMS_DATA } from '../constants';
 
 interface HeaderProps {
   navigate: (page: string) => void;
@@ -7,25 +9,88 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isAboutSubMenuOpen, setAboutSubMenuOpen] = useState(false);
+    const [isCoursesSubMenuOpen, setCoursesSubMenuOpen] = useState(false);
 
-    const navLinkClasses = (page: string) => 
-        `px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+    const navLinkClasses = (page: string, isParent = false) => 
+        `px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
             currentPage === page 
             ? 'text-brand-space font-bold' 
             : 'text-slate-600 hover:text-brand-space hover:bg-slate-200'
-        }`;
-    
-    const mobileNavLinkClasses = (page: string) => 
-        `block w-full text-center px-4 py-3 rounded-md text-lg font-medium transition-colors ${
-            currentPage === page
-            ? 'bg-brand-space text-white'
-            : 'text-slate-700 hover:bg-slate-200'
-        }`;
+        } ${isParent ? 'cursor-default' : ''}`;
 
     const handleMobileNav = (page: string) => {
         navigate(page);
         setIsMenuOpen(false);
+        setAboutSubMenuOpen(false);
+        setCoursesSubMenuOpen(false);
     };
+    
+    const ArrowDownIcon = () => (
+        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+    );
+
+    const DesktopNav = () => (
+        <nav className="hidden lg:flex items-center space-x-2">
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('home')}} className={navLinkClasses('home')}>Home</a>
+
+            <div className="relative group">
+                <div className={navLinkClasses('about-parent', true)}>About Us <ArrowDownIcon/></div>
+                <div className="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Our Story</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">Our Philosophy</a>
+                </div>
+            </div>
+
+            <div className="relative group">
+                <div className={navLinkClasses('courses-parent', true)}>Courses <ArrowDownIcon/></div>
+                <div className="absolute left-0 mt-1 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    {STREAMS_DATA.map(course => (
+                        <a key={course.page} href="#" onClick={(e) => { e.preventDefault(); navigate(course.page); }} className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100">{course.title}</a>
+                    ))}
+                </div>
+            </div>
+
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('age')}} className={navLinkClasses('age')}>Age Groups</a>
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('faq')}} className={navLinkClasses('faq')}>FAQ</a>
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('freecourses')}} className={navLinkClasses('freecourses')}>Enroll</a>
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('contact')}} className={navLinkClasses('contact')}>Contact Us</a>
+        </nav>
+    );
+    
+    const MobileNav = () => (
+         <div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-xl animate-fade-in-up transition-all duration-300">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('home'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Home</a>
+                
+                <button onClick={() => setAboutSubMenuOpen(!isAboutSubMenuOpen)} className="flex justify-between items-center w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">
+                    <span>About Us</span> <ArrowDownIcon/>
+                </button>
+                {isAboutSubMenuOpen && (
+                    <div className="pl-4 border-l-2 border-slate-200">
+                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('about'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-600 hover:bg-slate-200">Our Story</a>
+                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('philosophy'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-600 hover:bg-slate-200">Our Philosophy</a>
+                    </div>
+                )}
+                
+                <button onClick={() => setCoursesSubMenuOpen(!isCoursesSubMenuOpen)} className="flex justify-between items-center w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">
+                    <span>Courses</span> <ArrowDownIcon/>
+                </button>
+                {isCoursesSubMenuOpen && (
+                    <div className="pl-4 border-l-2 border-slate-200">
+                        {STREAMS_DATA.map(course => (
+                            <a key={course.page} href="#" onClick={(e) => { e.preventDefault(); handleMobileNav(course.page); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-600 hover:bg-slate-200">{course.title}</a>
+                        ))}
+                    </div>
+                )}
+
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('age'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Age Groups</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('faq'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">FAQ</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Enroll</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('contact'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Contact Us</a>
+            </div>
+        </div>
+    );
 
     return (
         <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
@@ -35,21 +100,8 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                         <img src="https://files.catbox.moe/4qngmj.png" alt="Brahmastra Logo" className="h-12 w-auto" />
                     </div>
                     
-                    {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center space-x-4">
-                        <a href="#" onClick={(e) => {e.preventDefault(); navigate('home')}} className={navLinkClasses('home')}>Home</a>
-                        <a href="#" onClick={(e) => {e.preventDefault(); navigate('philosophy')}} className={navLinkClasses('philosophy')}>Our Philosophy</a>
-                        <a href="#" onClick={(e) => {e.preventDefault(); navigate('about')}} className={navLinkClasses('about')}>About Us</a>
-                        <a href="#" onClick={(e) => {e.preventDefault(); navigate('freecourses')}} className={navLinkClasses('freecourses')}>Free Courses</a>
-                    </nav>
+                    <DesktopNav />
 
-                    <div className="hidden lg:block">
-                         <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-5 py-2.5 rounded-full text-sm shadow-md">
-                            Join Waitlist
-                        </a>
-                    </div>
-
-                    {/* Mobile Menu Button */}
                     <div className="lg:hidden">
                         <button 
                             onClick={() => setIsMenuOpen(!isMenuOpen)} 
@@ -71,22 +123,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage }) => {
                 </div>
             </div>
 
-            {/* Mobile Navigation Menu */}
-            {isMenuOpen && (
-                <div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-xl animate-fade-in-up transition-all duration-300">
-                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('home') }} className={mobileNavLinkClasses('home')}>Home</a>
-                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('philosophy') }} className={mobileNavLinkClasses('philosophy')}>Our Philosophy</a>
-                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('about') }} className={mobileNavLinkClasses('about')}>About Us</a>
-                        <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses') }} className={mobileNavLinkClasses('freecourses')}>Free Courses</a>
-                        <div className="pt-4 px-2">
-                             <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('age'); }} className="block w-full text-center bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-5 py-3 rounded-full shadow-md">
-                                Join Waitlist
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            )}
+            {isMenuOpen && <MobileNav />}
         </header>
     );
 };
