@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
 
+const countryCodes = [
+    { name: 'India', code: '+91' },
+    { name: 'USA', code: '+1' },
+    { name: 'Canada', code: '+1' },
+    { name: 'UK', code: '+44' },
+    { name: 'Australia', code: '+61' },
+    { name: 'Singapore', code: '+65' },
+    { name: 'UAE', code: '+971' },
+    { name: 'Saudi Arabia', code: '+966' },
+    { name: 'Qatar', code: '+974' },
+    { name: 'Japan', code: '+81' },
+    { name: 'New Zealand', code: '+64' },
+    { name: 'Malaysia', code: '+60' },
+];
+
 export const InterestForm: React.FC = () => {
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [statusIsError, setStatusIsError] = useState<boolean>(false);
 
-    const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/ca6aaae265c24b6cb10156399c1c73b9/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=YhQaIBh56G965XhSLcKOTTtABffKfH8X-pT7WJZLUY0";
+    const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/838d298291ee4785ae07f0c819bd1dba/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=f-Uc_RHJ4wdgUdeLWh5FkNlUGxBiHGNnkINPecDR50M";
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -19,12 +34,17 @@ export const InterestForm: React.FC = () => {
         const studentName = formData.get('StudentName') as string;
         const parentName = formData.get('ParentName') as string;
         const email = formData.get('Email') as string;
+        const countryCode = formData.get('CountryCode') as string;
         const phone = formData.get('Phone') as string;
+        const schoolName = formData.get('SchoolName') as string;
+        const district = formData.get('District') as string;
+        const state = formData.get('State') as string;
+        const country = formData.get('Country') as string;
         const ageCategory = formData.get('AgeCategory') as string;
-        const stream = formData.get('Stream') as string;
         const medium = formData.get('Medium') as string;
+        const aboutKid = formData.get('AboutKid') as string;
         
-        if (!studentName || !parentName || !email || !phone || !ageCategory || !stream || !medium) {
+        if (!studentName || !parentName || !email || !phone || !ageCategory || !schoolName || !district || !state || !country || !medium || !aboutKid) {
              setStatusMessage('Please fill in all required fields.');
              setStatusIsError(true);
              setIsSubmitting(false);
@@ -36,10 +56,14 @@ export const InterestForm: React.FC = () => {
             StudentName: studentName.trim(),
             ParentName: parentName.trim(),
             Email: email.trim(),
-            Phone: phone.trim(),
+            Phone: `${countryCode} ${phone.trim()}`,
+            SchoolName: schoolName.trim(),
+            District: district.trim(),
+            State: state.trim(),
+            Country: country.trim(),
             AgeCategory: ageCategory,
-            StreamOfInterest: stream,
-            MediumOfInstruction: medium
+            MediumOfInstruction: medium,
+            AboutKid: aboutKid.trim(),
         };
 
         try {
@@ -72,7 +96,7 @@ export const InterestForm: React.FC = () => {
                         Join Our Waitlist
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        We curate small batches to ensure every child gets focused attention. Express your interest below, and we'll notify you as soon as a spot opens up in your chosen stream!
+                        We curate small batches to ensure every child gets focused attention. Express your interest below, and we'll notify you as soon as a spot opens up!
                     </p>
                 </div>
                 <div className="mt-12 max-w-2xl mx-auto bg-slate-50 p-8 rounded-xl shadow-lg">
@@ -87,14 +111,35 @@ export const InterestForm: React.FC = () => {
                                 <input type="text" id="parentName" name="ParentName" required placeholder="Full name" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                             </div>
                         </div>
-                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label htmlFor="email" className="block text-sm font-medium mb-1 text-slate-700">Parent's Email <span className="text-red-500">*</span></label>
-                                <input type="email" id="email" name="Email" required placeholder="Your email address" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                         <div>
+                            <label htmlFor="email" className="block text-sm font-medium mb-1 text-slate-700">Parent's Email <span className="text-red-500">*</span></label>
+                            <input type="email" id="email" name="Email" required placeholder="Your email address" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                        </div>
+                        <div>
+                           <label htmlFor="phone" className="block text-sm font-medium mb-1 text-slate-700">Parent's Phone <span className="text-red-500">*</span></label>
+                            <div className="flex">
+                                <select id="countryCode" name="CountryCode" required className="bg-white text-slate-900 pl-2 pr-1 rounded-l-md border border-r-0 border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                    {countryCodes.map(c => <option key={c.name} value={c.code}>{c.name} ({c.code})</option>)}
+                                </select>
+                                <input type="tel" id="phone" name="Phone" required placeholder="Mobile number" pattern="\d{7,15}" title="Phone number should be 7 to 15 digits." className="w-full bg-white text-slate-900 px-4 py-2 rounded-r-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                             </div>
-                             <div>
-                                <label htmlFor="phone" className="block text-sm font-medium mb-1 text-slate-700">Parent's Phone <span className="text-red-500">*</span></label>
-                                <input type="tel" id="phone" name="Phone" required placeholder="10-digit mobile number" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                        </div>
+                        <div>
+                             <label htmlFor="schoolName" className="block text-sm font-medium mb-1 text-slate-700">School Name <span className="text-red-500">*</span></label>
+                            <input type="text" id="schoolName" name="SchoolName" required placeholder="Name of the school" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                        </div>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div>
+                                <label htmlFor="district" className="block text-sm font-medium mb-1 text-slate-700">District <span className="text-red-500">*</span></label>
+                                <input type="text" id="district" name="District" required placeholder="e.g., Chennai" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                            </div>
+                            <div>
+                                <label htmlFor="state" className="block text-sm font-medium mb-1 text-slate-700">State <span className="text-red-500">*</span></label>
+                                <input type="text" id="state" name="State" required placeholder="e.g., Tamil Nadu" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                            </div>
+                            <div>
+                                <label htmlFor="country" className="block text-sm font-medium mb-1 text-slate-700">Country <span className="text-red-500">*</span></label>
+                                <input type="text" id="country" name="Country" required placeholder="e.g., India" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                             </div>
                         </div>
                         <div>
@@ -107,16 +152,6 @@ export const InterestForm: React.FC = () => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="stream" className="block text-sm font-medium mb-1 text-slate-700">Stream of Interest <span className="text-red-500">*</span></label>
-                            <select id="stream" name="Stream" required defaultValue="" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                <option value="" disabled>Select a stream</option>
-                                <option value="Aeronautics">Aeronautics</option>
-                                <option value="Astronautics">Astronautics</option>
-                                <option value="Satellites">Satellites</option>
-                                <option value="Drones">Drones</option>
-                            </select>
-                        </div>
-                        <div>
                             <label htmlFor="medium" className="block text-sm font-medium mb-1 text-slate-700">Preferred Medium of Instruction <span className="text-red-500">*</span></label>
                             <select id="medium" name="Medium" required defaultValue="" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                 <option value="" disabled>Select a language</option>
@@ -124,6 +159,10 @@ export const InterestForm: React.FC = () => {
                                 <option value="English">English</option>
                                 <option value="Hindi">Hindi</option>
                             </select>
+                        </div>
+                        <div>
+                            <label htmlFor="aboutKid" className="block text-sm font-medium mb-1 text-slate-700">Tell us about your kid <span className="text-red-500">*</span></label>
+                            <textarea id="aboutKid" name="AboutKid" required rows={4} placeholder="What are they curious about? What do they love to do? This helps us tailor the experience for them." className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky"></textarea>
                         </div>
                         {statusMessage && (
                             <div className={`p-4 rounded-md text-sm whitespace-pre-line ${statusIsError ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>

@@ -51,7 +51,7 @@ function App() {
       case 'about':
         return <AboutUsPage />;
       case 'age':
-        return <AgeCategoryPage navigate={navigate} />;
+        return <AgeCategoryPage />;
       case 'home':
       default:
         return <HomePage navigate={navigate} />;

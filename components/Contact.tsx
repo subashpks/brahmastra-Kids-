@@ -48,6 +48,7 @@ export const Contact: React.FC = () => {
         
         const queryNumber = generateQueryNumber();
         const data = {
+            FormType: 'FreeCourseEnrollment',
             QueryNumber: queryNumber,
             Name: name.trim(),
             StudentSchool: studentSchool.trim(),
