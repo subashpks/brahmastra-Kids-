@@ -32,23 +32,21 @@ const TopicCard: React.FC<{ emoji: string; title: string; description: string; c
 );
 
 const ContactCta: React.FC<PageProps> = ({ navigate }) => (
-    <section className="py-16 md:py-24">
+    <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto px-6">
-            <div className="bg-gradient-to-r from-brand-space to-brand-sky rounded-2xl p-10 md:p-16 text-center relative overflow-hidden">
-                <div className="absolute -top-10 -left-10 w-40 h-40 bg-white/10 rounded-full" aria-hidden="true"></div>
-                <div className="absolute -bottom-16 -right-5 w-48 h-48 bg-white/10 rounded-full" aria-hidden="true"></div>
-                <div className="relative z-10">
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-white max-w-2xl mx-auto">
+            <div className="bg-slate-50 rounded-2xl shadow-lg overflow-hidden">
+                <div className="p-8 md:p-12 lg:p-16 text-center">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
                         Have Questions?
                     </h2>
-                    <p className="mt-4 text-lg text-slate-200 max-w-xl mx-auto">
+                    <p className="mt-4 text-lg text-slate-600 max-w-xl mx-auto">
                         Our team is ready to help with any inquiries. Reach out for more information about our courses, philosophy, or anything else.
                     </p>
                     <div className="mt-8">
                         <a 
                             href="#" 
                             onClick={(e) => { e.preventDefault(); navigate('contact'); }}
-                            className="bg-white text-brand-space hover:bg-slate-200 transition-colors font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
+                            className="inline-block bg-brand-space text-white hover:bg-blue-800 transition-colors font-semibold px-8 py-3 rounded-full text-lg shadow-lg">
                             Contact Us
                         </a>
                     </div>
@@ -115,9 +113,9 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
         </div>
       </section>
       
-      <ContactCta navigate={navigate} />
-
       <FAQ />
+
+      <ContactCta navigate={navigate} />
     </>
   );
 };
