@@ -148,7 +148,6 @@ export const EnrollmentForm: React.FC = () => {
                         </div>
                         <div>
                             <label htmlFor="mediumOfClass" className="block text-sm font-medium mb-1 text-slate-700">Mother tongue of the kid <span className="text-red-500">*</span></label>
-                            <p className="text-xs text-slate-500 mb-2">Note: The courses will be taught in both English and Tamil.</p>
                             <select id="mediumOfClass" name="MediumOfClass" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                 <option value="" disabled>Select a language</option>
                                 <option value="Tamil">Tamil</option>
