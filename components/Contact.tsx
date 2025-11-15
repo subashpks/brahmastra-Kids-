@@ -36,10 +36,9 @@ export const EnrollmentForm: React.FC = () => {
         const district = formData.get('District') as string;
         const state = formData.get('State') as string;
         const howDidYouHear = formData.get('HowDidYouHear') as string;
-        const mediumOfClass = formData.get('MediumOfClass') as string;
         const questions = formData.get('Questions') as string;
         
-        if (!name || !studentSchool || !email || !parentPhone || !district || !state || !howDidYouHear || !mediumOfClass || !selectedCourse) {
+        if (!name || !studentSchool || !email || !parentPhone || !district || !state || !howDidYouHear || !selectedCourse) {
              setStatusMessage('Please fill in all required fields.');
              setStatusIsError(true);
              setIsSubmitting(false);
@@ -58,7 +57,6 @@ export const EnrollmentForm: React.FC = () => {
             District: district.trim(),
             State: state.trim(),
             HowDidYouHear: howDidYouHear,
-            MediumOfClass: mediumOfClass,
             Questions: questions.trim()
         };
 
@@ -144,14 +142,6 @@ export const EnrollmentForm: React.FC = () => {
                                 <option value="X (formerly Twitter)">X (formerly Twitter)</option>
                                 <option value="Friend or Family">Friend or Family</option>
                                 <option value="Other">Other</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label htmlFor="mediumOfClass" className="block text-sm font-medium mb-1 text-slate-700">Mother tongue of the kid <span className="text-red-500">*</span></label>
-                            <select id="mediumOfClass" name="MediumOfClass" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                <option value="" disabled>Select a language</option>
-                                <option value="Tamil">Tamil</option>
-                                <option value="English">English</option>
                             </select>
                         </div>
                          <div>
