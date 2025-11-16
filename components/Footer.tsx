@@ -59,6 +59,7 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="transition-opacity hover:opacity-75">Age Groups</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('faq'); }} className="transition-opacity hover:opacity-75">FAQ</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="transition-opacity hover:opacity-75">Enroll</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('certificate'); }} className="transition-opacity hover:opacity-75">Get Certificate</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('contact'); }} className="transition-opacity hover:opacity-75">Contact Us</a>
                         </div>
                     </div>

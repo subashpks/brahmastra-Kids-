@@ -22,6 +22,7 @@ import { FreeCoursePopup } from './FreeCoursePopup';
 import { LoginPage } from './LoginPage';
 import { SignUpPage } from './SignUpPage';
 import { DashboardPage } from './DashboardPage';
+import { CertificateFormPage } from './CertificateFormPage';
 import { User, ChildProfile } from '../types';
 
 function App() {
@@ -128,6 +129,8 @@ function App() {
         return <FaqPage />;
       case 'contact':
         return <ContactPage />;
+      case 'certificate':
+        return <CertificateFormPage navigate={navigate} />;
       /*
       case 'login':
         return <LoginPage navigate={navigate} onLoginSuccess={handleLoginSuccess} />;
