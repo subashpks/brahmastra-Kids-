@@ -13,7 +13,10 @@ export const CertificateFormPage: React.FC<PageProps> = ({ navigate }) => {
         studentName: '',
         parentName: '',
         parentEmail: '',
+        schoolName: '',
+        state: '',
         programName: '',
+        dates: '',
         enjoymentRating: '',
         motivation: '',
         consideringEnrollment: '',
@@ -37,7 +40,7 @@ export const CertificateFormPage: React.FC<PageProps> = ({ navigate }) => {
 
     const nextStep = () => {
         // Basic validation before proceeding
-        if (currentStep === 1 && (!formData.studentName || !formData.parentName || !formData.parentEmail || !formData.programName)) {
+        if (currentStep === 1 && (!formData.studentName || !formData.parentName || !formData.parentEmail || !formData.schoolName || !formData.state || !formData.programName || !formData.dates)) {
             setStatusMessage('Please fill in all fields before continuing.');
             setStatusIsError(true);
             return;
@@ -161,10 +164,25 @@ export const CertificateFormPage: React.FC<PageProps> = ({ navigate }) => {
                                     <input id="parentEmail" name="parentEmail" type="email" value={formData.parentEmail} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" placeholder="Where should we send the certificate?" />
                                 </div>
                                 <div>
+                                    <label htmlFor="schoolName" className="block text-sm font-medium mb-1 text-slate-700">School Name</label>
+                                    <input id="schoolName" name="schoolName" type="text" value={formData.schoolName} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" placeholder="Your child's school" />
+                                </div>
+                                <div>
+                                    <label htmlFor="state" className="block text-sm font-medium mb-1 text-slate-700">State</label>
+                                    <input id="state" name="state" type="text" value={formData.state} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" placeholder="e.g., Tamil Nadu" />
+                                </div>
+                                <div>
                                     <label htmlFor="programName" className="block text-sm font-medium mb-1 text-slate-700">Which free course did your child attend?</label>
                                     <select id="programName" name="programName" value={formData.programName} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                         <option value="">Select a program</option>
                                         {freeCourses.map(course => <option key={course} value={course}>{course}</option>)}
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="dates" className="block text-sm font-medium mb-1 text-slate-700">Which dates did your child attend?</label>
+                                    <select id="dates" name="dates" value={formData.dates} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                        <option value="">Select the dates</option>
+                                        <option value="14 - 15 Nov 2025">14 - 15 Nov 2025</option>
                                     </select>
                                 </div>
                             </div>
