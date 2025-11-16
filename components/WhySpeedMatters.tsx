@@ -19,16 +19,16 @@ export const SatellitesPage: React.FC<PageProps> = ({ navigate }) => {
     <section id="satellites" className="py-16 md:py-24 animate-fade-in-up">
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="text-center lg:text-left">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-brand-space">
+            <div className="flex justify-center lg:order-2">
+                <img src="https://files.catbox.moe/r27c2u.png" alt="Cartoon Satellite" className="w-full max-w-md" />
+            </div>
+            <div className="text-center lg:text-left lg:order-1">
+                <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-brand-space">
                     Satellites: Our Eyes in the Sky
                 </h2>
-                <p className="mt-4 text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
+                <p className="mt-6 text-xl md:text-2xl text-slate-600 max-w-xl mx-auto lg:mx-0">
                     How does your GPS know where you are? How do we predict the weather? Satellites! Explore the amazing technology orbiting our planet and connecting us all.
                 </p>
-            </div>
-            <div className="flex justify-center">
-                <img src="https://i.postimg.cc/W3d7bVhk/satellite.png" alt="Cartoon Satellite" className="w-full max-w-sm" />
             </div>
         </div>
         
@@ -39,17 +39,25 @@ export const SatellitesPage: React.FC<PageProps> = ({ navigate }) => {
                     <CourseCard key={index} course={course} />
                 ))}
             </div>
-            <div className="mt-12 text-center">
-                <a 
-                    href="#" 
-                    onClick={(e) => { e.preventDefault(); navigate('age'); }} 
-                    className="inline-block bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-10 py-4 rounded-full text-lg shadow-lg transform hover:scale-105"
-                >
-                    Join Waitlist
-                </a>
-                <p className="mt-4 text-sm text-slate-500">
-                    Limited seats available. Secure your spot!
+            <div className="mt-16 text-center bg-white p-10 rounded-2xl shadow-xl max-w-4xl mx-auto border-t-4 border-brand-space">
+                <h2 className="text-2xl md:text-3xl font-bold text-slate-800">
+                    Ready to Launch Your Child's Journey?
+                </h2>
+                <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+                    Every batch is curated—not crowded. Join the waitlist, and our experts will match your child to a hand-selected learning group. Because spaces are limited, you’ll receive a confirmation email only after we review your child’s details.
                 </p>
+                <div className="mt-8">
+                    <a 
+                        href="#" 
+                        onClick={(e) => { e.preventDefault(); navigate('age'); }} 
+                        className="inline-block bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-10 py-4 rounded-full text-lg shadow-lg transform hover:scale-105"
+                    >
+                        Join Waitlist
+                    </a>
+                    <p className="mt-4 text-sm text-slate-500">
+                        Limited seats available. Secure your spot!
+                    </p>
+                </div>
             </div>
         </div>
       </div>

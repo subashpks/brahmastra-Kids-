@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface FreeCoursePopupProps {
@@ -29,7 +28,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                     <img 
                         src="https://files.catbox.moe/kcz5ca.png" 
                         alt="Child in a cardboard rocket" 
-                        className="w-48 h-auto mx-auto mb-4"
+                        className="w-56 h-auto mx-auto mb-4"
                     />
                     <h2 className="text-2xl font-bold text-brand-space mb-2">
                         Your Weekend Adventure Awaits!

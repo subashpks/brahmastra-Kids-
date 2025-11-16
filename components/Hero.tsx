@@ -4,7 +4,7 @@ import { FAQ } from './FAQ';
 import { Testimonials } from './Testimonials';
 
 const AstronautIllustration = () => (
-    <div className="relative w-full max-w-sm mx-auto lg:max-w-md">
+    <div className="relative w-full max-w-md mx-auto lg:max-w-lg">
       <div className="absolute -top-4 -left-4 w-48 h-48 bg-brand-sky rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob"></div>
       <div className="absolute -top-4 -right-4 w-48 h-48 bg-brand-sun rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-48 h-48 bg-green-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>

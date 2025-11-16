@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Course, FaqItem, Testimonial } from './types';
+import { Course, FaqItem, Testimonial, Activity } from './types';
 
 export const RocketIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -52,6 +52,7 @@ export const AstrobiologyIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}><circle cx="32" cy="32" r="26" fill="#bef264"/><path d="M51.1,43.1A25.9,25.9,0,0,1,18.4,56.5,26,26,0,0,0,51.1,43.1Z" fill="#a3e635"/><path d="M49,38a20,20,0,0,0-27-18.9,2,2,0,0,0,1,3.8,16,16,0,0,1,21.6,15.1,2,2,0,0,0,2,2,2,2,0,0,0,2.1-2,2,2,0,0,0-.3-2Z" fill="#d9f99d"/><path d="M29.1,51.8a2,2,0,0,0,2.8-1.2,12.7,12.7,0,0,1-1-6.1,2,2,0,1,0-4,0,16.5,16.5,0,0,0,1.4,7.8,2,2,0,0,0,.8-.5Z" fill="#d9f99d"/></svg>
 );
 
+export const CONVERSING_LANGUAGES = ['Tamil', 'English', 'Hindi', 'Kannada', 'Kashmiri', 'Malayalam', 'Telugu'];
 
 export const STREAMS_DATA = [
     { 
@@ -238,7 +239,57 @@ export const ASTRONOMY_COURSES: Course[] = [
       description: 'Explore deep-space objects like nebulae and galaxies. Learn about black holes, star life cycles, and the Big Bang theory.',
       icon: '🔭',
     },
-  ];
+];
+
+export const ALL_COURSES = [
+    ...AERONAUTICS_COURSES,
+    ...ROCKET_SCIENCE_COURSES,
+    ...SATELLITES_COURSES,
+    ...DATA_MATHEMATICS_COURSES,
+    ...QUANTUM_PHYSICS_COURSES,
+    ...MOLECULAR_CHEMISTRY_COURSES,
+    ...ASTROBIOLOGY_COURSES,
+    ...ASTRONOMY_COURSES,
+];
+
+export const FREE_COURSES_DATA = [
+    { 
+        title: "Astronomy For Kids", 
+        ageGroup: "Ages 5-8",
+    },
+    { 
+        title: "Rocket Science for Kids", 
+        ageGroup: "Ages 9-15",
+    }
+];
+
+export const ACTIVITIES_DATA: Activity[] = [
+    {
+        title: "DIY Paper Rocket",
+        description: "A fun, hands-on activity to learn the basics of aerodynamics and propulsion. All you need is paper, scissors, and tape!",
+        ageGroup: "Ages 5-8",
+        icon: '🚀'
+    },
+    {
+        title: "Stargazing Guide",
+        description: "A printable guide to help you identify major constellations and planets visible in the night sky this month.",
+        ageGroup: "Ages 5-8",
+        icon: '🔭'
+    },
+    {
+        title: "Build a Satellite Model",
+        description: "Use household items like cardboard boxes, aluminum foil, and plastic bottles to construct your own satellite model.",
+        ageGroup: "Ages 9-15",
+        icon: '🛰️'
+    },
+    {
+        title: "Wing Design Challenge",
+        description: "Experiment with different paper airplane wing shapes and sizes to see how they affect flight distance and stability.",
+        ageGroup: "Ages 9-15",
+        icon: '✈️'
+    }
+];
+
 
 export const FAQ_DATA: FaqItem[] = [
     {
@@ -285,7 +336,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     state: "Haryana"
   },
   {
-    quote: "I was worried it would be another high-pressure class, but it's the complete opposite. The focus on curiosity and collaboration is a breath of fresh air. Harshiv is learning so much without any of the stress.",
+    quote: "I was worried it would be be another high-pressure class, but it's the complete opposite. The focus on curiosity and collaboration is a breath of fresh air. Harshiv is learning so much without any of the stress.",
     studentName: "Harshiv V.",
     parentName: "Vigneshwaran M.",
     schoolName: "KRM Public School",

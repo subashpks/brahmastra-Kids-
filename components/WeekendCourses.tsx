@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { EnrollmentForm } from './Contact';
+import { ChildProfile } from '../types';
 
 const WhatsAppIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -35,7 +35,7 @@ const CourseCard: React.FC<{ course: typeof courses[0] }> = ({ course }) => (
 );
 
 const HeroIllustration = () => (
-     <div className="relative w-full max-w-lg mx-auto">
+     <div className="relative w-full max-w-xl mx-auto">
       <div className="absolute -top-4 -left-4 w-56 h-56 bg-sky-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob"></div>
       <div className="absolute -top-4 -right-4 w-56 h-56 bg-amber-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-56 h-56 bg-green-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
@@ -47,7 +47,12 @@ const HeroIllustration = () => (
     </div>
 );
 
-export const FreeCoursesPage: React.FC = () => {
+// FIX: Add props interface for FreeCoursesPage
+interface FreeCoursesPageProps {
+    activeChild: ChildProfile | null;
+}
+
+export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild }) => {
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
         const targetElement = document.getElementById(targetId);

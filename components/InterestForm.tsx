@@ -1,4 +1,6 @@
+
 import React, { useState } from 'react';
+import { CONVERSING_LANGUAGES } from '../constants';
 
 const countryCodes = [
     { name: 'India', code: '+91' },
@@ -152,11 +154,12 @@ export const InterestForm: React.FC = () => {
                             </select>
                         </div>
                         <div>
-                            <label htmlFor="medium" className="block text-sm font-medium mb-1 text-slate-700">Mother tongue of the kid <span className="text-red-500">*</span></label>
+                            <label htmlFor="medium" className="block text-sm font-medium mb-1 text-slate-700">Conversing Language in Home. <span className="text-red-500">*</span></label>
                             <select id="medium" name="Medium" required defaultValue="" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                 <option value="" disabled>Select a language</option>
-                                <option value="Tamil">Tamil</option>
-                                <option value="English">English</option>
+                                {CONVERSING_LANGUAGES.map(lang => (
+                                    <option key={lang} value={lang}>{lang}</option>
+                                ))}
                             </select>
                         </div>
                         <div>

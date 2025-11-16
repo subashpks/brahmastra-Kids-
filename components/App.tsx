@@ -19,12 +19,31 @@ import { Differentiators } from './Differentiators';
 import { StreamsPage } from './Streams';
 import { AstronomyPage } from './AstronomyPage';
 import { FreeCoursePopup } from './FreeCoursePopup';
+import { LoginPage } from './LoginPage';
+import { SignUpPage } from './SignUpPage';
+import { DashboardPage } from './DashboardPage';
+import { User, ChildProfile } from '../types';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [showPopup, setShowPopup] = useState(false);
+  // const [currentUser, setCurrentUser] = useState<User | null>(null);
+  // const [activeChild, setActiveChild] = useState<ChildProfile | null>(null);
 
   useEffect(() => {
+    // Check for logged in user in session storage
+    // const loggedInUser = sessionStorage.getItem('brahmastra_user');
+    // if (loggedInUser) {
+    //     const user = JSON.parse(loggedInUser);
+    //     setCurrentUser(user);
+    // }
+    
+    // const storedActiveChild = sessionStorage.getItem('brahmastra_active_child');
+    // if(storedActiveChild) {
+    //     setActiveChild(JSON.parse(storedActiveChild));
+    // }
+
+    // Popup logic
     const popupShown = sessionStorage.getItem('popupShown');
     if (!popupShown) {
       const timer = setTimeout(() => {
@@ -41,6 +60,31 @@ function App() {
     window.scrollTo(0, 0);
   };
 
+  /*
+  const handleLoginSuccess = (user: User) => {
+    setCurrentUser(user);
+    sessionStorage.setItem('brahmastra_user', JSON.stringify(user));
+    navigate('dashboard');
+  };
+
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setActiveChild(null);
+    sessionStorage.removeItem('brahmastra_user');
+    sessionStorage.removeItem('brahmastra_active_child');
+    navigate('home');
+  };
+
+  const handleSet_activeChild = (child: ChildProfile | null) => {
+    setActiveChild(child);
+    if (child) {
+        sessionStorage.setItem('brahmastra_active_child', JSON.stringify(child));
+    } else {
+        sessionStorage.removeItem('brahmastra_active_child');
+    }
+  }
+  */
+
   const handleClosePopup = () => {
     setShowPopup(false);
   };
@@ -51,29 +95,31 @@ function App() {
   };
 
   const renderPage = () => {
+    const pageProps = { navigate, activeChild: null };
     switch (currentPage) {
       case 'aeronautics':
-        return <AeronauticsPage navigate={navigate} />;
+        return <AeronauticsPage {...pageProps} />;
       case 'rocket-science':
-        return <RocketSciencePage navigate={navigate} />;
+        return <RocketSciencePage {...pageProps} />;
       case 'satellites':
-        return <SatellitesPage navigate={navigate} />;
+        return <SatellitesPage {...pageProps} />;
       case 'data-mathematics':
-        return <DataMathematicsPage navigate={navigate} />;
+        return <DataMathematicsPage {...pageProps} />;
       case 'quantum-physics':
-        return <QuantumPhysicsPage navigate={navigate} />;
+        return <QuantumPhysicsPage {...pageProps} />;
       case 'molecular-chemistry':
-        return <MolecularChemistryPage navigate={navigate} />;
+        return <MolecularChemistryPage {...pageProps} />;
       case 'astrobiology':
-        return <AstrobiologyPage navigate={navigate} />;
+        return <AstrobiologyPage {...pageProps} />;
       case 'astronomy':
-        return <AstronomyPage navigate={navigate} />;
+        return <AstronomyPage {...pageProps} />;
       case 'philosophy':
         return <Differentiators navigate={navigate} />;
       case 'streams':
-        return <StreamsPage navigate={navigate} />;
+        return <StreamsPage {...pageProps} />;
       case 'freecourses':
-        return <FreeCoursesPage />;
+        // FIX: Pass activeChild prop to FreeCoursesPage.
+        return <FreeCoursesPage activeChild={null} />;
       case 'about':
         return <AboutUsPage />;
       case 'age':
@@ -82,6 +128,15 @@ function App() {
         return <FaqPage />;
       case 'contact':
         return <ContactPage />;
+      /*
+      case 'login':
+        return <LoginPage navigate={navigate} onLoginSuccess={handleLoginSuccess} />;
+      case 'signup':
+        return <SignUpPage navigate={navigate} />;
+      case 'dashboard':
+        // FIX: Pass correct props to DashboardPage.
+        return currentUser ? <DashboardPage currentUser={currentUser} activeChild={activeChild} setActiveChild={handleSet_activeChild} navigate={navigate} /> : <LoginPage navigate={navigate} onLoginSuccess={handleLoginSuccess} />;
+      */
       case 'home':
       default:
         return <HomePage navigate={navigate} />;
@@ -91,7 +146,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       {showPopup && <FreeCoursePopup onClose={handleClosePopup} onRedirect={handlePopupRedirect} />}
-      <Header navigate={navigate} currentPage={currentPage} />
+      <Header navigate={navigate} currentPage={currentPage} isLoggedIn={false} onLogout={() => {}} currentUser={null} activeChild={null} />
       <main className="flex-grow">
         {renderPage()}
       </main>
