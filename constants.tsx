@@ -127,6 +127,7 @@ export const WEEKEND_CAMP_DATA = {
     ageCategory: '6-11 years (Class 1 to 5)',
     sessions: '10 super-fun sessions (Every Saturday & Sunday for 5 weeks)',
     description: 'Double weekend fun! Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks!',
+    price: '₹3000/-',
     syllabus: [
         { 
             week: 'Weekend 1: The Basics of Blast-Off!', 
@@ -233,6 +234,7 @@ export const ADVANCED_CAMP_DATA = {
     ageCategory: '11-16 years (Class 6 to 10)',
     sessions: '10 advanced sessions (Every Saturday & Sunday for 5 weeks)',
     description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering.',
+    price: '₹3000/-',
     syllabus: [
         { 
             week: 'Weekend 1: Foundations of Rocket Engineering', 

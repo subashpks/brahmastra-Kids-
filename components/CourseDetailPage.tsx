@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { PageProps } from '../types';
 import { WEEKEND_CAMP_DATA } from '../constants';
@@ -8,7 +9,7 @@ const SyllabusIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h
 const ActivitiesIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg>);
 const SchoolIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path d="M12 14l9-5-9-5-9 5 9 5z" /><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20" /></svg>);
 const ExperienceIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>);
-const UserGroupIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>);
+const UserGroupIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>);
 const ClockIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>);
 const CalendarIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>);
 
@@ -50,7 +51,7 @@ export const CourseDetailPage: React.FC<PageProps> = ({ navigate }) => {
     const [openAccordion, setOpenAccordion] = useState<number | null>(0);
     const { 
         courseName, ageCategory, sessions, description, syllabus, 
-        activities, matchesSchoolSyllabus, extraCoolThings 
+        activities, matchesSchoolSyllabus, extraCoolThings, price
     } = WEEKEND_CAMP_DATA;
     
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -193,13 +194,16 @@ export const CourseDetailPage: React.FC<PageProps> = ({ navigate }) => {
                                         </div>
 
                                         <div className="mt-6">
-                                            <a 
-                                                href="#" 
-                                                onClick={(e) => { e.preventDefault(); navigate('age'); }} 
+                                            <button
+                                                onClick={() => navigate('checkout', { 
+                                                    name: courseName,
+                                                    slot: 'Full Course',
+                                                    price: price
+                                                })} 
                                                 className="block w-full text-center bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-6 py-3 rounded-full text-lg shadow-lg"
                                             >
-                                                Join Waitlist
-                                            </a>
+                                                Book Your Spot
+                                            </button>
                                             <p className="mt-3 text-xs text-slate-500 text-center">Limited seats available. Secure your spot!</p>
                                         </div>
                                     </div>

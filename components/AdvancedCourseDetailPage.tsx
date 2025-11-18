@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { PageProps } from '../types';
 import { ADVANCED_CAMP_DATA } from '../constants';
@@ -50,7 +51,7 @@ export const AdvancedCourseDetailPage: React.FC<PageProps> = ({ navigate }) => {
     const [openAccordion, setOpenAccordion] = useState<number | null>(0);
     const { 
         courseName, ageCategory, sessions, description, syllabus, 
-        activities, matchesSchoolSyllabus, extraCoolThings 
+        activities, matchesSchoolSyllabus, extraCoolThings, price
     } = ADVANCED_CAMP_DATA;
     
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -193,13 +194,16 @@ export const AdvancedCourseDetailPage: React.FC<PageProps> = ({ navigate }) => {
                                         </div>
 
                                         <div className="mt-6">
-                                            <a 
-                                                href="#" 
-                                                onClick={(e) => { e.preventDefault(); navigate('age'); }} 
+                                            <button 
+                                                onClick={() => navigate('checkout', { 
+                                                    name: courseName,
+                                                    slot: 'Full Course',
+                                                    price: price
+                                                })}
                                                 className="block w-full text-center bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-6 py-3 rounded-full text-lg shadow-lg"
                                             >
-                                                Join Waitlist
-                                            </a>
+                                                Book Your Spot
+                                            </button>
                                             <p className="mt-3 text-xs text-slate-500 text-center">Limited seats available. Secure your spot!</p>
                                         </div>
                                     </div>
