@@ -55,8 +55,8 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                 </div>
             </div>
 
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('streams')}} className={navLinkClasses('streams')}>Streams</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('freecourses')}} className={navLinkClasses('freecourses')}>Free Courses</a>
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('courses')}} className={navLinkClasses('courses')}>Courses</a>
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('vr-workshop')}} className={navLinkClasses('vr-workshop')}>VR Workshop</a>
 
             {isLoggedIn && currentUser ? (
                 <>
@@ -77,8 +77,8 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                         <UserIcon />
                     </a>
                     */}
-                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('age'); }} className="ml-2 inline-block bg-[#e40917] hover:bg-[#c10714] transition-colors text-white font-semibold px-5 py-2 rounded-full text-sm shadow-md">
-                        Join Waitlist
+                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="ml-2 inline-block bg-[#e40917] hover:bg-[#c10714] transition-colors text-white font-semibold px-5 py-2 rounded-full text-sm shadow-md">
+                        Isro Free course
                     </a>
                 </>
             )}
@@ -98,9 +98,8 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                     </div>
                 )}
                 
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('streams'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Streams</a>
-
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Free Courses</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('courses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Courses</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('vr-workshop'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">VR Workshop</a>
                 
                 <div className="border-t border-slate-200 my-2"></div>
 
@@ -132,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                         </a>
                         */}
                         <div className="p-2">
-                            <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('age'); }} className="block w-full text-center px-4 py-3 rounded-md text-base font-medium text-white bg-[#e40917] hover:bg-[#c10714]">Join Waitlist</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-center px-4 py-3 rounded-md text-base font-medium text-white bg-[#e40917] hover:bg-[#c10714]">Isro Free course</a>
                         </div>
                     </>
                 )}

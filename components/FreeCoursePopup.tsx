@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface FreeCoursePopupProps {
@@ -31,7 +32,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         className="w-56 h-auto mx-auto mb-4"
                     />
                     <h2 className="text-2xl font-bold text-brand-space mb-2">
-                        Your Weekend Adventure Awaits!
+                        Your ISRO Adventure Awaits!
                     </h2>
                     <p className="text-slate-600 mb-6">
                         Discover the wonders of space with our FREE hands-on weekend courses for kids and teens.
@@ -40,7 +41,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         onClick={onRedirect}
                         className="w-full bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-6 py-3 rounded-full text-lg shadow-lg"
                     >
-                        Explore Free Courses
+                        Explore ISRO Free Course
                     </button>
                 </div>
             </div>

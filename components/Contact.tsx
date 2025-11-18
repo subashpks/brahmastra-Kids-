@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 export const EnrollmentForm: React.FC = () => {
@@ -30,7 +31,7 @@ export const EnrollmentForm: React.FC = () => {
         
         const name = formData.get('Name') as string;
         const studentSchool = formData.get('StudentSchool') as string;
-        const selectedCourse = formData.get('SelectedCourse') as string;
+        const selectedProgram = formData.get('SelectedProgram') as string;
         const email = formData.get('Email') as string;
         const parentPhone = formData.get('ParentPhone') as string;
         const district = formData.get('District') as string;
@@ -38,7 +39,7 @@ export const EnrollmentForm: React.FC = () => {
         const howDidYouHear = formData.get('HowDidYouHear') as string;
         const questions = formData.get('Questions') as string;
         
-        if (!name || !studentSchool || !email || !parentPhone || !district || !state || !howDidYouHear || !selectedCourse) {
+        if (!name || !studentSchool || !email || !parentPhone || !district || !state || !howDidYouHear || !selectedProgram) {
              setStatusMessage('Please fill in all required fields.');
              setStatusIsError(true);
              setIsSubmitting(false);
@@ -51,7 +52,7 @@ export const EnrollmentForm: React.FC = () => {
             QueryNumber: queryNumber,
             Name: name.trim(),
             StudentSchool: studentSchool.trim(),
-            SelectedCourse: selectedCourse,
+            SelectedProgram: selectedProgram,
             Email: email.trim(),
             ParentPhone: parentPhone.trim(),
             District: district.trim(),
@@ -89,7 +90,7 @@ export const EnrollmentForm: React.FC = () => {
             <div className="container mx-auto px-6">
                 <div className="text-center max-w-3xl mx-auto">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                        Enroll for Your Free Weekend Adventure!
+                        Enroll for the ISRO Free Course
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
                         Fill out the form below to secure your child's spot in our upcoming free aerospace course. We can't wait to see you!
@@ -106,9 +107,9 @@ export const EnrollmentForm: React.FC = () => {
                             <input type="text" id="studentSchool" name="StudentSchool" required placeholder="Name of the school" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                         </div>
                          <div>
-                            <label htmlFor="selectedCourse" className="block text-sm font-medium mb-1 text-slate-700">Select Course <span className="text-red-500">*</span></label>
-                            <select id="selectedCourse" name="SelectedCourse" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                <option value="" disabled>Choose a course</option>
+                            <label htmlFor="selectedProgram" className="block text-sm font-medium mb-1 text-slate-700">Select Program <span className="text-red-500">*</span></label>
+                            <select id="selectedProgram" name="SelectedProgram" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                <option value="" disabled>Choose a program</option>
                                 <option value="Astronomy For Kids (Ages 6-10)">Astronomy For Kids (Ages 6-10)</option>
                                 <option value="Rocket Science for Kids (Ages 11-17)">Rocket Science for Kids (Ages 11-17)</option>
                             </select>

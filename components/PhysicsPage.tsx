@@ -1,17 +1,17 @@
 
 import React from 'react';
 // FIX: PHYSICS_COURSES is not an exported member of ../constants. Using QUANTUM_PHYSICS_COURSES as an alias.
-import { QUANTUM_PHYSICS_COURSES as PHYSICS_COURSES } from '../constants';
-import { Course, PageProps } from '../types';
+import { QUANTUM_PHYSICS_PROGRAMS as PHYSICS_PROGRAMS } from '../constants';
+import { Program, PageProps } from '../types';
 
-const CourseCard: React.FC<{ course: Course }> = ({ course }) => (
+const ProgramCard: React.FC<{ program: Program }> = ({ program }) => (
     <div className="bg-white p-8 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-l-4 border-orange-500">
         <div className="flex items-center gap-4 mb-4">
-            <span className="text-4xl">{course.icon}</span>
-            <span className="font-bold bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-sm">{course.ageGroup}</span>
+            <span className="text-4xl">{program.icon}</span>
+            <span className="font-bold bg-orange-100 text-orange-600 px-2 py-0.5 rounded-full text-sm">{program.ageGroup}</span>
         </div>
-        <h3 className="text-xl font-bold text-slate-800 mb-2">{course.title}</h3>
-        <p className="text-slate-600">{course.description}</p>
+        <h3 className="text-xl font-bold text-slate-800 mb-2">{program.title}</h3>
+        <p className="text-slate-600">{program.description}</p>
     </div>
 );
 
@@ -34,10 +34,10 @@ export const PhysicsPage: React.FC<PageProps> = ({ navigate }) => {
         </div>
         
         <div className="mt-16">
-            <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">Your Quantum Quest</h3>
+            <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">Available Programs</h3>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                {PHYSICS_COURSES.map((course, index) => (
-                    <CourseCard key={index} course={course} />
+                {PHYSICS_PROGRAMS.map((program, index) => (
+                    <ProgramCard key={index} program={program} />
                 ))}
             </div>
             <div className="mt-12 text-center">

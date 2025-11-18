@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Course, FaqItem, Testimonial, Activity } from './types';
+import { Program, FaqItem, Testimonial, Activity } from './types';
 
 export const RocketIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
@@ -24,7 +24,7 @@ export const PlaneIcon = (props: React.SVGProps<SVGSVGElement>) => (
 export const SatelliteIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}>
         <path d="M43.6 2c-1.1 0-2 .9-2 2v8.5c-4.2.9-8 2.8-11.1 5.4-3.1-2.6-6.9-4.5-11.1-5.4V4c0-1.1-.9-2-2-2s-2 .9-2 2v8.5C9 11.5 4.3 15.6 2.4 21.4c-.3.8.1 1.7.9 2l8.5 2.8v11.5l-8.5 2.8c-.8.3-1.2 1.2-.9 2 .6 1.8 1.4 3.6 2.4 5.2 2.3 3.8 5.5 6.9 9.3 9.3 1.6 1 3.4 1.8 5.2 2.4.8.3 1.7-.1 2-.9l2.8-8.5h11.5l2.8 8.5c.3.8 1.2 1.2 2 .9 1.8-.6 3.6-1.4 5.2-2.4 3.8-2.3 6.9-5.5 9.3-9.3 1-1.6 1.8-3.4 2.4-5.2.3-.8-.1-1.7-.9-2l-8.5-2.8V25.8l8.5-2.8c.8-.3 1.2-1.2.9-2C59.7 15.6 55 11.5 48.5 10.5V4c.1-1.1-.8-2-1.9-2z" fill="#475569"/>
-        <path d="M46.7 13.3V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3h-2.8V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3h-5.8V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3h-2.8V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3c-6.1.7-11.2 4.4-13.3 9.9H4c-1.1 0-2 .9-2 2s.9 2 2 2h9.3c.7 6.1 4.4 11.2 9.9 13.3V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3h2.8V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3h5.8V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3h2.8V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3c6.1-.7 11.2-4.4 13.3-9.9H60c1.1 0 2-.9 2-2s-.9-2-2-2h-9.3c-.7-6.1-4.4-11.2-9.9-13.3z" fill="#1e3a8a"/>
+        <path d="M46.7 13.3V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3h-2.8V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3h-5.8V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3h-2.8V4c0-1.1-.9-2-2-2s-2 .9-2 2v9.3c-6.1.7-11.2 4.4-13.3 9.9H4c-1.1 0-2 .9-2 2s.9 2 2 2h9.3c.7 6.1 4.4 11.2 9.9 13.3V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3h2.8V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3h5.8V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3h2.8V60c0 1.1.9 2 2 2s2-.9 2-2v-9.3c6.1-.7 11.2 4.4-13.3 9.9H60c1.1 0 2-.9 2-2s-.9-2-2-2h-9.3c-.7-6.1-4.4-11.2-9.9-13.3z" fill="#1e3a8a"/>
         <circle cx="32" cy="32" r="10" fill="#9ca3af"/>
         <circle cx="32" cy="32" r="5" fill="#e0f2fe"/>
     </svg>
@@ -54,7 +54,7 @@ export const AstrobiologyIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 export const CONVERSING_LANGUAGES = ['Tamil', 'English', 'Hindi', 'Kannada', 'Kashmiri', 'Malayalam', 'Telugu'];
 
-export const STREAMS_DATA = [
+export const COURSES_DATA = [
     { 
         title: 'Aeronautics',
         description: 'Learn how things fly, from paper planes to jumbo jets.',
@@ -121,7 +121,220 @@ export const STREAMS_DATA = [
     },
 ];
 
-export const AERONAUTICS_COURSES: Course[] = [
+export const WEEKEND_CAMP_DATA = {
+    id: 'weekend-rocket-blast-off',
+    courseName: '🚀 Weekend Rocket Blast-Off Camp!',
+    ageCategory: '6-11 years (Class 1 to 5)',
+    sessions: '10 super-fun sessions (Every Saturday & Sunday for 5 weeks)',
+    description: 'Double weekend fun! Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks!',
+    syllabus: [
+        { 
+            week: 'Weekend 1: The Basics of Blast-Off!', 
+            topics: [
+                'What is a Rocket? The Big Idea!',
+                'Meet Sir Isaac Newton: The Laws of Motion',
+                'Action & Reaction: The Balloon Rocket Race!',
+                'Storytime: A Trip to the Moon',
+                'Designing Our Mission Patch',
+                'Learning Rocket Parts: Nose Cone, Fins, Body',
+                'Craft Time: Build a Simple Paper Rocket',
+                'What is Thrust? The Power of Push!',
+                'Team Huddle: What Makes a Good Rocket?',
+                'Mission Log: Drawing Our Dream Rocket'
+            ] 
+        },
+        { 
+            week: 'Weekend 2: Tiny Rockets, Big Fun!', 
+            topics: [
+                'Introducing the Straw Rocket!',
+                'Aerodynamics: How Rockets Cut Through Air',
+                'Building Challenge: The Ultimate Straw Rocket',
+                'Launch Time! Measuring Straw Rocket Distance',
+                'What is Drag? The Parachute Principle',
+                'Craft Time: Create a Paper Helicopter',
+                'Experiment: The Great Helicopter Drop',
+                'Understanding Spin & Stability',
+                'Team Challenge: Helicopter Target Practice',
+                'Mission Log: What made my rocket fly far?'
+            ]
+        },
+        { 
+            week: 'Weekend 3: Water Power & Parachutes!', 
+            topics: [
+                'H2-Oh! The Power of Water Rockets',
+                'Building the Water Bottle Rocket Body',
+                'Designing Fins for Stability',
+                "Let's Talk About Pressure!",
+                'Safety First: Launch Zone Rules',
+                'First Launch! The Water Rocket Splash-Down',
+                'What is Gravity? The Egg Drop Challenge',
+                'Craft Time: Design Your Own Parachute',
+                'Team Experiment: Safest Parachute for an Eggonaut',
+                "Mission Log: Sketching our Water Rocket's Flight"
+            ]
+        },
+        { 
+            week: 'Weekend 4: Design, Decorate & Test!', 
+            topics: [
+                'The Art of Rocketry: Decorate Your Water Rocket',
+                'Giving Your Rocket a Name and Story',
+                'Pre-Flight Checklist: Is Your Rocket Ready?',
+                'Understanding the Center of Gravity',
+                'Experiment: Balancing Your Rocket',
+                'Advanced Fin Design: Does Shape Matter?',
+                'Test Launch Session: Making Adjustments',
+                'Teamwork: Helping Friends with Their Rockets',
+                'Countdown Practice: 10...9...8...',
+                'Mission Log: Final Touches & Launch Predictions'
+            ]
+        },
+        { 
+            week: 'Weekend 5: MEGA LAUNCH DAY & Graduation!', 
+            topics: [
+                'Welcome to Launch Day!',
+                'Final Safety Briefing',
+                'Team by Team: The Official Countdown & Launch!',
+                'Measuring Heights: Who Reached the Highest?',
+                'Mission Debrief: What We Learned',
+                'Photo Op: Posing with our Rockets',
+                'Junior Rocket Scientist Award Ceremony',
+                'Receiving Your "Junior Rocket Scientist" Badge',
+                'Graduation Party: Snacks & Space Stories',
+                'Taking Home Our Rockets!'
+            ]
+        },
+    ],
+    activities: [
+        'Balloon races',
+        'Straw rocket fly-off',
+        'Water rocket splash launches',
+        'Egg parachute drop',
+        'Countdown & shout "BLAST OFF!"',
+        'Draw your dream rocket',
+        'Wear astronaut helmet photos',
+        'Take home your rockets + certificate!',
+    ],
+    matchesSchoolSyllabus: {
+        'Science': 'Force, motion, pressure, gravity',
+        'EVS': 'Space & planets',
+        'Math': 'Measuring height & countdown',
+    },
+    extraCoolThings: [
+        'You BUILD & LAUNCH real rockets (not just read)',
+        'Get wet and shout every weekend',
+        'Become a real mini scientist',
+        'Take home rockets + "Junior Rocket Scientist" badge 🏅',
+    ],
+};
+
+export const ADVANCED_CAMP_DATA = {
+    id: 'advanced-rocketry-workshop',
+    courseName: '🛰️ Advanced Rocketry & Propulsion Workshop!',
+    ageCategory: '11-16 years (Class 6 to 10)',
+    sessions: '10 advanced sessions (Every Saturday & Sunday for 5 weeks)',
+    description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering.',
+    syllabus: [
+        { 
+            week: 'Weekend 1: Foundations of Rocket Engineering', 
+            topics: [
+                "Newton's Laws Revisited: A Deeper Dive",
+                'Introduction to Propulsion: Thrust & Specific Impulse',
+                'Types of Rocket Engines: Solid vs. Liquid vs. Hybrid',
+                'Understanding Thrust-to-Weight Ratio',
+                'Intro to Rocket Design Software (OpenRocket)',
+                'Designing Your First Digital Rocket Model',
+                'The Role of the Center of Pressure & Center of Gravity',
+                'Basic Stability Calculations',
+                'Safety Protocols for Advanced Rocketry',
+                'Mission Log: Defining Your Mission Objective'
+            ] 
+        },
+        { 
+            week: 'Weekend 2: Aerodynamics & Structural Design', 
+            topics: [
+                'Principles of Aerodynamic Lift and Drag',
+                'Nose Cone Geometry: Ogive, Conical, Elliptical',
+                'Fin Design: Shape, Size, and Number of Fins',
+                'Simulating Your Rocket\'s Flight Path',
+                'Analyzing Simulation Data: Apogee, Velocity, Stability',
+                'Materials for Rocketry: Balsa, Cardboard, Composites',
+                'Building a Strong and Lightweight Airframe',
+                'Engine Mounting and Centering Techniques',
+                'Team Challenge: Design for Maximum Altitude',
+                'Mission Log: Finalizing Digital Design and Bill of Materials'
+            ]
+        },
+        { 
+            week: 'Weekend 3: Avionics & Payload Integration', 
+            topics: [
+                'What is Avionics? The Brain of the Rocket',
+                'Introduction to Flight Computers and Altimeters',
+                'Understanding Sensor Data: Acceleration, Barometric Pressure',
+                'Payload Design: What is a satellite? What is a probe?',
+                'Challenge: Design a Protective Casing for a Raw Egg Payload',
+                'Ejection Charges: How Parachutes Deploy',
+                'Calculating Ejection Charge Size',
+                'Wiring an Electronics Bay (Simulation/Demo)',
+                'Integrating the Payload into the Airframe',
+                'Mission Log: Payload Design Blueprint'
+            ]
+        },
+        { 
+            week: 'Weekend 4: Recovery Systems & Final Build', 
+            topics: [
+                'Parachute vs. Streamer Recovery: Pros and Cons',
+                'Calculating the Right Parachute Size for a Safe Landing',
+                'How to Fold a Parachute for Reliable Deployment',
+                'Shock Cords: Absorbing Ejection Force',
+                'Building the Engine Mount and Fin Assembly',
+                'Assembling the Main Body Tube and Payload Bay',
+                'Attaching the Launch Lug and Finishing Touches',
+                'Conducting Pre-Flight Safety and Stability Checks',
+                'Your Final Rocket: A Complete System',
+                'Mission Log: Completing the Pre-Launch Checklist'
+            ]
+        },
+        { 
+            week: 'Weekend 5: LAUNCH DAY & Mission Analysis!', 
+            topics: [
+                'Launch Site Safety Briefing and Roles',
+                'Setting up the Launchpad and Igniter System',
+                'The Final Countdown: Launching the Advanced Rockets!',
+                'Tracking and Recovering Your Rocket',
+                'Downloading and Analyzing Flight Data from the Altimeter',
+                'Mission Debrief: Comparing Simulations to Real-World Results',
+                'Troubleshooting: What if a flight goes wrong?',
+                'Advanced Rocket Scientist Award Ceremony',
+                'Receiving Your "Rocketry Engineer" Certificate',
+                'Next Steps: Competitions and Future Projects'
+            ]
+        },
+    ],
+    activities: [
+        'Design rockets using OpenRocket simulation software',
+        'Build a high-power model rocket from scratch',
+        'Integrate a simulated electronics payload',
+        'Calculate stability and performance metrics',
+        'Launch and recover your own rocket',
+        'Analyze real flight data from an altimeter',
+        'Design a protective egg payload capsule',
+        'Take home your advanced rocket + certificate!',
+    ],
+    matchesSchoolSyllabus: {
+        'Physics': 'Kinematics, Newton\'s Laws, Aerodynamics, Pressure Systems',
+        'Math': 'Algebra, Trigonometry (for stability), Data Analysis',
+        'Design & Tech': 'CAD/Simulation, Prototyping, Systems Integration',
+    },
+    extraCoolThings: [
+        'Use real engineering software to design & test your rocket before you build',
+        'Learn the science behind different types of rocket engines',
+        'Understand how flight computers and payloads work',
+        'Become a certified "Rocketry Engineer" 🏅',
+    ],
+};
+
+
+export const AERONAUTICS_PROGRAMS: Program[] = [
   {
     title: 'Junior Pilot Program',
     ageGroup: 'Ages 5-8',
@@ -136,7 +349,7 @@ export const AERONAUTICS_COURSES: Course[] = [
   },
 ];
 
-export const ROCKET_SCIENCE_COURSES: Course[] = [
+export const ROCKET_SCIENCE_PROGRAMS: Program[] = [
   {
     title: 'Rocket Racers',
     ageGroup: 'Ages 5-8',
@@ -151,7 +364,7 @@ export const ROCKET_SCIENCE_COURSES: Course[] = [
   },
 ];
 
-export const SATELLITES_COURSES: Course[] = [
+export const SATELLITES_PROGRAMS: Program[] = [
     {
       title: 'Backyard Constellations',
       ageGroup: 'Ages 5-8',
@@ -166,7 +379,7 @@ export const SATELLITES_COURSES: Course[] = [
     },
   ];
   
-export const DATA_MATHEMATICS_COURSES: Course[] = [
+export const DATA_MATHEMATICS_PROGRAMS: Program[] = [
     {
       title: 'Data Detectives',
       ageGroup: 'Ages 5-8',
@@ -181,7 +394,7 @@ export const DATA_MATHEMATICS_COURSES: Course[] = [
     },
 ];
 
-export const QUANTUM_PHYSICS_COURSES: Course[] = [
+export const QUANTUM_PHYSICS_PROGRAMS: Program[] = [
     {
       title: 'Quantum Leap Jr.',
       ageGroup: 'Ages 5-8',
@@ -196,7 +409,7 @@ export const QUANTUM_PHYSICS_COURSES: Course[] = [
     },
 ];
 
-export const MOLECULAR_CHEMISTRY_COURSES: Course[] = [
+export const MOLECULAR_CHEMISTRY_PROGRAMS: Program[] = [
     {
       title: 'Molecule Kidz',
       ageGroup: 'Ages 5-8',
@@ -211,7 +424,7 @@ export const MOLECULAR_CHEMISTRY_COURSES: Course[] = [
     },
 ];
 
-export const ASTROBIOLOGY_COURSES: Course[] = [
+export const ASTROBIOLOGY_PROGRAMS: Program[] = [
     {
       title: 'Alien Hunters',
       ageGroup: 'Ages 5-8',
@@ -226,7 +439,7 @@ export const ASTROBIOLOGY_COURSES: Course[] = [
     },
 ];
 
-export const ASTRONOMY_COURSES: Course[] = [
+export const ASTRONOMY_PROGRAMS: Program[] = [
     {
       title: 'Star Gazers Club',
       ageGroup: 'Ages 5-8',
@@ -241,18 +454,18 @@ export const ASTRONOMY_COURSES: Course[] = [
     },
 ];
 
-export const ALL_COURSES = [
-    ...AERONAUTICS_COURSES,
-    ...ROCKET_SCIENCE_COURSES,
-    ...SATELLITES_COURSES,
-    ...DATA_MATHEMATICS_COURSES,
-    ...QUANTUM_PHYSICS_COURSES,
-    ...MOLECULAR_CHEMISTRY_COURSES,
-    ...ASTROBIOLOGY_COURSES,
-    ...ASTRONOMY_COURSES,
+export const ALL_PROGRAMS = [
+    ...AERONAUTICS_PROGRAMS,
+    ...ROCKET_SCIENCE_PROGRAMS,
+    ...SATELLITES_PROGRAMS,
+    ...DATA_MATHEMATICS_PROGRAMS,
+    ...QUANTUM_PHYSICS_PROGRAMS,
+    ...MOLECULAR_CHEMISTRY_PROGRAMS,
+    ...ASTROBIOLOGY_PROGRAMS,
+    ...ASTRONOMY_PROGRAMS,
 ];
 
-export const FREE_COURSES_DATA = [
+export const FREE_PROGRAMS_DATA = [
     { 
         title: "Astronomy For Kids", 
         ageGroup: "Ages 5-8",
@@ -298,7 +511,7 @@ export const FAQ_DATA: FaqItem[] = [
     },
     {
         question: "Who are the courses for?",
-        answer: "Our courses are designed for three main age groups: Early Learners (ages 5-8), Junior Explorers (ages 9-12), and Young Innovators (ages 13-15). Each course is tailored to be age-appropriate, engaging, and educational."
+        answer: "Our courses are designed for two main age groups: Junior Aviators (ages 5-10) and Senior Innovators (ages 11-15). Each course is tailored to be age-appropriate, engaging, and educational."
     },
     {
         question: "Are the courses safe?",

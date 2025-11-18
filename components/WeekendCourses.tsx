@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { EnrollmentForm } from './Contact';
 import { ChildProfile } from '../types';
@@ -8,7 +9,7 @@ const WhatsAppIcon = () => (
     </svg>
 );
 
-const courses = [
+const programs = [
     { 
         title: "Astronomy For Kids", 
         age: "Ages 6-10", 
@@ -25,12 +26,12 @@ const courses = [
     }
 ];
 
-const CourseCard: React.FC<{ course: typeof courses[0] }> = ({ course }) => (
+const ProgramCard: React.FC<{ program: typeof programs[0] }> = ({ program }) => (
     <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-brand-sun flex-1 flex flex-col">
-        <span className="font-bold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full text-sm self-start">{course.age}</span>
-        <h3 className="text-xl font-bold text-slate-800 mt-3 mb-2 flex-grow">{course.title}</h3>
-        <p className="text-slate-600 font-medium">{course.date}</p>
-        <p className="text-slate-600 font-medium">{course.time}</p>
+        <span className="font-bold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full text-sm self-start">{program.age}</span>
+        <h3 className="text-xl font-bold text-slate-800 mt-3 mb-2 flex-grow">{program.title}</h3>
+        <p className="text-slate-600 font-medium">{program.date}</p>
+        <p className="text-slate-600 font-medium">{program.time}</p>
     </div>
 );
 
@@ -68,9 +69,9 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild })
                 <div className="container mx-auto px-6">
                    <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="text-center lg:text-left order-2 lg:order-1">
-                            <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">FREE WEEKEND COURSES</span>
+                            <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">ISRO FREE COURSE</span>
                              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
-                                The Skyway Movement
+                                ISRO Free Course
                             </h1>
                             <p className="mt-6 text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
                                 Join our free, exciting weekend workshops! We turn complex topics like astronomy and rocket science into fun, hands-on adventures for kids and teens across India.
@@ -81,7 +82,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild })
                                     onClick={(e) => handleScrollClick(e, 'upcoming-courses')}
                                     className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg"
                                 >
-                                    View Upcoming Courses
+                                    View Upcoming Programs
                                 </a>
                             </div>
                         </div>
@@ -97,10 +98,10 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild })
                 <div className="container mx-auto px-6">
                     <div className="text-center max-w-3xl mx-auto">
                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                            What is the Skyway Movement?
+                            About the ISRO Free Course
                         </h2>
                         <p className="mt-4 text-lg text-slate-600">
-                            The Skyway Movement is Brahmastra's commitment to making aerospace education accessible and exciting for every child in India. We believe that by sparking curiosity early, we can inspire the next generation of scientists, engineers, and dreamers. Our free weekly courses are designed to be fun, hands-on, and a launchpad for a lifelong passion for STEM.
+                            Brahmastra, in association with ISRO, is committed to making aerospace education accessible and exciting for every child in India. As an official ISRO Space Tutor, we believe that by sparking curiosity early, we can inspire the next generation of scientists, engineers, and dreamers. Our free weekly courses are designed to be fun, hands-on, and a launchpad for a lifelong passion for STEM.
                         </p>
                     </div>
                 </div>
@@ -110,13 +111,13 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild })
             <section id="upcoming-courses" className="py-16 md:py-24">
                 <div className="container mx-auto px-6">
                     <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-brand-space max-w-5xl mx-auto">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-2">Upcoming Free Courses</h2>
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-2">Upcoming Free Programs</h2>
                         <p className="text-center text-sm text-slate-600 mb-8">
                             Note: We conduct separate, fully interactive classes for each language to ensure the best learning experience.
                         </p>
                         <div className="flex flex-col md:flex-row gap-8 justify-center">
-                            {courses.map((course, index) => (
-                                <CourseCard key={index} course={course} />
+                            {programs.map((program, index) => (
+                                <ProgramCard key={index} program={program} />
                             ))}
                         </div>
                          <div className="mt-8 text-center">

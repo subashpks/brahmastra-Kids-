@@ -19,7 +19,7 @@ export interface Activity {
   icon: string;
 }
 
-export interface Course {
+export interface Program {
   title: string;
   ageGroup: string;
   description: string;

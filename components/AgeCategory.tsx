@@ -5,29 +5,20 @@ import { PageProps } from '../types';
 
 const categories = [
     {
-        emoji: '🧩',
-        title: 'Early Learners',
-        age: 'Ages 5–8',
-        standard: '1st–3rd Standard',
-        traits: 'Curious, imaginative, visual learners',
-        focus: 'Story-based learning, crafts, fun science',
+        emoji: '🚀',
+        title: 'Junior Aviators',
+        age: 'Ages 5-10',
+        standard: '1st–5th Standard',
+        traits: 'Curious, imaginative, hands-on learners',
+        focus: 'Story-based learning, DIY kits, fun experiments',
         color: 'border-sky-400'
     },
     {
-        emoji: '🚀',
-        title: 'Junior Explorers',
-        age: 'Ages 9–12',
-        standard: '4th–6th Standard',
-        traits: 'Logical, team players, eager to explore',
-        focus: 'DIY kits, model rockets, creative experiments',
-        color: 'border-amber-400'
-    },
-    {
         emoji: '🧠',
-        title: 'Young Innovators',
-        age: 'Ages 13–15',
-        standard: '7th–9th Standard',
-        traits: 'Analytical, independent thinkers',
+        title: 'Senior Innovators',
+        age: 'Ages 11-15',
+        standard: '6th–9th Standard',
+        traits: 'Analytical, logical, future-focused',
         focus: 'Coding, aerospace fundamentals, career guiding',
         color: 'border-green-500'
     }
@@ -139,14 +130,14 @@ export const AgeCategoryPage: React.FC<PageProps> = ({ navigate }) => {
                 <div className="mt-8">
                     <a 
                         href="#" 
-                        onClick={(e) => { e.preventDefault(); navigate('streams'); }} 
+                        onClick={(e) => { e.preventDefault(); navigate('courses'); }} 
                         className="inline-block bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg"
                     >
-                        View All Streams
+                        View All Courses
                     </a>
                 </div>
             </div>
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {categories.map(cat => <CategoryCard key={cat.title} category={cat} />)}
             </div>
           </div>

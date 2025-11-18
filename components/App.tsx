@@ -16,18 +16,34 @@ import { QuantumPhysicsPage } from './QuantumPhysicsPage';
 import { MolecularChemistryPage } from './MolecularChemistryPage';
 import { AstrobiologyPage } from './AstrobiologyPage';
 import { Differentiators } from './Differentiators';
-import { StreamsPage } from './Streams';
+import { CoursesPage } from './Streams';
 import { AstronomyPage } from './AstronomyPage';
 import { FreeCoursePopup } from './FreeCoursePopup';
 import { LoginPage } from './LoginPage';
 import { SignUpPage } from './SignUpPage';
 import { DashboardPage } from './DashboardPage';
 import { CertificateFormPage } from './CertificateFormPage';
+import { CourseDetailPage } from './CourseDetailPage';
+import { AdvancedCourseDetailPage } from './AdvancedCourseDetailPage';
+import { VrWorkshopPage } from './VrWorkshopPage';
 import { User, ChildProfile } from '../types';
+
+const FomoBanner: React.FC<{ onClick: () => void }> = ({ onClick }) => (
+    <div 
+        onClick={onClick}
+        className="bg-amber-400 text-amber-900 py-2.5 px-4 text-center text-sm font-bold cursor-pointer hover:bg-amber-500 transition-colors animate-pulse-fomo"
+        style={{ animationDuration: '3s' }}
+    >
+        <span role="img" aria-label="hourglass" className="mr-2">⏳</span>
+        10 Seats Only Per Batch! Click Here to Secure Your Spot.
+    </div>
+);
+
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [showPopup, setShowPopup] = useState(false);
+  const [showFomoBanner, setShowFomoBanner] = useState(false);
   // const [currentUser, setCurrentUser] = useState<User | null>(null);
   // const [activeChild, setActiveChild] = useState<ChildProfile | null>(null);
 
@@ -54,11 +70,23 @@ function App() {
 
       return () => clearTimeout(timer);
     }
+    
+    const fomoClicked = sessionStorage.getItem('fomoBannerClicked');
+    if (fomoClicked !== 'true') {
+        setShowFomoBanner(true);
+    }
+
   }, []);
 
   const navigate = (page: string) => {
     setCurrentPage(page);
     window.scrollTo(0, 0);
+  };
+
+  const handleFomoClick = () => {
+    sessionStorage.setItem('fomoBannerClicked', 'true');
+    setShowFomoBanner(false);
+    navigate('courses');
   };
 
   /*
@@ -116,8 +144,14 @@ function App() {
         return <AstronomyPage {...pageProps} />;
       case 'philosophy':
         return <Differentiators navigate={navigate} />;
-      case 'streams':
-        return <StreamsPage {...pageProps} />;
+      case 'courses':
+        return <CoursesPage {...pageProps} />;
+      case 'weekend-rocket-blast-off':
+        return <CourseDetailPage {...pageProps} />;
+      case 'advanced-rocketry-workshop':
+        return <AdvancedCourseDetailPage {...pageProps} />;
+      case 'vr-workshop':
+        return <VrWorkshopPage {...pageProps} />;
       case 'freecourses':
         // FIX: Pass activeChild prop to FreeCoursesPage.
         return <FreeCoursesPage activeChild={null} />;
@@ -148,6 +182,7 @@ function App() {
 
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
+      {showFomoBanner && <FomoBanner onClick={handleFomoClick} />}
       {showPopup && <FreeCoursePopup onClose={handleClosePopup} onRedirect={handlePopupRedirect} />}
       <Header navigate={navigate} currentPage={currentPage} isLoggedIn={false} onLogout={() => {}} currentUser={null} activeChild={null} />
       <main className="flex-grow">

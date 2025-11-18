@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PageProps } from '../types';
 
@@ -57,7 +58,7 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }} className="transition-opacity hover:opacity-75">Home</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} className="transition-opacity hover:opacity-75">Our Philosophy</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="transition-opacity hover:opacity-75">About Us</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="transition-opacity hover:opacity-75">Free Courses</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="transition-opacity hover:opacity-75">Isro Free course</a>
                         </div>
                     </div>
 

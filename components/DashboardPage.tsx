@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { STREAMS_DATA, CONVERSING_LANGUAGES } from '../constants';
+import { COURSES_DATA, CONVERSING_LANGUAGES } from '../constants';
 // FIX: Import ChildProfile from types and alias it to avoid name conflict. Import User.
 import { User, ChildProfile as BaseChildProfile } from '../types';
 
@@ -18,7 +18,7 @@ interface ChildProfile {
     conversingLanguage: string;
     curiosity: string;
     questions: string;
-    streams: string[];
+    courses: string[];
 }
 
 // FIX: Update DashboardPageProps to include all props passed from App.tsx
@@ -32,9 +32,8 @@ interface DashboardPageProps {
 const standards = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 const curriculums = ['CBSE', 'Matric', 'Stateboard', 'ICSE', 'IB', 'Other'];
 const ageCategories = [
-    'Early Learners (Ages 5-8)',
-    'Junior Explorers (Ages 9-12)',
-    'Young Innovators (Ages 13-15)'
+    'Junior Aviators (Ages 5-10)',
+    'Senior Innovators (Ages 11-15)'
 ];
 const genders = ['Male', 'Female', 'Prefer not to say'];
 
@@ -66,10 +65,10 @@ const ChildProfileCard: React.FC<{ profile: ChildProfile }> = ({ profile }) => (
         
         <div className="space-y-4">
             <div>
-                <h4 className="font-semibold text-slate-700">Streams of Interest:</h4>
+                <h4 className="font-semibold text-slate-700">Courses of Interest:</h4>
                  <div className="flex flex-wrap gap-2 mt-1">
-                    {profile.streams.map(stream => (
-                        <span key={stream} className="bg-sky-100 text-sky-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{stream}</span>
+                    {profile.courses.map(course => (
+                        <span key={course} className="bg-sky-100 text-sky-800 text-xs font-medium px-2.5 py-0.5 rounded-full">{course}</span>
                     ))}
                 </div>
             </div>
@@ -122,7 +121,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ currentUser, activ
         conversingLanguage: '',
         curiosity: '',
         questions: '',
-        streams: [] as string[]
+        courses: [] as string[]
     });
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -130,12 +129,12 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ currentUser, activ
         setFormState(prevState => ({ ...prevState, [name]: value }));
     };
 
-    const handleStreamChange = (streamTitle: string) => {
+    const handleCourseChange = (courseTitle: string) => {
         setFormState(prevState => {
-            const newStreams = prevState.streams.includes(streamTitle)
-                ? prevState.streams.filter(s => s !== streamTitle)
-                : [...prevState.streams, streamTitle];
-            return { ...prevState, streams: newStreams };
+            const newCourses = prevState.courses.includes(courseTitle)
+                ? prevState.courses.filter(c => c !== courseTitle)
+                : [...prevState.courses, courseTitle];
+            return { ...prevState, courses: newCourses };
         });
     };
 
@@ -150,7 +149,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ currentUser, activ
         setFormState({
             name: '', ageCategory: '', gender: '', standard: '', curriculum: '', school: '',
             district: '', state: '', country: '', conversingLanguage: '',
-            curiosity: '', questions: '', streams: []
+            curiosity: '', questions: '', courses: []
         }); // Reset form
     };
 
@@ -246,17 +245,17 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ currentUser, activ
                                     </div>
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium mb-2 text-slate-700">Streams of Interest</label>
+                                    <label className="block text-sm font-medium mb-2 text-slate-700">Courses of Interest</label>
                                     <div className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-2">
-                                        {STREAMS_DATA.map(stream => (
-                                            <label key={stream.title} className="flex items-center text-sm text-slate-700 hover:bg-slate-100 p-2 rounded-md cursor-pointer">
+                                        {COURSES_DATA.map(course => (
+                                            <label key={course.title} className="flex items-center text-sm text-slate-700 hover:bg-slate-100 p-2 rounded-md cursor-pointer">
                                                 <input 
                                                     type="checkbox" 
-                                                    checked={formState.streams.includes(stream.title)} 
-                                                    onChange={() => handleStreamChange(stream.title)} 
+                                                    checked={formState.courses.includes(course.title)} 
+                                                    onChange={() => handleCourseChange(course.title)} 
                                                     className="h-4 w-4 rounded border-slate-300 text-brand-space focus:ring-brand-sky" 
                                                 />
-                                                <span className="ml-2">{stream.title}</span>
+                                                <span className="ml-2">{course.title}</span>
                                             </label>
                                         ))}
                                     </div>

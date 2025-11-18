@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import { PageProps } from '../types';
 
-const freeCourses = [
+const freePrograms = [
     "Astronomy For Kids (Ages 6-10)",
     "Rocket Science for Kids (Ages 11-17)"
 ];
@@ -172,10 +173,10 @@ export const CertificateFormPage: React.FC<PageProps> = ({ navigate }) => {
                                     <input id="state" name="state" type="text" value={formData.state} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" placeholder="e.g., Tamil Nadu" />
                                 </div>
                                 <div>
-                                    <label htmlFor="programName" className="block text-sm font-medium mb-1 text-slate-700">Which free course did your child attend?</label>
+                                    <label htmlFor="programName" className="block text-sm font-medium mb-1 text-slate-700">Which free program did your child attend?</label>
                                     <select id="programName" name="programName" value={formData.programName} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                         <option value="">Select a program</option>
-                                        {freeCourses.map(course => <option key={course} value={course}>{course}</option>)}
+                                        {freePrograms.map(program => <option key={program} value={program}>{program}</option>)}
                                     </select>
                                 </div>
                                 <div>
@@ -216,7 +217,7 @@ export const CertificateFormPage: React.FC<PageProps> = ({ navigate }) => {
                                     </select>
                                 </div>
                                 <div>
-                                    <label htmlFor="consideringEnrollment" className="block text-sm font-medium mb-1 text-slate-700">Are you considering enrolling in the full course?</label>
+                                    <label htmlFor="consideringEnrollment" className="block text-sm font-medium mb-1 text-slate-700">Are you considering enrolling in the full program?</label>
                                     <select id="consideringEnrollment" name="consideringEnrollment" value={formData.consideringEnrollment} onChange={handleChange} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                         <option value="">Select an option</option>
                                         <option>Yes, definitely!</option>
@@ -232,7 +233,7 @@ export const CertificateFormPage: React.FC<PageProps> = ({ navigate }) => {
                                 <h2 className="text-2xl font-bold text-slate-800 mb-4">Step 4: Future Planning</h2>
                                 <div className="space-y-4">
                                     <div>
-                                        <label htmlFor="preferredTime" className="block text-sm font-medium mb-1 text-slate-700">What's the preferred time for your child's full course? <span className="text-red-500">*</span></label>
+                                        <label htmlFor="preferredTime" className="block text-sm font-medium mb-1 text-slate-700">What's the preferred time for your child's full program? <span className="text-red-500">*</span></label>
                                         <select id="preferredTime" name="preferredTime" value={formData.preferredTime} onChange={handleChange} required className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                             <option value="">Select a time</option>
                                             <option>Weekdays (Mon-Fri)</option>

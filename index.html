@@ -26,6 +26,7 @@
             animation: {
               'fade-in-up': 'fade-in-up 0.5s ease-out forwards',
               'float': 'float 3s ease-in-out infinite',
+              'pulse-fomo': 'pulse-fomo 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             },
             keyframes: {
               'fade-in-up': {
@@ -37,6 +38,14 @@
                 '50%': { transform: 'translateY(-10px)' },
                 '100%': { transform: 'translateY(0px)' },
               },
+              'pulse-fomo': {
+                '0%, 100%': {
+                  opacity: '1',
+                },
+                '50%': {
+                  opacity: '.9',
+                },
+              }
             },
           },
         },
