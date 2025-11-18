@@ -339,7 +339,12 @@ export const VR_WORKSHOP_DATA = {
     ageCategory: '8-16 years (Class 3 to 10)',
     sessions: 'A thrilling 3-hour one-day workshop',
     description: 'Go beyond textbooks! Pilot a spaceship, walk on Mars, and witness the birth of a star in a fully immersive Virtual Reality experience.',
-    price: '₹999/-',
+    price: '₹2500/-',
+    location: 'Clubhouse, Marg Pushpadruma, Kalavakkam, OMR, Thiruporur.',
+    slots: [
+        { day: 'Saturday', seats: 10 },
+        { day: 'Sunday', seats: 10 },
+    ],
     syllabus: [ // Using syllabus structure for consistency
         { 
             week: 'Module 1: Astronaut Training & ISS Tour (60 mins)', 

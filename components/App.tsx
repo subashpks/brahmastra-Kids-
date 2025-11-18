@@ -26,6 +26,7 @@ import { CertificateFormPage } from './CertificateFormPage';
 import { CourseDetailPage } from './CourseDetailPage';
 import { AdvancedCourseDetailPage } from './AdvancedCourseDetailPage';
 import { VrWorkshopPage } from './VrWorkshopPage';
+import { CheckoutPage } from './CheckoutPage';
 import { User, ChildProfile } from '../types';
 
 const FomoBanner: React.FC<{ onClick: () => void }> = ({ onClick }) => (
@@ -44,6 +45,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState('home');
   const [showPopup, setShowPopup] = useState(false);
   const [showFomoBanner, setShowFomoBanner] = useState(false);
+  const [checkoutItem, setCheckoutItem] = useState(null);
   // const [currentUser, setCurrentUser] = useState<User | null>(null);
   // const [activeChild, setActiveChild] = useState<ChildProfile | null>(null);
 
@@ -78,7 +80,10 @@ function App() {
 
   }, []);
 
-  const navigate = (page: string) => {
+  const navigate = (page: string, data: any = null) => {
+    if (page === 'checkout') {
+        setCheckoutItem(data);
+    }
     setCurrentPage(page);
     window.scrollTo(0, 0);
   };
@@ -152,6 +157,8 @@ function App() {
         return <AdvancedCourseDetailPage {...pageProps} />;
       case 'vr-workshop':
         return <VrWorkshopPage {...pageProps} />;
+      case 'checkout':
+        return <CheckoutPage item={checkoutItem} navigate={navigate} />;
       case 'freecourses':
         // FIX: Pass activeChild prop to FreeCoursesPage.
         return <FreeCoursesPage activeChild={null} />;

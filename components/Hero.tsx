@@ -167,6 +167,70 @@ const StatsSection = () => (
     </section>
 );
 
+const WhoTeachesSection = () => {
+    const founder = {
+        name: 'Subash P. Kuppusamy',
+        imageUrl: 'https://files.catbox.moe/gpjimc.png',
+        bio: 'An Aerospace Engineer from Anna University, Subash P. Kuppusamy\'s unwavering vision began with foundational experience on the Tejas Fighter Aircraft at Hindustan Aeronautics Limited (HAL). From mentoring thousands of students to training the armed forces, his mission is to make aerospace education accessible and inspire the next generation of innovators.',
+        achievements: [
+            'Aerospace Engineer from Anna University',
+            'Worked on Tejas Fighter Aircraft at HAL, Bangalore',
+            'DGCA Certified Drone Pilot (Medium & Small)',
+            'Trained Indian Armed Forces in UAV applications in Kashmir',
+            'Appointed ISRO Space Tutor',
+        ]
+    };
+
+    const CheckIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    );
+
+    return (
+        <section className="py-16 md:py-24 bg-slate-100">
+            <div className="container mx-auto px-6">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                        Who Teaches Your Child?
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+                        Meet the visionary founder and chief mentor behind Brahmastra Aerospace.
+                    </p>
+                </div>
+                <div className="grid lg:grid-cols-5 gap-12 items-center max-w-5xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+                    <div className="lg:col-span-2 flex justify-center">
+                        <img className="w-48 h-48 lg:w-56 lg:h-56 object-cover rounded-full shadow-2xl border-4 border-brand-sky" src={founder.imageUrl} alt={`Photo of ${founder.name}`} />
+                    </div>
+                    <div className="lg:col-span-3 text-center lg:text-left">
+                        <h3 className="text-3xl font-bold text-brand-space">
+                             <a 
+                                href={`https://www.google.com/search?q=${encodeURIComponent(founder.name)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline"
+                            >
+                                {founder.name}
+                            </a>
+                        </h3>
+                        <p className="mt-4 text-slate-600">
+                            {founder.bio}
+                        </p>
+                        <ul className="mt-6 space-y-3">
+                            {founder.achievements.map((item, index) => (
+                                <li key={index} className="flex items-start gap-3">
+                                    <CheckIcon />
+                                    <span className="text-slate-700">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
 
 export const HomePage: React.FC<PageProps> = ({ navigate }) => {
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -208,6 +272,8 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
 
       <AboutSection />
 
+      <WhoTeachesSection />
+      
       <StatsSection />
       
       <Testimonials />

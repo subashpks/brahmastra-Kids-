@@ -12,6 +12,9 @@ const ExperienceIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className=
 const UserGroupIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>);
 const ClockIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>);
 const CalendarIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>);
+const InstructorIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>);
+const LocationIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-slate-500 mr-3 flex-shrink-0"><path fillRule="evenodd" d="M12 2.25c-4.142 0-7.5 3.358-7.5 7.5 0 4.694 4.004 9.942 6.84 12.02.428.32 1.006.32 1.434 0 2.836-2.078 6.84-7.326 6.84-12.02 0-4.142-3.358-7.5-7.5-7.5zM12 12.75a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5z" clipRule="evenodd" /></svg>);
+
 
 const DetailSection: React.FC<{ icon: React.ReactNode; title: string; children: React.ReactNode; }> = ({ icon, title, children }) => (
     <div className="py-6 border-t border-slate-200">
@@ -47,11 +50,64 @@ const SyllabusAccordionItem: React.FC<{ item: { week: string, topics: string[] }
     </div>
 );
 
+const InstructorProfile: React.FC = () => {
+    const founder = {
+        name: 'Subash P. Kuppusamy',
+        imageUrl: 'https://files.catbox.moe/gpjimc.png',
+        bio: 'This workshop is led by our founder, an Aerospace Engineer from Anna University with experience on the Tejas Fighter Aircraft at HAL. A DGCA Certified Drone Pilot, his passion is to make aerospace education accessible and inspire innovators.',
+        achievements: [
+            'Aerospace Engineer from Anna University',
+            'Worked on Tejas Fighter Aircraft at HAL',
+            'DGCA Certified Drone Pilot (Medium & Small)',
+            'Trained Indian Armed Forces in UAV applications',
+            'Appointed ISRO Space Tutor',
+        ]
+    };
+
+    const CheckIcon = () => (
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+    );
+
+    return (
+        <div className="grid md:grid-cols-5 gap-8 items-center bg-slate-50 p-6 rounded-2xl shadow-inner">
+            <div className="md:col-span-2 flex justify-center">
+                <img className="w-40 h-40 object-cover rounded-full shadow-lg border-4 border-white" src={founder.imageUrl} alt={`Photo of ${founder.name}`} />
+            </div>
+            <div className="md:col-span-3 text-center md:text-left">
+                <h4 className="text-2xl font-bold text-brand-space">
+                     <a 
+                        href={`https://www.google.com/search?q=${encodeURIComponent(founder.name)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline"
+                    >
+                        {founder.name}
+                    </a>
+                </h4>
+                <p className="mt-2 text-slate-600 text-sm">
+                    {founder.bio}
+                </p>
+                <ul className="mt-4 space-y-2 text-left">
+                    {founder.achievements.map((item, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                            <CheckIcon />
+                            <span className="text-slate-700 text-sm">{item}</span>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+    );
+};
+
+
 export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
     const [openAccordion, setOpenAccordion] = useState<number | null>(0);
     const { 
         courseName, ageCategory, sessions, description, syllabus, 
-        activities, matchesSchoolSyllabus, extraCoolThings, price
+        activities, matchesSchoolSyllabus, extraCoolThings, price, slots, location
     } = VR_WORKSHOP_DATA;
     
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -67,7 +123,7 @@ export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
             <div className="absolute -top-4 -left-4 w-48 h-48 bg-purple-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob"></div>
             <div className="absolute -top-4 -right-4 w-48 h-48 bg-amber-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
             <div className="absolute -bottom-8 left-20 w-48 h-48 bg-teal-200 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-            <img src="https://files.catbox.moe/s5z9yr.png" alt="Child wearing a VR headset looking at a galaxy" className="relative animate-float" />
+            <img src="https://files.catbox.moe/o08nww.png" alt="Child wearing a VR headset looking at a galaxy" className="relative animate-float" />
         </div>
     );
 
@@ -169,6 +225,10 @@ export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
                                         <li className="flex items-start gap-3"><span className="text-pink-500 font-bold mt-1">●</span><div><strong>Top-Tier Equipment:</strong> We use high-quality, comfortable VR headsets to provide a seamless and breathtaking immersive experience.</div></li>
                                     </ul>
                                 </DetailSection>
+
+                                <DetailSection icon={<InstructorIcon/>} title="Meet Your Workshop Guide">
+                                    <InstructorProfile />
+                                </DetailSection>
                             </div>
                         </div>
 
@@ -176,12 +236,8 @@ export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
                         <div className="mt-10 lg:mt-0">
                             <div className="sticky top-24">
                                 <div className="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
-                                    <img src="https://files.catbox.moe/s5z9yr.png" alt="Child in VR headset" className="w-full h-80 object-cover"/>
+                                    <img src="https://files.catbox.moe/awo8bd.png" alt="Child in VR headset" className="w-full h-80 object-cover"/>
                                     <div className="p-6">
-                                        <div className="text-center mb-4 border-b pb-4">
-                                            <span className="text-slate-600">Price</span>
-                                            <span className="text-3xl font-bold text-slate-800 block">{price}</span>
-                                        </div>
                                         <div className="space-y-4">
                                             <div className="flex items-center">
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-slate-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -195,17 +251,43 @@ export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-slate-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M5.636 18.364a9 9 0 010-12.728m12.728 0a9 9 0 010 12.728m-9.9-2.829a5 5 0 010-7.07m7.072 0a5 5 0 010 7.07M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                                                 <span className="text-slate-700 font-medium">Immersive VR Experience</span>
                                             </div>
+                                            <div className="flex items-start">
+                                                <LocationIcon />
+                                                <span className="text-slate-700 font-medium">{location}</span>
+                                            </div>
                                         </div>
 
-                                        <div className="mt-6">
-                                            <a 
-                                                href="#" 
-                                                onClick={(e) => { e.preventDefault(); navigate('age'); }} 
-                                                className="block w-full text-center bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-6 py-3 rounded-full text-lg shadow-lg"
-                                            >
-                                                Book Your Spot
-                                            </a>
-                                            <p className="mt-3 text-xs text-slate-500 text-center">Only 20 seats available per workshop. Book your immersive adventure now!</p>
+                                        <div className="mt-6 border-t pt-6">
+                                            <div className="text-center mb-4">
+                                                <span className="text-slate-600">Price</span>
+                                                <span className="text-3xl font-bold text-slate-800 block">{price}</span>
+                                            </div>
+
+                                            <div className="space-y-3">
+                                                <h4 className="text-md font-semibold text-center text-slate-700">Choose Your Slot</h4>
+                                                {slots.map(slot => (
+                                                    <div key={slot.day} className="bg-slate-50 p-3 rounded-lg flex items-center justify-between">
+                                                        <div>
+                                                            <p className="font-bold text-brand-space">{slot.day}</p>
+                                                            <p className="text-xs text-slate-500">{slot.seats} Seats Available</p>
+                                                        </div>
+                                                        <a
+                                                            href="#"
+                                                            onClick={(e) => { 
+                                                                e.preventDefault(); 
+                                                                navigate('checkout', { 
+                                                                    name: courseName,
+                                                                    slot: slot.day,
+                                                                    price: price
+                                                                }); 
+                                                            }}
+                                                            className="bg-[#e40917] text-white hover:bg-[#c10714] transition-colors font-semibold px-4 py-1.5 rounded-full text-sm shadow-md"
+                                                        >
+                                                            Book Now
+                                                        </a>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

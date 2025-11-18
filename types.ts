@@ -32,7 +32,8 @@ export interface FaqItem {
 }
 
 export interface PageProps {
-  navigate: (page: string) => void;
+  // FIX: Allow navigate function to accept an optional data argument to match its implementation in App.tsx.
+  navigate: (page: string, data?: any) => void;
 }
 
 export interface Testimonial {
