@@ -333,6 +333,71 @@ export const ADVANCED_CAMP_DATA = {
     ],
 };
 
+export const VR_WORKSHOP_DATA = {
+    id: 'vr-space-exploration',
+    courseName: '🌌 VR Space Exploration Workshop',
+    ageCategory: '8-16 years (Class 3 to 10)',
+    sessions: 'A thrilling 3-hour one-day workshop',
+    description: 'Go beyond textbooks! Pilot a spaceship, walk on Mars, and witness the birth of a star in a fully immersive Virtual Reality experience.',
+    price: '₹999/-',
+    syllabus: [ // Using syllabus structure for consistency
+        { 
+            week: 'Module 1: Astronaut Training & ISS Tour (60 mins)', 
+            topics: [
+                'Welcome to Virtual Reality: Gear Up!',
+                'Basic VR movement and interaction training.',
+                'Tour the International Space Station (ISS).',
+                'Experience zero-gravity simulation.',
+                'Learn about the daily life of an astronaut.',
+                'Interactive Q&A about the ISS.',
+            ] 
+        },
+        { 
+            week: 'Module 2: A Grand Tour of the Solar System (60 mins)', 
+            topics: [
+                'Launch from Earth in a virtual rocket.',
+                'Fly-by of the Moon and learn about its phases.',
+                'Land on Mars and pilot a virtual Rover.',
+                'Witness the Great Red Spot on Jupiter.',
+                'Fly through the rings of Saturn.',
+                'Explore the ice giants: Uranus and Neptune.',
+            ]
+        },
+        { 
+            week: 'Module 3: Deep Space & Cosmic Wonders (60 mins)', 
+            topics: [
+                'Journey to the Orion Nebula, a stellar nursery.',
+                'Witness the life cycle of a star, from birth to supernova.',
+                'Explore a virtual black hole (from a safe distance!).',
+                'Navigate through an asteroid belt.',
+                'Final mission debrief and group discussion.',
+                'Receive your "Virtual Astronaut" certificate.',
+            ]
+        },
+    ],
+    activities: [
+        'Pilot a Mars Rover across alien landscapes',
+        'Conduct a virtual spacewalk outside the ISS',
+        'Fly through the majestic rings of Saturn',
+        'Witness the explosive beauty of a supernova',
+        'Navigate a challenging asteroid field',
+        'Explore the surface of the Moon',
+        'Stand beside the giant volcanoes of Mars',
+        'Get a digital "Virtual Astronaut" certificate!',
+    ],
+    matchesSchoolSyllabus: {
+        'Physics': 'Gravity, orbits, celestial mechanics, light years',
+        'EVS/Science': 'Planets, Solar System, stars, galaxies',
+        'Technology': 'Introduction to Virtual Reality applications',
+    },
+    extraCoolThings: [
+        'Experience realistic space travel without leaving the room',
+        'Understand complex astronomy concepts through immersive visuals',
+        'A fully guided, interactive experience with expert mentors',
+        'Sparks imagination and a deeper interest in STEM fields',
+    ],
+};
+
 
 export const AERONAUTICS_PROGRAMS: Program[] = [
   {
