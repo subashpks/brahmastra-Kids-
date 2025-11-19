@@ -23,12 +23,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
         email: '',
         phone: ''
     });
-    const [transactionId, setTransactionId] = useState('');
+    const [utrNumber, setUtrNumber] = useState('');
     const [statusMessage, setStatusMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [statusIsError, setStatusIsError] = useState(false);
-
-    const upiId = '9940797779@ybl'; 
 
     if (!item) {
          return (
@@ -41,15 +39,12 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
         );
     }
 
-    const priceAmount = item.price ? item.price.toString().replace(/[^0-9.]/g, '') : '0';
-    const upiUrl = `upi://pay?pa=${upiId}&pn=BrahmastraAerospace&am=${priceAmount}&tn=${encodeURIComponent(item.name)}&cu=INR`;
-    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}`;
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
+    // Step 1: Collect Data and move to Payment (Local Validation Only)
     const handleNextStep = (e: React.FormEvent) => {
         e.preventDefault();
         if (Object.values(formData).some(x => x === '')) {
@@ -57,50 +52,70 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
             setStatusIsError(true);
             return;
         }
+        
+        // Move to next step without backend call
         setStatusMessage('');
         setStatusIsError(false);
         setCurrentStep(2);
     };
 
-    const handleFinalSubmit = async (e: React.FormEvent) => {
+    // Option 2: Handle Manual UPI Verification
+    const handleManualPaymentSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!transactionId) {
-            setStatusMessage('Please enter the transaction ID.');
+        if (!utrNumber || utrNumber.length < 6) {
+            setStatusMessage('Please enter a valid 12-digit UTR / Transaction ID.');
             setStatusIsError(true);
             return;
         }
+
         setIsSubmitting(true);
-        
         const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/3ae2a21f31b14c0e817d5aabf7c27b87/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Z-1C7_xjD9crnK7yTVNTZFiuBVkBLxIAYu1IYqWdXvQ";
 
         try {
-             const response = await fetch(powerAutomateURL, {
+             await fetch(powerAutomateURL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    FormType: 'CourseBooking',
+                    FormType: 'CourseBookingConfirmed',
                     ...formData,
                     CourseName: item.name,
                     Slot: item.slot,
                     Price: item.price,
-                    TransactionId: transactionId
+                    TransactionId: utrNumber, // Sending UTR here
+                    Status: 'Paid (Manual Verification)'
                 })
             });
 
-            if (response.ok) {
-                setStatusMessage('✅ Booking Confirmed! We will contact you shortly.');
-                setStatusIsError(false);
-                setTimeout(() => navigate('home'), 4000);
-            } else {
-                throw new Error('Submission failed.');
-            }
+            navigate('payment-success', {
+                paymentId: utrNumber,
+                courseName: item.name,
+                amount: item.price
+            });
+
         } catch (error) {
-             setStatusMessage('Error confirming booking. Please try again.');
+             setStatusMessage('Network error. Please try again or contact support.');
              setStatusIsError(true);
         } finally {
             setIsSubmitting(false);
         }
     };
+
+    // Generate UPI QR Code
+    const cleanPrice = item.price.replace(/[^0-9]/g, '');
+    
+    // Determine the transaction note (description shown in UPI app)
+    let transactionNote = item.name;
+    // Specific override for VR Workshop as requested
+    if (item.name.toLowerCase().includes('vr') || item.name.toLowerCase().includes('virtual')) {
+        transactionNote = "🌌 VR Workshop, brahmastra 23 Nov";
+    } else {
+        // Truncate generic names to ensure they fit in standard UPI note limits if necessary
+        transactionNote = item.name.substring(0, 50);
+    }
+
+    // UPI String format: upi://pay?pa=UPI_ID&pn=NAME&am=AMOUNT&cu=INR
+    const upiLink = `upi://pay?pa=Q021454639@ybl&pn=Brahmastra Aerospace&am=${cleanPrice}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+    const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
 
     return (
         <section className="py-12 md:py-20 bg-slate-50 min-h-screen animate-fade-in-up">
@@ -166,7 +181,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
 
                                     {statusMessage && <div className={`text-sm text-center p-2 rounded ${statusIsError ? 'text-red-600 bg-red-50' : 'text-green-600 bg-green-50'}`}>{statusMessage}</div>}
 
-                                    <button type="submit" className="w-full bg-brand-space text-white font-bold py-3 rounded-full hover:bg-blue-800 transition-all shadow-lg mt-4">
+                                    <button type="submit" disabled={isSubmitting} className="w-full bg-brand-space text-white font-bold py-3 rounded-full hover:bg-blue-800 transition-all shadow-lg mt-4 disabled:bg-slate-400">
                                         Proceed to Payment
                                     </button>
                                 </form>
@@ -177,52 +192,68 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                     <div className="flex justify-between items-center mb-6">
                                          <h3 className="text-lg font-semibold text-slate-700 flex items-center gap-2">
                                             <span className="flex items-center justify-center w-8 h-8 rounded-full bg-brand-space text-white text-sm font-bold">2</span>
-                                            Secure Payment
+                                            Scan & Verify Payment
                                          </h3>
                                          <button onClick={() => setCurrentStep(1)} className="text-sm text-brand-space hover:underline">Edit Details</button>
                                     </div>
                                     
-                                    <div className="bg-slate-50 p-6 rounded-xl border border-slate-200 text-center">
+                                    <div className="bg-slate-50 p-6 md:p-8 rounded-xl border border-slate-200 text-center">
+                                        <p className="text-slate-600 mb-4 font-medium">
+                                            Scan this QR code using any UPI App (GPay, PhonePe, Paytm) to pay <span className="text-slate-900 font-bold">{item.price}</span>.
+                                        </p>
                                         
-                                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/71/PhonePe_Logo.svg" alt="PhonePe Logo" className="h-8 mx-auto mb-4" />
+                                        <div className="flex justify-center mb-6">
+                                            <div className="bg-white p-2 rounded-lg shadow-md border border-slate-200">
+                                                <img src={qrCodeUrl} alt="UPI QR Code" className="w-48 h-48 md:w-64 md:h-64" />
+                                            </div>
+                                        </div>
+                                        
+                                        <div className="text-sm text-slate-500 mb-8">
+                                            <p>UPI ID: <strong className="text-slate-700 font-mono select-all">Q021454639@ybl</strong></p>
+                                            <p>Name: <strong className="text-slate-700">Brahmastra Aerospace</strong></p>
+                                        </div>
 
-                                        <p className="text-slate-700 font-medium mb-4">Scan the QR code with your UPI app (we prefer Phonepe for better processing)</p>
-                                        
-                                        <div className="bg-white p-3 rounded-xl shadow-sm inline-block mb-4">
-                                            <img src={qrCodeUrl} alt="UPI QR Code" className="w-48 h-48 object-contain" />
-                                        </div>
-                                        
-                                        <div className="flex items-center justify-center gap-2 text-sm text-slate-500 bg-white py-1.5 px-3 rounded-full border border-slate-200 w-fit mx-auto">
-                                            <span className="font-mono">{upiId}</span>
-                                        </div>
+                                        <form onSubmit={handleManualPaymentSubmit} className="max-w-sm mx-auto space-y-4 text-left">
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-700 mb-1">Enter UTR / Reference Number <span className="text-red-500">*</span></label>
+                                                <input 
+                                                    type="text" 
+                                                    value={utrNumber} 
+                                                    onChange={(e) => setUtrNumber(e.target.value)} 
+                                                    required 
+                                                    placeholder="e.g. 4312xxxxxxxx" 
+                                                    className="w-full bg-white text-slate-900 px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none text-center font-mono tracking-widest"
+                                                />
+                                                <p className="text-xs text-slate-400 mt-1 text-center">You will find this 12-digit number in your payment app after success.</p>
+                                            </div>
 
-                                        <div className="mt-6 md:hidden">
-                                            <a href={upiUrl} className="block w-full bg-[#e40917] text-white font-bold py-3 rounded-full shadow-md hover:bg-[#c10714] transition-colors">
-                                                Pay {item.price} via UPI App
-                                            </a>
-                                        </div>
+                                            {statusMessage && <div className={`text-sm text-center p-2 rounded ${statusIsError ? 'text-red-600 bg-red-50' : 'text-green-600 bg-green-50'}`}>{statusMessage}</div>}
+
+                                            <button 
+                                                type="submit" 
+                                                disabled={isSubmitting}
+                                                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-full text-lg shadow-lg transition-all transform hover:scale-105 disabled:bg-slate-400"
+                                            >
+                                                {isSubmitting ? 'Submitting...' : 'Submit'}
+                                            </button>
+                                            <p className="text-xs text-slate-500 mt-3 text-center italic">
+                                                Note: We will verify your UTR and our Official team will contact you.
+                                            </p>
+                                            
+                                            {/* New WhatsApp Link */}
+                                            <div className="mt-6 pt-4 border-t border-slate-200 text-center">
+                                                 <a 
+                                                    href="https://wa.me/919940797779?text=Hi,%20I%20need%20help%20with%20payment%20verification."
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center gap-2 text-sm text-slate-600 hover:text-green-600 transition-colors font-medium"
+                                                 >
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06c0 1.66.43 3.24 1.21 4.6l-1.36 4.95 5.07-1.33c1.32.75 2.82 1.18 4.38 1.18h.01c5.5 0 9.96-4.49 9.96-10.02S17.5 2.04 12 2.04zM16.51 13.96c-.22-.11-.78-.38-1.02-.43-.24-.05-.42-.08-.59.16-.18.24-.38.43-.47.54-.08.11-.17.13-.33.08-.16-.05-1.02-.37-1.95-1.2-.72-.64-1.21-1.44-1.36-1.68-.15-.24-.02-.38.07-.5.08-.11.17-.28.26-.42.09-.14.12-.24.18-.4.06-.16.03-.29-.02-.39-.05-.11-.59-1.42-.81-1.94-.21-.52-.43-.45-.59-.45-.15 0-.32-.03-.49-.03s-.42 0-1.08.5c-.66.5-1.02 1.23-1.02 2.4s1.05 2.78 1.2 2.97c.15.19 2.11 3.2 5.1 4.48.71.3 1.27.48 1.71.61.73.22 1.39.19 1.9.11.57-.08 1.76-.72 2-1.42.24-.7.24-1.3.17-1.42-.08-.12-.3-.19-.52-.3z"/></svg>
+                                                    <span>Payment Issues? Reach us on WhatsApp</span>
+                                                 </a>
+                                            </div>
+                                        </form>
                                     </div>
-
-                                    <form onSubmit={handleFinalSubmit} className="mt-8">
-                                        <label className="block text-sm font-bold text-slate-700 mb-2">
-                                            Enter Transaction ID / UTR Number <span className="text-red-500">*</span>
-                                        </label>
-                                        <input 
-                                            type="text" 
-                                            value={transactionId} 
-                                            onChange={(e) => setTransactionId(e.target.value)} 
-                                            required 
-                                            className="w-full text-slate-900 bg-white px-4 py-3 border-2 border-slate-300 rounded-lg focus:border-brand-sky focus:ring-0 outline-none font-mono text-lg placeholder-slate-500" 
-                                            placeholder="e.g. 3324XXXXXXXX" 
-                                        />
-                                        <p className="text-xs text-slate-500 mt-2">This helps us verify your payment instantly.</p>
-                                        
-                                        {statusMessage && <div className={`mt-4 text-sm text-center p-3 rounded-lg ${statusIsError ? 'text-red-700 bg-red-50' : 'text-green-700 bg-green-50'}`}>{statusMessage}</div>}
-
-                                        <button type="submit" disabled={isSubmitting} className="w-full mt-6 bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-full text-lg shadow-lg disabled:bg-slate-400 disabled:cursor-not-allowed transition-all">
-                                            {isSubmitting ? 'Verifying...' : 'Confirm Booking'}
-                                        </button>
-                                    </form>
                                 </div>
                             )}
                         </div>
