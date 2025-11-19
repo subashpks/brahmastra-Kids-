@@ -43,7 +43,7 @@ export const MathsIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M49,62H15A7,7,0,0,1,8,55V9a7,7,0,0,1,7-7H49a7,7,0,0,1,7,7V55A7,7,0,0,1,49,62Z" fill="#a78bfa"/><rect x="14" y="10" width="36" height="16" fill="#d8b4fe"/><rect x="14" y="32" width="8" height="8" rx="2" ry="2" fill="#ede9fe"/><rect x="24" y="32" width="8" height="8" rx="2" ry="2" fill="#ede9fe"/><rect x="34" y="32" width="8" height="8" rx="2" ry="2" fill="#ede9fe"/><rect x="44" y="32" width="8" height="8" rx="2" ry="2" fill="#c4b5fd"/><rect x="14" y="44" width="8" height="8" rx="2" ry="2" fill="#ede9fe"/><rect x="24" y="44" width="8" height="8" rx="2" ry="2" fill="#ede9fe"/><rect x="34" y="44" width="8" height="8" rx="2" ry="2" fill="#ede9fe"/><rect x="44" y="44" width="8" height="1" rx=".5" ry=".5" fill="#c4b5fd"/></svg>
 );
 export const PhysicsIcon = (props: React.SVGProps<SVGSVGElement>) => (
-    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}><circle cx="32" cy="32" r="6" fill="#fb923c"/><path d="M32,6a4,4,0,0,0-4,4V18.3a21.9,21.9,0,0,0-9.5,4.2,4,4,0,0,0-1.8,5.7,22.2,22.2,0,0,0,1.9,2.8,4,4,0,0,0,5.6.2,14.2,14.2,0,0,1,7.8-2.2V6a4,4,0,0,0-4-4Z" fill="#fdba74"/><path d="M32,58a4,4,0,0,0,4-4V45.7a21.9,21.9,0,0,0,9.5-4.2,4,4,0,0,0,1.8-5.7,22.2,22.2,0,0,0-1.9-2.8,4,4,0,0,0-5.6-.2,14.2,14.2,0,0,1-7.8,2.2V58a4,4,0,0,0,4,4Z" fill="#fdba74"/><path d="M58,32a4,4,0,0,0-4-4H45.7a21.9,21.9,0,0,0-4.2-9.5,4,4,0,0,0-5.7-1.8,22.2,22.2,0,0,0-2.8,1.9,4,4,0,0,0-.2,5.6,14.2,14.2,0,0,1,2.2,7.8H58a4,4,0,0,0,4-4Z" fill="#fdba74"/><path d="M6,32a4,4,0,0,0,4,4H18.3a21.9,21.9,0,0,0,4.2,9.5,4,4,0,0,0,5.7,1.8,22.2,22.2,0,0,0,2.8-1.9,4,4,0,0,0,.2-5.6,14.2,14.2,0,0,1-2.2-7.8H6a4,4,0,0,0-4,4Z" fill="#fdba74"/></svg>
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}><circle cx="32" cy="32" r="6" fill="#fb923c"/><path d="M32,6a4,4,0,0,0-4,4V18.3a21.9,21.9,0,0,0-9.5,4.2,4,4,0,0,0-1.8,5.7,22.2,22.2,0,0,0,1.9,2.8,4,4,0,0,0,5.6.2,14.2,14.2,0,0,1,7.8-2.2V6a4,4,0,0,0-4-4Z" fill="#fdba74"/><path d="M32,58a4,4,0,0,0-4-4V45.7a21.9,21.9,0,0,0,9.5-4.2,4,4,0,0,0-1.8-5.7,22.2,22.2,0,0,0-1.9-2.8,4,4,0,0,0-5.6-.2,14.2,14.2,0,0,1-7.8,2.2V58a4,4,0,0,0,4-4Z" fill="#fdba74"/><path d="M58,32a4,4,0,0,0-4-4H45.7a21.9,21.9,0,0,0-4.2-9.5,4,4,0,0,0-5.7-1.8,22.2,22.2,0,0,0-2.8,1.9,4,4,0,0,0-.2,5.6,14.2,14.2,0,0,1,2.2,7.8H58a4,4,0,0,0,4-4Z" fill="#fdba74"/><path d="M6,32a4,4,0,0,0-4-4H18.3a21.9,21.9,0,0,0,4.2,9.5,4,4,0,0,0,5.7-1.8,22.2,22.2,0,0,0,2.8-1.9,4,4,0,0,0,.2-5.6,14.2,14.2,0,0,1-2.2-7.8H6a4,4,0,0,0-4-4Z" fill="#fdba74"/></svg>
 );
 export const ChemistryIcon = (props: React.SVGProps<SVGSVGElement>) => (
     <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" {...props}><path d="M45,10H19a2,2,0,0,0-2,2V20.2a.9.9,0,0,0,.3.7L31.8,38H19a2,2,0,0,0-1.2,3.6l12,12A2,2,0,0,0,32,54a2,2,0,0,0,1.4-.6l12-12A2,2,0,0,0,45,41.6V38H32.2L46.7,20.9a.9.9,0,0,0,.3-.7V12A2,2,0,0,0,45,10Z" fill="#2dd4bf"/><path d="M39.6,26.5a4,4,0,1,1-5.7,0,4,4,0,0,1,5.7,0" fill="#a7f3d0"/><path d="M28.4,26.5a4,4,0,1,1-5.7,0,4,4,0,0,1,5.7,0" fill="#a7f3d0"/></svg>
@@ -123,7 +123,7 @@ export const COURSES_DATA = [
 
 export const WEEKEND_CAMP_DATA = {
     id: 'weekend-rocket-blast-off',
-    courseName: '🚀 Weekend Rocket Blast-Off Camp!',
+    courseName: 'Rocket Science: Full-Fledged Course for Kids',
     ageCategory: '6-11 years (Class 1 to 5)',
     sessions: '10 super-fun sessions (Every Saturday & Sunday for 5 weeks)',
     description: 'Double weekend fun! Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks!',
@@ -339,64 +339,79 @@ export const VR_WORKSHOP_DATA = {
     id: 'vr-space-exploration',
     courseName: '🌌 VR Space Exploration Workshop',
     ageCategory: '8-16 years (Class 3 to 10)',
-    sessions: 'A thrilling 3-hour one-day workshop',
+    sessions: '23 November | 9:00 AM - 2:00 PM',
     description: 'Go beyond textbooks! Pilot a spaceship, walk on Mars, and witness the birth of a star in a fully immersive Virtual Reality experience.',
     price: '₹2500/-',
     location: 'Clubhouse, Marg Pushpadruma, Kalavakkam, OMR, Thiruporur.',
     slots: [
-        { day: 'Saturday', seats: 10 },
-        { day: 'Sunday', seats: 10 },
+        { day: '23 November', seats: 15 },
     ],
-    syllabus: [ // Using syllabus structure for consistency
+    syllabus: [ 
         { 
-            week: 'Module 1: Astronaut Training & ISS Tour (60 mins)', 
+            week: 'Module 1: Interactive Space Fundamentals', 
             topics: [
-                'Welcome to Virtual Reality: Gear Up!',
-                'Basic VR movement and interaction training.',
-                'Tour the International Space Station (ISS).',
-                'Experience zero-gravity simulation.',
-                'Learn about the daily life of an astronaut.',
-                'Interactive Q&A about the ISS.',
+                'Fun and Interactive Story-based explanation.',
+                'What is a Rocket? How does it fly?',
+                'What is Space? What is a Satellite?',
+                'Where do Satellites revolve?',
+                'What is a Drone?',
+                'What is the International Space Station?',
+                'Plus other related space topics.'
             ] 
         },
         { 
-            week: 'Module 2: A Grand Tour of the Solar System (60 mins)', 
+            week: 'Module 2: Immersive VR Experience', 
             topics: [
-                'Launch from Earth in a virtual rocket.',
-                'Fly-by of the Moon and learn about its phases.',
-                'Land on Mars and pilot a virtual Rover.',
-                'Witness the Great Red Spot on Jupiter.',
-                'Fly through the rings of Saturn.',
-                'Explore the ice giants: Uranus and Neptune.',
+                'Interactive VR Experience with expert teaching.',
+                'Virtual Space Walk.',
+                'Tour Inside the International Space Station.',
+                'View Outside the International Space Station.',
+                'Duration: ~15 Minutes each (changeable as per situation).'
             ]
         },
         { 
-            week: 'Module 3: Deep Space & Cosmic Wonders (60 mins)', 
+            week: 'Module 3: Guidance & Certification', 
             topics: [
-                'Journey to the Orion Nebula, a stellar nursery.',
-                'Witness the life cycle of a star, from birth to supernova.',
-                'Explore a virtual black hole (from a safe distance!).',
-                'Navigate through an asteroid belt.',
-                'Final mission debrief and group discussion.',
-                'Receive your "Virtual Astronaut" certificate.',
+                'Doubt Session on any questions.',
+                'Career Guidance: Becoming a Scientist, AI Engineer, Pilot, or Astronaut.',
+                'Little Astronaut Certificate Ceremony.',
+                'Signed by Subash P. Kuppusamy (Official ISRO Space Tutor).'
             ]
         },
     ],
     activities: [
-        'Pilot a Mars Rover across alien landscapes',
-        'Conduct a virtual spacewalk outside the ISS',
-        'Fly through the majestic rings of Saturn',
-        'Witness the explosive beauty of a supernova',
-        'Navigate a challenging asteroid field',
-        'Explore the surface of the Moon',
-        'Stand beside the giant volcanoes of Mars',
-        'Get a digital "Virtual Astronaut" certificate!',
+        'Conduct a zero-gravity Space Walk outside the International Space Station',
+        'Explore the high-tech interiors of the International Space Station',
+        'Learn the science of flight and Pilot a virtual Drone',
+        'Take the Commander\'s seat and Pilot a Spaceship',
+        'Experience the breathtaking view of Earth from orbit',
+        'Get a printed "Virtual Astronaut" certificate!',
     ],
     matchesSchoolSyllabus: {
         'Physics': 'Gravity, orbits, celestial mechanics, light years',
         'EVS/Science': 'Planets, Solar System, stars, galaxies',
-        'Technology': 'Introduction to Virtual Reality applications',
+        'Technology': 'Introduction to Virtual Reality applications & Drones',
+        'Geography': 'Earth\'s rotation, atmosphere, and view from orbit',
+        'General Knowledge': 'ISRO missions, Astronaut lives, Space History',
+        'Mathematics': 'Speed, Distance, Time, and Scale of the Universe'
     },
+    brahmastraExperience: [
+        { title: 'Immersive Reality', description: 'Kids don\'t just learn about space; they step inside it. Walking on Mars or floating in the ISS makes concepts unforgettable.' },
+        { title: 'Expert-Led Inquiry', description: 'Our ISRO Space Tutors don\'t lecture. They guide exploration, sparking questions and deep thinking.' },
+        { title: 'Safe & Inspiring', description: 'We use child-safe VR technology in a monitored environment to ensure a comfortable, awe-inspiring journey.' }
+    ],
+    mentor: {
+        name: 'Subash P. Kuppusamy',
+        role: 'Official ISRO Space Tutor',
+        image: 'https://files.catbox.moe/gpjimc.png',
+        bio: 'Aeronautical Engineer & Founder of Brahmastra Aerospace. With experience on the Tejas fighter jet and a passion for education, Subash mentors future scientists with real-world insights.'
+    },
+    providedItems: [
+        'Access to Premium VR Headsets',
+        'Printed "Virtual Astronaut" Certificate',
+        'Stationery & Activity Materials',
+        'Career Guidance Session'
+    ],
     extraCoolThings: [
         'Experience realistic space travel without leaving the room',
         'Understand complex astronomy concepts through immersive visuals',

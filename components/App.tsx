@@ -123,8 +123,8 @@ function App() {
     setShowPopup(false);
   };
 
-  const handlePopupRedirect = () => {
-    navigate('freecourses');
+  const handlePopupRedirect = (page: string) => {
+    navigate(page);
     setShowPopup(false);
   };
 

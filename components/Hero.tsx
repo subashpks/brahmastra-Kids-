@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PageProps } from '../types';
 import { FAQ } from './FAQ';
@@ -205,7 +206,7 @@ const WhoTeachesSection = () => {
                     <div className="lg:col-span-3 text-center lg:text-left">
                         <h3 className="text-3xl font-bold text-brand-space">
                              <a 
-                                href={`https://www.google.com/search?q=${encodeURIComponent(founder.name)}`}
+                                href={`https://chatgpt.com/?q=${encodeURIComponent("who is Subash P Kuppusamy give me a detailed Explaination on him")}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="hover:underline"
