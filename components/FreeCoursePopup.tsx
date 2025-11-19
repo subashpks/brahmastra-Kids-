@@ -29,27 +29,35 @@ const PopupCard: React.FC<{
 );
 
 export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRedirect }) => {
+    // Handle backdrop click to close
+    const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (e.target === e.currentTarget) {
+            onClose();
+        }
+    };
+
     return (
         <div 
-            className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 animate-fade-in-up backdrop-blur-sm"
+            className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 animate-fade-in-up backdrop-blur-sm"
             style={{ animationDuration: '0.3s' }}
+            onClick={handleBackdropClick}
         >
             {/* Container with max-height for scrolling on small screens */}
-            <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
                 
-                {/* Close Button: Inside on mobile (top-3), Outside on Desktop (sm:-top-4) */}
+                {/* Close Button: Positioned inside the card for better visibility */}
                 <button 
                     onClick={onClose}
-                    className="absolute top-3 right-3 sm:-top-4 sm:-right-4 bg-white sm:bg-white rounded-full p-2 shadow-lg text-slate-500 hover:text-red-500 hover:bg-red-50 transition-all duration-300 z-50 border border-slate-100 sm:border-none"
+                    className="absolute top-4 right-4 bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-red-500 rounded-full p-2 transition-all duration-200 z-50 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                     aria-label="Close popup"
                 >
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
 
                 {/* Content */}
-                <div className="p-5 sm:p-8">
+                <div className="p-6 sm:p-8 pt-12 sm:pt-8">
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 text-center mb-2">
                         Start Your Adventure!
                     </h2>
