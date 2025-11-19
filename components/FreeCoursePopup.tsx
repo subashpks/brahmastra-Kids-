@@ -14,7 +14,7 @@ const PopupCard: React.FC<{
     imageUrl: string;
 }> = ({ title, date, buttonText, onClick, imageUrl }) => (
     <div className="flex flex-col rounded-lg overflow-hidden bg-slate-50 border border-slate-200 w-full transition-transform hover:scale-[1.02] duration-200">
-        <img src={imageUrl} alt={title} className="w-full h-32 sm:h-40 object-cover" />
+        <img src={imageUrl} alt={title} className="hidden sm:block w-full h-32 sm:h-40 object-cover" />
         <div className="p-4 text-center flex-grow flex flex-col">
             <h3 className="text-lg font-bold text-brand-space leading-tight">{title}</h3>
             <p className="text-sm text-slate-500 mt-2 mb-4 flex-grow">{date}</p>

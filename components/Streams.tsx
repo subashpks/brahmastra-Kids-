@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PageProps } from '../types';
 import { COURSES_DATA } from '../constants';
@@ -53,7 +54,7 @@ export const CoursesPage: React.FC<PageProps> = ({ navigate }) => {
                     <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
                         <div className="md:grid md:grid-cols-3 md:items-center">
                             <div className="md:col-span-1">
-                                <img className="aspect-square w-full h-full object-cover" src="https://files.catbox.moe/knklae.png" alt="Rocket Science course illustration" />
+                                <img className="aspect-square w-full h-full object-cover" src="https://files.catbox.moe/gpc0v3.png" alt="Rocket Science course illustration" />
                             </div>
                             <div className="md:col-span-2 px-6 pt-0 pb-6 md:p-8 text-center md:text-left">
                                 <h3 className="text-3xl md:text-4xl font-extrabold text-brand-space">Rocket Science</h3>
