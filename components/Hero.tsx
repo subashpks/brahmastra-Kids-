@@ -250,7 +250,7 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
             <div className="text-center lg:text-left order-2 lg:order-1">
               <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">AGES 5-15</span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
-                Explore the Universe From Your Room
+                Mission <span className="text-brand-space font-['Montserrat']">brahmàstra</span><span className="text-[#e40917]">.</span>
               </h1>
               <p className="mt-6 text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
                 Blast off on an adventure! Our fun, hands-on courses make learning about planes, rockets, stars, and drones an exciting journey for every curious mind.

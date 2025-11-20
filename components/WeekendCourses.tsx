@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { EnrollmentForm } from './Contact';
 import { ChildProfile } from '../types';
 
@@ -9,29 +9,79 @@ const WhatsAppIcon = () => (
     </svg>
 );
 
-const programs = [
+const indianPrograms = [
     { 
-        title: "Astronomy For Kids", 
-        age: "Ages 6-10", 
-        date: "15th & 16th November", 
+        title: "ISRO - Our Space story", 
+        age: "Ages 6-11", 
+        date: "22 Nov | Saturday", 
         time: "05:30 PM - 06:30 PM IST",
-        mediums: ['தமிழ்', 'हिंदी'] 
+        mediums: ['English', 'Hindi', 'Tamil'] 
     },
     { 
-        title: "Rocket Science for Kids", 
-        age: "Ages 11-17", 
-        date: "15th & 16th November", 
+        title: "ISRO - India's Tech Leap on Space", 
+        age: "Ages 12-16", 
+        date: "22 Nov | Saturday", 
         time: "05:30 PM - 06:30 PM IST",
-        mediums: ['தமிழ்', 'हिंदी'] 
+        mediums: ['English', 'Hindi', 'Tamil'] 
     }
 ];
 
-const ProgramCard: React.FC<{ program: typeof programs[0] }> = ({ program }) => (
-    <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-brand-sun flex-1 flex flex-col">
+const nriPrograms = [
+    { 
+        title: "Introduction to Rocket Science", 
+        age: "Ages 6-11", 
+        date: "23 Nov | Sunday", 
+        time: "12:00 PM - 01:00 PM EST\n05:00 PM - 06:00 PM GMT",
+        mediums: ['English'] 
+    },
+    { 
+        title: "Advanced Rocket Science", 
+        age: "Ages 12-16", 
+        date: "23 Nov | Sunday", 
+        time: "12:00 PM - 01:00 PM EST\n05:00 PM - 06:00 PM GMT",
+        mediums: ['English'] 
+    }
+];
+
+const missionPoints = [
+    {
+        title: 'Why?',
+        text: 'To destroy the taboo that Rocket Science is tough by showing it happens in your kitchen sink.',
+        borderColor: 'border-brand-space'
+    },
+    {
+        title: 'What?',
+        text: 'We translate the toughest topics into understandable, everyday science using simple metaphors and your language.',
+        borderColor: 'border-green-500'
+    },
+    {
+        title: 'Where?',
+        text: 'You learn right from where you are, using what you know, what you have, and your daily surroundings.',
+        borderColor: 'border-brand-sun'
+    },
+    {
+        title: 'When?',
+        text: 'Every weekend evening, we explore a new topic that has been made taboo in public science discussions.',
+        borderColor: 'border-purple-500'
+    },
+    {
+        title: 'Who?',
+        text: 'This free session is designed specifically for curious kids across the globe in the age category of 6 to 16 years.',
+        borderColor: 'border-brand-sky'
+    },
+    {
+        title: 'How?',
+        text: 'We provide a high-quality, free session for all kids, carefully scheduled for different time zones to ensure global accessibility.',
+        borderColor: 'border-[#e40917]'
+    }
+];
+
+const ProgramCard: React.FC<{ program: typeof indianPrograms[0] }> = ({ program }) => (
+    <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-brand-sun flex-1 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
         <span className="font-bold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full text-sm self-start">{program.age}</span>
         <h3 className="text-xl font-bold text-slate-800 mt-3 mb-2 flex-grow">{program.title}</h3>
         <p className="text-slate-600 font-medium">{program.date}</p>
-        <p className="text-slate-600 font-medium">{program.time}</p>
+        <p className="text-slate-600 font-medium text-sm whitespace-pre-line">{program.time}</p>
     </div>
 );
 
@@ -42,18 +92,19 @@ const HeroIllustration = () => (
       <div className="absolute -bottom-8 left-20 w-56 h-56 bg-green-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
         <img 
             src="https://files.catbox.moe/kcz5ca.png" 
-            alt="A happy child sitting in a homemade cardboard rocket, imagining a space adventure, with planets and stars in the background." 
+            alt="A happy child sitting in a homemade cardboard rocket, imagining a space adventure, with planets in the background." 
             className="relative animate-float"
         />
     </div>
 );
 
-// FIX: Add props interface for FreeCoursesPage
 interface FreeCoursesPageProps {
     activeChild: ChildProfile | null;
 }
 
 export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild }) => {
+    const [region, setRegion] = useState<'India' | 'NRI'>('India');
+
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
         e.preventDefault();
         const targetElement = document.getElementById(targetId);
@@ -62,21 +113,23 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild })
         }
     };
 
+    const displayedPrograms = region === 'India' ? indianPrograms : nriPrograms;
+
     return (
         <div className="animate-fade-in-up">
             {/* Hero Section */}
-            <section className="py-16 md:py-24">
+            <section className="pt-8 pb-16 md:pt-12 md:pb-24">
                 <div className="container mx-auto px-6">
                    <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="text-center lg:text-left order-2 lg:order-1">
-                            <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">ISRO FREE COURSE</span>
-                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
-                                ISRO Free Course
+                        <div className="text-left order-2 lg:order-1">
+                             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4 text-left">
+                                <span className="block">Mission</span>
+                                <span className="block text-brand-space font-['Montserrat']">brahmàstra<span className="text-[#e40917]">.</span></span>
                             </h1>
-                            <p className="mt-6 text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
-                                Join our free, exciting weekend workshops! We turn complex topics like astronomy and rocket science into fun, hands-on adventures for kids and teens across India.
+                            <p className="mt-6 text-lg text-slate-600 max-w-xl text-left">
+                                Join the movement that is making Rocket Science accessible to every curious child, everywhere.
                             </p>
-                            <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                            <div className="mt-10 flex flex-col sm:flex-row justify-center items-center lg:justify-start gap-4">
                                 <a 
                                     href="#upcoming-courses"
                                     onClick={(e) => handleScrollClick(e, 'upcoming-courses')}
@@ -92,41 +145,80 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild })
                     </div>
                 </div>
             </section>
-            
-            {/* What is Skyway Movement Section */}
-            <section className="py-16 md:py-24 bg-slate-100">
-                <div className="container mx-auto px-6">
-                    <div className="text-center max-w-3xl mx-auto">
-                        <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                            About the ISRO Free Course
+
+            {/* Mission Description Section */}
+            <section className="py-16 bg-white">
+                <div className="container mx-auto px-6 text-left">
+                    <div className="max-w-4xl">
+                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
+                            What is Mission <span className="text-brand-space font-['Montserrat'] font-extrabold">brahmàstra</span><span className="text-[#e40917] font-extrabold">.</span>?
                         </h2>
-                        <p className="mt-4 text-lg text-slate-600">
-                            Brahmastra, in association with ISRO, is committed to making aerospace education accessible and exciting for every child in India. As an official ISRO Space Tutor, we believe that by sparking curiosity early, we can inspire the next generation of scientists, engineers, and dreamers. Our free weekly courses are designed to be fun, hands-on, and a launchpad for a lifelong passion for STEM.
+                        <p className="text-xl md:text-2xl text-slate-600 leading-relaxed">
+                            The mission is to take Aerospace and Rocket science to every door possible in the globe, to make sure "It is not a Rocket science" is just another word.
                         </p>
                     </div>
                 </div>
             </section>
+            
+            {/* WH Questions Section (Mission Brief) */}
+            <section className="py-16 bg-slate-50">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                            {missionPoints.map((point, index) => (
+                                <div key={index} className={`bg-white p-8 rounded-2xl shadow-sm border-b-4 ${point.borderColor} hover:-translate-y-1 transition-transform duration-300`}>
+                                    <h3 className="text-2xl font-bold text-slate-900 mb-3">{point.title}</h3>
+                                    <p className="text-slate-600 leading-relaxed">
+                                        {point.text}
+                                    </p>
+                                </div>
+                            ))}
+                         </div>
+                    </div>
+                </div>
+            </section>
 
-            {/* Courses Section */}
+            {/* Upcoming Programs Section - With Toggle */}
             <section id="upcoming-courses" className="py-16 md:py-24">
                 <div className="container mx-auto px-6">
                     <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-brand-space max-w-5xl mx-auto">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-2">Upcoming Free Programs</h2>
-                        <p className="text-center text-sm text-slate-600 mb-8">
-                            Note: We conduct separate, fully interactive classes for each language to ensure the best learning experience.
-                        </p>
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-6">Upcoming Programs</h2>
+                        
+                        {/* Toggle Button */}
+                        <div className="flex justify-center mb-10">
+                             <div className="bg-slate-100 p-1.5 rounded-full inline-flex relative shadow-inner">
+                                <button
+                                    onClick={() => setRegion('India')}
+                                    className={`px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-bold transition-all duration-300 ${region === 'India' ? 'bg-brand-space text-white shadow-md transform scale-105' : 'text-slate-500 hover:text-slate-700'}`}
+                                >
+                                    For Indian Residents
+                                </button>
+                                <button
+                                    onClick={() => setRegion('NRI')}
+                                    className={`px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-bold transition-all duration-300 ${region === 'NRI' ? 'bg-brand-space text-white shadow-md transform scale-105' : 'text-slate-500 hover:text-slate-700'}`}
+                                >
+                                    For Non-Resident Indians
+                                </button>
+                            </div>
+                        </div>
+                        
                         <div className="flex flex-col md:flex-row gap-8 justify-center">
-                            {programs.map((program, index) => (
+                            {displayedPrograms.map((program, index) => (
                                 <ProgramCard key={index} program={program} />
                             ))}
                         </div>
-                         <div className="mt-8 text-center">
+                        
+                         <p className="text-center text-sm text-slate-600 mt-8 mb-4 italic">
+                            We conduct separate, fully interactive classes for each Age category, Indian Residents and Non Resident Indians to ensure the best learning experience.
+                        </p>
+
+                         <div className="text-center">
                              <a 
                                 href="#contact"
                                 onClick={(e) => handleScrollClick(e, 'contact')}
                                 className="inline-block w-full sm:w-auto bg-brand-sun hover:bg-amber-600 transition-colors text-white font-bold px-10 py-4 rounded-full text-lg shadow-lg transform hover:scale-105"
                             >
-                                Enroll for Free
+                                Join Mission brahmàstra
                             </a>
                         </div>
                     </div>
