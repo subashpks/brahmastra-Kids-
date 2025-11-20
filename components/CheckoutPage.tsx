@@ -127,11 +127,17 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     
     // Determine the transaction note (description shown in UPI app)
     let transactionNote = item.name;
-    // Specific override for VR Workshop as requested
-    if (item.name.toLowerCase().includes('vr') || item.name.toLowerCase().includes('virtual') || item.name.toLowerCase().includes('junior astronaut')) {
+    const lowerName = item.name.toLowerCase();
+
+    if (lowerName.includes('vr') || lowerName.includes('virtual') || lowerName.includes('junior astronaut')) {
         transactionNote = "Junior Astronaut, brahmastra 23 Nov";
+    } else if (lowerName.includes('advanced rocketry')) {
+        transactionNote = "Advanced Rocketry Workshop";
+    } else if (lowerName.includes('rocket science')) {
+        transactionNote = "Junior Rocketry Camp";
     } else {
-        transactionNote = item.name.substring(0, 50);
+        // Default: Remove emojis and special chars for safety in banking apps, trim to 50 chars
+        transactionNote = item.name.replace(/[^\w\s-]/g, '').trim().substring(0, 50);
     }
 
     // UPI String format: upi://pay?pa=UPI_ID&pn=NAME&am=AMOUNT&cu=INR
