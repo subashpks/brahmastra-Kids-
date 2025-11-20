@@ -337,14 +337,14 @@ export const ADVANCED_CAMP_DATA = {
 
 export const VR_WORKSHOP_DATA = {
     id: 'vr-space-exploration',
-    courseName: '🌌 VR Space Exploration Workshop',
+    courseName: 'Junior Astronaut',
     ageCategory: '8-16 years (Class 3 to 10)',
     sessions: '23 November | 9:00 AM - 2:00 PM',
     description: 'Go beyond textbooks! Pilot a spaceship, walk on Mars, and witness the birth of a star in a fully immersive Virtual Reality experience.',
-    price: '₹999/-',
+    price: '₹1,200/-',
     location: 'Clubhouse, Marg Pushpadruma, Kalavakkam, OMR, Thiruporur.',
     slots: [
-        { day: '23 November', seats: 20 },
+        { day: '23 November', seats: 15 },
     ],
     syllabus: [ 
         { 
@@ -380,12 +380,12 @@ export const VR_WORKSHOP_DATA = {
         },
     ],
     activities: [
-        'Conduct a zero-gravity Space Walk outside the International Space Station',
-        'Explore the high-tech interiors of the International Space Station',
-        'Learn the science of flight and Pilot a virtual Drone',
-        'Take the Commander\'s seat and Pilot a Spaceship',
-        'Experience the breathtaking view of Earth from orbit',
-        'Get a printed "Virtual Astronaut" certificate!',
+        'Zero-G Spacewalk outside the ISS',
+        'Explore the ISS in full VR',
+        'Learn & fly a virtual drone',
+        'Command & pilot your own spaceship',
+        'See Earth from orbit in stunning VR',
+        'Earn your Junior Astronaut certificate',
     ],
     matchesSchoolSyllabus: {
         'Physics': 'Gravity, orbits, celestial mechanics, light years',
@@ -407,16 +407,20 @@ export const VR_WORKSHOP_DATA = {
         bio: 'Aeronautical Engineer & Founder of Brahmastra Aerospace. With experience on the Tejas fighter jet and a passion for education, Subash mentors future scientists with real-world insights.'
     },
     providedItems: [
-        'Access to Premium VR Headsets',
-        'Printed "Virtual Astronaut" Certificate',
-        'Stationery & Activity Materials',
-        'Career Guidance Session'
+        'VR headset + missions',
+        'ISRO-trained space mentor',
+        'Hands-on workshop activities',
+        'Fully guided & safe setup',
+        'Fun mission challenges',
+        'Take-home certificate',
+        'Light refreshments provided'
     ],
     extraCoolThings: [
-        'Experience realistic space travel without leaving the room',
-        'Understand complex astronomy concepts through immersive visuals',
-        'A fully guided, interactive experience with expert mentors',
-        'Sparks imagination and a deeper interest in STEM fields',
+        'Walk on the Moon in ultra-realistic VR',
+        'Float and flip in Zero-G inside a Space Station zone',
+        'Join a fun space talk with an ISRO-trained mentor',
+        'Learn space science hands-on through interactive VR missions',
+        'Boost confidence & curiosity with a guided space workshop',
     ],
 };
 

@@ -67,7 +67,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                     
                     <div className="flex flex-col sm:flex-row gap-6">
                         <PopupCard 
-                            title="VR Space Exploration Workshop"
+                            title="Junior Astronaut"
                             date="23 November | 9:00 AM - 2:00 PM. Venue: Clubhouse, Marg Pushpadruma, OMR."
                             buttonText="Explore VR Workshop"
                             onClick={() => onRedirect('vr-workshop')}

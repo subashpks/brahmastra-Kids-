@@ -7,6 +7,9 @@ interface PaymentSuccessPageProps {
         paymentId: string;
         courseName: string;
         amount: string;
+        studentName?: string;
+        parentName?: string;
+        phone?: string;
     };
 }
 
@@ -15,6 +18,23 @@ const WhatsAppIcon = () => (
 );
 
 export const PaymentSuccessPage: React.FC<PaymentSuccessPageProps> = ({ navigate, transactionData }) => {
+    
+    const getWhatsAppMessage = () => {
+        let msg = `Hi, I have completed payment for enrollment.\n`;
+        msg += `Course: ${transactionData?.courseName || 'N/A'}\n`;
+        
+        if (transactionData?.studentName) msg += `Student Name: ${transactionData.studentName}\n`;
+        if (transactionData?.parentName) msg += `Parent Name: ${transactionData.parentName}\n`;
+        if (transactionData?.phone) msg += `Parent Phone: ${transactionData.phone}\n`;
+        
+        msg += `Amount: ${transactionData?.amount || 'N/A'}\n`;
+        msg += `UTR/Ref: ${transactionData?.paymentId || 'N/A'}\n`;
+        msg += `Please verify and confirm my booking.`;
+        return msg;
+    };
+
+    const whatsappLink = `https://wa.me/919940797779?text=${encodeURIComponent(getWhatsAppMessage())}`;
+
     return (
         <div className="min-h-screen bg-slate-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 animate-fade-in-up">
             <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 text-center border-t-4 border-brand-space">
@@ -51,21 +71,15 @@ export const PaymentSuccessPage: React.FC<PaymentSuccessPageProps> = ({ navigate
 
                 <div className="space-y-3">
                      <a 
-                        href="https://wa.me/919940797779?text=Hi,%20I%20have%20completed%20payment%20for%20enrollment.%20Please%20verify."
+                        href={whatsappLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2 py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                        className="w-full flex items-center justify-center gap-2 py-3.5 px-4 border border-transparent rounded-full shadow-sm text-base font-medium text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-all transform hover:scale-105"
                     >
                         <WhatsAppIcon />
-                        Chat with Support
+                        Chat with Support to Speed Up
                     </a>
 
-                    <button 
-                        onClick={() => navigate('dashboard')} 
-                        className="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-brand-space hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-space"
-                    >
-                        Go to Dashboard
-                    </button>
                     <button 
                         onClick={() => navigate('home')} 
                         className="w-full flex justify-center py-3 px-4 border border-slate-300 rounded-full shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-sky"

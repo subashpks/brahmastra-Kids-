@@ -41,7 +41,14 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        
+        if (name === 'phone') {
+            // Allow only numbers and max 10 digits
+            const numericValue = value.replace(/\D/g, '').slice(0, 10);
+            setFormData(prev => ({ ...prev, [name]: numericValue }));
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }));
+        }
     };
 
     // Step 1: Collect Data and move to Payment (Local Validation Only)
@@ -53,22 +60,34 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
             return;
         }
         
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(formData.phone)) {
+             setStatusMessage('Please enter a valid 10-digit phone number.');
+             setStatusIsError(true);
+             return;
+        }
+        
         // Move to next step without backend call
         setStatusMessage('');
         setStatusIsError(false);
         setCurrentStep(2);
+        window.scrollTo(0, 0);
     };
 
     // Option 2: Handle Manual UPI Verification
-    const handleManualPaymentSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!utrNumber || utrNumber.length < 6) {
-            setStatusMessage('Please enter a valid 12-digit UTR / Transaction ID.');
+    const handleManualPaymentSubmit = async (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        
+        if (!utrNumber || utrNumber.length < 4) {
+            setStatusMessage('Please enter a valid UTR / Transaction ID.');
             setStatusIsError(true);
             return;
         }
 
         setIsSubmitting(true);
+        setStatusMessage('Verifying payment details...');
+        setStatusIsError(false);
+
         const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/3ae2a21f31b14c0e817d5aabf7c27b87/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Z-1C7_xjD9crnK7yTVNTZFiuBVkBLxIAYu1IYqWdXvQ";
 
         try {
@@ -89,7 +108,10 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
             navigate('payment-success', {
                 paymentId: utrNumber,
                 courseName: item.name,
-                amount: item.price
+                amount: item.price,
+                studentName: formData.studentName,
+                parentName: formData.parentName,
+                phone: formData.phone
             });
 
         } catch (error) {
@@ -106,10 +128,9 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     // Determine the transaction note (description shown in UPI app)
     let transactionNote = item.name;
     // Specific override for VR Workshop as requested
-    if (item.name.toLowerCase().includes('vr') || item.name.toLowerCase().includes('virtual')) {
-        transactionNote = "🌌 VR Workshop, brahmastra 23 Nov";
+    if (item.name.toLowerCase().includes('vr') || item.name.toLowerCase().includes('virtual') || item.name.toLowerCase().includes('junior astronaut')) {
+        transactionNote = "Junior Astronaut, brahmastra 23 Nov";
     } else {
-        // Truncate generic names to ensure they fit in standard UPI note limits if necessary
         transactionNote = item.name.substring(0, 50);
     }
 
@@ -171,7 +192,17 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                         </div>
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 mb-1">Phone Number <span className="text-red-500">*</span></label>
-                                            <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="Mobile number" />
+                                            <input 
+                                                type="tel" 
+                                                name="phone" 
+                                                value={formData.phone} 
+                                                onChange={handleInputChange} 
+                                                required 
+                                                pattern="[0-9]{10}"
+                                                maxLength={10}
+                                                className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" 
+                                                placeholder="10-digit mobile number" 
+                                            />
                                         </div>
                                     </div>
                                     <div>
@@ -226,34 +257,38 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                             <p>Name: <strong className="text-slate-700">Brahmastra Aerospace</strong></p>
                                         </div>
 
-                                        <form onSubmit={handleManualPaymentSubmit} className="max-w-sm mx-auto space-y-4 text-left">
-                                            <div>
-                                                <label className="block text-sm font-medium text-slate-700 mb-1">Enter UTR / Reference Number <span className="text-red-500">*</span></label>
+                                        {/* Verification Section */}
+                                        <div className="max-w-md mx-auto space-y-4 text-left">
+                                            <div className="bg-yellow-50 p-6 rounded-xl border-2 border-dashed border-brand-sun shadow-lg relative overflow-hidden animate-fade-in-up">
+                                                 <label className="block text-lg font-extrabold text-slate-900 mb-3 text-center uppercase tracking-wide">
+                                                     👇 Enter UTR / Reference Number 👇
+                                                 </label>
                                                 <input 
                                                     type="text" 
                                                     value={utrNumber} 
                                                     onChange={(e) => setUtrNumber(e.target.value)} 
                                                     required 
                                                     placeholder="e.g. 4312xxxxxxxx" 
-                                                    className="w-full bg-white text-slate-900 px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none text-center font-mono tracking-widest"
+                                                    className="w-full bg-white text-slate-900 px-4 py-4 border-2 border-slate-300 rounded-lg focus:ring-4 focus:ring-brand-sun/50 focus:border-brand-sun outline-none text-center font-mono text-xl tracking-widest font-bold placeholder-slate-400 transition-all shadow-inner"
                                                 />
-                                                <p className="text-xs text-slate-400 mt-1 text-center">You will find this 12-digit number in your payment app after success.</p>
+                                                <p className="text-xs text-slate-600 mt-2 text-center font-medium">
+                                                    This number is found in your Payment App History.
+                                                </p>
                                             </div>
 
-                                            {statusMessage && <div className={`text-sm text-center p-2 rounded ${statusIsError ? 'text-red-600 bg-red-50' : 'text-green-600 bg-green-50'}`}>{statusMessage}</div>}
+                                            {statusMessage && <div className={`text-sm text-center p-3 rounded-md font-medium ${statusIsError ? 'text-red-700 bg-red-100' : 'text-green-700 bg-green-100'}`}>{statusMessage}</div>}
 
                                             <button 
-                                                type="submit" 
+                                                onClick={() => handleManualPaymentSubmit()}
                                                 disabled={isSubmitting}
-                                                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3.5 rounded-full text-lg shadow-lg transition-all transform hover:scale-105 disabled:bg-slate-400"
+                                                className="w-full bg-green-600 hover:bg-green-700 text-white font-extrabold py-5 rounded-full text-xl shadow-xl transition-all transform hover:scale-[1.02] disabled:bg-slate-400 animate-pulse-fomo border-4 border-green-500/30"
                                             >
-                                                {isSubmitting ? 'Submitting...' : 'Submit'}
+                                                {isSubmitting ? 'Verifying...' : '✅ CLICK TO VERIFY & SUBMIT'}
                                             </button>
                                             <p className="text-xs text-slate-500 mt-3 text-center italic">
-                                                Note: We will verify your UTR and our Official team will contact you.
+                                                Note: We will verify your UTR and our Official team will contact you immediately.
                                             </p>
                                             
-                                            {/* New WhatsApp Link */}
                                             <div className="mt-6 pt-4 border-t border-slate-200 text-center">
                                                  <a 
                                                     href="https://wa.me/919940797779?text=Hi,%20I%20need%20help%20with%20payment%20verification."
@@ -265,7 +300,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                                     <span>Payment Issues? Reach us on WhatsApp</span>
                                                  </a>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             )}
@@ -313,4 +348,3 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
         </section>
     );
 };
-    
