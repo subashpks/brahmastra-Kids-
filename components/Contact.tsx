@@ -1,6 +1,21 @@
 
 import React, { useState } from 'react';
 
+const countryCodes = [
+    { name: 'India', code: '+91' },
+    { name: 'USA', code: '+1' },
+    { name: 'Canada', code: '+1' },
+    { name: 'UK', code: '+44' },
+    { name: 'Australia', code: '+61' },
+    { name: 'Singapore', code: '+65' },
+    { name: 'UAE', code: '+971' },
+    { name: 'Saudi Arabia', code: '+966' },
+    { name: 'Qatar', code: '+974' },
+    { name: 'Japan', code: '+81' },
+    { name: 'New Zealand', code: '+64' },
+    { name: 'Malaysia', code: '+60' },
+];
+
 export const EnrollmentForm: React.FC = () => {
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -34,15 +49,16 @@ export const EnrollmentForm: React.FC = () => {
         const studentSchool = formData.get('StudentSchool') as string;
         const selectedProgram = formData.get('SelectedProgram') as string;
         const email = formData.get('Email') as string;
+        const countryCode = formData.get('CountryCode') as string;
         const parentPhone = formData.get('ParentPhone') as string;
-        const district = formData.get('District') as string;
+        const country = formData.get('Country') as string;
         const state = formData.get('State') as string;
         const howDidYouHear = formData.get('HowDidYouHear') as string;
         const questions = formData.get('Questions') as string;
         const residencyStatus = formData.get('Residency') as string;
         const attendedBefore = formData.get('AttendedBefore') as string;
         
-        if (!name || !studentSchool || !email || !parentPhone || !district || !state || !howDidYouHear || !selectedProgram || !residencyStatus || !attendedBefore) {
+        if (!name || !studentSchool || !email || !parentPhone || !country || !state || !howDidYouHear || !selectedProgram || !residencyStatus || !attendedBefore) {
              setStatusMessage('Please fill in all required fields.');
              setStatusIsError(true);
              setIsSubmitting(false);
@@ -57,8 +73,8 @@ export const EnrollmentForm: React.FC = () => {
             StudentSchool: studentSchool.trim(),
             SelectedProgram: selectedProgram,
             Email: email.trim(),
-            ParentPhone: parentPhone.trim(),
-            District: district.trim(),
+            ParentPhone: `${countryCode} ${parentPhone.trim()}`,
+            Country: country.trim(),
             State: state.trim(),
             HowDidYouHear: howDidYouHear,
             Questions: questions.trim(),
@@ -153,17 +169,24 @@ export const EnrollmentForm: React.FC = () => {
                             <label htmlFor="email" className="block text-sm font-medium mb-1 text-slate-700">Parent's Email <span className="text-red-500">*</span></label>
                             <input type="email" id="email" name="Email" required placeholder="Your email address" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                         </div>
-                         <div>
-                            <label htmlFor="parentPhone" className="block text-sm font-medium mb-1 text-slate-700">Parent's Phone <span className="text-red-500">*</span></label>
-                            <input type="tel" id="parentPhone" name="ParentPhone" required placeholder="10-digit mobile number" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                        
+                        <div>
+                           <label htmlFor="parentPhone" className="block text-sm font-medium mb-1 text-slate-700">Parent's Phone <span className="text-red-500">*</span></label>
+                            <div className="flex">
+                                <select id="countryCode" name="CountryCode" required className="bg-slate-50 text-slate-900 pl-2 pr-1 rounded-l-md border border-r-0 border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                    {countryCodes.map(c => <option key={c.name} value={c.code}>{c.name} ({c.code})</option>)}
+                                </select>
+                                <input type="tel" id="parentPhone" name="ParentPhone" required placeholder="Mobile number" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-r-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                            </div>
                         </div>
+                        
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="district" className="block text-sm font-medium mb-1 text-slate-700">District <span className="text-red-500">*</span></label>
-                                <input type="text" id="district" name="District" required placeholder="e.g., Chennai" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                                <label htmlFor="country" className="block text-sm font-medium mb-1 text-slate-700">Country <span className="text-red-500">*</span></label>
+                                <input type="text" id="country" name="Country" required placeholder="e.g., India" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                             </div>
                             <div>
-                                <label htmlFor="state" className="block text-sm font-medium mb-1 text-slate-700">State <span className="text-red-500">*</span></label>
+                                <label htmlFor="state" className="block text-sm font-medium mb-1 text-slate-700">Region / State <span className="text-red-500">*</span></label>
                                 <input type="text" id="state" name="State" required placeholder="e.g., Tamil Nadu" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                             </div>
                         </div>
