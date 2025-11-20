@@ -102,7 +102,7 @@ export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="text-center lg:text-left order-2 lg:order-1">
                             <div className="inline-block bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full mb-4 animate-pulse">
-                                ONLY 15 SEATS (for best learning experience)
+                                ONLY 20 SEATS (for best learning experience)
                             </div>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
                                 {courseName}
@@ -332,7 +332,7 @@ export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
                                                 <div className="bg-red-100 text-red-600 text-xs font-bold px-2 py-1 rounded mr-2">
                                                     LIMITED
                                                 </div>
-                                                <span className="text-red-600 font-bold text-sm">Only 15 Seats (for best learning experience)</span>
+                                                <span className="text-red-600 font-bold text-sm">Only 20 Seats (for best learning experience)</span>
                                             </div>
                                         </div>
 

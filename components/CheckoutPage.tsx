@@ -198,6 +198,19 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                     </div>
                                     
                                     <div className="bg-slate-50 p-6 md:p-8 rounded-xl border border-slate-200 text-center">
+                                        
+                                        <div className="mb-6 bg-white p-4 rounded-lg border border-slate-100 shadow-sm">
+                                            <img 
+                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.svg/460px-PhonePe_Logo.svg.png?20210407195407" 
+                                                alt="PhonePe" 
+                                                className="h-8 mx-auto mb-2"
+                                            />
+                                            <p className="text-sm font-bold text-slate-800">Use PhonePe for Faster Transactions</p>
+                                            <p className="text-xs text-slate-500 mt-2 leading-relaxed max-w-md mx-auto">
+                                                We use PhonePe QR and auto-validation. As payment gateways charge 3% extra on the total value, we use this method to help you save money.
+                                            </p>
+                                        </div>
+
                                         <p className="text-slate-600 mb-4 font-medium">
                                             Scan this QR code using any UPI App (GPay, PhonePe, Paytm) to pay <span className="text-slate-900 font-bold">{item.price}</span>.
                                         </p>
@@ -300,3 +313,4 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
         </section>
     );
 };
+    

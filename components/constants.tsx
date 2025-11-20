@@ -344,7 +344,7 @@ export const VR_WORKSHOP_DATA = {
     price: '₹999/-',
     location: 'Clubhouse, Marg Pushpadruma, Kalavakkam, OMR, Thiruporur.',
     slots: [
-        { day: '23 November', seats: 15 },
+        { day: '23 November', seats: 20 },
     ],
     syllabus: [ 
         { 
@@ -652,4 +652,3 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     state: "Tamil Nadu"
   }
 ];
-    
