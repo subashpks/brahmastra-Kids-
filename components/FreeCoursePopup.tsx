@@ -43,7 +43,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
             onClick={handleBackdropClick}
         >
             {/* Container with max-height for scrolling on small screens */}
-            <div className="bg-white rounded-2xl shadow-2xl max-w-3xl w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
                 
                 {/* Close Button: Positioned inside the card for better visibility */}
                 <button 
@@ -65,7 +65,14 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         Don't miss out on these exciting opportunities for your child.
                     </p>
                     
-                    <div className="flex flex-col sm:flex-row gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <PopupCard 
+                            title="Free Weekend Course"
+                            date="Join Mission brahmàstra. Live online sessions every weekend."
+                            buttonText="Register Free"
+                            onClick={() => onRedirect('freecourses')}
+                            imageUrl="https://files.catbox.moe/kcz5ca.png"
+                        />
                         <PopupCard 
                             title="Astronaut Training"
                             date="23 November | 9:00 AM - 2:00 PM. Venue: Clubhouse, Marg Pushpadruma, OMR."
@@ -74,7 +81,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                             imageUrl="https://files.catbox.moe/awo8bd.png"
                         />
                         <PopupCard 
-                            title="Rocket Science: Full-Fledged Course for Kids"
+                            title="Rocket Science Course"
                             date="Our 5-weekend full-fledged course for young innovators."
                             buttonText="Explore Course"
                             onClick={() => onRedirect('weekend-rocket-blast-off')}
