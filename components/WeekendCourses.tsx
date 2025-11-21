@@ -127,7 +127,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild })
                                 <span className="block text-brand-space font-['Montserrat']">brahmàstra<span className="text-[#e40917]">.</span></span>
                             </h1>
                             <p className="mt-6 text-lg text-slate-600 max-w-xl text-left">
-                                Join the movement that is making Rocket Science accessible to every curious child, everywhere.
+                                Making rocket science simple, fun, and free for kids.
                             </p>
                             <div className="mt-10 flex flex-col sm:flex-row justify-center items-center lg:justify-start gap-4">
                                 <a 

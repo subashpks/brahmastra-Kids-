@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                     </a>
                     */}
                     <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="ml-2 inline-block bg-[#e40917] hover:bg-[#c10714] transition-colors text-white font-semibold px-5 py-2 rounded-full text-sm shadow-md">
-                        Mission brahmàstra
+                        Free Weekend Course
                     </a>
                 </>
             )}
@@ -131,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                         </a>
                         */}
                         <div className="p-2">
-                            <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-center px-4 py-3 rounded-md text-base font-medium text-white bg-[#e40917] hover:bg-[#c10714]">Mission brahmàstra</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-center px-4 py-3 rounded-md text-base font-medium text-white bg-[#e40917] hover:bg-[#c10714]">Free Weekend Course</a>
                         </div>
                     </>
                 )}
