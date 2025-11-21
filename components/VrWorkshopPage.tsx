@@ -10,13 +10,14 @@ const SyllabusIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h
 const ActivitiesIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" /></svg>);
 const LightBulbIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>);
 const ExperienceIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>);
-const UserGroupIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>);
+const UserGroupIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656-.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>);
 const ClockIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>);
 const CalendarIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>);
 const MapPinIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-slate-500 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>);
 const MentorIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>);
 const GiftIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" /></svg>);
 const CameraIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>);
+const PartnersIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-brand-space" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>);
 const GoogleIcon = () => (
     <svg className="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -25,6 +26,19 @@ const GoogleIcon = () => (
         <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335" />
     </svg>
 );
+
+const PARTNERS = [
+    { name: 'ISRO', logo: 'https://upload.wikimedia.org/wikipedia/commons/b/bd/Indian_Space_Research_Organisation_Logo.svg' },
+    { name: 'US Embassy', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Seal_of_an_Embassy_of_the_United_States_of_America.svg/1280px-Seal_of_an_Embassy_of_the_United_States_of_America.svg.png' },
+    { name: 'HAL', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/3e/Hindustan_Aeronautics_Limited_Logo.svg/2560px-Hindustan_Aeronautics_Limited_Logo.svg.png' },
+    { name: 'University of Sydney', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/3/37/The_University_of_Sydney_Logo.svg/2560px-The_University_of_Sydney_Logo.svg.png' },
+    { name: 'NIT Srinagar', logo: 'https://upload.wikimedia.org/wikipedia/en/2/24/National_Institute_of_Technology%2C_Srinagar_Logo.png' },
+    { name: 'Skill India', logo: 'https://upload.wikimedia.org/wikipedia/en/3/3e/Skill_India.png' },
+    { name: 'ASSOCHAM', logo: 'https://upload.wikimedia.org/wikipedia/commons/1/18/ASSOCHAM_New_Logo.jpg' },
+    { name: 'Ministry of MSME', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/MSME_logo_%28colour%29.svg/500px-MSME_logo_%28colour%29.svg.png' },
+    { name: 'OCF Avadi', logo: 'https://upload.wikimedia.org/wikipedia/en/9/97/Ordnance_Clothing_Factory_logo.jpg' },
+    { name: 'Indian Coast Guard', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Indian_Coast_Guard_Logo.svg/1280px-Indian_Coast_Guard_Logo.svg.png' },
+];
 
 // Helper Components
 const DetailSection: React.FC<{ icon: React.ReactNode; title: React.ReactNode; children: React.ReactNode; }> = ({ icon, title, children }) => (
@@ -216,6 +230,21 @@ export const VrWorkshopPage: React.FC<PageProps> = ({ navigate }) => {
                                         </ul>
                                     </DetailSection>
                                 )}
+
+                                <DetailSection icon={<PartnersIcon/>} title="Our Partners">
+                                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 items-center justify-items-center">
+                                        {PARTNERS.map((partner, index) => (
+                                            <div key={index} className="w-full h-24 p-4 bg-white rounded-lg border border-slate-100 shadow-sm flex items-center justify-center hover:shadow-md transition-shadow">
+                                                <img 
+                                                    src={partner.logo} 
+                                                    alt={partner.name} 
+                                                    className="max-w-full max-h-full object-contain transition-all duration-300"
+                                                    title={partner.name}
+                                                />
+                                            </div>
+                                        ))}
+                                    </div>
+                                </DetailSection>
 
                                 {mentor && (
                                     <DetailSection icon={<MentorIcon/>} title="Meet Your Workshop Guide">

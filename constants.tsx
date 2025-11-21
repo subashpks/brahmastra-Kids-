@@ -264,7 +264,7 @@ export const ADVANCED_CAMP_DATA = {
                 'Engine Mounting and Centering Techniques',
                 'Team Challenge: Design for Maximum Altitude',
                 'Mission Log: Finalizing Digital Design and Bill of Materials'
-            ]
+            ] 
         },
         { 
             week: 'Weekend 3: Avionics & Payload Integration', 
@@ -279,7 +279,7 @@ export const ADVANCED_CAMP_DATA = {
                 'Wiring an Electronics Bay (Simulation/Demo)',
                 'Integrating the Payload into the Airframe',
                 'Mission Log: Payload Design Blueprint'
-            ]
+            ] 
         },
         { 
             week: 'Weekend 4: Recovery Systems & Final Build', 
@@ -294,7 +294,7 @@ export const ADVANCED_CAMP_DATA = {
                 'Conducting Pre-Flight Safety and Stability Checks',
                 'Your Final Rocket: A Complete System',
                 'Mission Log: Completing the Pre-Launch Checklist'
-            ]
+            ] 
         },
         { 
             week: 'Weekend 5: LAUNCH DAY & Mission Analysis!', 
@@ -309,7 +309,7 @@ export const ADVANCED_CAMP_DATA = {
                 'Advanced Rocket Scientist Award Ceremony',
                 'Receiving Your "Rocketry Engineer" Certificate',
                 'Next Steps: Competitions and Future Projects'
-            ]
+            ] 
         },
     ],
     activities: [
@@ -337,11 +337,11 @@ export const ADVANCED_CAMP_DATA = {
 
 export const VR_WORKSHOP_DATA = {
     id: 'vr-space-exploration',
-    courseName: 'Junior Astronaut',
+    courseName: 'Astronaut Training',
     ageCategory: '8-16 years (Class 3 to 10)',
     sessions: '23 November | 9:00 AM - 2:00 PM',
     description: 'Go beyond textbooks! Pilot a spaceship, walk on Mars, and witness the birth of a star in a fully immersive Virtual Reality experience.',
-    price: '₹1,200/-',
+    price: '₹599/-',
     location: 'Clubhouse, Marg Pushpadruma, Kalavakkam, OMR, Thiruporur.',
     slots: [
         { day: '23 November', seats: 15 },
@@ -385,7 +385,7 @@ export const VR_WORKSHOP_DATA = {
         'Learn & fly a virtual drone',
         'Command & pilot your own spaceship',
         'See Earth from orbit in stunning VR',
-        'Earn your Junior Astronaut certificate',
+        'Earn your Astronaut Training certificate',
     ],
     matchesSchoolSyllabus: {
         'Physics': 'Gravity, orbits, celestial mechanics, light years',

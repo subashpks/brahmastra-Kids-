@@ -56,7 +56,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
             </div>
 
             <a href="#" onClick={(e) => {e.preventDefault(); navigate('courses')}} className={navLinkClasses('courses')}>Courses</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('vr-workshop')}} className={navLinkClasses('vr-workshop')}>Junior Astronaut</a>
+            <a href="#" onClick={(e) => {e.preventDefault(); navigate('vr-workshop')}} className={navLinkClasses('vr-workshop')}>Astronaut Training</a>
 
             {isLoggedIn && currentUser ? (
                 <>
@@ -99,7 +99,7 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                 )}
                 
                 <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('courses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Courses</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('vr-workshop'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Junior Astronaut</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('vr-workshop'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Astronaut Training</a>
                 
                 <div className="border-t border-slate-200 my-2"></div>
 
