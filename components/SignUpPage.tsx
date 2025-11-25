@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { PageProps, User } from '../types';
 
+const emailDomains = ['@gmail.com', '@outlook.com', '@yahoo.com'];
+
 const SignUpIllustration = () => (
     <div className="hidden lg:block lg:w-1/2">
         <img src="https://i.postimg.cc/8z4ZKm4K/rocket.png" alt="Rocket launching" className="w-full h-full object-contain rounded-r-2xl p-8" />
@@ -18,6 +20,7 @@ export const SignUpPage: React.FC<PageProps> = ({ navigate }) => {
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [statusIsError, setStatusIsError] = useState<boolean>(false);
+    const [email, setEmail] = useState('');
 
     const handleSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -28,7 +31,7 @@ export const SignUpPage: React.FC<PageProps> = ({ navigate }) => {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
         const name = formData.get('name') as string;
-        const email = formData.get('email') as string;
+        // const email = formData.get('email') as string; // use state
         const password = formData.get('password') as string;
 
         try {
@@ -70,6 +73,10 @@ export const SignUpPage: React.FC<PageProps> = ({ navigate }) => {
         setStatusIsError(true);
     };
 
+    const handleEmailDomainClick = (domain: string) => {
+        setEmail(prev => prev.includes('@') ? prev : prev + domain);
+    };
+
     return (
         <section className="min-h-[calc(100vh-128px)] flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 animate-fade-in-up">
             <div className="max-w-4xl w-full bg-white rounded-2xl shadow-xl flex">
@@ -91,7 +98,29 @@ export const SignUpPage: React.FC<PageProps> = ({ navigate }) => {
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-slate-700">Email address</label>
                             <div className="mt-1">
-                                <input id="email" name="email" type="email" autoComplete="email" required className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" placeholder="you@example.com" />
+                                <input 
+                                    id="email" 
+                                    name="email" 
+                                    type="email" 
+                                    autoComplete="email" 
+                                    required 
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" 
+                                    placeholder="you@example.com" 
+                                />
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {emailDomains.map(domain => (
+                                        <button
+                                            key={domain}
+                                            type="button"
+                                            onClick={() => handleEmailDomainClick(domain)}
+                                            className="px-2 py-1 text-xs font-medium text-brand-space bg-sky-50 hover:bg-sky-100 rounded-md border border-sky-200 transition-colors"
+                                        >
+                                            {domain}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 

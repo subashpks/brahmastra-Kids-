@@ -125,12 +125,12 @@ export const WEEKEND_CAMP_DATA = {
     id: 'weekend-rocket-blast-off',
     courseName: 'Rocket Science: Full-Fledged Course for Kids',
     ageCategory: '6-11 years (Class 1 to 5)',
-    sessions: '10 super-fun sessions (Every Saturday & Sunday for 5 weeks)',
-    description: 'Double weekend fun! Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks!',
+    sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
+    description: 'Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks! Only 10 seats available.',
     price: '₹3000/-',
     syllabus: [
         { 
-            week: 'Weekend 1: The Basics of Blast-Off!', 
+            week: 'Week 1: The Basics of Blast-Off!', 
             topics: [
                 'What is a Rocket? The Big Idea!',
                 'Meet Sir Isaac Newton: The Laws of Motion',
@@ -145,7 +145,7 @@ export const WEEKEND_CAMP_DATA = {
             ] 
         },
         { 
-            week: 'Weekend 2: Tiny Rockets, Big Fun!', 
+            week: 'Week 2: Tiny Rockets, Big Fun!', 
             topics: [
                 'Introducing the Straw Rocket!',
                 'Aerodynamics: How Rockets Cut Through Air',
@@ -160,7 +160,7 @@ export const WEEKEND_CAMP_DATA = {
             ]
         },
         { 
-            week: 'Weekend 3: Water Power & Parachutes!', 
+            week: 'Week 3: Water Power & Parachutes!', 
             topics: [
                 'H2-Oh! The Power of Water Rockets',
                 'Building the Water Bottle Rocket Body',
@@ -175,7 +175,7 @@ export const WEEKEND_CAMP_DATA = {
             ]
         },
         { 
-            week: 'Weekend 4: Design, Decorate & Test!', 
+            week: 'Week 4: Design, Decorate & Test!', 
             topics: [
                 'The Art of Rocketry: Decorate Your Water Rocket',
                 'Giving Your Rocket a Name and Story',
@@ -190,7 +190,7 @@ export const WEEKEND_CAMP_DATA = {
             ]
         },
         { 
-            week: 'Weekend 5: MEGA LAUNCH DAY & Graduation!', 
+            week: 'Week 5: MEGA LAUNCH DAY & Graduation!', 
             topics: [
                 'Welcome to Launch Day!',
                 'Final Safety Briefing',
@@ -222,7 +222,7 @@ export const WEEKEND_CAMP_DATA = {
     },
     extraCoolThings: [
         'You BUILD & LAUNCH real rockets (not just read)',
-        'Get wet and shout every weekend',
+        'Get wet and shout during launches',
         'Become a real mini scientist',
         'Take home rockets + "Junior Rocket Scientist" badge 🏅',
     ],
@@ -232,12 +232,12 @@ export const ADVANCED_CAMP_DATA = {
     id: 'advanced-rocketry-workshop',
     courseName: '🛰️ Advanced Rocketry & Propulsion Workshop!',
     ageCategory: '11-16 years (Class 6 to 10)',
-    sessions: '10 advanced sessions (Every Saturday & Sunday for 5 weeks)',
-    description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering.',
+    sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
+    description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering. Exclusive batch of 10 students.',
     price: '₹3000/-',
     syllabus: [
         { 
-            week: 'Weekend 1: Foundations of Rocket Engineering', 
+            week: 'Week 1: Foundations of Rocket Engineering', 
             topics: [
                 "Newton's Laws Revisited: A Deeper Dive",
                 'Introduction to Propulsion: Thrust & Specific Impulse',
@@ -252,7 +252,7 @@ export const ADVANCED_CAMP_DATA = {
             ] 
         },
         { 
-            week: 'Weekend 2: Aerodynamics & Structural Design', 
+            week: 'Week 2: Aerodynamics & Structural Design', 
             topics: [
                 'Principles of Aerodynamic Lift and Drag',
                 'Nose Cone Geometry: Ogive, Conical, Elliptical',
@@ -267,7 +267,7 @@ export const ADVANCED_CAMP_DATA = {
             ] 
         },
         { 
-            week: 'Weekend 3: Avionics & Payload Integration', 
+            week: 'Week 3: Avionics & Payload Integration', 
             topics: [
                 'What is Avionics? The Brain of the Rocket',
                 'Introduction to Flight Computers and Altimeters',
@@ -282,7 +282,7 @@ export const ADVANCED_CAMP_DATA = {
             ] 
         },
         { 
-            week: 'Weekend 4: Recovery Systems & Final Build', 
+            week: 'Week 4: Recovery Systems & Final Build', 
             topics: [
                 'Parachute vs. Streamer Recovery: Pros and Cons',
                 'Calculating the Right Parachute Size for a Safe Landing',
@@ -297,7 +297,7 @@ export const ADVANCED_CAMP_DATA = {
             ] 
         },
         { 
-            week: 'Weekend 5: LAUNCH DAY & Mission Analysis!', 
+            week: 'Week 5: LAUNCH DAY & Mission Analysis!', 
             topics: [
                 'Launch Site Safety Briefing and Roles',
                 'Setting up the Launchpad and Igniter System',

@@ -43,205 +43,107 @@ const nriPrograms = [
     }
 ];
 
-const missionPoints = [
-    {
-        title: 'Why?',
-        text: 'To destroy the taboo that Rocket Science is tough by showing it happens in your kitchen sink.',
-        borderColor: 'border-brand-space'
-    },
-    {
-        title: 'What?',
-        text: 'We translate the toughest topics into understandable, everyday science using simple metaphors and your language.',
-        borderColor: 'border-green-500'
-    },
-    {
-        title: 'Where?',
-        text: 'You learn right from where you are, using what you know, what you have, and your daily surroundings.',
-        borderColor: 'border-brand-sun'
-    },
-    {
-        title: 'When?',
-        text: 'Every weekend evening, we explore a new topic that has been made taboo in public science discussions.',
-        borderColor: 'border-purple-500'
-    },
-    {
-        title: 'Who?',
-        text: 'This free session is designed specifically for curious kids across the globe in the age category of 6 to 16 years.',
-        borderColor: 'border-brand-sky'
-    },
-    {
-        title: 'How?',
-        text: 'We provide a high-quality, free session for all kids, carefully scheduled for different time zones to ensure global accessibility.',
-        borderColor: 'border-[#e40917]'
-    }
-];
-
-const ProgramCard: React.FC<{ program: typeof indianPrograms[0] }> = ({ program }) => (
-    <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-brand-sun flex-1 flex flex-col transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-        <span className="font-bold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full text-sm self-start">{program.age}</span>
-        <h3 className="text-xl font-bold text-slate-800 mt-3 mb-2 flex-grow">{program.title}</h3>
-        <p className="text-slate-600 font-medium">{program.date}</p>
-        <p className="text-slate-600 font-medium text-sm whitespace-pre-line">{program.time}</p>
+const ProgramCard: React.FC<{ program: any }> = ({ program }) => (
+    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-shadow border border-slate-100">
+        <div className="flex justify-between items-start mb-4">
+            <span className="bg-brand-sky/10 text-brand-space text-xs font-bold px-3 py-1 rounded-full">
+                {program.age}
+            </span>
+            <span className="text-slate-500 text-xs font-semibold flex items-center">
+                {program.date}
+            </span>
+        </div>
+        <h3 className="text-lg font-bold text-slate-800 mb-2 leading-tight">{program.title}</h3>
+        <div className="text-sm text-slate-600 mb-4 whitespace-pre-line flex items-start gap-2">
+            <svg className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            <span>{program.time}</span>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-auto">
+            {program.mediums.map((m: string) => (
+                <span key={m} className="text-xs border border-slate-200 text-slate-500 px-2 py-1 rounded">
+                    {m}
+                </span>
+            ))}
+        </div>
     </div>
 );
 
-const HeroIllustration = () => (
-     <div className="relative w-full max-w-xl mx-auto">
-      <div className="absolute -top-4 -left-4 w-56 h-56 bg-sky-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob"></div>
-      <div className="absolute -top-4 -right-4 w-56 h-56 bg-amber-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-      <div className="absolute -bottom-8 left-20 w-56 h-56 bg-green-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-        <img 
-            src="https://files.catbox.moe/kcz5ca.png" 
-            alt="A happy child sitting in a homemade cardboard rocket, imagining a space adventure, with planets in the background." 
-            className="relative animate-float"
-        />
-    </div>
-);
+export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = ({ activeChild }) => {
+    const [isNri, setIsNri] = useState(false);
 
-interface FreeCoursesPageProps {
-    activeChild: ChildProfile | null;
-}
-
-export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild }) => {
-    const [region, setRegion] = useState<'India' | 'NRI'>('India');
-
-    const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
-        e.preventDefault();
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
-
-    const displayedPrograms = region === 'India' ? indianPrograms : nriPrograms;
+    const programs = isNri ? nriPrograms : indianPrograms;
 
     return (
         <div className="animate-fade-in-up">
             {/* Hero Section */}
-            <section className="pt-8 pb-16 md:pt-12 md:pb-24">
-                <div className="container mx-auto px-6">
-                   <div className="grid lg:grid-cols-2 gap-12 items-center">
-                        <div className="text-left order-2 lg:order-1">
-                             <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4 text-left">
-                                <span className="block">Mission</span>
-                                <span className="block text-brand-space font-['Montserrat']">brahmàstra<span className="text-[#e40917]">.</span></span>
-                            </h1>
-                            <p className="mt-6 text-lg text-slate-600 max-w-xl text-left">
-                                Making rocket science simple, fun, and free for kids.
-                            </p>
-                            <div className="mt-10 flex flex-col sm:flex-row justify-center items-center lg:justify-start gap-4">
-                                <a 
-                                    href="#upcoming-courses"
-                                    onClick={(e) => handleScrollClick(e, 'upcoming-courses')}
-                                    className="bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg"
-                                >
-                                    View Upcoming Programs
-                                </a>
-                            </div>
-                        </div>
-                        <div className="order-1 lg:order-2">
-                            <HeroIllustration />
-                        </div>
+            <section className="relative py-12 md:py-20 bg-brand-space text-white overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full opacity-10">
+                    <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
+                    </svg>
+                </div>
+                <div className="container mx-auto px-6 relative z-10 text-center">
+                    <span className="inline-block py-1 px-3 rounded-full bg-white/10 text-sky-200 text-xs font-bold tracking-widest uppercase mb-4">
+                        Weekend Special
+                    </span>
+                    <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight leading-tight mb-6">
+                        Free <span className="text-brand-sun">Weekend</span> Workshops
+                    </h1>
+                    <p className="text-base sm:text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-8">
+                        Making rocket science simple, fun, and free for kids.
+                    </p>
+                    
+                    <div className="inline-flex bg-white/10 p-1 rounded-full backdrop-blur-sm">
+                        <button 
+                            onClick={() => setIsNri(false)}
+                            className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all ${!isNri ? 'bg-white text-brand-space shadow-lg' : 'text-white hover:bg-white/10'}`}
+                        >
+                            🇮🇳 Indian Residents
+                        </button>
+                        <button 
+                            onClick={() => setIsNri(true)}
+                            className={`px-4 py-2 sm:px-6 sm:py-3 rounded-full text-xs sm:text-sm font-bold transition-all ${isNri ? 'bg-white text-brand-space shadow-lg' : 'text-white hover:bg-white/10'}`}
+                        >
+                            🌍 NRI Students
+                        </button>
                     </div>
                 </div>
             </section>
 
-            {/* Mission Description Section */}
-            <section className="py-16 bg-white">
-                <div className="container mx-auto px-6 text-left">
-                    <div className="max-w-4xl">
-                        <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6">
-                            What is Mission <span className="text-brand-space font-['Montserrat'] font-extrabold">brahmàstra</span><span className="text-[#e40917] font-extrabold">.</span>?
+            {/* Programs Grid */}
+            <section className="py-12 md:py-16 bg-slate-50">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-10">
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                            Upcoming Sessions for {isNri ? 'International Students' : 'Indian Students'}
                         </h2>
-                        <p className="text-xl md:text-2xl text-slate-600 leading-relaxed">
-                            The mission is to take Aerospace and Rocket science to every door possible in the globe, to make sure "It is not a Rocket science" is just another word.
-                        </p>
                     </div>
-                </div>
-            </section>
-            
-            {/* WH Questions Section (Mission Brief) */}
-            <section className="py-16 bg-slate-50">
-                <div className="container mx-auto px-6">
-                    <div className="max-w-6xl mx-auto">
-                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                            {missionPoints.map((point, index) => (
-                                <div key={index} className={`bg-white p-8 rounded-2xl shadow-sm border-b-4 ${point.borderColor} hover:-translate-y-1 transition-transform duration-300`}>
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-3">{point.title}</h3>
-                                    <p className="text-slate-600 leading-relaxed">
-                                        {point.text}
-                                    </p>
-                                </div>
-                            ))}
-                         </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                        {programs.map((program, index) => (
+                            <ProgramCard key={index} program={program} />
+                        ))}
                     </div>
                 </div>
             </section>
 
-            {/* Upcoming Programs Section - With Toggle */}
-            <section id="upcoming-courses" className="py-16 md:py-24">
-                <div className="container mx-auto px-6">
-                    <div className="bg-white p-8 rounded-2xl shadow-xl border-t-4 border-brand-space max-w-5xl mx-auto">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 text-center mb-6">Upcoming Programs</h2>
-                        
-                        {/* Toggle Button */}
-                        <div className="flex justify-center mb-10">
-                             <div className="bg-slate-100 p-1.5 rounded-full inline-flex relative shadow-inner">
-                                <button
-                                    onClick={() => setRegion('India')}
-                                    className={`px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-bold transition-all duration-300 ${region === 'India' ? 'bg-brand-space text-white shadow-md transform scale-105' : 'text-slate-500 hover:text-slate-700'}`}
-                                >
-                                    For Indian Residents
-                                </button>
-                                <button
-                                    onClick={() => setRegion('NRI')}
-                                    className={`px-6 sm:px-8 py-3 rounded-full text-sm sm:text-base font-bold transition-all duration-300 ${region === 'NRI' ? 'bg-brand-space text-white shadow-md transform scale-105' : 'text-slate-500 hover:text-slate-700'}`}
-                                >
-                                    For Non-Resident Indians
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <div className="flex flex-col md:flex-row gap-8 justify-center">
-                            {displayedPrograms.map((program, index) => (
-                                <ProgramCard key={index} program={program} />
-                            ))}
-                        </div>
-                        
-                         <p className="text-center text-sm text-slate-600 mt-8 mb-4 italic">
-                            We conduct separate, fully interactive classes for each Age category, Indian Residents and Non Resident Indians to ensure the best learning experience.
-                        </p>
-
-                         <div className="text-center">
-                             <a 
-                                href="#contact"
-                                onClick={(e) => handleScrollClick(e, 'contact')}
-                                className="inline-block w-full sm:w-auto bg-brand-sun hover:bg-amber-600 transition-colors text-white font-bold px-10 py-4 rounded-full text-lg shadow-lg transform hover:scale-105"
-                            >
-                                Join Mission brahmàstra
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            {/* Enrollment Form */}
             <EnrollmentForm />
 
-            {/* Social Media Prompt */}
-            <section className="pt-16 md:pt-24 pb-16">
-                <div className="container mx-auto px-6">
-                    <div className="text-center max-w-2xl mx-auto bg-slate-100 p-8 rounded-2xl">
-                        <h3 className="text-xl font-bold text-slate-800">Get regular updates and free Activities for your kids</h3>
-                         <a 
-                            href="https://whatsapp.com/channel/0029Vb6qN88JuyA4MCaa5K01"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="mt-4 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 transition-colors text-white font-semibold px-6 py-2 rounded-full shadow-md"
-                        >
-                            <WhatsAppIcon />
-                            Follow us on WhatsApp
-                        </a>
-                    </div>
+            {/* WhatsApp CTA */}
+            <section className="bg-white py-12 border-t border-slate-100">
+                <div className="container mx-auto px-6 text-center">
+                    <p className="text-slate-600 mb-6">
+                        Prefer to get updates on your phone?
+                    </p>
+                    <a 
+                        href="https://whatsapp.com/channel/0029Vb6qN88JuyA4MCaa5K01" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold transition-transform hover:scale-105 shadow-md"
+                    >
+                        <WhatsAppIcon />
+                        Join WhatsApp Channel
+                    </a>
                 </div>
             </section>
         </div>

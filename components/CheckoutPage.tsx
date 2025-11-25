@@ -11,12 +11,18 @@ interface CheckoutPageProps extends PageProps {
 }
 
 const grades = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12'];
+const ageCategories = [
+    'Junior Aviators (Ages 5-10)',
+    'Senior Innovators (Ages 11-15)'
+];
+const emailDomains = ['@gmail.com', '@outlook.com', '@yahoo.com'];
 
 export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) => {
     const [currentStep, setCurrentStep] = useState(1);
     const [formData, setFormData] = useState({
         studentName: '',
         grade: '',
+        ageCategory: '',
         schoolName: '',
         city: '',
         parentName: '',
@@ -49,6 +55,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
         } else {
             setFormData(prev => ({ ...prev, [name]: value }));
         }
+    };
+
+    const handleEmailDomainClick = (domain: string) => {
+        setFormData(prev => ({
+            ...prev,
+            email: prev.email.includes('@') ? prev.email : prev.email + domain
+        }));
     };
 
     // Step 1: Collect Data and move to Payment (Local Validation Only)
@@ -170,23 +183,31 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                             <input type="text" name="studentName" value={formData.studentName} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="Child's full name" />
                                         </div>
                                         <div>
+                                            <label className="block text-sm font-medium text-slate-700 mb-1">Age Category <span className="text-red-500">*</span></label>
+                                            <select name="ageCategory" value={formData.ageCategory} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none">
+                                                <option value="">Select Category</option>
+                                                {ageCategories.map(c => <option key={c} value={c}>{c}</option>)}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="grid md:grid-cols-2 gap-5">
+                                        <div>
                                              <label className="block text-sm font-medium text-slate-700 mb-1">Grade / Class <span className="text-red-500">*</span></label>
                                              <select name="grade" value={formData.grade} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none">
                                                 <option value="">Select Class</option>
                                                 {grades.map(g => <option key={g} value={g}>{g}</option>)}
                                              </select>
                                         </div>
-                                    </div>
-                                    
-                                    <div className="grid md:grid-cols-2 gap-5">
                                         <div>
                                             <label className="block text-sm font-medium text-slate-700 mb-1">School Name <span className="text-red-500">*</span></label>
                                             <input type="text" name="schoolName" value={formData.schoolName} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="Current school" />
                                         </div>
-                                         <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">City / Location <span className="text-red-500">*</span></label>
-                                            <input type="text" name="city" value={formData.city} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="e.g. Chennai" />
-                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-700 mb-1">City / Location <span className="text-red-500">*</span></label>
+                                        <input type="text" name="city" value={formData.city} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="e.g. Chennai" />
                                     </div>
 
                                     <div className="border-t border-slate-200 my-4"></div>
@@ -214,6 +235,18 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                     <div>
                                         <label className="block text-sm font-medium text-slate-700 mb-1">Email Address <span className="text-red-500">*</span></label>
                                         <input type="email" name="email" value={formData.email} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="For booking confirmation" />
+                                        <div className="flex flex-wrap gap-2 mt-2">
+                                            {emailDomains.map(domain => (
+                                                <button
+                                                    key={domain}
+                                                    type="button"
+                                                    onClick={() => handleEmailDomainClick(domain)}
+                                                    className="px-2 py-1 text-xs font-medium text-brand-space bg-sky-50 hover:bg-sky-100 rounded-md border border-sky-200 transition-colors"
+                                                >
+                                                    {domain}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
 
                                     {statusMessage && <div className={`text-sm text-center p-2 rounded ${statusIsError ? 'text-red-600 bg-red-50' : 'text-green-600 bg-green-50'}`}>{statusMessage}</div>}

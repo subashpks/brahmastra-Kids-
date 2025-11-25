@@ -14,7 +14,7 @@ const PopupCard: React.FC<{
     imageUrl: string;
 }> = ({ title, date, buttonText, onClick, imageUrl }) => (
     <div className="flex flex-col rounded-lg overflow-hidden bg-slate-50 border border-slate-200 w-full transition-transform hover:scale-[1.02] duration-200">
-        <img src={imageUrl} alt={title} className="hidden sm:block w-full h-32 sm:h-40 object-cover" />
+        <img src={imageUrl} alt={title} className="w-full h-32 sm:h-40 object-cover" />
         <div className="p-4 text-center flex-grow flex flex-col">
             <h3 className="text-lg font-bold text-brand-space leading-tight">{title}</h3>
             <p className="text-sm text-slate-500 mt-2 mb-4 flex-grow">{date}</p>
@@ -43,7 +43,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
             onClick={handleBackdropClick}
         >
             {/* Container with max-height for scrolling on small screens */}
-            <div className="bg-white rounded-2xl shadow-2xl max-w-5xl w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
                 
                 {/* Close Button: Positioned inside the card for better visibility */}
                 <button 
@@ -65,27 +65,20 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         Don't miss out on these exciting opportunities for your child.
                     </p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <PopupCard 
-                            title="Free Weekend Course"
-                            date="Join Mission brahmàstra. Live online sessions every weekend."
-                            buttonText="Register Free"
-                            onClick={() => onRedirect('freecourses')}
-                            imageUrl="https://files.catbox.moe/kcz5ca.png"
-                        />
-                        <PopupCard 
-                            title="Astronaut Training"
-                            date="23 November | 9:00 AM - 2:00 PM. Venue: Clubhouse, Marg Pushpadruma, OMR."
-                            buttonText="Explore VR Workshop"
-                            onClick={() => onRedirect('vr-workshop')}
-                            imageUrl="https://files.catbox.moe/awo8bd.png"
-                        />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <PopupCard 
                             title="Rocket Science Course"
                             date="Our 5-weekend full-fledged course for young innovators."
                             buttonText="Explore Course"
                             onClick={() => onRedirect('weekend-rocket-blast-off')}
                             imageUrl="https://files.catbox.moe/knklae.png"
+                        />
+                        <PopupCard 
+                            title="Free Weekend Course"
+                            date="Join Mission brahmàstra. Live online sessions every weekend."
+                            buttonText="Register Free"
+                            onClick={() => onRedirect('freecourses')}
+                            imageUrl="https://files.catbox.moe/kcz5ca.png"
                         />
                     </div>
                 </div>

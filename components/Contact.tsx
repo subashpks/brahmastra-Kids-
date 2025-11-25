@@ -16,11 +16,14 @@ const countryCodes = [
     { name: 'Malaysia', code: '+60' },
 ];
 
+const emailDomains = ['@gmail.com', '@outlook.com', '@yahoo.com'];
+
 export const EnrollmentForm: React.FC = () => {
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [statusIsError, setStatusIsError] = useState<boolean>(false);
     const [residency, setResidency] = useState<string>('Indian Resident');
+    const [email, setEmail] = useState<string>('');
 
     const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2e14c8e5b9d84358b5b3e065682d141d/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nfMN8qKf73-sBOSjgh5zICbnX1EmGNEAG0pgO56Wth4";
 
@@ -36,6 +39,10 @@ export const EnrollmentForm: React.FC = () => {
         return `Q${year}${month}${day}${hour}${minute}${second}${ms}`;
     };
 
+    const handleEmailDomainClick = (domain: string) => {
+        setEmail(prev => prev.includes('@') ? prev : prev + domain);
+    };
+
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
@@ -48,7 +55,7 @@ export const EnrollmentForm: React.FC = () => {
         const name = formData.get('Name') as string;
         const studentSchool = formData.get('StudentSchool') as string;
         const selectedProgram = formData.get('SelectedProgram') as string;
-        const email = formData.get('Email') as string;
+        // const email = formData.get('Email') as string; // Using state instead
         const countryCode = formData.get('CountryCode') as string;
         const parentPhone = formData.get('ParentPhone') as string;
         const country = formData.get('Country') as string;
@@ -93,6 +100,7 @@ export const EnrollmentForm: React.FC = () => {
                 setStatusMessage(`✅ Thank you! Your enrollment is confirmed.\nYour Query Number: ${queryNumber}`);
                 setStatusIsError(false);
                 form.reset();
+                setEmail('');
                 setResidency('Indian Resident'); // Reset to default
             } else {
                 const errText = await response.text();
@@ -167,7 +175,28 @@ export const EnrollmentForm: React.FC = () => {
                         </div>
                          <div>
                             <label htmlFor="email" className="block text-sm font-medium mb-1 text-slate-700">Parent's Email <span className="text-red-500">*</span></label>
-                            <input type="email" id="email" name="Email" required placeholder="Your email address" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="Email" 
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required 
+                                placeholder="Your email address" 
+                                className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" 
+                            />
+                            <div className="flex flex-wrap gap-2 mt-2">
+                                {emailDomains.map(domain => (
+                                    <button
+                                        key={domain}
+                                        type="button"
+                                        onClick={() => handleEmailDomainClick(domain)}
+                                        className="px-2 py-1 text-xs font-medium text-brand-space bg-sky-50 hover:bg-sky-100 rounded-md border border-sky-200 transition-colors"
+                                    >
+                                        {domain}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                         
                         <div>

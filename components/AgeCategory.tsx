@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { InterestForm } from './InterestForm';
 import { PageProps } from '../types';
+import { WEEKEND_CAMP_DATA, ADVANCED_CAMP_DATA } from '../constants';
 
 const categories = [
     {
@@ -79,6 +80,29 @@ const CategoryCard: React.FC<{ category: typeof categories[0] }> = ({ category }
     </div>
 );
 
+const FeaturedCourseCard: React.FC<{ course: any; onClick: () => void; color: string }> = ({ course, onClick, color }) => (
+    <div className={`bg-white p-6 rounded-xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-300 border-t-4 ${color}`}>
+        <div className="flex justify-between items-start mb-4">
+            <span className={`text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide ${color.includes('sky') ? 'bg-sky-100 text-sky-800' : 'bg-green-100 text-green-800'}`}>
+                {course.ageCategory.split('(')[0]}
+            </span>
+            <span className="text-brand-space font-bold text-sm">{course.price}</span>
+        </div>
+        <h3 className="text-xl font-bold text-slate-800 mb-2">{course.courseName}</h3>
+        <div className="text-sm text-slate-500 mb-4 flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            {course.sessions}
+        </div>
+        <p className="text-slate-600 text-sm mb-6 line-clamp-3">{course.description}</p>
+        <button 
+            onClick={onClick}
+            className="w-full bg-slate-800 hover:bg-brand-space transition-colors text-white font-semibold py-3 rounded-lg text-sm"
+        >
+            View Details
+        </button>
+    </div>
+);
+
 const FaqItemComponent: React.FC<{
     item: { question: string; answer: string };
     isOpen: boolean;
@@ -125,21 +149,40 @@ export const AgeCategoryPage: React.FC<PageProps> = ({ navigate }) => {
                   Tailored for Every Stage of Curiosity
                 </h1>
                 <p className="mt-6 text-lg text-slate-600">
-                  We believe in nurturing passion at the right pace. Our programs are designed to match your child's developmental stage, ensuring they get the most engaging and effective learning experience. Find the perfect launchpad for their journey below.
+                  We believe in nurturing passion at the right pace. Our programs are designed to match your child's developmental stage, ensuring they get the most engaging and effective learning experience.
                 </p>
-                <div className="mt-8">
-                    <a 
-                        href="#" 
-                        onClick={(e) => { e.preventDefault(); navigate('courses'); }} 
-                        className="inline-block bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-8 py-3 rounded-full text-lg shadow-lg"
-                    >
-                        View All Courses
-                    </a>
-                </div>
             </div>
+            
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 {categories.map(cat => <CategoryCard key={cat.title} category={cat} />)}
             </div>
+
+            {/* New Section: Upcoming Batches */}
+            <div className="mt-20 border-t border-slate-200 pt-16">
+                <div className="text-center max-w-3xl mx-auto mb-12">
+                    <span className="bg-red-100 text-red-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide mb-4 inline-block">Limited Seats</span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+                        Upcoming Batches Starting 1st Dec
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600">
+                        Explore our featured courses for this month. Secure your spot before they fill up!
+                    </p>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <FeaturedCourseCard 
+                        course={WEEKEND_CAMP_DATA} 
+                        color="border-sky-400"
+                        onClick={() => navigate('weekend-rocket-blast-off')}
+                    />
+                    <FeaturedCourseCard 
+                        course={ADVANCED_CAMP_DATA} 
+                        color="border-green-500"
+                        onClick={() => navigate('advanced-rocketry-workshop')}
+                    />
+                </div>
+            </div>
+
           </div>
         </section>
 

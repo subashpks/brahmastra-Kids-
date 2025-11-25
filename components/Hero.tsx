@@ -248,12 +248,12 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left order-2 lg:order-1">
-              <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">AGES 5-15</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
-                Mission <span className="text-brand-space font-['Montserrat']">brahmàstra</span><span className="text-[#e40917]">.</span>
+              <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">AGES 6-16</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
+                Launch Your Child's <span className="text-brand-space">Aerospace Journey</span> from Home<span className="text-[#e40917]">.</span>
               </h1>
               <p className="mt-6 text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
-                Blast off on an adventure! Our fun, hands-on courses make learning about planes, rockets, stars, and drones an exciting journey for every curious mind.
+                Turn screen time into skill time. Our fun, hands-on live courses make learning about planes, rockets, stars, and drones an exciting adventure for every curious mind.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                 <a 

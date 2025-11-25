@@ -7,6 +7,8 @@ interface LoginPageProps {
   onLoginSuccess: (user: User) => void;
 }
 
+const emailDomains = ['@gmail.com', '@outlook.com', '@yahoo.com'];
+
 const LoginIllustration = () => (
     <div className="hidden lg:block lg:w-1/2">
         <img src="https://files.catbox.moe/vwlnrr.png" alt="Astronaut floating in space" className="w-full h-full object-cover rounded-r-2xl" />
@@ -59,6 +61,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({ navigate, onLoginSuccess }
         setStatusIsError(true);
     };
 
+    const handleEmailDomainClick = (domain: string) => {
+        setEmail(prev => prev.includes('@') ? prev : prev + domain);
+    };
+
     return (
         <section className="min-h-[calc(100vh-128px)] flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 animate-fade-in-up">
             <div className="max-w-5xl w-full bg-white rounded-2xl shadow-xl flex">
@@ -75,6 +81,18 @@ export const LoginPage: React.FC<LoginPageProps> = ({ navigate, onLoginSuccess }
                             <label htmlFor="email" className="block text-sm font-medium text-slate-700">Email address</label>
                             <div className="mt-1">
                                 <input id="email" name="email" type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" placeholder="you@example.com" />
+                                <div className="flex flex-wrap gap-2 mt-2">
+                                    {emailDomains.map(domain => (
+                                        <button
+                                            key={domain}
+                                            type="button"
+                                            onClick={() => handleEmailDomainClick(domain)}
+                                            className="px-2 py-1 text-xs font-medium text-brand-space bg-sky-50 hover:bg-sky-100 rounded-md border border-sky-200 transition-colors"
+                                        >
+                                            {domain}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
                         </div>
 
