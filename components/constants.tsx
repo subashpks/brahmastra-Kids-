@@ -231,7 +231,7 @@ export const WEEKEND_CAMP_DATA = {
 export const ADVANCED_CAMP_DATA = {
     id: 'advanced-rocketry-workshop',
     courseName: '🛰️ Advanced Rocketry & Propulsion Workshop!',
-    ageCategory: '11-16 years (Class 6 to 10)',
+    ageCategory: '12-16 years (Class 7 to 11)',
     sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
     description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering. Exclusive batch of 10 students.',
     price: '₹3000/-',
@@ -602,7 +602,7 @@ export const FAQ_DATA: FaqItem[] = [
     },
     {
         question: "Who are the courses for?",
-        answer: "Our courses are designed for two main age groups: Junior Aviators (ages 5-10) and Senior Innovators (ages 11-15). Each course is tailored to be age-appropriate, engaging, and educational."
+        answer: "Our courses are designed for two main age groups: Junior Aviators (ages 5-10) and Senior Innovators (ages 12-16). Each course is tailored to be age-appropriate, engaging, and educational."
     },
     {
         question: "Are the courses safe?",

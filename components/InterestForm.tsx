@@ -178,7 +178,7 @@ export const InterestForm: React.FC = () => {
                             <select id="ageCategory" name="AgeCategory" required defaultValue="" className="w-full bg-white text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                 <option value="" disabled>Select an age group</option>
                                 <option value="Junior Aviators (Ages 5-10)">Junior Aviators (Ages 5-10)</option>
-                                <option value="Senior Innovators (Ages 11-15)">Senior Innovators (Ages 11-15)</option>
+                                <option value="Senior Innovators (Ages 12-16)">Senior Innovators (Ages 12-16)</option>
                             </select>
                         </div>
                         <div>

@@ -17,8 +17,8 @@ const categories = [
     {
         emoji: '🧠',
         title: 'Senior Innovators',
-        age: 'Ages 11-15',
-        standard: '6th–9th Standard',
+        age: 'Ages 12-16',
+        standard: '7th–11th Standard',
         traits: 'Analytical, logical, future-focused',
         focus: 'Coding, aerospace fundamentals, career guiding',
         color: 'border-green-500'

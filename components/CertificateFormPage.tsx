@@ -4,7 +4,7 @@ import { PageProps } from '../types';
 
 const freePrograms = [
     "Astronomy For Kids (Ages 6-10)",
-    "Rocket Science for Kids (Ages 11-17)"
+    "Rocket Science for Kids (Ages 12-16)"
 ];
 
 // Multi-step form component
