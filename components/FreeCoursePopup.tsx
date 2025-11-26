@@ -70,7 +70,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                             title="Rocket Science Course"
                             date="Our 5-weekend full-fledged course for young innovators."
                             buttonText="Explore Course"
-                            onClick={() => onRedirect('weekend-rocket-blast-off')}
+                            onClick={() => onRedirect('courses')}
                             imageUrl="https://files.catbox.moe/knklae.png"
                         />
                         <PopupCard 
