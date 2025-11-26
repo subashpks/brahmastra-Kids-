@@ -12,8 +12,8 @@ interface CheckoutPageProps extends PageProps {
 
 const grades = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12'];
 const ageCategories = [
-    'Junior Aviators (Ages 5-10)',
-    'Senior Innovators (Ages 12-16)'
+    'Junior Scientist (Ages 6-11)',
+    'Senior Scientist (Ages 12-16)'
 ];
 const emailDomains = ['@gmail.com', '@outlook.com', '@yahoo.com'];
 

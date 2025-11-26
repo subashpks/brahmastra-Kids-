@@ -8,7 +8,7 @@ const categories = [
     {
         emoji: '🚀',
         title: 'Junior Aviators',
-        age: 'Ages 5-10',
+        age: 'Ages 6-11',
         standard: '1st–5th Standard',
         traits: 'Curious, imaginative, hands-on learners',
         focus: 'Story-based learning, DIY kits, fun experiments',

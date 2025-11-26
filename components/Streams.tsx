@@ -159,7 +159,7 @@ export const CoursesPage: React.FC<PageProps> = ({ navigate }) => {
                                         onClick={() => navigate('advanced-rocketry-workshop')} 
                                         className="bg-transparent border-2 border-white/30 hover:bg-white/10 text-white font-bold px-8 py-4 rounded-full transition-all text-center"
                                     >
-                                        Senior Workshop (11-16 Yrs)
+                                        Senior Workshop (12-16 Yrs)
                                     </button>
                                 </div>
                             </div>

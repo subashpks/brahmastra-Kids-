@@ -32,7 +32,7 @@ interface DashboardPageProps {
 const standards = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'];
 const curriculums = ['CBSE', 'Matric', 'Stateboard', 'ICSE', 'IB', 'Other'];
 const ageCategories = [
-    'Junior Aviators (Ages 5-10)',
+    'Junior Aviators (Ages 6-11)',
     'Senior Innovators (Ages 12-16)'
 ];
 const genders = ['Male', 'Female', 'Prefer not to say'];
