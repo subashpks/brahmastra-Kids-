@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface PaymentSuccessPageProps {
@@ -10,6 +9,7 @@ interface PaymentSuccessPageProps {
         studentName?: string;
         parentName?: string;
         phone?: string;
+        ageCategory?: string;
     };
 }
 
@@ -24,6 +24,7 @@ export const PaymentSuccessPage: React.FC<PaymentSuccessPageProps> = ({ navigate
         msg += `Course: ${transactionData?.courseName || 'N/A'}\n`;
         
         if (transactionData?.studentName) msg += `Student Name: ${transactionData.studentName}\n`;
+        if (transactionData?.ageCategory) msg += `Age Category: ${transactionData.ageCategory}\n`;
         if (transactionData?.parentName) msg += `Parent Name: ${transactionData.parentName}\n`;
         if (transactionData?.phone) msg += `Parent Phone: ${transactionData.phone}\n`;
         

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { PageProps } from '../types';
 
@@ -122,7 +121,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                 amount: item.price,
                 studentName: formData.studentName,
                 parentName: formData.parentName,
-                phone: formData.phone
+                phone: formData.phone,
+                ageCategory: formData.ageCategory
             });
 
         } catch (error) {
