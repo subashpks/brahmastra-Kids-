@@ -12,8 +12,8 @@ interface CheckoutPageProps extends PageProps {
 
 const grades = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12'];
 const ageCategories = [
-    'Junior Scientist (Ages 6-11)',
-    'Senior Scientist (Ages 12-16)'
+    'Junior Scientist (6-11 Yrs)',
+    'Senior Scientist (12-16 Yrs)'
 ];
 const emailDomains = ['@gmail.com', '@outlook.com', '@yahoo.com'];
 
@@ -101,7 +101,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
         setStatusMessage('Verifying payment details...');
         setStatusIsError(false);
 
-        const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/3ae2a21f31b14c0e817d5aabf7c27b87/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=Z-1C7_xjD9crnK7yTVNTZFiuBVkBLxIAYu1IYqWdXvQ";
+        const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/becb42b0752441f983f4abc946770f7c/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=r8U7PNPCwG349upoz7rP4hc48uqY0u8nkFIgcc5yvLk";
 
         try {
              await fetch(powerAutomateURL, {
@@ -110,8 +110,6 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                 body: JSON.stringify({
                     FormType: 'CourseBookingConfirmed',
                     ...formData,
-                    CourseName: item.name,
-                    Slot: item.slot,
                     Price: item.price,
                     TransactionId: utrNumber, // Sending UTR here
                     Status: 'Paid (Manual Verification)'

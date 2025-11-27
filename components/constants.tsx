@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { Program, FaqItem, Testimonial, Activity } from './types';
 
@@ -124,7 +125,7 @@ export const COURSES_DATA = [
 export const WEEKEND_CAMP_DATA = {
     id: 'weekend-rocket-blast-off',
     courseName: 'Rocket Science: Full-Fledged Course for Kids',
-    ageCategory: 'Junior Scientist (6-11 years)',
+    ageCategory: 'Junior Scientist (6-11 Yrs)',
     sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
     description: 'Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks! Only 10 seats available.',
     price: '₹3000/-',
@@ -231,7 +232,7 @@ export const WEEKEND_CAMP_DATA = {
 export const ADVANCED_CAMP_DATA = {
     id: 'advanced-rocketry-workshop',
     courseName: '🛰️ Advanced Rocketry & Propulsion Workshop!',
-    ageCategory: 'Senior Scientist (12-16 years)',
+    ageCategory: 'Senior Scientist (12-16 Yrs)',
     sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
     description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering. Exclusive batch of 10 students.',
     price: '₹3000/-',

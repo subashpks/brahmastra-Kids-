@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { PageProps } from '../types';
 import { COURSES_DATA } from '../constants';
@@ -153,13 +154,13 @@ export const CoursesPage: React.FC<PageProps> = ({ navigate }) => {
                                         onClick={() => navigate('weekend-rocket-blast-off')} 
                                         className="bg-brand-sky hover:bg-sky-500 text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all transform hover:scale-105 text-center"
                                     >
-                                        Junior Camp (6-11 Yrs)
+                                        Junior Scientist (6-11 Yrs)
                                     </button>
                                     <button 
                                         onClick={() => navigate('advanced-rocketry-workshop')} 
                                         className="bg-transparent border-2 border-white/30 hover:bg-white/10 text-white font-bold px-8 py-4 rounded-full transition-all text-center"
                                     >
-                                        Senior Workshop (12-16 Yrs)
+                                        Senior Scientist (12-16 Yrs)
                                     </button>
                                 </div>
                             </div>

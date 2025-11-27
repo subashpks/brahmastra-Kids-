@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { PageProps } from '../types';
 import { COURSES_DATA } from '../constants';
