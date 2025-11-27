@@ -65,21 +65,16 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         Don't miss out on these exciting opportunities for your child.
                     </p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <PopupCard 
-                            title="Rocket Science Course"
-                            date="Our 5-weekend full-fledged course for young innovators."
-                            buttonText="Explore Course"
-                            onClick={() => onRedirect('courses')}
-                            imageUrl="https://files.catbox.moe/knklae.png"
-                        />
-                        <PopupCard 
-                            title="Free Weekend Course"
-                            date="Join Mission brahmàstra. Live online sessions every weekend."
-                            buttonText="Register Free"
-                            onClick={() => onRedirect('freecourses')}
-                            imageUrl="https://files.catbox.moe/kcz5ca.png"
-                        />
+                    <div className="flex justify-center">
+                        <div className="w-full max-w-sm">
+                            <PopupCard 
+                                title="Rocket Science Course"
+                                date="Our 5-weekend full-fledged course for young innovators."
+                                buttonText="Explore Course"
+                                onClick={() => onRedirect('courses')}
+                                imageUrl="https://files.catbox.moe/knklae.png"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
