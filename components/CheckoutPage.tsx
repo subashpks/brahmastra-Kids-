@@ -152,7 +152,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     }
 
     // UPI String format: upi://pay?pa=UPI_ID&pn=NAME&am=AMOUNT&cu=INR
-    const upiLink = `upi://pay?pa=Q021454639@ybl&pn=Brahmastra Aerospace&am=${cleanPrice}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
+    const upiLink = `upi://pay?pa=brahmastra97779@cnrb&pn=Brahmastra Aerospace&am=${cleanPrice}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
 
     return (
@@ -290,7 +290,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                         </div>
                                         
                                         <div className="text-sm text-slate-500 mb-8">
-                                            <p>UPI ID: <strong className="text-slate-700 font-mono select-all">Q021454639@ybl</strong></p>
+                                            <p>UPI ID: <strong className="text-slate-700 font-mono select-all">brahmastra97779@cnrb</strong></p>
                                             <p>Name: <strong className="text-slate-700">Brahmastra Aerospace</strong></p>
                                         </div>
 
