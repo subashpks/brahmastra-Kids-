@@ -33,14 +33,14 @@ const upcomingPrograms = [
         subDomain: "🚀 Space Exploration",
         title: "How Can We Visit Space? 🚀", 
         age: "Ages 6-11", 
-        date: "30 Nov | Saturday", 
+        date: "29 Nov | Saturday", 
         time: "05:30 PM - 06:30 PM IST",
     },
     { 
         subDomain: "🚀 Space Exploration",
         title: "What Are Famous Space Missions? 🛰️", 
         age: "Ages 12-16", 
-        date: "30 Nov | Saturday", 
+        date: "29 Nov | Saturday", 
         time: "05:30 PM - 06:30 PM IST",
     }
 ];
@@ -185,7 +185,7 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-12">
                         <span className="text-brand-space font-bold tracking-wider uppercase text-sm">Schedule</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Upcoming Live Batches</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Next Free session</h2>
                         <p className="text-2xl text-brand-space font-bold mt-2">🔭 Astronomy</p>
                     </div>
 
