@@ -22,7 +22,6 @@ export const EnrollmentForm: React.FC = () => {
     const [statusMessage, setStatusMessage] = useState<string>('');
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [statusIsError, setStatusIsError] = useState<boolean>(false);
-    const [residency, setResidency] = useState<string>('Indian Resident');
     const [email, setEmail] = useState<string>('');
 
     const powerAutomateURL = "https://defaultc4472f3e25c34b5b8e7c381876872e.ac.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/2e14c8e5b9d84358b5b3e065682d141d/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=nfMN8qKf73-sBOSjgh5zICbnX1EmGNEAG0pgO56Wth4";
@@ -62,10 +61,9 @@ export const EnrollmentForm: React.FC = () => {
         const state = formData.get('State') as string;
         const howDidYouHear = formData.get('HowDidYouHear') as string;
         const questions = formData.get('Questions') as string;
-        const residencyStatus = formData.get('Residency') as string;
         const attendedBefore = formData.get('AttendedBefore') as string;
         
-        if (!name || !studentSchool || !email || !parentPhone || !country || !state || !howDidYouHear || !selectedProgram || !residencyStatus || !attendedBefore) {
+        if (!name || !studentSchool || !email || !parentPhone || !country || !state || !howDidYouHear || !selectedProgram || !attendedBefore) {
              setStatusMessage('Please fill in all required fields.');
              setStatusIsError(true);
              setIsSubmitting(false);
@@ -85,7 +83,6 @@ export const EnrollmentForm: React.FC = () => {
             State: state.trim(),
             HowDidYouHear: howDidYouHear,
             Questions: questions.trim(),
-            Residency: residencyStatus,
             AttendedBefore: attendedBefore
         };
 
@@ -101,7 +98,6 @@ export const EnrollmentForm: React.FC = () => {
                 setStatusIsError(false);
                 form.reset();
                 setEmail('');
-                setResidency('Indian Resident'); // Reset to default
             } else {
                 const errText = await response.text();
                 console.error("Power Automate error response:", errText);
@@ -115,17 +111,10 @@ export const EnrollmentForm: React.FC = () => {
         }
     };
 
-    const indianPrograms = [
-        "ISRO - Our Space story (Ages 6-11)",
-        "ISRO - India's Tech Leap on Space (Ages 12-16)"
+    const availablePrograms = [
+        "(Ages 6-11) How Can We Visit Space? 🚀",
+        "(Ages 12-16) What Are Famous Space Missions? 🛰️"
     ];
-
-    const nriPrograms = [
-        "Introduction to Rocket Science (Ages 6-11)",
-        "Advanced Rocket Science (Ages 12-16)"
-    ];
-
-    const availablePrograms = residency === 'Non-Resident Indian' ? nriPrograms : indianPrograms;
 
     return (
         <section id="contact" className="py-16 md:py-24 bg-slate-100">
@@ -149,23 +138,8 @@ export const EnrollmentForm: React.FC = () => {
                             <input type="text" id="studentSchool" name="StudentSchool" required placeholder="Name of the school" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
                         </div>
                         
-                        <div>
-                            <label htmlFor="residency" className="block text-sm font-medium mb-1 text-slate-700">Residency Status <span className="text-red-500">*</span></label>
-                            <select 
-                                id="residency" 
-                                name="Residency" 
-                                required 
-                                value={residency} 
-                                onChange={(e) => setResidency(e.target.value)}
-                                className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky"
-                            >
-                                <option value="Indian Resident">Indian Resident</option>
-                                <option value="Non-Resident Indian">Non-Resident Indian</option>
-                            </select>
-                        </div>
-
                          <div>
-                            <label htmlFor="selectedProgram" className="block text-sm font-medium mb-1 text-slate-700">Select Program <span className="text-red-500">*</span></label>
+                            <label htmlFor="selectedProgram" className="block text-sm font-medium mb-1 text-slate-700">Age category <span className="text-red-500">*</span></label>
                             <select id="selectedProgram" name="SelectedProgram" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
                                 <option value="" disabled>Choose a program</option>
                                 {availablePrograms.map((prog) => (
