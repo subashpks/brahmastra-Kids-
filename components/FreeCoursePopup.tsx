@@ -13,7 +13,7 @@ const PopupCard: React.FC<{
     onClick: () => void;
     imageUrl: string;
 }> = ({ title, date, buttonText, onClick, imageUrl }) => (
-    <div className="flex flex-col rounded-lg overflow-hidden bg-slate-50 border border-slate-200 w-full transition-transform hover:scale-[1.02] duration-200">
+    <div className="flex flex-col rounded-lg overflow-hidden bg-slate-50 border border-slate-200 w-full transition-transform hover:scale-[1.02] duration-200 h-full">
         <img src={imageUrl} alt={title} className="w-full h-32 sm:h-40 object-cover" />
         <div className="p-4 text-center flex-grow flex flex-col">
             <h3 className="text-lg font-bold text-brand-space leading-tight">{title}</h3>
@@ -65,16 +65,21 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         Don't miss out on these exciting opportunities for your child.
                     </p>
                     
-                    <div className="flex justify-center">
-                        <div className="w-full max-w-sm">
-                            <PopupCard 
-                                title="Rocket Science Course"
-                                date="Our 5-weekend full-fledged course for young innovators."
-                                buttonText="Explore Course"
-                                onClick={() => onRedirect('courses')}
-                                imageUrl="https://files.catbox.moe/knklae.png"
-                            />
-                        </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+                        <PopupCard 
+                            title="Free Weekend Workshop"
+                            date="Live interactive sessions on Astronomy & Space Science."
+                            buttonText="Register for Free"
+                            onClick={() => onRedirect('freecourses')}
+                            imageUrl="https://files.catbox.moe/v9le4h.png"
+                        />
+                        <PopupCard 
+                            title="Rocket Science Course"
+                            date="Our 5-weekend full-fledged course for young innovators."
+                            buttonText="Explore Course"
+                            onClick={() => onRedirect('courses')}
+                            imageUrl="https://files.catbox.moe/knklae.png"
+                        />
                     </div>
                 </div>
             </div>
