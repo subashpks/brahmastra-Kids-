@@ -43,7 +43,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
             onClick={handleBackdropClick}
         >
             {/* Container with max-height for scrolling on small screens */}
-            <div className="bg-white rounded-2xl shadow-2xl max-w-4xl w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full relative transform transition-all duration-300 scale-95 animate-scale-in max-h-[90vh] overflow-y-auto scrollbar-hide flex flex-col">
                 
                 {/* Close Button: Positioned inside the card for better visibility */}
                 <button 
@@ -65,14 +65,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         Don't miss out on these exciting opportunities for your child.
                     </p>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-                        <PopupCard 
-                            title="Free Weekend Workshop"
-                            date="Live interactive sessions on Astronomy & Space Science."
-                            buttonText="Register for Free"
-                            onClick={() => onRedirect('freecourses')}
-                            imageUrl="https://files.catbox.moe/v9le4h.png"
-                        />
+                    <div className="max-w-sm mx-auto">
                         <PopupCard 
                             title="Rocket Science Course"
                             date="Our 5-weekend full-fledged course for young innovators."
