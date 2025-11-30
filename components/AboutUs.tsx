@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 
 // --- Philosophy Data from Differentiators ---
 const whatWeDoData = [
@@ -107,44 +106,61 @@ const historyItems = [
     {
         year: '2019',
         title: 'Founding & Creation of Forum',
-        description: 'Brahmastra Aerospace founded with the vision to build a strong aerospace forum and collaborative ecosystem.'
+        description: 'Brahmastra Aerospace founded with the vision to build a strong aerospace forum and collaborative ecosystem.',
+        emoji: '💡'
     },
     {
         year: '2019–2021',
         title: 'Nationwide & Global Aerospace Community Building',
-        description: 'Built one of India\'s largest aerospace student communities; connected with aerospace engineers across India and the world; engaged 20,000+ students. Widely known as the forum where “every aerospace engineer in India is a student of Brahmastra Aerospace.”'
+        description: 'Built one of India\'s largest aerospace student communities; connected with aerospace engineers across India and the world; engaged 20,000+ students. Widely known as the forum where “every aerospace engineer in India is a student of Brahmastra Aerospace.”',
+        emoji: '🌐'
     },
     {
         year: '2019–2022',
         title: 'Alumni Success Worldwide',
-        description: 'Alumni began joining top global aerospace organizations including NASA, ESA, ISRO, HAL, Boeing, Airbus, and other leading institutions.'
+        description: 'Alumni began joining top global aerospace organizations including NASA, ESA, ISRO, HAL, Boeing, Airbus, and other leading institutions.',
+        emoji: '🎓'
     },
     {
         year: '2022',
         title: 'Appointed ISRO Space Tutor',
-        description: 'Officially recognized and appointed by ISRO as a Space Tutor, strengthening STEM outreach, space education, and national-level engagement.'
+        description: 'Officially recognized and appointed by ISRO as a Space Tutor, strengthening STEM outreach, space education, and national-level engagement.',
+        emoji: '🛰️'
     },
     {
         year: '2023–2025',
         title: 'Appointed US–India Missions Space Tutor',
-        description: 'Selected by the US Embassy in India as the US–India Missions "Space Tutor" for 2023, 2024, and 2025, conducting international-level educational and aerospace outreach programs.'
+        description: 'Selected by the US Embassy in India as the US–India Missions "Space Tutor" for 2023, 2024, and 2025, conducting international-level educational and aerospace outreach programs.',
+        emoji: '🤝'
     },
     {
         year: 'Ongoing',
         title: 'Training Support to Indian Armed Forces',
-        description: 'Conducted drone-based hands-on training for Indian Armed Forces personnel in Kashmir, focusing on close-combat UAV applications, enhancing tactical drone capabilities.'
+        description: 'Conducted drone-based hands-on training for Indian Armed Forces personnel in Kashmir, focusing on close-combat UAV applications, enhancing tactical drone capabilities.',
+        emoji: '🛡️'
     }
 ];
 
-const TimelineCard: React.FC<{ item: typeof historyItems[0] }> = ({ item }) => (
-    <div className="p-6 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl border-l-4 border-brand-timeline-accent">
-        <p className="font-bold text-brand-space mb-1">{item.year}</p>
-        <h3 className="text-xl font-bold text-slate-800">{item.title}</h3>
-        <p className="mt-2 text-slate-600">{item.description}</p>
+const JourneyCard: React.FC<{ item: typeof historyItems[0] }> = ({ item }) => (
+    <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-t-8 border-brand-space min-h-[475px] flex flex-col justify-center text-center items-center transition-all duration-300">
+        <p className="text-6xl mb-4">{item.emoji}</p>
+        <p className="text-4xl md:text-5xl font-extrabold text-brand-space mb-4">{item.year}</p>
+        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">{item.title}</h3>
+        <p className="mt-4 text-slate-600 text-lg leading-relaxed">{item.description}</p>
     </div>
 );
 
 export const AboutUsPage: React.FC = () => {
+  const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
+
+  const handleNextHistory = () => {
+      setCurrentHistoryIndex(prev => Math.min(prev + 1, historyItems.length - 1));
+  };
+
+  const handlePrevHistory = () => {
+      setCurrentHistoryIndex(prev => Math.max(prev - 1, 0));
+  };
+
   return (
     <div className="animate-fade-in-up">
       {/* Section 1: Introduction */}
@@ -169,44 +185,45 @@ export const AboutUsPage: React.FC = () => {
                         Our Journey
                     </h2>
                     <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
-                        From a spark of an idea to a nationwide movement.
+                        From a spark of an idea to a nationwide movement. Click through our timeline to see our major milestones.
                     </p>
                 </div>
-                <div className="relative mt-16 max-w-4xl mx-auto">
-                    {/* Vertical Line */}
-                    <div className="absolute left-3 md:left-1/2 top-0 w-1 h-full bg-slate-200 md:-translate-x-1/2" aria-hidden="true"></div>
+                <div className="relative mt-16 max-w-3xl mx-auto">
+                    <div key={currentHistoryIndex} className="animate-pop-in">
+                        <JourneyCard item={historyItems[currentHistoryIndex]} />
+                    </div>
 
-                    <div className="space-y-12">
-                        {historyItems.map((item, index) => {
-                            const isLeft = index % 2 === 0;
-                            return (
-                                <div key={index} className="relative">
-                                    {/* Dot */}
-                                    <div className="w-6 h-6 rounded-full bg-slate-50 flex items-center justify-center absolute left-3 top-6 md:left-1/2 -translate-x-1/2 z-10">
-                                        <div className="w-4 h-4 bg-brand-space rounded-full"></div>
-                                    </div>
-                                    
-                                    {/* Desktop Grid Layout */}
-                                    <div className="hidden md:grid md:grid-cols-2 md:gap-x-16">
-                                        {isLeft ? (
-                                            <div className="text-right"><TimelineCard item={item} /></div>
-                                        ) : (
-                                            <div></div> // Spacer
-                                        )}
-                                        {!isLeft ? (
-                                            <div className="text-left"><TimelineCard item={item} /></div>
-                                        ) : (
-                                            <div></div> // Spacer
-                                        )}
-                                    </div>
-                                    
-                                    {/* Mobile Layout */}
-                                    <div className="md:hidden pl-10">
-                                        <TimelineCard item={item} />
-                                    </div>
-                                </div>
-                            );
-                        })}
+                    <div className="flex justify-between items-center mt-8">
+                        <button 
+                            onClick={handlePrevHistory} 
+                            disabled={currentHistoryIndex === 0}
+                            className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white shadow-md hover:bg-slate-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            aria-label="Previous milestone"
+                        >
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+                            Prev
+                        </button>
+                        
+                        <div className="flex gap-2">
+                            {historyItems.map((_, index) => (
+                                <button 
+                                    key={index} 
+                                    onClick={() => setCurrentHistoryIndex(index)}
+                                    className={`w-3 h-3 rounded-full transition-colors ${index === currentHistoryIndex ? 'bg-brand-space' : 'bg-slate-300 hover:bg-slate-400'}`}
+                                    aria-label={`Go to milestone ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+
+                        <button 
+                            onClick={handleNextHistory} 
+                            disabled={currentHistoryIndex === historyItems.length - 1}
+                            className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white shadow-md hover:bg-slate-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                            aria-label="Next milestone"
+                        >
+                            Next
+                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+                        </button>
                     </div>
                 </div>
           </div>
