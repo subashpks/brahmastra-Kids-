@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { HomePage } from './Hero';
@@ -15,7 +16,7 @@ import { QuantumPhysicsPage } from './QuantumPhysicsPage';
 import { MolecularChemistryPage } from './MolecularChemistryPage';
 import { AstrobiologyPage } from './AstrobiologyPage';
 import { Differentiators } from './Differentiators';
-import { CoursesPage } from './Streams';
+import { CoursesPage } from './CoursesPage';
 import { AstronomyPage } from './AstronomyPage';
 import { FreeCoursePopup } from './FreeCoursePopup';
 import { LoginPage } from './LoginPage';

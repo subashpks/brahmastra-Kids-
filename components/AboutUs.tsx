@@ -1,11 +1,106 @@
+
 import React from 'react';
+
+// --- Philosophy Data from Differentiators ---
+const whatWeDoData = [
+    {
+        emoji: '💡',
+        title: 'Fair Price, Priceless Mentorship',
+        description: 'We believe every child deserves access to real experts. Our pricing makes high-quality STEM education accessible, providing genuine aerospace engineers as mentors without the hefty price tag.',
+        color: 'border-orange-500',
+    },
+    {
+        emoji: '🌱',
+        title: 'We Nurture Thinkers, Not Toppers',
+        description: 'Instead of chasing ranks, we chase "aha!" moments. We build a deep passion for learning and critical thinking—the true markers of long-term success, far beyond any report card.',
+        color: 'border-brand-sun',
+    },
+    {
+        emoji: '✂️',
+        title: 'We Build, We Don\'t Bore',
+        description: 'Forget endless worksheets. Our kids learn by doing—launching rockets, designing wings, and solving real-world problems. This hands-on approach makes learning stick and turns screen time into skill time.',
+        color: 'border-green-500',
+    },
+    {
+        emoji: '👩‍🏫',
+        title: 'Q: Why Small Groups?',
+        description: 'A: Because every child is unique. In a small group, there\'s no "back bench." Our mentors can focus on individual needs, answer every curious question, and tailor the pace so your child builds confidence, free from the pressure to keep up or fit in.',
+        color: 'border-purple-500',
+    },
+    {
+        emoji: '🤝',
+        title: 'Collaboration Over Competition',
+        description: 'The greatest scientific breakthroughs come from teamwork. We create a supportive space where children share ideas, celebrate each other\'s discoveries, and learn that working together is more powerful than competing alone.',
+        color: 'border-teal-500',
+    },
+    {
+        emoji: '✨',
+        title: 'We Ignite Curiosity, Not False Hope',
+        description: 'We promise something more valuable than a guaranteed rank: a genuine spark of curiosity. We teach your child how to think, problem-solve, and explore—skills that empower them to become self-reliant learners for life.',
+        color: 'border-brand-sky',
+    },
+];
+
+const whatWeDontDoData = [
+    {
+        emoji: '💰',
+        title: 'We Don’t Overcharge',
+        description: "We understand the sacrifices parents make for quality education. Our goal is to provide top-tier mentorship from real aerospace engineers at a fair price, without compromise."
+    },
+    {
+        emoji: '📉',
+        title: 'We Don’t Join the "Rat Race"',
+        description: "In a world of intense pressure for marks and ranks, we focus on what truly matters: your child's unique curiosity. We build a foundation for lifelong success, not just exam performance."
+    },
+    {
+        emoji: '📚',
+        title: 'We Don’t Believe in "Busy Work"',
+        description: "Your family's time is valuable. We replace boring PDFs and rote homework with engaging, hands-on projects that teach critical thinking and real-world skills."
+    },
+    {
+        emoji: '👥',
+        title: 'We Don’t Use a One-Size-Fits-All Model',
+        description: "Peer pressure often forces children into the same mold. We celebrate individuality. Our small groups ensure we can tailor the experience to your child's unique learning style, pace, and interests."
+    },
+    {
+        emoji: '🏆',
+        title: 'We Don’t Foster Unhealthy Competition',
+        description: "We believe collaboration drives innovation. Our supportive environment encourages kids to share ideas and celebrate discoveries together, building teamwork skills instead of stressful rivalry."
+    },
+    {
+        emoji: '🎯',
+        title: 'We Don’t Promise "Guaranteed Toppers"',
+        description: "We don't sell unrealistic dreams of guaranteed ranks. Instead, we promise something more valuable: to awaken your child's inner scientist, teach them how to think critically, and build a genuine passion for learning that lasts a lifetime."
+    }
+];
+
+const InfoCard: React.FC<{ card: { emoji: string; title: string; description: string; color?: string; } }> = ({ card }) => (
+    <div className={`bg-white p-8 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-t-4 ${card.color || 'border-red-500'} flex flex-col`}>
+        <div className="text-4xl mb-4">{card.emoji}</div>
+        <h3 className="text-xl font-bold text-slate-800 mb-2">{card.title}</h3>
+        <p className="text-slate-600 flex-grow">{card.description}</p>
+    </div>
+);
 
 // --- Founder Data ---
 const founder = {
     name: 'Subash P. Kuppusamy',
     imageUrl: 'https://files.catbox.moe/gpjimc.png',
-    bio: 'The story of Brahmastra is the story of Subash P. Kuppusamy\'s unwavering vision. From his foundational experience with fighter jets at HAL to mentoring thousands of students, his mission has always been clear: to make aerospace education accessible to every household in India and inspire the next generation of innovators.'
+    bio: 'An Aerospace Engineer from Anna University, Subash P. Kuppusamy\'s unwavering vision began with foundational experience on the Tejas Fighter Aircraft at Hindustan Aeronautics Limited (HAL). From mentoring thousands of students to training the armed forces, his mission is to make aerospace education accessible and inspire the next generation of innovators.',
+    achievements: [
+        'Aerospace Engineer from Anna University',
+        'Worked on Tejas Fighter Aircraft at HAL, Bangalore',
+        'DGCA Certified Drone Pilot (Medium & Small)',
+        'Trained Indian Armed Forces in UAV applications in Kashmir',
+        'Appointed ISRO Space Tutor',
+    ]
 };
+
+const CheckIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+);
 
 // --- History Data ---
 const historyItems = [
@@ -41,30 +136,6 @@ const historyItems = [
     }
 ];
 
-// --- Team Data ---
-const teamMembers = [
-    {
-        name: 'Rosy Subha Hannah R',
-        role: 'Pursuing a Ph.D. in Aerospace Engineering at Karunya University with a specialization in CFD.',
-        imageUrl: 'https://placehold.co/200x200/e2e8f0/64748b?text=RH'
-    },
-    {
-        name: 'Aruna Devi TM',
-        role: 'Dr. Kalpana Chawla Scholar at the International Space University (France) and an alumnus of the University of Oxford.',
-        imageUrl: 'https://placehold.co/200x200/e2e8f0/64748b?text=AD'
-    },
-    {
-        name: 'Basit Nisar Bhat',
-        role: 'BTech in Aerospace Engineering from BSA Crescent Institute, specializing in Drones and Aerospace Composite Materials.',
-        imageUrl: 'https://placehold.co/200x200/e2e8f0/64748b?text=BNB'
-    },
-    {
-        name: 'Mehreena Lone',
-        role: 'BTech in Aerospace Engineering from BSA Crescent Institute, specializing in Drones.',
-        imageUrl: 'https://placehold.co/200x200/e2e8f0/64748b?text=ML'
-    }
-];
-
 const TimelineCard: React.FC<{ item: typeof historyItems[0] }> = ({ item }) => (
     <div className="p-6 bg-white rounded-xl shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl border-l-4 border-brand-timeline-accent">
         <p className="font-bold text-brand-space mb-1">{item.year}</p>
@@ -73,26 +144,32 @@ const TimelineCard: React.FC<{ item: typeof historyItems[0] }> = ({ item }) => (
     </div>
 );
 
-const TeamMemberCard: React.FC<{ member: typeof teamMembers[0] }> = ({ member }) => (
-    <div className="bg-white p-6 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 text-center flex flex-col items-center h-full">
-        <img src={member.imageUrl} alt={`Photo of ${member.name}`} className="w-28 h-28 rounded-full mb-4 object-cover border-4 border-slate-100" />
-        <h3 className="text-xl font-bold text-slate-800">{member.name}</h3>
-        <p className="mt-2 text-slate-600 text-sm flex-grow">{member.role}</p>
-    </div>
-);
-
 export const AboutUsPage: React.FC = () => {
   return (
     <div className="animate-fade-in-up">
-      {/* Section 1: Our Journey */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      {/* Section 1: Introduction */}
+      <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-6">
                <div className="text-center max-w-3xl mx-auto">
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                        Our Journey
+                        About Us
                     </h1>
-                    <p className="mt-4 text-lg text-slate-600">
-                        From a spark of an idea to a nationwide movement, this is the story of a journey fueled by passion, expertise, and a commitment to the next generation.
+                    <p className="mt-6 text-lg text-slate-600">
+                        Brahmastra was born to make aerospace education accessible and replace rote learning with real-world wonder.
+                    </p>
+                </div>
+          </div>
+      </section>
+
+      {/* Section 2: Our Journey */}
+      <section className="py-16 bg-slate-50">
+          <div className="container mx-auto px-6">
+               <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                        Our Journey
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+                        From a spark of an idea to a nationwide movement.
                     </p>
                 </div>
                 <div className="relative mt-16 max-w-4xl mx-auto">
@@ -135,46 +212,83 @@ export const AboutUsPage: React.FC = () => {
           </div>
       </section>
 
-      {/* Section 2: The Visionary Behind This */}
+      {/* Section 3: Our Philosophy */}
       <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                    The Visionary Behind This
-                </h2>
-            </div>
-            <div className="grid lg:grid-cols-5 gap-12 items-center max-w-4xl mx-auto">
-                <div className="lg:col-span-2 flex justify-center">
-                    <img className="w-48 h-48 lg:w-56 lg:h-56 object-cover rounded-full shadow-2xl border-4 border-brand-sky" src={founder.imageUrl} alt={`Photo of ${founder.name}`} />
-                </div>
-                <div className="lg:col-span-3 text-center lg:text-left">
-                    <h3 className="text-3xl font-bold text-brand-space">{founder.name}</h3>
-                    <p className="mt-4 text-lg text-slate-600">
-                        {founder.bio}
+            <div className="container mx-auto px-6">
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
+                        Our Philosophy
+                    </h2>
+                    <p className="mt-6 text-lg text-slate-600">
+                        We believe in a different approach to learning—one that puts curiosity first and builds confidence for life.
                     </p>
                 </div>
+
+                <div className="mb-20">
+                    <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">
+                       ✅ What We Do Instead
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {whatWeDoData.map((card) => (
+                            <InfoCard key={card.title} card={card} />
+                        ))}
+                    </div>
+                </div>
+
+                <div>
+                    <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">
+                        ❌ What We Don’t Do
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        {whatWeDontDoData.map((card) => (
+                           <InfoCard key={card.title} card={card} />
+                        ))}
+                    </div>
+                </div>
             </div>
-        </div>
       </section>
 
-      {/* Section 3: Meet the Experts */}
+      {/* Section 4: The Visionary Behind This */}
       <section className="py-16 md:py-24 bg-slate-50">
-        <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                    Meet the Experts
-                </h2>
-                <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
-                    Our mission is supported by a team of brilliant minds and passionate educators dedicated to shaping the future of aerospace.
-                </p>
+            <div className="container mx-auto px-6">
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                        Meet the Founder
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+                        Meet the visionary founder and chief mentor behind Brahmastra Aerospace.
+                    </p>
+                </div>
+                <div className="grid lg:grid-cols-5 gap-12 items-center max-w-5xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+                    <div className="lg:col-span-2 flex justify-center">
+                        <img className="w-48 h-48 lg:w-56 lg:h-56 object-cover rounded-full shadow-2xl border-4 border-brand-sky" src={founder.imageUrl} alt={`Photo of ${founder.name}`} />
+                    </div>
+                    <div className="lg:col-span-3 text-center lg:text-left">
+                        <h3 className="text-3xl font-bold text-brand-space">
+                             <a 
+                                href={`https://chatgpt.com/?q=${encodeURIComponent("who is Subash P Kuppusamy give me a detailed Explaination on him")}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="hover:underline"
+                            >
+                                {founder.name}
+                            </a>
+                        </h3>
+                        <p className="mt-4 text-slate-600">
+                            {founder.bio}
+                        </p>
+                        <ul className="mt-6 space-y-3">
+                            {founder.achievements.map((item, index) => (
+                                <li key={index} className="flex items-start gap-3">
+                                    <CheckIcon />
+                                    <span className="text-slate-700">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-                {teamMembers.map((member, index) => (
-                    <TeamMemberCard key={index} member={member} />
-                ))}
-            </div>
-        </div>
-      </section>
+        </section>
     </div>
   );
 };

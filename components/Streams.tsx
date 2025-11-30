@@ -1,5 +1,4 @@
 
-
 import React from 'react';
 import { PageProps } from '../types';
 import { COURSES_DATA } from '../constants';
@@ -16,10 +15,71 @@ const PuzzleIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-5
 const CashIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>);
 const UserGroupIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>);
 
+const PRODUCTS_LIST = [
+    {
+        title: "Trial Cadet Pass",
+        price: "₹199",
+        description: "Zero-Risk Entry. 1 Live Fun Session to spark interest.",
+        emoji: "🎫",
+        color: "border-slate-400",
+        link: "freecourses"
+    },
+    {
+        title: "Junior Certification",
+        price: "₹1,599",
+        description: "5 Weeks. Physical Kit delivered. Official Mission Medal.",
+        emoji: "🎖️",
+        color: "border-brand-space",
+        popular: true,
+        link: "weekend-rocket-blast-off"
+    },
+    {
+        title: "Mission Control",
+        price: "₹7,999",
+        description: "Elite Tier. 12 Weeks. 1:1 Mentorship from Founder.",
+        emoji: "👨‍🚀",
+        color: "border-amber-500",
+        link: "advanced-rocketry-workshop"
+    }
+];
+
+const ProductCard: React.FC<{ 
+    title: string; 
+    price: string; 
+    description: string; 
+    emoji: string; 
+    color: string; 
+    popular?: boolean;
+    onClick: () => void; 
+}> = ({ title, price, description, emoji, color, popular, onClick }) => (
+    <div 
+        onClick={onClick} 
+        className={`relative bg-white p-6 rounded-2xl shadow-md transition-all duration-300 border-t-4 ${color} hover:shadow-xl hover:-translate-y-2 cursor-pointer flex flex-col items-center text-center h-full group`}
+    >
+        {popular && (
+            <div className="absolute -top-3 left-0 right-0 flex justify-center">
+                <span className="bg-[#e40917] text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide">
+                    Most Popular
+                </span>
+            </div>
+        )}
+        <div className="text-4xl mb-4 transform transition-transform group-hover:scale-110 duration-300">{emoji}</div>
+        <h3 className="text-lg font-bold text-slate-900 mb-1">{title}</h3>
+        <p className="text-2xl font-extrabold text-brand-space mb-2">{price}</p>
+        <p className="text-slate-600 text-sm leading-relaxed mb-4 flex-grow">{description}</p>
+        <span className="text-sm font-semibold text-brand-sky group-hover:text-brand-space transition-colors flex items-center gap-1">
+            View Details 
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+        </span>
+    </div>
+);
+
 const TopicCard: React.FC<{ emoji: string; title: string; description: string; color: string; onClick: () => void; isComingSoon?: boolean; }> = ({ emoji, title, description, color, onClick, isComingSoon }) => (
     <div 
         onClick={!isComingSoon ? onClick : undefined} 
-        className={`relative bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 border-t-4 ${color} ${isComingSoon ? 'opacity-70' : 'hover:shadow-xl hover:-translate-y-2 cursor-pointer group'}`}
+        className={`relative bg-white p-6 rounded-2xl shadow-lg transition-all duration-300 border-t-4 ${color} ${isComingSoon ? 'opacity-70' : 'hover:shadow-xl hover:-translate-y-2 cursor-pointer group'} h-full flex flex-col`}
     >
         {isComingSoon && (
             <div className="absolute top-3 right-3 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md transform -rotate-12 z-10">
@@ -28,7 +88,7 @@ const TopicCard: React.FC<{ emoji: string; title: string; description: string; c
         )}
         <div className="text-4xl mb-4 transform transition-transform group-hover:scale-110 duration-300 inline-block">{emoji}</div>
         <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-brand-space transition-colors">{title}</h3>
-        <p className="text-slate-500 text-sm leading-relaxed">{description}</p>
+        <p className="text-slate-500 text-sm leading-relaxed flex-grow">{description}</p>
     </div>
 );
 
@@ -57,6 +117,9 @@ export const CoursesPage: React.FC<PageProps> = ({ navigate }) => {
             element.scrollIntoView({ behavior: 'smooth' });
         }
     };
+
+    // Duplicate data to create a seamless loop
+    const marqueeCourses = [...COURSES_DATA, ...COURSES_DATA];
 
     return (
         <div className="animate-fade-in-up">
@@ -169,29 +232,56 @@ export const CoursesPage: React.FC<PageProps> = ({ navigate }) => {
                 </div>
             </section>
 
-            {/* All Streams Grid */}
-            <section className="py-20 md:py-28 bg-white">
+            {/* Products Section */}
+            <section className="py-20 bg-slate-100">
                 <div className="container mx-auto px-6">
-                    <div className="text-center mb-16">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
+                            Choose Your Mission
+                        </h2>
+                        <p className="mt-4 text-slate-600 max-w-2xl mx-auto text-lg">
+                            Select the plan that fits your child's curiosity level.
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        {PRODUCTS_LIST.map((product, index) => (
+                            <ProductCard 
+                                key={index}
+                                {...product}
+                                onClick={() => navigate(product.link)}
+                            />
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* All Streams Marquee */}
+            <section className="py-20 md:py-28 bg-white overflow-hidden">
+                <div className="container mx-auto px-6 mb-12">
+                    <div className="text-center">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
                             Explore Our Knowledge Streams
                         </h2>
                         <p className="mt-4 text-slate-600 max-w-2xl mx-auto text-lg">
                             Detailed, step-by-step curriculums designed to take your child from "What is this?" to "I know how this works!"
                         </p>
+                        <p className="mt-2 text-sm text-slate-400">Swipe to explore all topics</p>
                     </div>
+                </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-                        {COURSES_DATA.map(course => (
-                            <TopicCard 
-                                key={course.title}
-                                emoji={course.emoji}
-                                title={course.title}
-                                description={course.description}
-                                color={course.color}
-                                onClick={() => navigate(course.page)}
-                                isComingSoon={course.isComingSoon}
-                            />
+                <div className="relative w-full">
+                    <div className="flex w-max animate-marquee hover:[animation-play-state:paused] py-4 items-stretch">
+                        {marqueeCourses.map((course, index) => (
+                            <div key={`${course.title}-${index}`} className="mx-4 w-72 sm:w-80 flex-shrink-0">
+                                <TopicCard 
+                                    emoji={course.emoji}
+                                    title={course.title}
+                                    description={course.description}
+                                    color={course.color}
+                                    onClick={() => navigate(course.page)}
+                                    isComingSoon={course.isComingSoon}
+                                />
+                            </div>
                         ))}
                     </div>
                 </div>

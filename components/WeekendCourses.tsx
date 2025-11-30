@@ -83,7 +83,7 @@ const ProgramCard: React.FC<{ program: any }> = ({ program }) => {
                 onClick={scrollToForm}
                 className="w-full bg-[#e40917] hover:bg-[#c10714] text-white font-bold py-3 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 group"
             >
-                Join Now
+                Secure Slot
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -111,23 +111,23 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="text-center lg:text-left order-2 lg:order-1">
                             <div className="inline-flex items-center gap-2 bg-brand-space/10 text-brand-space px-4 py-1.5 rounded-full text-sm font-bold mb-6 uppercase tracking-wide">
-                                Free Weekend Workshops
+                                Trial Cadet Pass
                             </div>
                             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-2">
                                 Mission <span className="text-brand-space font-['Montserrat']">brahmàstra</span><span className="text-[#e40917]">.</span>
                             </h1>
                             <h2 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-space to-brand-sky mb-6">
-                                Launching Aerospace Knowledge For All
+                                Launch Your Child's Aerospace Journey for just ₹199
                             </h2>
                             <p className="text-lg text-slate-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                                Join our mission to democratize space education. High-quality, live, interactive sessions with ISRO Space Tutors—completely free. Because every child deserves to look up and wonder.
+                                Experience our world-class aerospace education with zero risk. One live, interactive session with ISRO Space Tutors to spark the curiosity in your child.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <button 
                                     onClick={handleScrollToForm}
                                     className="bg-brand-space text-white font-bold px-8 py-4 rounded-full shadow-lg hover:bg-blue-800 transition-all hover:scale-105"
                                 >
-                                    Register for Free
+                                    Get Trial Pass - ₹199
                                 </button>
                             </div>
                         </div>
@@ -147,10 +147,10 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mb-6">
-                            This is Mission <span className="text-brand-space font-['Montserrat']">brahmàstra</span><span className="text-[#e40917]">.</span>
+                            Why Start with the <span className="text-brand-space font-['Montserrat']">Cadet Pass</span>?
                         </h2>
                         <p className="text-xl text-slate-600 leading-relaxed mb-12">
-                            Education shouldn't come with a price tag when it comes to sparking curiosity. We run these free cohorts to ensure every child, regardless of background, gets a chance to touch the stars.
+                            We believe you should experience the quality of our mentorship before committing to a full course. This trial pass gives your child full access to a live session, direct interaction with scientists, and a digital certificate.
                         </p>
                         
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -158,8 +158,8 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                                 <div className="mx-auto bg-amber-50 w-12 h-12 rounded-full flex items-center justify-center mb-4">
                                     <StarIcon />
                                 </div>
-                                <h3 className="font-bold text-lg text-slate-900 mb-2">Zero Cost</h3>
-                                <p className="text-slate-500 text-sm">Absolutely free. No hidden fees. Just pure learning.</p>
+                                <h3 className="font-bold text-lg text-slate-900 mb-2">Zero-Risk Entry</h3>
+                                <p className="text-slate-500 text-sm">A low-commitment way to see if your child loves space science.</p>
                             </div>
                             <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-brand-sky">
                                 <div className="mx-auto bg-sky-50 w-12 h-12 rounded-full flex items-center justify-center mb-4">
@@ -173,7 +173,7 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                                     <RocketLaunchIcon />
                                 </div>
                                 <h3 className="font-bold text-lg text-slate-900 mb-2">Real Science</h3>
-                                <p className="text-slate-500 text-sm">We teach the 'Why' and 'How' of space, not just facts.</p>
+                                <p className="text-slate-500 text-sm">90 Minutes of interactive learning, not just a webinar.</p>
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-12">
                         <span className="text-brand-space font-bold tracking-wider uppercase text-sm">Schedule</span>
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Next Free session</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Upcoming Trial Batches</h2>
                         <p className="text-2xl text-brand-space font-bold mt-2">🔭 Astronomy</p>
                     </div>
 
@@ -198,8 +198,17 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
             </section>
 
             {/* Enrollment Form Section */}
-            <div id="enrollment-form">
-                <EnrollmentForm />
+            <div id="enrollment-form" className="relative">
+                <div className="absolute inset-0 bg-slate-100 skew-y-3 transform origin-bottom-right z-0"></div>
+                <div className="relative z-10 pt-10">
+                    <div className="container mx-auto px-6 text-center mb-8">
+                         <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                            Secure Your Cadet Slot
+                        </h2>
+                        <p className="mt-2 text-slate-600">Fill the form to book your ₹199 Trial Pass.</p>
+                    </div>
+                    <EnrollmentForm />
+                </div>
             </div>
 
             {/* WhatsApp CTA */}
@@ -207,7 +216,7 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                 <div className="container mx-auto px-6">
                     <h2 className="text-2xl md:text-3xl font-bold mb-4">Never Miss a Launch!</h2>
                     <p className="text-slate-300 mb-8 max-w-2xl mx-auto">
-                        Get updates on new free workshops, space news, and fun activities directly on WhatsApp.
+                        Get updates on new workshops, space news, and fun activities directly on WhatsApp.
                     </p>
                     <a 
                         href="https://whatsapp.com/channel/0029Vb6qN88JuyA4MCaa5K01" 
