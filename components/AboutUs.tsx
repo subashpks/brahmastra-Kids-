@@ -1,87 +1,6 @@
-import React, { useState } from 'react';
 
-// --- Philosophy Data from Differentiators ---
-const whatWeDoData = [
-    {
-        emoji: '💡',
-        title: 'Fair Price, Priceless Mentorship',
-        description: 'We believe every child deserves access to real experts. Our pricing makes high-quality STEM education accessible, providing genuine aerospace engineers as mentors without the hefty price tag.',
-        color: 'border-orange-500',
-    },
-    {
-        emoji: '🌱',
-        title: 'We Nurture Thinkers, Not Toppers',
-        description: 'Instead of chasing ranks, we chase "aha!" moments. We build a deep passion for learning and critical thinking—the true markers of long-term success, far beyond any report card.',
-        color: 'border-brand-sun',
-    },
-    {
-        emoji: '✂️',
-        title: 'We Build, We Don\'t Bore',
-        description: 'Forget endless worksheets. Our kids learn by doing—launching rockets, designing wings, and solving real-world problems. This hands-on approach makes learning stick and turns screen time into skill time.',
-        color: 'border-green-500',
-    },
-    {
-        emoji: '👩‍🏫',
-        title: 'Q: Why Small Groups?',
-        description: 'A: Because every child is unique. In a small group, there\'s no "back bench." Our mentors can focus on individual needs, answer every curious question, and tailor the pace so your child builds confidence, free from the pressure to keep up or fit in.',
-        color: 'border-purple-500',
-    },
-    {
-        emoji: '🤝',
-        title: 'Collaboration Over Competition',
-        description: 'The greatest scientific breakthroughs come from teamwork. We create a supportive space where children share ideas, celebrate each other\'s discoveries, and learn that working together is more powerful than competing alone.',
-        color: 'border-teal-500',
-    },
-    {
-        emoji: '✨',
-        title: 'We Ignite Curiosity, Not False Hope',
-        description: 'We promise something more valuable than a guaranteed rank: a genuine spark of curiosity. We teach your child how to think, problem-solve, and explore—skills that empower them to become self-reliant learners for life.',
-        color: 'border-brand-sky',
-    },
-];
+import React from 'react';
 
-const whatWeDontDoData = [
-    {
-        emoji: '💰',
-        title: 'We Don’t Overcharge',
-        description: "We understand the sacrifices parents make for quality education. Our goal is to provide top-tier mentorship from real aerospace engineers at a fair price, without compromise."
-    },
-    {
-        emoji: '📉',
-        title: 'We Don’t Join the "Rat Race"',
-        description: "In a world of intense pressure for marks and ranks, we focus on what truly matters: your child's unique curiosity. We build a foundation for lifelong success, not just exam performance."
-    },
-    {
-        emoji: '📚',
-        title: 'We Don’t Believe in "Busy Work"',
-        description: "Your family's time is valuable. We replace boring PDFs and rote homework with engaging, hands-on projects that teach critical thinking and real-world skills."
-    },
-    {
-        emoji: '👥',
-        title: 'We Don’t Use a One-Size-Fits-All Model',
-        description: "Peer pressure often forces children into the same mold. We celebrate individuality. Our small groups ensure we can tailor the experience to your child's unique learning style, pace, and interests."
-    },
-    {
-        emoji: '🏆',
-        title: 'We Don’t Foster Unhealthy Competition',
-        description: "We believe collaboration drives innovation. Our supportive environment encourages kids to share ideas and celebrate discoveries together, building teamwork skills instead of stressful rivalry."
-    },
-    {
-        emoji: '🎯',
-        title: 'We Don’t Promise "Guaranteed Toppers"',
-        description: "We don't sell unrealistic dreams of guaranteed ranks. Instead, we promise something more valuable: to awaken your child's inner scientist, teach them how to think critically, and build a genuine passion for learning that lasts a lifetime."
-    }
-];
-
-const InfoCard: React.FC<{ card: { emoji: string; title: string; description: string; color?: string; } }> = ({ card }) => (
-    <div className={`bg-white p-8 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-t-4 ${card.color || 'border-red-500'} flex flex-col`}>
-        <div className="text-4xl mb-4">{card.emoji}</div>
-        <h3 className="text-xl font-bold text-slate-800 mb-2">{card.title}</h3>
-        <p className="text-slate-600 flex-grow">{card.description}</p>
-    </div>
-);
-
-// --- Founder Data ---
 const founder = {
     name: 'Subash P. Kuppusamy',
     imageUrl: 'https://files.catbox.moe/gpjimc.png',
@@ -95,186 +14,130 @@ const founder = {
     ]
 };
 
+const impactStats = [
+  { emoji: '👨‍👩‍👧‍👦', number: '85,000+', description: "India's Biggest Aerospace Community", color: 'text-brand-space', bgColor: 'bg-blue-100' },
+  { emoji: '🎓', number: '30,000+', description: 'Students Passed Out in 6 Years', color: 'text-brand-sky', bgColor: 'bg-sky-100' },
+  { emoji: '🧑‍🚀', number: '3,000+', description: 'Aerospace Engineers Trained Personally', color: 'text-brand-sun', bgColor: 'bg-amber-100' },
+  { emoji: '🌍', number: '40+', description: 'Countries Our Alumni Work In', color: 'text-green-500', bgColor: 'bg-green-100' },
+  { emoji: '🗺️', number: '10+', description: 'States Served in India', color: 'text-purple-500', bgColor: 'bg-purple-100' },
+  { emoji: '🤝', number: '6+', description: 'Years of Trust in the Aerospace Community', color: 'text-red-500', bgColor: 'bg-red-100' }
+];
+
 const CheckIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
     </svg>
 );
 
-// --- History Data ---
-const historyItems = [
-    {
-        year: '2019',
-        title: 'Founding & Creation of Forum',
-        description: 'Brahmastra Aerospace founded with the vision to build a strong aerospace forum and collaborative ecosystem.',
-        emoji: '💡'
-    },
-    {
-        year: '2019–2021',
-        title: 'Nationwide & Global Aerospace Community Building',
-        description: 'Built one of India\'s largest aerospace student communities; connected with aerospace engineers across India and the world; engaged 20,000+ students. Widely known as the forum where “every aerospace engineer in India is a student of Brahmastra Aerospace.”',
-        emoji: '🌐'
-    },
-    {
-        year: '2019–2022',
-        title: 'Alumni Success Worldwide',
-        description: 'Alumni began joining top global aerospace organizations including NASA, ESA, ISRO, HAL, Boeing, Airbus, and other leading institutions.',
-        emoji: '🎓'
-    },
-    {
-        year: '2022',
-        title: 'Appointed ISRO Space Tutor',
-        description: 'Officially recognized and appointed by ISRO as a Space Tutor, strengthening STEM outreach, space education, and national-level engagement.',
-        emoji: '🛰️'
-    },
-    {
-        year: '2023–2025',
-        title: 'Appointed US–India Missions Space Tutor',
-        description: 'Selected by the US Embassy in India as the US–India Missions "Space Tutor" for 2023, 2024, and 2025, conducting international-level educational and aerospace outreach programs.',
-        emoji: '🤝'
-    },
-    {
-        year: 'Ongoing',
-        title: 'Training Support to Indian Armed Forces',
-        description: 'Conducted drone-based hands-on training for Indian Armed Forces personnel in Kashmir, focusing on close-combat UAV applications, enhancing tactical drone capabilities.',
-        emoji: '🛡️'
-    }
-];
-
-const JourneyCard: React.FC<{ item: typeof historyItems[0] }> = ({ item }) => (
-    <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border-t-8 border-brand-space min-h-[475px] flex flex-col justify-center text-center items-center transition-all duration-300">
-        <p className="text-6xl mb-4">{item.emoji}</p>
-        <p className="text-4xl md:text-5xl font-extrabold text-brand-space mb-4">{item.year}</p>
-        <h3 className="text-2xl md:text-3xl font-bold text-slate-900 leading-tight">{item.title}</h3>
-        <p className="mt-4 text-slate-600 text-lg leading-relaxed">{item.description}</p>
-    </div>
-);
 
 export const AboutUsPage: React.FC = () => {
-  const [currentHistoryIndex, setCurrentHistoryIndex] = useState(0);
+    const CuriosityIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>;
+    const HandsOnIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.136a1.76 1.76 0 011.171-2.274l.113-.037a1.76 1.76 0 001.313-2.386l-.114-.343a1.76 1.76 0 01.343-1.857l.114-.114a1.76 1.76 0 012.489 0l.114.114a1.76 1.76 0 01.343 1.857l-.114.343a1.76 1.76 0 001.313 2.386l.113.037a1.76 1.76 0 011.17 2.274l-2.147 6.136a1.76 1.76 0 01-3.417-.592z" /></svg>;
+    const MentorIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>;
+    const SmallGroupIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656-.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>;
+    const CollaborationIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>;
+    const AccessibleIcon = () => <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0-1V4m0 2.01V5M12 20v-1m0 1v.01M12 18v-1m0-1v-5m-6 4H4a2 2 0 01-2-2V6a2 2 0 012-2h16a2 2 0 012 2v8a2 2 0 01-2 2h-2" /></svg>;
 
-  const handleNextHistory = () => {
-      setCurrentHistoryIndex(prev => Math.min(prev + 1, historyItems.length - 1));
-  };
-
-  const handlePrevHistory = () => {
-      setCurrentHistoryIndex(prev => Math.max(prev - 1, 0));
-  };
+    const coreValues = [
+        { icon: <CuriosityIcon />, title: 'Curiosity First', description: 'We nurture thinkers, not toppers. We chase "aha!" moments and build a deep passion for learning.', color: 'text-orange-500 bg-orange-50' },
+        { icon: <HandsOnIcon />, title: 'Learning by Doing', description: 'Forget worksheets. Kids learn by building, launching, and solving real problems, turning screen time into skill time.', color: 'text-green-500 bg-green-50' },
+        { icon: <MentorIcon />, title: 'Expert Mentorship', description: 'Our mentors are real aerospace engineers who provide priceless guidance and inspiration.', color: 'text-sky-500 bg-sky-50' },
+        { icon: <SmallGroupIcon />, title: 'Small Groups, Big Impact', description: 'No "back bench." We focus on individual needs and build confidence in a pressure-free environment.', color: 'text-purple-500 bg-purple-50' },
+        { icon: <CollaborationIcon />, title: 'Collaboration Over Competition', description: 'We foster teamwork and shared discovery, because the greatest breakthroughs come from working together.', color: 'text-teal-500 bg-teal-50' },
+        { icon: <AccessibleIcon />, title: 'Fair & Accessible', description: 'We believe every child deserves access to real experts, making top-tier STEM education affordable.', color: 'text-pink-500 bg-pink-50' }
+    ];
 
   return (
     <div className="animate-fade-in-up">
-      {/* Section 1: Introduction */}
-      <section className="py-16 md:py-24 bg-white">
-          <div className="container mx-auto px-6">
-               <div className="text-center max-w-3xl mx-auto">
-                    <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                        About Us
-                    </h1>
-                    <p className="mt-6 text-lg text-slate-600">
-                        Brahmastra was born to make aerospace education accessible and replace rote learning with real-world wonder.
-                    </p>
-                </div>
+      {/* 1. Hero Section */}
+      <section className="relative py-24 md:py-32 bg-slate-800 text-white overflow-hidden">
+          <div className="absolute inset-0">
+              <img src="https://files.catbox.moe/k4q3i9.png" alt="Kids learning about rockets" className="w-full h-full object-cover opacity-20"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent"></div>
+          </div>
+          <div className="container mx-auto px-6 relative z-10 text-center">
+               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                  Our Mission: <br />To Launch a Million Dreams
+               </h1>
+               <p className="mt-6 text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+                  We are a team of passionate aerospace engineers dedicated to making high-quality space education accessible, engaging, and inspiring for every child.
+               </p>
           </div>
       </section>
 
-      {/* Section 2: Our Journey */}
-      <section className="py-16 bg-slate-50">
+      {/* 2. Our Story */}
+      <section className="py-16 md:py-24 bg-white">
           <div className="container mx-auto px-6">
-               <div className="text-center mb-12">
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                        Our Journey
-                    </h2>
-                    <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
-                        From a spark of an idea to a nationwide movement. Click through our timeline to see our major milestones.
-                    </p>
-                </div>
-                <div className="relative mt-16 max-w-3xl mx-auto">
-                    <div key={currentHistoryIndex} className="animate-pop-in">
-                        <JourneyCard item={historyItems[currentHistoryIndex]} />
-                    </div>
+              <div className="grid lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                      <span className="text-brand-space font-semibold tracking-wider bg-sky-100 px-3 py-1 rounded-full text-sm">THE BRAHMASTRA STORY</span>
+                      <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 mt-4">From a Forum to a Movement</h2>
+                      <div className="mt-6 text-slate-600 leading-relaxed space-y-4">
+                          <p>Brahmastra began in 2019 not as a company, but as a community. Our founder, an aerospace engineer himself, saw a gap: brilliant young minds in India lacked access to real-world aerospace knowledge and mentorship.</p>
+                          <p>What started as an online forum to connect students with professionals quickly grew into India's largest aerospace community. We realized that the hunger for knowledge was immense, but the traditional system wasn't feeding it. Rote learning and a focus on marks were killing the very curiosity that fuels innovation.</p>
+                          <p>So, we decided to change that. We built Brahmastra Aerospace Academy to be everything we wished for as kids: a place where questions are celebrated, learning is hands-on, and mentors are actual rocket scientists. Our mission is to go beyond textbooks and ignite a genuine, lifelong passion for science and engineering.</p>
+                      </div>
+                  </div>
+                  <div className="flex justify-center">
+                      <img src="https://files.catbox.moe/gpjimc.png" alt="Founder of Brahmastra Aerospace" className="rounded-full w-80 h-80 object-cover shadow-2xl border-8 border-white"/>
+                  </div>
+              </div>
+          </div>
+      </section>
+      
+      {/* 3. Impact Stats */}
+      <section className="py-16 md:py-24 bg-slate-50">
+          <div className="container mx-auto px-6">
+              <div className="text-center mb-16">
+                  <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                      Our Impact in Numbers
+                  </h2>
+                  <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+                      We're proud of the community we've built and the minds we've inspired.
+                  </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                  {impactStats.map((stat, index) => (
+                      <div key={index} className="bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                          <div className={`w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-6 transition-all duration-300 ${stat.bgColor} group-hover:scale-110`}>
+                             {stat.emoji}
+                          </div>
+                          <h3 className={`text-5xl font-extrabold ${stat.color}`}>{stat.number}</h3>
+                          <p className="mt-3 text-base text-slate-600 font-medium">{stat.description}</p>
+                      </div>
+                  ))}
+              </div>
+          </div>
+      </section>
 
-                    <div className="flex justify-between items-center mt-8">
-                        <button 
-                            onClick={handlePrevHistory} 
-                            disabled={currentHistoryIndex === 0}
-                            className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white shadow-md hover:bg-slate-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                            aria-label="Previous milestone"
-                        >
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-                            Prev
-                        </button>
-                        
-                        <div className="flex gap-2">
-                            {historyItems.map((_, index) => (
-                                <button 
-                                    key={index} 
-                                    onClick={() => setCurrentHistoryIndex(index)}
-                                    className={`w-3 h-3 rounded-full transition-colors ${index === currentHistoryIndex ? 'bg-brand-space' : 'bg-slate-300 hover:bg-slate-400'}`}
-                                    aria-label={`Go to milestone ${index + 1}`}
-                                />
-                            ))}
+      {/* 4. Core Values */}
+       <section className="py-16 md:py-24 bg-white">
+          <div className="container mx-auto px-6">
+               <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">Our Core Values</h2>
+                    <p className="mt-4 text-lg text-slate-600">These are the principles that guide everything we do.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {coreValues.map(value => (
+                        <div key={value.title} className="bg-slate-50 p-8 rounded-2xl border border-slate-100 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+                            <div className={`inline-flex p-3 rounded-full ${value.color}`}>
+                                {value.icon}
+                            </div>
+                            <h3 className="text-xl font-bold text-slate-800 mt-4 mb-2">{value.title}</h3>
+                            <p className="text-slate-600">{value.description}</p>
                         </div>
-
-                        <button 
-                            onClick={handleNextHistory} 
-                            disabled={currentHistoryIndex === historyItems.length - 1}
-                            className="flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold bg-white shadow-md hover:bg-slate-100 transition disabled:opacity-50 disabled:cursor-not-allowed"
-                            aria-label="Next milestone"
-                        >
-                            Next
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-                        </button>
-                    </div>
+                    ))}
                 </div>
           </div>
-      </section>
-
-      {/* Section 3: Our Philosophy */}
-      <section className="py-16 md:py-24 bg-white">
-            <div className="container mx-auto px-6">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                        Our Philosophy
-                    </h2>
-                    <p className="mt-6 text-lg text-slate-600">
-                        We believe in a different approach to learning—one that puts curiosity first and builds confidence for life.
-                    </p>
-                </div>
-
-                <div className="mb-20">
-                    <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">
-                       ✅ What We Do Instead
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {whatWeDoData.map((card) => (
-                            <InfoCard key={card.title} card={card} />
-                        ))}
-                    </div>
-                </div>
-
-                <div>
-                    <h3 className="text-2xl font-bold text-center text-slate-800 mb-8">
-                        ❌ What We Don’t Do
-                    </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        {whatWeDontDoData.map((card) => (
-                           <InfoCard key={card.title} card={card} />
-                        ))}
-                    </div>
-                </div>
-            </div>
-      </section>
-
-      {/* Section 4: The Visionary Behind This */}
+       </section>
+       
+      {/* 5. Meet the Founder */}
       <section className="py-16 md:py-24 bg-slate-50">
             <div className="container mx-auto px-6">
                 <div className="text-center mb-12">
                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
                         Meet the Founder
                     </h2>
-                    <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
-                        Meet the visionary founder and chief mentor behind Brahmastra Aerospace.
-                    </p>
                 </div>
                 <div className="grid lg:grid-cols-5 gap-12 items-center max-w-5xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
                     <div className="lg:col-span-2 flex justify-center">

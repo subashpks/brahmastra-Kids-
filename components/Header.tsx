@@ -34,14 +34,15 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
     };
     
     const DesktopNav = () => (
-        <nav className="hidden lg:flex items-center space-x-2">
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('home')}} className={navLinkClasses('home')}>Home</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('about')}} className={navLinkClasses('about')}>About Us</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('courses')}} className={navLinkClasses('courses')}>Products</a>
-            <a href="#" onClick={(e) => {e.preventDefault(); navigate('contact')}} className={navLinkClasses('contact')}>Contact Us</a>
+        <div className="hidden lg:flex items-center space-x-6">
+            <nav className="flex items-center space-x-2">
+                <a href="#" onClick={(e) => {e.preventDefault(); navigate('about')}} className={navLinkClasses('about')}>About Us</a>
+                <a href="#" onClick={(e) => {e.preventDefault(); navigate('courses')}} className={navLinkClasses('courses')}>Products</a>
+                <a href="#" onClick={(e) => {e.preventDefault(); navigate('contact')}} className={navLinkClasses('contact')}>Contact</a>
+            </nav>
 
             {isLoggedIn && currentUser ? (
-                <>
+                <div className="flex items-center space-x-2">
                     {activeChild && (
                        <span className="text-sm font-medium text-slate-500 hidden xl:block border-l pl-3 ml-1">
                            Viewing for: <span className="font-bold text-brand-space">{activeChild.name}</span>
@@ -51,24 +52,24 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                     <a href="#" onClick={(e) => {e.preventDefault(); onLogout()}} aria-label="Logout" className="p-2 rounded-full text-sm font-medium transition-colors text-slate-600 hover:text-brand-space hover:bg-slate-200">
                         <LogoutIcon />
                     </a>
-                </>
+                </div>
             ) : (
-                <>
-                    <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="ml-2 inline-block bg-[#e40917] hover:bg-[#c10714] transition-colors text-white font-semibold px-5 py-2 rounded-full text-sm shadow-md">
-                        Trial Cadet Pass
-                    </a>
-                </>
+                <button
+                    onClick={() => navigate('courses')}
+                    className="bg-[#e40917] hover:bg-red-700 text-white font-semibold px-5 py-2 rounded-full text-sm transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-px active:translate-y-0"
+                >
+                    Join Now
+                </button>
             )}
-        </nav>
+        </div>
     );
     
     const MobileNav = () => (
          <div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-xl animate-fade-in-up transition-all duration-300 max-h-[calc(100vh-64px)] overflow-y-auto">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('home'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Home</a>
                 <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('about'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">About Us</a>
                 <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('courses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Products</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('contact'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Contact Us</a>
+                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('contact'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Contact</a>
                 
                 <div className="border-t border-slate-200 my-2"></div>
 
@@ -92,11 +93,14 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
                         </a>
                     </>
                 ) : (
-                    <>
-                        <div className="p-2">
-                            <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} className="block w-full text-center px-4 py-3 rounded-md text-base font-medium text-white bg-[#e40917] hover:bg-[#c10714]">Trial Cadet Pass</a>
-                        </div>
-                    </>
+                    <div className="px-4 pt-3 pb-2">
+                        <button
+                            onClick={() => handleMobileNav('courses')}
+                            className="w-full bg-[#e40917] hover:bg-red-700 text-white font-semibold px-5 py-3 rounded-lg text-base transition-colors shadow-md"
+                        >
+                            Join Now
+                        </button>
+                    </div>
                 )}
             </div>
         </div>

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { PageProps } from '../types';
 
@@ -30,7 +29,7 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
     return (
         <footer className="bg-[#22A7F0] text-white pt-16 pb-8">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-center md:text-left">
                     
                     {/* Column 1: Logo & Socials */}
                     <div className="flex flex-col items-center md:items-start space-y-4">
@@ -51,12 +50,12 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                         </div>
                     </div>
 
-                    {/* Column 2: Quick Links */}
-                    <div className="flex flex-col items-center md:items-start">
+                    {/* Column 2: Quick Links (Desktop Only) */}
+                    <div className="hidden lg:flex flex-col items-center md:items-start">
                          <h3 className="text-lg font-semibold mb-4">Explore</h3>
                          <div className="flex flex-col space-y-2 text-sm">
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('home'); }} className="transition-opacity hover:opacity-75">Home</a>
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('philosophy'); }} className="transition-opacity hover:opacity-75">Our Philosophy</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="transition-opacity hover:opacity-75">Our Philosophy</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('about'); }} className="transition-opacity hover:opacity-75">About Us</a>
                             <a href="#" onClick={(e) => { e.preventDefault(); navigate('freecourses'); }} className="transition-opacity hover:opacity-75">Weekend Free Course</a>
                         </div>

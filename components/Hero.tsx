@@ -1,4 +1,5 @@
 
+
 import React from 'react';
 import { PageProps } from '../types';
 import { FAQ } from './FAQ';
@@ -42,28 +43,33 @@ const ContactCta: React.FC<PageProps> = ({ navigate }) => (
 );
 
 const impactStats = [
-  { emoji: '👨‍👩‍👧‍👦', number: '85,000+', description: "India's Biggest Aerospace Community", color: 'text-brand-space', borderColor: 'border-brand-space' },
-  { emoji: '🎓', number: '30,000+', description: 'Students Passed Out in 6 Years', color: 'text-brand-sky', borderColor: 'border-brand-sky' },
-  { emoji: '🧑‍🚀', number: '3,000+', description: 'Aerospace Engineers Trained Personally', color: 'text-brand-sun', borderColor: 'border-brand-sun' },
-  { emoji: '🌍', number: '40+', description: 'Countries Our Alumni Work In', color: 'text-green-500', borderColor: 'border-green-500' },
-  { emoji: '🗺️', number: '10+', description: 'States Served in India', color: 'text-purple-500', borderColor: 'border-purple-500' },
-  { emoji: '🤝', number: '6+', description: 'Years of Trust in the Aerospace Community', color: 'text-[#e40917]', borderColor: 'border-[#e40917]' }
+  { emoji: '👨‍👩‍👧‍👦', number: '85,000+', description: "India's Biggest Aerospace Community", color: 'text-brand-space', bgColor: 'bg-blue-100' },
+  { emoji: '🎓', number: '30,000+', description: 'Students Passed Out in 6 Years', color: 'text-brand-sky', bgColor: 'bg-sky-100' },
+  { emoji: '🧑‍🚀', number: '3,000+', description: 'Aerospace Engineers Trained Personally', color: 'text-brand-sun', bgColor: 'bg-amber-100' },
+  { emoji: '🌍', number: '40+', description: 'Countries Our Alumni Work In', color: 'text-green-500', bgColor: 'bg-green-100' },
+  { emoji: '🗺️', number: '10+', description: 'States Served in India', color: 'text-purple-500', bgColor: 'bg-purple-100' },
+  { emoji: '🤝', number: '6+', description: 'Years of Trust in the Aerospace Community', color: 'text-red-500', bgColor: 'bg-red-100' }
 ];
 
 const StatsSection = () => (
     <section className="py-16 md:py-24 bg-slate-50">
         <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                    Our Achievements
+                    Our Impact in Numbers
                 </h2>
+                <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+                    We're proud of the community we've built and the minds we've inspired.
+                </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
                 {impactStats.map((stat, index) => (
-                    <div key={index} className={`bg-white p-8 rounded-2xl shadow-lg border-t-4 ${stat.borderColor} transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}>
-                        <p className="text-4xl mb-4">{stat.emoji}</p>
-                        <h3 className={`text-4xl font-extrabold ${stat.color}`}>{stat.number}</h3>
-                        <p className="mt-2 text-base text-slate-600">{stat.description}</p>
+                    <div key={index} className="bg-white p-8 rounded-2xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-2 group">
+                        <div className={`w-16 h-16 rounded-full flex items-center justify-center text-3xl mb-6 transition-all duration-300 ${stat.bgColor} group-hover:scale-110`}>
+                           {stat.emoji}
+                        </div>
+                        <h3 className={`text-5xl font-extrabold ${stat.color}`}>{stat.number}</h3>
+                        <p className="mt-3 text-base text-slate-600 font-medium">{stat.description}</p>
                     </div>
                 ))}
             </div>
@@ -203,107 +209,142 @@ const DomainsMarqueeSection: React.FC<{ navigate: (page: string) => void }> = ({
     );
 };
 
-const AboutVideoSection = () => {
-    const features = [
-        {
-            icon: (
-                <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-full bg-sky-100 text-brand-sky">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                    </svg>
-                </div>
-            ),
-            title: 'Real-World Learning',
-            description: 'We replace rote learning with hands-on projects that build real skills and turn screen time into skill time.'
-        },
-        {
-            icon: (
-                <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-full bg-orange-100 text-orange-500">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 7.5v3m0 0v3m0-3h3m-3 0h-3m-2.25-4.125a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM4 19.235v-.11a6.375 6.375 0 0112.75 0v.109A12.318 12.318 0 0110.374 21c-2.331 0-4.512-.645-6.374-1.766z" />
-                    </svg>
-                </div>
-            ),
-            title: 'Expert Mentorship',
-            description: 'Our mentors are real aerospace engineers who teach kids to think, build, and problem-solve.'
-        },
-        {
-            icon: (
-                <div className="flex-shrink-0 flex items-center justify-center h-14 w-14 rounded-full bg-lime-100 text-lime-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-7 h-7">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.854 1.595-2.112a6.002 6.002 0 00-3.845-8.986m0 1.956c.307.073.619.143.938.212a6.001 6.001 0 003.003 9.25m-6.003-7.509a4.502 4.502 0 00.938.212M9.75 18v-.192c0-.983-.658-1.854-1.595-2.112a6.002 6.002 0 013.845-8.986" />
-                    </svg>
-                </div>
-            ),
-            title: 'Curiosity-Driven',
-            description: 'We don\'t chase marks; we chase "aha!" moments, igniting a genuine passion for innovation.'
-        }
+const LegacySection = () => {
+    const legacyStats = [
+      {
+        icon: '🧑‍🚀',
+        text: '2 of 4 aerospace engineers in India trained by us',
+        color: 'bg-blue-100 text-brand-space'
+      },
+      {
+        icon: '✈️',
+        text: '500+ students sent abroad for higher studies',
+        color: 'bg-sky-100 text-brand-sky'
+      },
+      {
+        icon: '🌍',
+        text: '1,500+ engineers placed worldwide',
+        color: 'bg-green-100 text-green-600'
+      },
+      {
+        icon: '💡',
+        text: 'Shaping India’s aerospace talent—directly or indirectly',
+        color: 'bg-amber-100 text-brand-sun'
+      }
     ];
 
     return (
         <section className="py-16 bg-white border-b border-slate-100">
             <div className="container mx-auto px-6">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Content */}
-                    <div className="order-2 lg:order-1">
-                        <h2 className="text-4xl font-extrabold text-brand-space mb-6 font-sans">
-                            brahmàstra<span className="text-[#e40917]">.</span>
-                        </h2>
-                        <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-lg">
-                            Brahmastra was born to make aerospace education accessible and replace rote learning with real-world wonder. Here's how we do it:
-                        </p>
-                        
-                        <div className="space-y-8">
-                            {features.map((feature, index) => (
-                                <div key={index} className="flex items-start">
-                                    {feature.icon}
-                                    <div className="ml-5">
-                                        <h3 className="text-xl font-bold text-slate-900 mb-2">{feature.title}</h3>
-                                        <p className="text-slate-600 leading-relaxed">{feature.description}</p>
-                                    </div>
-                                </div>
-                            ))}
+                <div className="text-center mb-12">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                        Our Legacy
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+                        We're proud of the community we've built and the impact we've made on India's aerospace landscape.
+                    </p>
+                </div>
+                <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl mx-auto">
+                    {/* Canva Embed */}
+                    <div className="w-full">
+                         <div style={{
+                            position: 'relative',
+                            width: '100%',
+                            height: 0,
+                            paddingTop: '56.2500%',
+                            paddingBottom: 0,
+                            boxShadow: '0 2px 8px 0 rgba(63,69,81,0.16)',
+                            overflow: 'hidden',
+                            borderRadius: '8px',
+                            willChange: 'transform'
+                        }}>
+                            <iframe
+                                loading="lazy"
+                                style={{
+                                    position: 'absolute',
+                                    width: '100%',
+                                    height: '100%',
+                                    top: 0,
+                                    left: 0,
+                                    border: 'none',
+                                    padding: 0,
+                                    margin: 0
+                                }}
+                                src="https://www.canva.com/design/DAEcK5gOp6s/view?embed"
+                                allowFullScreen={true}
+                                allow="fullscreen"
+                                title="Brahmastra Aerospace Legacy"
+                            >
+                            </iframe>
                         </div>
                     </div>
-
-                    {/* Right Content (Embed) */}
-                    <div className="order-1 lg:order-2 w-full">
-                        <div className="relative w-full rounded-2xl shadow-2xl overflow-hidden transform transition-transform hover:scale-[1.01] duration-300">
-                            <div style={{
-                                position: 'relative', 
-                                width: '100%', 
-                                height: 0, 
-                                paddingTop: '54.4117%', // 222 / 408 = 0.544117647...
-                                paddingBottom: 0, 
-                                overflow: 'hidden',
-                                background: 'transparent'
-                            }}>
-                                <iframe 
-                                    loading="lazy" 
-                                    style={{
-                                        position: 'absolute', 
-                                        width: '100%', 
-                                        height: '100%', 
-                                        top: 0, 
-                                        left: 0, 
-                                        border: 'none', 
-                                        padding: 0,
-                                        margin: 0
-                                    }}
-                                    src="https://www.canva.com/design/DAEcK5gOp6s/view?embed" 
-                                    allowFullScreen={true}
-                                    allow="fullscreen"
-                                    title="Brahmastra Experience"
-                                >
-                                </iframe>
+                    {/* Stats Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        {legacyStats.map((stat, index) => (
+                            <div key={index} className="bg-white p-6 rounded-xl shadow-lg border border-slate-100 transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                                <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl mb-4 ${stat.color}`}>
+                                    {stat.icon}
+                                </div>
+                                <p className="font-semibold text-slate-700 leading-snug">{stat.text}</p>
                             </div>
-                        </div>
+                        ))}
                     </div>
                 </div>
             </div>
         </section>
     );
 };
+
+const GlobalCommunitySection = () => {
+    const studentData = [
+        { country: 'India', users: '12.5K' },
+        { country: 'United States', users: '853' },
+        { country: 'United Kingdom', users: '629' },
+        { country: 'Germany', users: '421' },
+        { country: 'Canada', users: '719' },
+        { country: 'Singapore', users: '314' },
+        { country: 'United Arab Emirates', users: '511' },
+    ];
+
+    return (
+        <section className="py-16 md:py-24 bg-slate-50">
+            <div className="container mx-auto px-6">
+                <div className="text-center mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
+                        Our Global Community
+                    </h2>
+                    <p className="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">
+                        Inspiring young minds across the globe. Here's a look at where our students are joining from.
+                    </p>
+                </div>
+                
+                <div className="max-w-6xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-slate-100 grid lg:grid-cols-5 gap-8 items-center">
+                    {/* Map */}
+                    <div className="lg:col-span-3 w-full">
+                        <img src="https://files.catbox.moe/qiy0id.png" alt="World map showing student locations" className="w-full h-auto object-contain rounded-lg" />
+                    </div>
+
+                    {/* Data List */}
+                    <div className="lg:col-span-2">
+                        <div className="flex justify-between items-center border-b-2 border-slate-200 pb-2 mb-4">
+                            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Country</h3>
+                            <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Active Students</h3>
+                        </div>
+                        <ul className="space-y-2">
+                            {studentData.map((item, index) => (
+                                <li key={index} className="flex justify-between items-center py-2.5 px-3 rounded-md hover:bg-slate-50 transition-colors">
+                                    <span className="font-medium text-slate-700 text-sm">{item.country}</span>
+                                    <span className="font-bold text-slate-800 text-base w-20 text-right">{item.users}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
 
 export const HomePage: React.FC<PageProps> = ({ navigate }) => {
     const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -324,8 +365,8 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
                 Launch Your Child's <span className="text-brand-space">Aerospace Journey</span> from Home<span className="text-[#e40917]">.</span>
               </h1>
-              <p className="mt-6 text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
-                Turn screen time into skill time. Our fun, hands-on live courses make learning about planes, rockets, stars, and drones an exciting adventure for every curious mind.
+              <p className="mt-4 text-xl md:text-2xl font-medium text-slate-700 max-w-xl mx-auto lg:mx-0">
+                Where Half of India’s Aerospace Engineers Begin
               </p>
               <div className="mt-10 flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
                 <a 
@@ -343,7 +384,9 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
         </div>
       </section>
 
-      <AboutVideoSection />
+      <LegacySection />
+      
+      <GlobalCommunitySection />
 
       <div id="products">
         <ProductsServicesSection navigate={navigate} />
