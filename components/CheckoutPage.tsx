@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageProps } from '../types';
 
 interface CheckoutPageProps extends PageProps {
@@ -32,6 +32,13 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     const [statusMessage, setStatusMessage] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [statusIsError, setStatusIsError] = useState(false);
+
+    useEffect(() => {
+        // Pre-fill age category for the Launch Pad session since it's not user-selectable
+        if (item?.name === 'Launch Pad Session') {
+            setFormData(prev => ({ ...prev, ageCategory: 'Grades 1-8' }));
+        }
+    }, [item]);
 
     if (!item) {
          return (
@@ -155,6 +162,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     const upiLink = `upi://pay?pa=brahmastra97779@cnrb&pn=Brahmastra Aerospace&am=${cleanPrice}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
 
+    const isLaunchPad = item?.name === 'Launch Pad Session';
+
     return (
         <section className="py-12 md:py-20 bg-slate-50 min-h-screen animate-fade-in-up">
             <div className="container mx-auto px-4 md:px-8">
@@ -181,23 +190,25 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
                                             <input type="text" name="studentName" value={formData.studentName} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="Child's full name" />
                                         </div>
                                         <div>
-                                            <label className="block text-sm font-medium text-slate-700 mb-1">Age Category <span className="text-red-500">*</span></label>
-                                            <select name="ageCategory" value={formData.ageCategory} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none">
-                                                <option value="">Select Category</option>
-                                                {ageCategories.map(c => <option key={c} value={c}>{c}</option>)}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="grid md:grid-cols-2 gap-5">
-                                        <div>
                                              <label className="block text-sm font-medium text-slate-700 mb-1">Grade / Class <span className="text-red-500">*</span></label>
                                              <select name="grade" value={formData.grade} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none">
                                                 <option value="">Select Class</option>
                                                 {grades.map(g => <option key={g} value={g}>{g}</option>)}
                                              </select>
                                         </div>
-                                        <div>
+                                    </div>
+                                    
+                                    <div className="grid md:grid-cols-2 gap-5">
+                                        {!isLaunchPad && (
+                                            <div>
+                                                <label className="block text-sm font-medium text-slate-700 mb-1">Age Category <span className="text-red-500">*</span></label>
+                                                <select name="ageCategory" value={formData.ageCategory} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none">
+                                                    <option value="">Select Category</option>
+                                                    {ageCategories.map(c => <option key={c} value={c}>{c}</option>)}
+                                                </select>
+                                            </div>
+                                        )}
+                                        <div className={isLaunchPad ? 'md:col-span-2' : ''}>
                                             <label className="block text-sm font-medium text-slate-700 mb-1">School Name <span className="text-red-500">*</span></label>
                                             <input type="text" name="schoolName" value={formData.schoolName} onChange={handleInputChange} required className="w-full bg-white text-slate-900 px-4 py-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-sky outline-none placeholder-slate-500" placeholder="Current school" />
                                         </div>

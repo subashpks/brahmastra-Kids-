@@ -1,4 +1,5 @@
 
+
 import React, { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { HomePage } from './Hero';
@@ -104,7 +105,7 @@ export function App() {
       case 'payment-success':
         return <PaymentSuccessPage navigate={navigate} transactionData={transactionData} />;
       case 'freecourses':
-        return <FreeCoursesPage activeChild={null} />;
+        return <FreeCoursesPage navigate={navigate} activeChild={null} />;
       case 'about':
         return <AboutUsPage />;
       case 'age':

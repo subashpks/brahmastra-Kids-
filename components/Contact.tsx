@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 
 const countryCodes = [
@@ -111,10 +110,7 @@ export const EnrollmentForm: React.FC = () => {
         }
     };
 
-    const availablePrograms = [
-        "(Ages 6-11) How Can We Visit Space? 🚀",
-        "(Ages 12-16) What Are Famous Space Missions? 🛰️"
-    ];
+    const availableProgram = "(Grades 1-8) How Can We Visit Space? 🚀";
 
     return (
         <section id="contact" className="py-16 md:py-24 bg-slate-100">
@@ -139,13 +135,11 @@ export const EnrollmentForm: React.FC = () => {
                         </div>
                         
                          <div>
-                            <label htmlFor="selectedProgram" className="block text-sm font-medium mb-1 text-slate-700">Age category <span className="text-red-500">*</span></label>
-                            <select id="selectedProgram" name="SelectedProgram" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                <option value="" disabled>Choose a program</option>
-                                {availablePrograms.map((prog) => (
-                                    <option key={prog} value={prog}>{prog}</option>
-                                ))}
-                            </select>
+                            <label htmlFor="selectedProgram" className="block text-sm font-medium mb-1 text-slate-700">Program <span className="text-red-500">*</span></label>
+                            <div className="w-full bg-slate-100 text-slate-800 px-4 py-3 rounded-md border border-slate-200 font-medium">
+                                {availableProgram}
+                            </div>
+                            <input type="hidden" name="SelectedProgram" value={availableProgram} />
                         </div>
                          <div>
                             <label htmlFor="email" className="block text-sm font-medium mb-1 text-slate-700">Parent's Email <span className="text-red-500">*</span></label>

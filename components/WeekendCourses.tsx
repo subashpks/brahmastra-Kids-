@@ -1,7 +1,5 @@
-
 import React, { useState } from 'react';
-import { EnrollmentForm } from './Contact';
-import { ChildProfile } from '../types';
+import { ChildProfile, PageProps } from '../types';
 
 // Icons
 const StarIcon = () => (
@@ -34,75 +32,28 @@ const CheckCircleIcon = () => (
     </svg>
 );
 
-const upcomingPrograms = [
-    { 
-        subDomain: "🚀 Space Exploration",
-        title: "How Can We Visit Space? 🚀", 
-        age: "Ages 6-11", 
-        date: "29 Nov | Saturday", 
-        time: "05:30 PM - 06:30 PM IST",
-    },
-    { 
-        subDomain: "🚀 Space Exploration",
-        title: "What Are Famous Space Missions? 🛰️", 
-        age: "Ages 12-16", 
-        date: "29 Nov | Saturday", 
-        time: "05:30 PM - 06:30 PM IST",
-    }
-];
+interface FreeCoursesPageProps extends PageProps {
+    activeChild: ChildProfile | null;
+}
 
-const ProgramCard: React.FC<{ program: any }> = ({ program }) => {
-    const scrollToForm = () => {
-        const form = document.getElementById('enrollment-form');
-        if (form) form.scrollIntoView({ behavior: 'smooth' });
+export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, navigate }) => {
+    const handleBooking = () => {
+        navigate('checkout', {
+            name: 'Launch Pad Session',
+            slot: '29 Nov | Saturday, 05:30 PM - 06:30 PM IST',
+            price: '₹199/-'
+        });
     };
 
-    return (
-        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col h-full">
-            <div className="mb-4">
-                <span className="text-sm font-bold text-brand-space tracking-wide uppercase block mb-1">{program.subDomain}</span>
-                <h3 className="text-2xl font-extrabold text-slate-900 leading-tight">{program.title}</h3>
-            </div>
-            
-            <div className="flex justify-between items-center mb-6">
-                <span className="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-sky-200">
-                    {program.age}
-                </span>
-                <span className="flex items-center text-slate-500 text-xs font-bold">
-                    <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-                    LIVE
-                </span>
-            </div>
-            
-            <div className="space-y-3 mb-6 flex-grow">
-                <div className="flex items-center text-slate-600 text-sm">
-                    <svg className="w-5 h-5 text-brand-sun mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                    {program.date}
-                </div>
-                <div className="flex items-center text-slate-600 text-sm whitespace-pre-line">
-                    <svg className="w-5 h-5 text-brand-sun mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    {program.time}
-                </div>
-            </div>
-
-            <button 
-                onClick={scrollToForm}
-                className="w-full bg-[#e40917] hover:bg-[#c10714] text-white font-bold py-3 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 group"
-            >
-                Secure Slot
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-            </button>
-        </div>
-    );
-};
-
-export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = ({ activeChild }) => {
-    const handleScrollToForm = () => {
-        const form = document.getElementById('enrollment-form');
-        if (form) form.scrollIntoView({ behavior: 'smooth' });
-    };
+    const passFeatures = [
+        "1 Live Interactive Session (90 Mins)",
+        "Taught by Real Aerospace Engineers",
+        "Digital Certificate of Participation",
+        "Direct Q&A with ISRO Tutors",
+        "No Equipment Needed (Household items)",
+        "Fun, Story-based Learning",
+        "Low Commitment, High Value"
+    ];
 
     return (
         <div className="animate-fade-in-up">
@@ -136,7 +87,7 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <button 
-                                    onClick={handleScrollToForm}
+                                    onClick={handleBooking}
                                     className="bg-[#e40917] hover:bg-[#c10714] text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all hover:scale-105 text-lg"
                                 >
                                     Get Launch Pad Pass - ₹199
@@ -197,35 +148,18 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8">
                                 What's Inside the Pass?
                             </h2>
-                            <ul className="space-y-6">
-                                <li className="flex items-start">
-                                    <div className="mt-1"><CheckCircleIcon /></div>
-                                    <div className="ml-4">
-                                        <h4 className="text-lg font-bold text-slate-800">90 Minutes Live Session</h4>
-                                        <p className="text-slate-600">Interactive learning with quizzes and activities.</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="mt-1"><CheckCircleIcon /></div>
-                                    <div className="ml-4">
-                                        <h4 className="text-lg font-bold text-slate-800">Direct Q&A with Experts</h4>
-                                        <p className="text-slate-600">Your child can ask any space question to our ISRO tutors.</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="mt-1"><CheckCircleIcon /></div>
-                                    <div className="ml-4">
-                                        <h4 className="text-lg font-bold text-slate-800">No Equipment Needed</h4>
-                                        <p className="text-slate-600">All activities use simple household items (paper, tape, bottles).</p>
-                                    </div>
-                                </li>
-                                <li className="flex items-start">
-                                    <div className="mt-1"><CheckCircleIcon /></div>
-                                    <div className="ml-4">
-                                        <h4 className="text-lg font-bold text-slate-800">Official Digital Certificate</h4>
-                                        <p className="text-slate-600">A proud achievement to show friends and family.</p>
-                                    </div>
-                                </li>
+                            <ul className="space-y-4">
+                                {passFeatures.map((feature, index) => (
+                                    <li 
+                                        key={index}
+                                        className="bg-white p-5 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-default flex items-center group border border-slate-100"
+                                    >
+                                        <div className="flex-shrink-0 mr-4 transition-transform duration-300 group-hover:scale-110">
+                                            <CheckCircleIcon />
+                                        </div>
+                                        <span className="font-semibold text-lg text-slate-700 group-hover:text-brand-space transition-colors">{feature}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         <div className="relative">
@@ -282,24 +216,46 @@ export const FreeCoursesPage: React.FC<{ activeChild: ChildProfile | null }> = (
                         <p className="text-lg text-slate-600 mt-4">Select your child's age group to book.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                        {upcomingPrograms.map((program, index) => (
-                            <ProgramCard key={index} program={program} />
-                        ))}
+                    <div className="max-w-2xl mx-auto">
+                        <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+                            <div className="mb-4 text-center">
+                                <span className="text-sm font-bold text-brand-space tracking-wide uppercase block mb-1">🚀 Space Exploration</span>
+                                <h3 className="text-2xl font-extrabold text-slate-900 leading-tight">Launch Pad Session</h3>
+                            </div>
+                            
+                            <div className="flex flex-col sm:flex-row justify-center items-center mb-6 text-slate-600 text-sm font-semibold space-y-2 sm:space-y-0 sm:space-x-4">
+                                <div className="flex items-center">
+                                    <svg className="w-5 h-5 text-brand-sun mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                                    <span>29 Nov | Saturday</span>
+                                </div>
+                                <div className="flex items-center">
+                                    <svg className="w-5 h-5 text-brand-sun mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span>05:30 PM - 06:30 PM IST</span>
+                                </div>
+                            </div>
+
+                            <div className="space-y-4 mt-6 border-t border-slate-200 pt-6">
+                                <div className="bg-slate-50 p-4 rounded-lg">
+                                    <span className="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-sky-200">
+                                        Grades 1-8
+                                    </span>
+                                    <p className="mt-2 font-semibold text-slate-800">Topic: How Can We Visit Space? 🚀</p>
+                                </div>
+                            </div>
+                            
+                            <button 
+                                onClick={handleBooking}
+                                className="mt-8 w-full bg-[#e40917] hover:bg-[#c10714] text-white font-bold py-3 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 group"
+                            >
+                                Secure Your Slot
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
-
-            {/* 6. Enrollment Form Section */}
-            <div id="enrollment-form" className="relative pb-20 bg-slate-50 pt-20">
-                <div className="container mx-auto px-6 text-center mb-8">
-                     <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                        Secure Your Launch Pad Slot
-                    </h2>
-                    <p className="mt-4 text-slate-600 text-lg">Fill the form to book your ₹199 Launch Pad Pass.</p>
-                </div>
-                <EnrollmentForm />
-            </div>
 
             {/* WhatsApp CTA */}
             <section className="bg-slate-900 py-16 text-white text-center">
