@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 interface FreeCoursePopupProps {
@@ -22,7 +23,7 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
             style={{ animationDuration: '0.3s' }}
             onClick={handleBackdropClick}
         >
-            <div className="bg-white rounded-2xl shadow-2xl max-w-sm w-full relative transform transition-all duration-300 scale-95 animate-scale-in flex flex-col overflow-hidden">
+            <div className="bg-white rounded-2xl shadow-2xl max-w-xs sm:max-w-sm w-full relative transform transition-all duration-300 scale-95 animate-scale-in flex flex-col overflow-hidden">
                 
                 <button 
                     onClick={onClose}
@@ -43,17 +44,17 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                     />
                 </div>
 
-                <div className="p-8 text-center">
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-800 mb-2">
+                <div className="p-5 sm:p-8 text-center">
+                    <h2 className="text-xl sm:text-3xl font-extrabold text-slate-800 mb-2">
                         Make Your Kid a Rocket Scientist!
                     </h2>
-                    <p className="text-slate-600 mb-6 text-base">
+                    <p className="text-slate-600 mb-5 sm:mb-6 text-sm sm:text-base">
                         Explore our hands-on courses and ignite a lifelong passion for space.
                     </p>
                     
                     <button 
                         onClick={handleCTAClick}
-                        className="w-full bg-brand-space hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-full transition-all shadow-lg hover:shadow-xl text-lg flex items-center justify-center gap-2 group"
+                        className="w-full bg-brand-space hover:bg-blue-800 text-white font-bold py-2.5 sm:py-3 px-6 rounded-full transition-all shadow-lg hover:shadow-xl text-base sm:text-lg flex items-center justify-center gap-2 group"
                     >
                         Explore Our Products
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -61,8 +62,8 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
                         </svg>
                     </button>
 
-                    <div className="text-center mt-6">
-                        <button onClick={onClose} className="text-sm text-slate-500 hover:text-slate-700 hover:underline">
+                    <div className="text-center mt-4 sm:mt-6">
+                        <button onClick={onClose} className="text-xs sm:text-sm text-slate-500 hover:text-slate-700 hover:underline">
                             Maybe later
                         </button>
                     </div>

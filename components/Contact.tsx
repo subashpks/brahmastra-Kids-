@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 
 const countryCodes = [
@@ -110,7 +112,7 @@ export const EnrollmentForm: React.FC = () => {
         }
     };
 
-    const availableProgram = "(Grades 1-8) How Can We Visit Space? 🚀";
+    const availableProgram = "(Grades 3-8) How Can We Visit Space? 🚀";
 
     return (
         <section id="contact" className="py-16 md:py-24 bg-slate-100">

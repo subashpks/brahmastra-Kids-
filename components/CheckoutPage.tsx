@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect } from 'react';
 import { PageProps } from '../types';
 
@@ -36,7 +38,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     useEffect(() => {
         // Pre-fill age category for the Launch Pad session since it's not user-selectable
         if (item?.name === 'Launch Pad Session') {
-            setFormData(prev => ({ ...prev, ageCategory: 'Grades 1-8' }));
+            setFormData(prev => ({ ...prev, ageCategory: 'Grades 3-8' }));
         }
     }, [item]);
 

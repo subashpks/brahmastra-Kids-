@@ -1,3 +1,5 @@
+
+
 import React, { useState } from 'react';
 import { ChildProfile, PageProps } from '../types';
 
@@ -237,7 +239,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                             <div className="space-y-4 mt-6 border-t border-slate-200 pt-6">
                                 <div className="bg-slate-50 p-4 rounded-lg">
                                     <span className="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-sky-200">
-                                        Grades 1-8
+                                        Grades 3-8
                                     </span>
                                     <p className="mt-2 font-semibold text-slate-800">Topic: How Can We Visit Space? 🚀</p>
                                 </div>

@@ -361,7 +361,7 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
         <div className="container mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left order-2 lg:order-1">
-              <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">AGES 6-16</span>
+              <span className="text-brand-space font-semibold tracking-wider bg-sky-200/50 px-3 py-1 rounded-full">GRADES 3-8</span>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mt-4">
                 Launch Your Child's <span className="text-brand-space">Aerospace Journey</span> from Home<span className="text-[#e40917]">.</span>
               </h1>
