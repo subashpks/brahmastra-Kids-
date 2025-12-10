@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from 'react';
 import { Header } from './Header';
 import { HomePage } from './Hero';
@@ -29,6 +28,9 @@ import { AdvancedCourseDetailPage } from './AdvancedCourseDetailPage';
 import { VrWorkshopPage } from './VrWorkshopPage';
 import { CheckoutPage } from './CheckoutPage';
 import { PaymentSuccessPage } from './PaymentSuccessPage';
+import { PrivacyPolicy } from './PrivacyPolicy';
+import { TermsAndConditions } from './TermsAndConditions';
+import { RefundPolicy } from './RefundPolicy';
 import { User, ChildProfile } from '../types';
 
 export function App() {
@@ -116,6 +118,12 @@ export function App() {
         return <ContactPage />;
       case 'certificate':
         return <CertificateFormPage navigate={navigate} />;
+      case 'privacy':
+        return <PrivacyPolicy />;
+      case 'terms':
+        return <TermsAndConditions />;
+      case 'refund':
+        return <RefundPolicy />;
       case 'home':
       default:
         return <HomePage navigate={navigate} />;

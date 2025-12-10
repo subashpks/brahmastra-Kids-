@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { PageProps } from '../types';
 
@@ -29,7 +30,7 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
     return (
         <footer className="bg-[#22A7F0] text-white pt-16 pb-8">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 text-center md:text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left">
                     
                     {/* Column 1: Logo & Socials */}
                     <div className="flex flex-col items-center md:items-start space-y-4">
@@ -69,11 +70,21 @@ export const Footer: React.FC<PageProps> = ({ navigate }) => {
                             <div className="flex items-center"><PhoneIcon /><span>9940797779</span></div>
                              <div className="flex items-start">
                                 <LocationIcon />
-                                <p className="text-sm">
+                                <p className="text-sm text-left">
                                     NCR, NOIDA, UTTARPRADESH<br/>
                                     Nanmangalam, Chennai, Tamilnadu.
                                 </p>
                             </div>
+                        </div>
+                    </div>
+
+                    {/* Column 4: Legal */}
+                    <div className="flex flex-col items-center md:items-start">
+                         <h3 className="text-lg font-semibold mb-4">Legal</h3>
+                         <div className="flex flex-col space-y-2 text-sm">
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('privacy'); }} className="transition-opacity hover:opacity-75">Privacy Policy</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('terms'); }} className="transition-opacity hover:opacity-75">Terms & Conditions</a>
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigate('refund'); }} className="transition-opacity hover:opacity-75">Refund Policy</a>
                         </div>
                     </div>
 

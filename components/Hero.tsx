@@ -80,7 +80,7 @@ const StatsSection = () => (
 const HOME_PRODUCTS = [
     {
         title: "Launch Pad",
-        price: "₹199",
+        price: "₹199/-",
         description: "Zero-Risk Entry. 1 Live Fun Session to spark interest.",
         emoji: "🎫",
         color: "border-slate-400",
@@ -88,7 +88,7 @@ const HOME_PRODUCTS = [
     },
     {
         title: "Rising Scientist",
-        price: "₹1,599",
+        price: "₹1,599/-",
         description: "5 Weeks. Physical Kit delivered. Official Mission Medal.",
         emoji: "🎖️",
         color: "border-brand-space",
@@ -97,7 +97,7 @@ const HOME_PRODUCTS = [
     },
     {
         title: "Future Scientist",
-        price: "₹7,999",
+        price: "₹7,999/-",
         description: "Elite Tier. 12 Weeks. 1:1 Mentorship from Founder.",
         emoji: "👨‍🚀",
         color: "border-amber-500",
