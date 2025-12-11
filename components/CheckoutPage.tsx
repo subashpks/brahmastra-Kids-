@@ -36,8 +36,8 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     const [statusIsError, setStatusIsError] = useState(false);
 
     useEffect(() => {
-        // Pre-fill age category for the Launch Pad session since it's not user-selectable
-        if (item?.name === 'Launch Pad Session') {
+        // Pre-fill age category for the Little Scientist session since it's not user-selectable
+        if (item?.name === 'Little Scientist Session') {
             setFormData(prev => ({ ...prev, ageCategory: 'Grades 3-8' }));
         }
     }, [item]);
@@ -164,7 +164,7 @@ export const CheckoutPage: React.FC<CheckoutPageProps> = ({ item, navigate }) =>
     const upiLink = `upi://pay?pa=brahmastra97779@cnrb&pn=Brahmastra Aerospace&am=${cleanPrice}&cu=INR&tn=${encodeURIComponent(transactionNote)}`;
     const qrCodeUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiLink)}`;
 
-    const isLaunchPad = item?.name === 'Launch Pad Session';
+    const isLaunchPad = item?.name === 'Little Scientist Session';
 
     return (
         <section className="py-12 md:py-20 bg-slate-50 min-h-screen animate-fade-in-up">

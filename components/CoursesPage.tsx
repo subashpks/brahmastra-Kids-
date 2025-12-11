@@ -6,9 +6,9 @@ import { COURSES_DATA } from '../constants';
 
 const PRODUCTS_LIST = [
     {
-        title: "Launch Pad",
+        title: "Little Scientist",
         price: "₹199/-",
-        description: "Zero-Risk Entry. 1 Live Fun Session to spark interest.",
+        description: "An expert-led live session to begin their scientist journey.",
         emoji: "🎫",
         color: "border-slate-400",
         link: "freecourses",
@@ -193,11 +193,11 @@ export const CoursesPage: React.FC<PageProps> = ({ navigate }) => {
                         </p>
                         <div className="mb-12">
                             <a 
-                                href="#current-courses" 
+                                href="#products-section" 
                                 onClick={(e) => { e.preventDefault(); handleScrollToProducts() }}
                                 className="bg-brand-space text-white font-bold px-8 py-3 rounded-full shadow-lg hover:bg-blue-800 transition-all inline-block hover:-translate-y-1"
                             >
-                                Know Current Courses
+                                View Our Programs
                             </a>
                         </div>
                     </div>
@@ -222,71 +222,8 @@ export const CoursesPage: React.FC<PageProps> = ({ navigate }) => {
                 </div>
             </section>
 
-            {/* Featured Live Cohort Section */}
-            <section id="current-courses" className="py-20 bg-slate-50 border-y border-slate-200">
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h2 className="text-4xl font-extrabold text-slate-900 mb-4">Current Courses</h2>
-                        <div className="flex items-center justify-center gap-3">
-                            <span className="relative flex h-3 w-3">
-                              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-                            </span>
-                            <span className="text-sm font-bold text-slate-600 uppercase tracking-wide">Live Now: Featured Cohort</span>
-                        </div>
-                    </div>
-                    
-                    <div className="max-w-5xl mx-auto bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl shadow-2xl overflow-hidden text-white group">
-                        <div className="md:grid md:grid-cols-2">
-                            <div className="relative h-72 md:h-auto overflow-hidden">
-                                <div className="absolute inset-0 bg-brand-space/20 z-10"></div>
-                                <img 
-                                    className="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
-                                    src="https://files.catbox.moe/gpc0v3.png" 
-                                    alt="Rocket Science course" 
-                                />
-                                <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/90 via-black/50 to-transparent z-20">
-                                    <span className="bg-brand-sun text-slate-900 text-xs font-bold px-3 py-1 rounded mb-3 inline-block">BESTSELLER</span>
-                                    <h3 className="text-3xl font-bold leading-tight">Rocket Science</h3>
-                                </div>
-                            </div>
-                            <div className="p-8 md:p-12 flex flex-col justify-center">
-                                <h3 className="text-3xl font-bold mb-4 text-white">Rocket Science For Kids</h3>
-                                <p className="text-slate-300 mb-8 text-lg leading-relaxed">
-                                    A full-fledged course where kids build real rockets, understand propulsion through balloons, and learn aerodynamics from folding paper.
-                                </p>
-
-                                <div className="grid grid-cols-2 gap-x-4 gap-y-6 mb-10">
-                                    {programTags.map(tag => (
-                                        <div key={tag.text} className="flex items-center gap-3 text-slate-300 text-sm font-medium">
-                                            <span className="text-brand-sky bg-white/10 p-1.5 rounded-full">{tag.icon}</span>
-                                            <span>{tag.text}</span>
-                                        </div>
-                                    ))}
-                                </div>
-                                
-                                <div className="flex flex-col sm:flex-row gap-4">
-                                    <button 
-                                        onClick={() => navigate('weekend-rocket-blast-off')} 
-                                        className="bg-brand-sky hover:bg-sky-500 text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all transform hover:scale-105 text-center"
-                                    >
-                                        Junior Scientist (6-11 Yrs)
-                                    </button>
-                                    <button 
-                                        onClick={() => navigate('advanced-rocketry-workshop')} 
-                                        className="bg-transparent border-2 border-white/30 hover:bg-white/10 text-white font-bold px-8 py-4 rounded-full transition-all text-center"
-                                    >
-                                        Senior Scientist (12-16 Yrs)
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             {/* Products Grid (Main) */}
-            <section id="products-section" className="py-20 bg-slate-50">
+            <section id="products-section" className="py-20 bg-slate-50 border-t border-slate-200">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">

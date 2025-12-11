@@ -79,9 +79,9 @@ const StatsSection = () => (
 
 const HOME_PRODUCTS = [
     {
-        title: "Launch Pad",
+        title: "Little Scientist",
         price: "₹199/-",
-        description: "Zero-Risk Entry. 1 Live Fun Session to spark interest.",
+        description: "An expert-led live session to begin their scientist journey.",
         emoji: "🎫",
         color: "border-slate-400",
         link: "freecourses"

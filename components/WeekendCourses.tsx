@@ -41,7 +41,7 @@ interface FreeCoursesPageProps extends PageProps {
 export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, navigate }) => {
     const handleBooking = () => {
         navigate('checkout', {
-            name: 'Launch Pad Session',
+            name: 'Little Scientist Session',
             slot: '29 Nov | Saturday, 05:30 PM - 06:30 PM IST',
             price: '₹199/-'
         });
@@ -92,7 +92,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                                     onClick={handleBooking}
                                     className="bg-[#e40917] hover:bg-[#c10714] text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all hover:scale-105 text-lg"
                                 >
-                                    Get Launch Pad Pass - ₹199
+                                    Get Little Scientist Pass - ₹199
                                 </button>
                             </div>
                         </div>
@@ -112,7 +112,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
-                            Why Choose the <span className="text-brand-space font-['Montserrat']">Launch Pad</span>?
+                            Why Choose the <span className="text-brand-space font-['Montserrat']">Little Scientist</span>?
                         </h2>
                     </div>
                     
@@ -214,7 +214,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
             <section id="upcoming-sessions" className="py-20 bg-white">
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Upcoming Launch Pad Session</h2>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">Upcoming Little Scientist Session</h2>
                         <p className="text-lg text-slate-600 mt-4">Select your child's age group to book.</p>
                     </div>
 
@@ -222,7 +222,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                         <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
                             <div className="mb-4 text-center">
                                 <span className="text-sm font-bold text-brand-space tracking-wide uppercase block mb-1">🚀 Space Exploration</span>
-                                <h3 className="text-2xl font-extrabold text-slate-900 leading-tight">Launch Pad Session</h3>
+                                <h3 className="text-2xl font-extrabold text-slate-900 leading-tight">Little Scientist Session</h3>
                             </div>
                             
                             <div className="flex flex-col sm:flex-row justify-center items-center mb-6 text-slate-600 text-sm font-semibold space-y-2 sm:space-y-0 sm:space-x-4">
