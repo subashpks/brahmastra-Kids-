@@ -89,7 +89,14 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
               </div>
             </div>
             <div className="order-1 lg:order-2 flex justify-center">
-                <img src="https://files.catbox.moe/cticic.png" alt="Astronaut" className="w-64 md:w-80 animate-float" />
+                {/* Optimized LCP Image */}
+                <img 
+                    src="https://files.catbox.moe/cticic.png" 
+                    alt="Astronaut" 
+                    className="w-64 md:w-80 animate-float" 
+                    loading="eager" 
+                    fetchPriority="high" 
+                />
             </div>
           </div>
         </div>

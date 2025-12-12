@@ -36,11 +36,16 @@ const TermsAndConditions = React.lazy(() => import('./TermsAndConditions').then(
 const RefundPolicy = React.lazy(() => import('./RefundPolicy').then(module => ({ default: module.RefundPolicy })));
 const EnrollmentForm = React.lazy(() => import('./Contact').then(module => ({ default: module.EnrollmentForm })));
 
-// Loading Component
+// Optimized Loading Component
 const LoadingSpinner = () => (
-  <div className="flex flex-col items-center justify-center min-h-[60vh] bg-slate-50">
-    <div className="w-16 h-16 border-4 border-slate-200 border-t-brand-space rounded-full animate-spin"></div>
-    <p className="mt-4 text-slate-500 font-bold tracking-wide animate-pulse">Loading Mission Control...</p>
+  <div className="flex flex-col items-center justify-center min-h-[80vh] bg-slate-50">
+    <div className="relative">
+        <div className="w-20 h-20 border-4 border-slate-200 border-t-brand-space rounded-full animate-spin"></div>
+        <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-2xl animate-pulse">🚀</span>
+        </div>
+    </div>
+    <p className="mt-6 text-brand-space font-bold tracking-widest uppercase text-sm animate-pulse">Initializing Mission Control...</p>
   </div>
 );
 
@@ -63,12 +68,12 @@ class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasErr
     if (this.state.hasError) {
       return (
         <div className="min-h-screen flex items-center justify-center bg-slate-50 text-center p-6">
-            <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full">
+            <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full border-t-4 border-red-500">
                 <div className="text-6xl mb-4">🛸</div>
-                <h1 className="text-2xl font-bold text-slate-800 mb-2">Something went wrong.</h1>
-                <p className="text-slate-600 mb-6">Our systems encountered a small glitch. Please refresh to try again.</p>
-                <button onClick={() => window.location.reload()} className="bg-brand-space hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full transition-all w-full">
-                    Refresh Page
+                <h1 className="text-2xl font-bold text-slate-800 mb-2">Houston, we have a problem.</h1>
+                <p className="text-slate-600 mb-6">A small glitch in the system. Please reload to continue the mission.</p>
+                <button onClick={() => window.location.reload()} className="bg-brand-space hover:bg-blue-800 text-white font-bold px-6 py-3 rounded-full transition-all w-full shadow-lg">
+                    Reload Application
                 </button>
             </div>
         </div>
@@ -98,38 +103,50 @@ export function App() {
   const [transactionData, setTransactionData] = useState<any>(null);
 
   useEffect(() => {
-    try {
-        const params = new URLSearchParams(window.location.search);
-        const pageParam = params.get('page');
-        
-        // Handle browser back/forward buttons
-        const handlePopState = () => {
-            const newParams = new URLSearchParams(window.location.search);
-            const newPage = newParams.get('page');
-            setCurrentPage(newPage ? newPage.toLowerCase() : 'home');
-        };
+    // 1. Double check URL params on mount to catch redirects cleanly
+    const checkUrlParams = () => {
+        try {
+            const params = new URLSearchParams(window.location.search);
+            const pageParam = params.get('page');
+            
+            // Only update if different to prevent re-renders
+            if (pageParam && pageParam.toLowerCase() !== currentPage) {
+                setCurrentPage(pageParam.toLowerCase());
+            }
 
-        window.addEventListener('popstate', handlePopState);
+            // Popup logic: Show only if NOT on enrollment/checkout/success pages
+            const restrictedPages = ['enrollment', 'checkout', 'payment-success'];
+            const popupShown = sessionStorage.getItem('popupShown');
+            const isOnRestrictedPage = pageParam && restrictedPages.includes(pageParam.toLowerCase());
 
-        // Popup logic - only show if NOT on a specific page
-        const popupShown = sessionStorage.getItem('popupShown');
-        if (!popupShown && !pageParam) { 
-          const timer = setTimeout(() => {
-            setShowPopup(true);
-            sessionStorage.setItem('popupShown', 'true');
-          }, 3000); 
-          return () => {
-              clearTimeout(timer);
-              window.removeEventListener('popstate', handlePopState);
-          };
+            if (!popupShown && !isOnRestrictedPage) { 
+                const timer = setTimeout(() => {
+                    setShowPopup(true);
+                    sessionStorage.setItem('popupShown', 'true');
+                }, 4000); // Delayed slightly to not annoy immediately
+                return () => clearTimeout(timer);
+            }
+        } catch (e) {
+            console.error("Routing error:", e);
         }
-        
-        return () => window.removeEventListener('popstate', handlePopState);
+    };
 
-    } catch (e) {
-        console.error("Routing error:", e);
-    }
-  }, []);
+    const cleanupPopup = checkUrlParams();
+
+    // 2. Handle Browser Back/Forward buttons
+    const handlePopState = () => {
+        const newParams = new URLSearchParams(window.location.search);
+        const newPage = newParams.get('page');
+        setCurrentPage(newPage ? newPage.toLowerCase() : 'home');
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    
+    return () => {
+        window.removeEventListener('popstate', handlePopState);
+        if (typeof cleanupPopup === 'function') cleanupPopup();
+    };
+  }, []); // Empty dependency array means this runs once on mount
 
   const navigate = (page: string, data: any = null) => {
     if (page === 'checkout') {
@@ -163,6 +180,7 @@ export function App() {
     const pageProps = { navigate, activeChild: null };
     const activePage = currentPage.toLowerCase();
 
+    // Ensure enrollment matching is case-insensitive and robust
     switch (activePage) {
       case 'aeronautics': return <AeronauticsPage {...pageProps} />;
       case 'rocket-science': return <RocketSciencePage {...pageProps} />;
@@ -179,7 +197,10 @@ export function App() {
       case 'vr-workshop': return <VrWorkshopPage {...pageProps} />;
       case 'checkout': return <CheckoutPage item={checkoutItem} navigate={navigate} />;
       case 'payment-success': return <PaymentSuccessPage navigate={navigate} transactionData={transactionData} />;
+      
+      // Explicit check for enrollment
       case 'enrollment': return <EnrollmentForm />;
+      
       case 'freecourses': return <FreeCoursesPage navigate={navigate} activeChild={null} />;
       case 'about': return <AboutUsPage />;
       case 'age': return <AgeCategoryPage navigate={navigate} />;
@@ -197,7 +218,7 @@ export function App() {
 
   return (
     <ErrorBoundary>
-        <div className="flex flex-col min-h-screen bg-slate-50">
+        <div className="flex flex-col min-h-screen bg-slate-50 font-sans">
           {showPopup && <FreeCoursePopup onClose={handleClosePopup} onRedirect={handlePopupRedirect} />}
           <Header navigate={navigate} currentPage={currentPage} isLoggedIn={false} onLogout={() => {}} currentUser={null} activeChild={null} />
           <main className="flex-grow">

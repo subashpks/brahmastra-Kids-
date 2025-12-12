@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Preload Hero Image for Speed -->
+    <link rel="preload" as="image" href="https://files.catbox.moe/cticic.png">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -31,6 +35,7 @@
               'pulse-fomo': 'pulse-fomo 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
               'marquee': 'marquee 30s linear infinite',
               'pop-in': 'pop-in 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
+              'spin-slow': 'spin 3s linear infinite',
             },
             keyframes: {
               'fade-in-up': {
