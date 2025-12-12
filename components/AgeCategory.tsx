@@ -8,8 +8,8 @@ const categories = [
     {
         emoji: '🚀',
         title: 'Junior Aviators',
-        age: 'Ages 6-11',
-        standard: '1st–5th Standard',
+        age: 'Grade 3-8',
+        standard: '3rd–8th Standard',
         traits: 'Curious, imaginative, hands-on learners',
         focus: 'Story-based learning, DIY kits, fun experiments',
         color: 'border-sky-400'
@@ -17,8 +17,8 @@ const categories = [
     {
         emoji: '🧠',
         title: 'Senior Innovators',
-        age: 'Ages 12-16',
-        standard: '7th–11th Standard',
+        age: 'Grade 9-12',
+        standard: '9th–12th Standard',
         traits: 'Analytical, logical, future-focused',
         focus: 'Coding, aerospace fundamentals, career guiding',
         color: 'border-green-500'

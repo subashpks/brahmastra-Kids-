@@ -123,11 +123,11 @@ export const COURSES_DATA = [
 
 export const WEEKEND_CAMP_DATA = {
     id: 'weekend-rocket-blast-off',
-    courseName: 'Junior Rocket Scientist',
-    ageCategory: '6-11 years (Class 1 to 5)',
+    courseName: 'Rising Scientist',
+    ageCategory: 'Grade 3-8',
     sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
-    description: 'Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks! Only 10 seats available.',
-    price: '₹3000/-',
+    description: '5 Weeks. Physical Kit delivered. Official Mission Medal. Build real rockets, launch them high, and become a Certified Rising Scientist.',
+    price: '₹1,599/-',
     syllabus: [
         { 
             week: 'Week 1: The Basics of Blast-Off!', 
@@ -221,20 +221,21 @@ export const WEEKEND_CAMP_DATA = {
         'Math': 'Measuring height & countdown',
     },
     extraCoolThings: [
+        'Includes Physical Activity Kit delivered to your home 📦',
         'You BUILD & LAUNCH real rockets (not just read)',
         'Get wet and shout during launches',
         'Become a real mini scientist',
-        'Take home rockets + "Junior Rocket Scientist" badge 🏅',
+        'Take home rockets + "Rising Scientist" Medal 🏅',
     ],
 };
 
 export const ADVANCED_CAMP_DATA = {
     id: 'advanced-rocketry-workshop',
-    courseName: '🛰️ Advanced Rocketry & Propulsion Workshop!',
-    ageCategory: '12-16 years (Class 7 to 11)',
+    courseName: 'Future Scientist',
+    ageCategory: 'Grade 8-12',
     sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
-    description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering. Exclusive batch of 10 students.',
-    price: '₹3000/-',
+    description: '12 Weeks. 1:1 Mentorship. Elite. Design, simulate, and build advanced model rockets with personalized guidance from the Founder.',
+    price: '₹7,999/-',
     syllabus: [
         { 
             week: 'Week 1: Foundations of Rocket Engineering', 
@@ -328,17 +329,18 @@ export const ADVANCED_CAMP_DATA = {
         'Design & Tech': 'CAD/Simulation, Prototyping, Systems Integration',
     },
     extraCoolThings: [
+        '1:1 Mentorship with Founder (Subash P.) 👨‍🚀',
         'Use real engineering software to design & test your rocket before you build',
         'Learn the science behind different types of rocket engines',
         'Understand how flight computers and payloads work',
-        'Become a certified "Rocketry Engineer" 🏅',
+        'Become a certified "Future Scientist" 🏅',
     ],
 };
 
 export const VR_WORKSHOP_DATA = {
     id: 'vr-space-exploration',
     courseName: 'Astronaut Training',
-    ageCategory: '8-16 years (Class 3 to 10)',
+    ageCategory: 'Grade 3-10',
     sessions: '23 November | 9:00 AM - 2:00 PM',
     description: 'Go beyond textbooks! Pilot a spaceship, walk on Mars, and witness the birth of a star in a fully immersive Virtual Reality experience.',
     price: '₹599/-',
@@ -428,13 +430,13 @@ export const VR_WORKSHOP_DATA = {
 export const AERONAUTICS_PROGRAMS: Program[] = [
   {
     title: 'Junior Pilot Program',
-    ageGroup: 'Ages 5-8',
+    ageGroup: 'Grades 3-5',
     description: 'Learn the basics of flight! Build paper airplanes, discover how wings work, and design your first aircraft.',
     icon: '✈️',
   },
   {
     title: 'Aerodynamics Mastery',
-    ageGroup: 'Ages 9-15',
+    ageGroup: 'Grades 6-10',
     description: 'Dive deep into the forces of flight. Explore lift, drag, thrust, and weight with advanced simulators and model building.',
     icon: '✈️',
   },
@@ -443,13 +445,13 @@ export const AERONAUTICS_PROGRAMS: Program[] = [
 export const ROCKET_SCIENCE_PROGRAMS: Program[] = [
   {
     title: 'Rocket Racers',
-    ageGroup: 'Ages 5-8',
+    ageGroup: 'Grades 3-5',
     description: '3... 2... 1... Blast off! Construct and launch your own model rockets while learning about space exploration.',
     icon: '🚀',
   },
   {
     title: 'Orbital Mechanics',
-    ageGroup: 'Ages 9-15',
+    ageGroup: 'Grades 6-10',
     description: 'Chart a course to the stars. Understand how spacecraft travel, orbit planets, and navigate the vastness of space.',
     icon: '🚀',
   },
@@ -458,13 +460,13 @@ export const ROCKET_SCIENCE_PROGRAMS: Program[] = [
 export const SATELLITES_PROGRAMS: Program[] = [
     {
       title: 'Backyard Constellations',
-      ageGroup: 'Ages 5-8',
+      ageGroup: 'Grades 3-5',
       description: 'Discover the unseen helpers in the sky. Learn how satellites help us with weather, maps, and talking to friends far away.',
       icon: '🛰️',
     },
     {
       title: 'Satellite Engineering',
-      ageGroup: 'Ages 9-15',
+      ageGroup: 'Grades 6-10',
       description: 'Design, build, and deploy a virtual satellite. Learn about communication systems, orbits, and data transmission.',
       icon: '🛰️',
     },
@@ -473,13 +475,13 @@ export const SATELLITES_PROGRAMS: Program[] = [
 export const DATA_MATHEMATICS_PROGRAMS: Program[] = [
     {
       title: 'Data Detectives',
-      ageGroup: 'Ages 5-8',
+      ageGroup: 'Grades 3-5',
       description: 'Embark on a quest to find patterns in numbers, create cool charts, and solve real-world mysteries using data.',
       icon: '🧮',
     },
     {
       title: 'Algorithm Architects',
-      ageGroup: 'Ages 9-15',
+      ageGroup: 'Grades 6-10',
       description: 'Learn the logic behind algorithms and use mathematical models to predict outcomes, from game scores to weather patterns.',
       icon: '🧮',
     },
@@ -488,13 +490,13 @@ export const DATA_MATHEMATICS_PROGRAMS: Program[] = [
 export const QUANTUM_PHYSICS_PROGRAMS: Program[] = [
     {
       title: 'Quantum Leap Jr.',
-      ageGroup: 'Ages 5-8',
+      ageGroup: 'Grades 3-5',
       description: 'Play with the weird and wonderful rules of the quantum world. Discover particles that can be in two places at once!',
       icon: '⚛️',
     },
     {
       title: 'Reality Builders',
-      ageGroup: 'Ages 9-15',
+      ageGroup: 'Grades 6-10',
       description: 'Journey from the atom to the cosmos, exploring concepts like wave-particle duality, superposition, and quantum entanglement.',
       icon: '⚛️',
     },
@@ -503,13 +505,13 @@ export const QUANTUM_PHYSICS_PROGRAMS: Program[] = [
 export const MOLECULAR_CHEMISTRY_PROGRAMS: Program[] = [
     {
       title: 'Molecule Kidz',
-      ageGroup: 'Ages 5-8',
+      ageGroup: 'Grades 3-5',
       description: 'Mix safe, everyday ingredients to see how molecules bond, react, and create amazing changes you can see!',
       icon: '🧪',
     },
     {
       title: 'Atomic Architects',
-      ageGroup: 'Ages 9-15',
+      ageGroup: 'Grades 6-10',
       description: 'Dive into the periodic table, build 3D molecules on-screen, and understand the chemical bonds that create everything around us.',
       icon: '🧪',
     },
@@ -518,13 +520,13 @@ export const MOLECULAR_CHEMISTRY_PROGRAMS: Program[] = [
 export const ASTROBIOLOGY_PROGRAMS: Program[] = [
     {
       title: 'Alien Hunters',
-      ageGroup: 'Ages 5-8',
+      ageGroup: 'Grades 3-5',
       description: 'What do aliens look like? Design your own extraterrestrial creatures based on the environments of other planets.',
       icon: '👽',
     },
     {
       title: 'Exoplanet Explorers',
-      ageGroup: 'Ages 9-15',
+      ageGroup: 'Grades 6-10',
       description: 'Learn how scientists find planets around other stars and determine if they could support life. Analyze real data!',
       icon: '👽',
     },
@@ -533,13 +535,13 @@ export const ASTROBIOLOGY_PROGRAMS: Program[] = [
 export const ASTRONOMY_PROGRAMS: Program[] = [
     {
       title: 'Star Gazers Club',
-      ageGroup: 'Ages 5-8',
+      ageGroup: 'Grades 3-5',
       description: 'Learn to identify constellations, discover the planets of our solar system, and understand the phases of the moon.',
       icon: '🔭',
     },
     {
       title: 'Cosmic Voyager',
-      ageGroup: 'Ages 9-15',
+      ageGroup: 'Grades 6-10',
       description: 'Explore deep-space objects like nebulae and galaxies. Learn about black holes, star life cycles, and the Big Bang theory.',
       icon: '🔭',
     },
@@ -559,11 +561,11 @@ export const ALL_PROGRAMS = [
 export const FREE_PROGRAMS_DATA = [
     { 
         title: "Astronomy For Kids", 
-        ageGroup: "Ages 5-8",
+        ageGroup: "Grades 3-5",
     },
     { 
         title: "Rocket Science for Kids", 
-        ageGroup: "Ages 9-15",
+        ageGroup: "Grades 6-10",
     }
 ];
 
@@ -571,25 +573,25 @@ export const ACTIVITIES_DATA: Activity[] = [
     {
         title: "DIY Paper Rocket",
         description: "A fun, hands-on activity to learn the basics of aerodynamics and propulsion. All you need is paper, scissors, and tape!",
-        ageGroup: "Ages 5-8",
+        ageGroup: "Grades 3-5",
         icon: '🚀'
     },
     {
         title: "Stargazing Guide",
         description: "A printable guide to help you identify major constellations and planets visible in the night sky this month.",
-        ageGroup: "Ages 5-8",
+        ageGroup: "Grades 3-5",
         icon: '🔭'
     },
     {
         title: "Build a Satellite Model",
         description: "Use household items like cardboard boxes, aluminum foil, and plastic bottles to construct your own satellite model.",
-        ageGroup: "Ages 9-15",
+        ageGroup: "Grades 6-10",
         icon: '🛰️'
     },
     {
         title: "Wing Design Challenge",
         description: "Experiment with different paper airplane wing shapes and sizes to see how they affect flight distance and stability.",
-        ageGroup: "Ages 9-15",
+        ageGroup: "Grades 6-10",
         icon: '✈️'
     }
 ];

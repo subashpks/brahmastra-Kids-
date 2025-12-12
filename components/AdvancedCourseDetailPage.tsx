@@ -79,7 +79,7 @@ export const AdvancedCourseDetailPage: React.FC<PageProps> = ({ navigate }) => {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="text-center lg:text-left order-2 lg:order-1">
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
-                                Senior Rocket Scientist
+                                {courseName}
                             </h1>
                              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 mt-6">
                                 <span className="bg-sky-100 text-sky-800 text-sm font-semibold px-3 py-1.5 rounded-full flex items-center gap-2">

@@ -1,6 +1,5 @@
 
-
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChildProfile, PageProps } from '../types';
 
 // Icons
@@ -46,6 +45,23 @@ const GiftIcon = () => (
     </svg>
 );
 
+// Payment Button Component
+const RazorpayButton = () => {
+    const containerRef = useRef<HTMLFormElement>(null);
+
+    useEffect(() => {
+        if (containerRef.current && !containerRef.current.querySelector('script')) {
+            const script = document.createElement('script');
+            script.src = "https://checkout.razorpay.com/v1/payment-button.js";
+            script.setAttribute('data-payment_button_id', 'pl_RqdzcNU81c1UlE');
+            script.async = true;
+            containerRef.current.appendChild(script);
+        }
+    }, []);
+
+    return <form ref={containerRef} className="flex justify-center mt-8 min-h-[50px]"></form>;
+};
+
 interface FreeCoursesPageProps extends PageProps {
     activeChild: ChildProfile | null;
 }
@@ -57,6 +73,13 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
             slot: '14th December',
             price: '₹99/-'
         });
+    };
+
+    const scrollToBooking = () => {
+        const element = document.getElementById('upcoming-sessions');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
+        }
     };
 
     return (
@@ -76,7 +99,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                             
                             <div className="mt-4 mb-8">
                                 <p className="text-xl font-bold text-slate-800">
-                                    Topic: <span className="text-brand-space">How Can We Visit Space? 🚀</span>
+                                    Topic: <span className="text-brand-space">How to Become a Pilot? ✈️</span>
                                 </p>
                             </div>
                             
@@ -87,6 +110,9 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                                 <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 text-amber-700 border border-amber-100 rounded-full font-bold text-sm shadow-sm transition-transform hover:scale-105">
                                     ⏰ 05:30 PM - 06:30 PM IST
                                 </span>
+                                <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-purple-50 text-purple-700 border border-purple-100 rounded-full font-bold text-sm shadow-sm transition-transform hover:scale-105">
+                                    🎓 Grade 3-8
+                                </span>
                                 <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-50 text-green-700 border border-green-100 rounded-full font-bold text-sm shadow-sm transition-transform hover:scale-105">
                                     <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Live Interactive
                                 </span>
@@ -94,7 +120,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
 
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 <button 
-                                    onClick={handleBooking}
+                                    onClick={scrollToBooking}
                                     className="bg-[#e40917] hover:bg-[#c10714] text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all hover:scale-105 text-lg"
                                 >
                                     Join Now
@@ -286,19 +312,12 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                                     <span className="bg-sky-100 text-sky-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-sky-200">
                                         Grades 3-8
                                     </span>
-                                    <p className="mt-2 font-semibold text-slate-800">Topic: How Can We Visit Space? 🚀</p>
+                                    <p className="mt-2 font-semibold text-slate-800">Topic: How to Become a Pilot? ✈️</p>
                                 </div>
                             </div>
                             
-                            <button 
-                                onClick={handleBooking}
-                                className="mt-8 w-full bg-[#e40917] hover:bg-[#c10714] text-white font-bold py-3 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 group"
-                            >
-                                Secure Your Slot
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                </svg>
-                            </button>
+                            {/* Replaced Manual Booking Button with Razorpay Payment Button */}
+                            <RazorpayButton />
                         </div>
                     </div>
                 </div>

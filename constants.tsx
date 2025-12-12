@@ -123,11 +123,11 @@ export const COURSES_DATA = [
 
 export const WEEKEND_CAMP_DATA = {
     id: 'weekend-rocket-blast-off',
-    courseName: 'Rocket Science: Full-Fledged Course for Kids',
+    courseName: 'Rising Scientist',
     ageCategory: '6-11 years (Class 1 to 5)',
     sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
-    description: 'Build real rockets, launch them high, get wet, and become a Junior Rocket Scientist in just 5 weeks! Only 10 seats available.',
-    price: '₹3000/-',
+    description: '5 Weeks. Physical Kit delivered. Official Mission Medal. Build real rockets, launch them high, and become a Certified Rising Scientist.',
+    price: '₹1,599/-',
     syllabus: [
         { 
             week: 'Week 1: The Basics of Blast-Off!', 
@@ -221,20 +221,21 @@ export const WEEKEND_CAMP_DATA = {
         'Math': 'Measuring height & countdown',
     },
     extraCoolThings: [
+        'Includes Physical Activity Kit delivered to your home 📦',
         'You BUILD & LAUNCH real rockets (not just read)',
         'Get wet and shout during launches',
         'Become a real mini scientist',
-        'Take home rockets + "Junior Rocket Scientist" badge 🏅',
+        'Take home rockets + "Rising Scientist" Medal 🏅',
     ],
 };
 
 export const ADVANCED_CAMP_DATA = {
     id: 'advanced-rocketry-workshop',
-    courseName: '🛰️ Advanced Rocketry & Propulsion Workshop!',
+    courseName: 'Future Scientist',
     ageCategory: '12-16 years (Class 7 to 11)',
     sessions: 'Starts 1st Dec | 2 Sessions/Week (Evening)',
-    description: 'Go beyond the basics! Design, simulate, and build advanced model rockets, exploring the core principles of real-world space engineering. Exclusive batch of 10 students.',
-    price: '₹3000/-',
+    description: '12 Weeks. 1:1 Mentorship. Elite. Design, simulate, and build advanced model rockets with personalized guidance from the Founder.',
+    price: '₹7,999/-',
     syllabus: [
         { 
             week: 'Week 1: Foundations of Rocket Engineering', 
@@ -328,10 +329,11 @@ export const ADVANCED_CAMP_DATA = {
         'Design & Tech': 'CAD/Simulation, Prototyping, Systems Integration',
     },
     extraCoolThings: [
+        '1:1 Mentorship with Founder (Subash P.) 👨‍🚀',
         'Use real engineering software to design & test your rocket before you build',
         'Learn the science behind different types of rocket engines',
         'Understand how flight computers and payloads work',
-        'Become a certified "Rocketry Engineer" 🏅',
+        'Become a certified "Future Scientist" 🏅',
     ],
 };
 
