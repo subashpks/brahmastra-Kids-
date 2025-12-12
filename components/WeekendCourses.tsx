@@ -27,21 +27,9 @@ const WhatsAppIcon = () => (
     </svg>
 );
 
-const CheckCircleIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-);
-
 const WhiteCheckIcon = () => (
     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-    </svg>
-);
-
-const GiftIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
     </svg>
 );
 
@@ -50,6 +38,7 @@ const RazorpayButton = () => {
     const containerRef = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
+        // Prevent adding multiple scripts
         if (containerRef.current && !containerRef.current.querySelector('script')) {
             const script = document.createElement('script');
             script.src = "https://checkout.razorpay.com/v1/payment-button.js";
@@ -67,14 +56,6 @@ interface FreeCoursesPageProps extends PageProps {
 }
 
 export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, navigate }) => {
-    const handleBooking = () => {
-        navigate('checkout', {
-            name: 'Little Scientist Session',
-            slot: '14th December',
-            price: '₹99/-'
-        });
-    };
-
     const scrollToBooking = () => {
         const element = document.getElementById('upcoming-sessions');
         if (element) {

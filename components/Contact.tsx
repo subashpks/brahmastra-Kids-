@@ -28,14 +28,7 @@ export const EnrollmentForm: React.FC = () => {
 
     const generateQueryNumber = () => {
         const now = new Date();
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, '0');
-        const day = String(now.getDate()).padStart(2, '0');
-        const hour = String(now.getHours()).padStart(2, '0');
-        const minute = String(now.getMinutes()).padStart(2, '0');
-        const second = String(now.getSeconds()).padStart(2, '0');
-        const ms = String(now.getMilliseconds()).padStart(3, '0');
-        return `Q${year}${month}${day}${hour}${minute}${second}${ms}`;
+        return `Q${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}${String(now.getHours()).padStart(2, '0')}${String(now.getMinutes()).padStart(2, '0')}${String(now.getMilliseconds()).padStart(3, '0')}`;
     };
 
     const handleEmailDomainClick = (domain: string) => {
@@ -51,20 +44,12 @@ export const EnrollmentForm: React.FC = () => {
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
         
-        const name = formData.get('Name') as string;
-        const studentSchool = formData.get('StudentSchool') as string;
-        const selectedProgram = formData.get('SelectedProgram') as string;
-        // const email = formData.get('Email') as string; // Using state instead
-        const countryCode = formData.get('CountryCode') as string;
-        const parentPhone = formData.get('ParentPhone') as string;
-        const country = formData.get('Country') as string;
-        const state = formData.get('State') as string;
-        const howDidYouHear = formData.get('HowDidYouHear') as string;
-        const questions = formData.get('Questions') as string;
-        const attendedBefore = formData.get('AttendedBefore') as string;
+        // Simple validation
+        const requiredFields = ['Name', 'StudentSchool', 'ParentPhone', 'Country', 'State', 'HowDidYouHear'];
+        const isEmpty = requiredFields.some(field => !formData.get(field));
         
-        if (!name || !studentSchool || !email || !parentPhone || !country || !state || !howDidYouHear || !selectedProgram || !attendedBefore) {
-             setStatusMessage('Please fill in all required fields.');
+        if (isEmpty || !email) {
+             setStatusMessage('Please fill in all required fields marked with *.');
              setStatusIsError(true);
              setIsSubmitting(false);
              return;
@@ -74,16 +59,16 @@ export const EnrollmentForm: React.FC = () => {
         const data = {
             FormType: 'FreeCourseEnrollment',
             QueryNumber: queryNumber,
-            Name: name.trim(),
-            StudentSchool: studentSchool.trim(),
-            SelectedProgram: selectedProgram,
+            Name: formData.get('Name') as string,
+            StudentSchool: formData.get('StudentSchool') as string,
+            SelectedProgram: formData.get('SelectedProgram') as string,
             Email: email.trim(),
-            ParentPhone: `${countryCode} ${parentPhone.trim()}`,
-            Country: country.trim(),
-            State: state.trim(),
-            HowDidYouHear: howDidYouHear,
-            Questions: questions.trim(),
-            AttendedBefore: attendedBefore
+            ParentPhone: `${formData.get('CountryCode')} ${formData.get('ParentPhone')}`,
+            Country: formData.get('Country') as string,
+            State: formData.get('State') as string,
+            HowDidYouHear: formData.get('HowDidYouHear') as string,
+            Questions: formData.get('Questions') as string,
+            AttendedBefore: formData.get('AttendedBefore') as string
         };
 
         try {
@@ -94,14 +79,13 @@ export const EnrollmentForm: React.FC = () => {
             });
 
             if (response.ok) {
-                setStatusMessage(`✅ Thank you! Your enrollment is confirmed.\nYour Query Number: ${queryNumber}`);
+                setStatusMessage(`✅ Thank you! Your enrollment is confirmed.\nReference ID: ${queryNumber}`);
                 setStatusIsError(false);
                 form.reset();
                 setEmail('');
+                window.scrollTo(0, 0);
             } else {
-                const errText = await response.text();
-                console.error("Power Automate error response:", errText);
-                throw new Error('Submission failed. Please try again later.');
+                throw new Error('Server error. Please try again later.');
             }
         } catch (error: any) {
             setStatusMessage(`❌ Error submitting form: ${error.message}`);
@@ -114,36 +98,46 @@ export const EnrollmentForm: React.FC = () => {
     const availableProgram = "(Grades 3-8) How to Become a Pilot? ✈️";
 
     return (
-        <section id="contact" className="py-16 md:py-24 bg-slate-100">
+        <section id="enrollment-form" className="py-16 md:py-24 bg-slate-50 animate-fade-in-up">
             <div className="container mx-auto px-6">
                 <div className="text-center max-w-3xl mx-auto">
-                    <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-slate-900">
-                        Join Mission <span className="text-brand-space font-['Montserrat']">brahmàstra</span><span className="text-[#e40917]">.</span>
+                    <span className="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                        Successful Payment
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 mt-4">
+                        Final Step: Student Details
                     </h2>
                     <p className="mt-4 text-lg text-slate-600">
-                        Fill out the form below to secure your child's spot in our upcoming free aerospace course. We can't wait to see you!
+                        Please fill out these details so we can send the meeting link and materials to the right person.
                     </p>
                 </div>
-                <div className="mt-12 max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-                    <form className="space-y-4" onSubmit={handleFormSubmit} noValidate>
-                        <div>
-                            <label htmlFor="name" className="block text-sm font-medium mb-1 text-slate-700">Student's Name <span className="text-red-500">*</span></label>
-                            <input type="text" id="name" name="Name" required placeholder="Full name" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
-                        </div>
-                        <div>
-                            <label htmlFor="studentSchool" className="block text-sm font-medium mb-1 text-slate-700">Student's School <span className="text-red-500">*</span></label>
-                            <input type="text" id="studentSchool" name="StudentSchool" required placeholder="Name of the school" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                <div className="mt-12 max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg border-t-4 border-brand-space">
+                    <form className="space-y-5" onSubmit={handleFormSubmit} noValidate>
+                        
+                        {/* Student Details */}
+                        <div className="grid grid-cols-1 gap-5">
+                            <div>
+                                <label htmlFor="name" className="block text-sm font-bold mb-1 text-slate-700">Student's Name <span className="text-red-500">*</span></label>
+                                <input type="text" id="name" name="Name" required placeholder="Full name of the child" className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky transition-all" />
+                            </div>
+                            <div>
+                                <label htmlFor="studentSchool" className="block text-sm font-bold mb-1 text-slate-700">Student's School <span className="text-red-500">*</span></label>
+                                <input type="text" id="studentSchool" name="StudentSchool" required placeholder="Current School Name" className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky transition-all" />
+                            </div>
                         </div>
                         
                          <div>
-                            <label htmlFor="selectedProgram" className="block text-sm font-medium mb-1 text-slate-700">Program <span className="text-red-500">*</span></label>
-                            <div className="w-full bg-slate-100 text-slate-800 px-4 py-3 rounded-md border border-slate-200 font-medium">
+                            <label htmlFor="selectedProgram" className="block text-sm font-bold mb-1 text-slate-700">Confirmed Program</label>
+                            <div className="w-full bg-green-50 text-green-900 px-4 py-3 rounded-lg border border-green-200 font-medium flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-green-600" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
                                 {availableProgram}
                             </div>
                             <input type="hidden" name="SelectedProgram" value={availableProgram} />
                         </div>
+
+                        {/* Contact Details */}
                          <div>
-                            <label htmlFor="email" className="block text-sm font-medium mb-1 text-slate-700">Parent's Email <span className="text-red-500">*</span></label>
+                            <label htmlFor="email" className="block text-sm font-bold mb-1 text-slate-700">Parent's Email <span className="text-red-500">*</span></label>
                             <input 
                                 type="email" 
                                 id="email" 
@@ -151,8 +145,8 @@ export const EnrollmentForm: React.FC = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required 
-                                placeholder="Your email address" 
-                                className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" 
+                                placeholder="Meeting link will be sent here" 
+                                className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky transition-all" 
                             />
                             <div className="flex flex-wrap gap-2 mt-2">
                                 {emailDomains.map(domain => (
@@ -160,7 +154,7 @@ export const EnrollmentForm: React.FC = () => {
                                         key={domain}
                                         type="button"
                                         onClick={() => handleEmailDomainClick(domain)}
-                                        className="px-2 py-1 text-xs font-medium text-brand-space bg-sky-50 hover:bg-sky-100 rounded-md border border-sky-200 transition-colors"
+                                        className="px-2 py-1 text-xs font-medium text-brand-space bg-blue-50 hover:bg-blue-100 rounded border border-blue-200 transition-colors"
                                     >
                                         {domain}
                                     </button>
@@ -169,61 +163,50 @@ export const EnrollmentForm: React.FC = () => {
                         </div>
                         
                         <div>
-                           <label htmlFor="parentPhone" className="block text-sm font-medium mb-1 text-slate-700">Parent's Phone <span className="text-red-500">*</span></label>
+                           <label htmlFor="parentPhone" className="block text-sm font-bold mb-1 text-slate-700">WhatsApp Number <span className="text-red-500">*</span></label>
                             <div className="flex">
-                                <select id="countryCode" name="CountryCode" required className="bg-slate-50 text-slate-900 pl-2 pr-1 rounded-l-md border border-r-0 border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                    {countryCodes.map(c => <option key={c.name} value={c.code}>{c.name} ({c.code})</option>)}
+                                <select id="countryCode" name="CountryCode" required className="bg-slate-50 text-slate-900 pl-2 pr-1 rounded-l-lg border border-r-0 border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                                    {countryCodes.map(c => <option key={c.name} value={c.code}>{c.code}</option>)}
                                 </select>
-                                <input type="tel" id="parentPhone" name="ParentPhone" required placeholder="Mobile number" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-r-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                                <input type="tel" id="parentPhone" name="ParentPhone" required placeholder="For class updates" className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-r-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky transition-all" />
                             </div>
                         </div>
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <label htmlFor="country" className="block text-sm font-medium mb-1 text-slate-700">Country <span className="text-red-500">*</span></label>
-                                <input type="text" id="country" name="Country" required placeholder="e.g., India" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                                <label htmlFor="country" className="block text-sm font-bold mb-1 text-slate-700">Country <span className="text-red-500">*</span></label>
+                                <input type="text" id="country" name="Country" required placeholder="e.g., India" className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky transition-all" />
                             </div>
                             <div>
-                                <label htmlFor="state" className="block text-sm font-medium mb-1 text-slate-700">Region / State <span className="text-red-500">*</span></label>
-                                <input type="text" id="state" name="State" required placeholder="e.g., Tamil Nadu" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky" />
+                                <label htmlFor="state" className="block text-sm font-bold mb-1 text-slate-700">State <span className="text-red-500">*</span></label>
+                                <input type="text" id="state" name="State" required placeholder="e.g., Tamil Nadu" className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky transition-all" />
                             </div>
                         </div>
 
                         <div>
-                            <label htmlFor="attendedBefore" className="block text-sm font-medium mb-1 text-slate-700">Did you attend our class before? <span className="text-red-500">*</span></label>
-                            <select id="attendedBefore" name="AttendedBefore" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
-                                <option value="" disabled>Select an option</option>
-                                <option value="Yes">Yes</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label htmlFor="howDidYouHear" className="block text-sm font-medium mb-1 text-slate-700">How did you hear about us? <span className="text-red-500">*</span></label>
-                            <select id="howDidYouHear" name="HowDidYouHear" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky">
+                            <label htmlFor="howDidYouHear" className="block text-sm font-bold mb-1 text-slate-700">How did you hear about us? <span className="text-red-500">*</span></label>
+                            <select id="howDidYouHear" name="HowDidYouHear" required defaultValue="" className="w-full bg-slate-50 text-slate-900 px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky transition-all">
                                 <option value="" disabled>Select an option</option>
                                 <option value="WhatsApp">WhatsApp</option>
                                 <option value="Facebook">Facebook</option>
                                 <option value="Instagram">Instagram</option>
-                                <option value="LinkedIn">LinkedIn</option>
-                                <option value="X (formerly Twitter)">X (formerly Twitter)</option>
-                                <option value="Tamil Sangam">Tamil Sangam</option>
                                 <option value="Friend or Family">Friend or Family</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                         <div>
-                            <label htmlFor="questions" className="block text-sm font-medium mb-1 text-slate-700">Any specific questions? (optional)</label>
-                            <textarea id="questions" name="Questions" rows={3} placeholder="Write your questions here..." className="w-full bg-slate-50 text-slate-900 px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:ring-2 focus:ring-brand-sky"></textarea>
-                        </div>
+
+                        <input type="hidden" name="AttendedBefore" value="No" /> {/* Default to No for new registrations */}
+                        <input type="hidden" name="Questions" value="None" />
+
                         {statusMessage && (
-                            <div className={`p-4 rounded-md text-sm whitespace-pre-line ${statusIsError ? 'bg-red-100 text-red-800' : 'bg-green-100 text-green-800'}`}>
+                            <div className={`p-4 rounded-lg text-sm font-medium whitespace-pre-line text-center ${statusIsError ? 'bg-red-50 text-red-700 border border-red-200' : 'bg-green-50 text-green-700 border border-green-200'}`}>
                                 {statusMessage}
                             </div>
                         )}
-                        <div>
-                            <button type="submit" disabled={isSubmitting} className="w-full bg-brand-space hover:bg-blue-800 transition-colors text-white font-semibold px-6 py-3 rounded-md shadow-md disabled:bg-slate-400 disabled:cursor-not-allowed">
-                                {isSubmitting ? 'Enroll Now' : 'Enroll Now'}
+                        
+                        <div className="pt-4">
+                            <button type="submit" disabled={isSubmitting} className="w-full bg-brand-space hover:bg-blue-800 transition-all text-white font-bold text-lg px-6 py-4 rounded-full shadow-lg disabled:bg-slate-400 disabled:cursor-not-allowed transform hover:scale-[1.02]">
+                                {isSubmitting ? 'Confirming Enrollment...' : 'Complete Enrollment'}
                             </button>
                         </div>
                     </form>
