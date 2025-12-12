@@ -7,19 +7,20 @@ import { COURSES_DATA } from '../constants';
 const PRODUCTS_LIST = [
     {
         title: "Little Scientist",
-        price: "₹199/-",
+        price: "₹99/-",
         description: "An expert-led live session to begin their scientist journey.",
         emoji: "🎫",
         color: "border-slate-400",
         link: "freecourses",
         features: [
             "1 Live Interactive Session (90 Mins)",
-            "Taught by Real Aerospace Engineers",
-            "Digital Certificate of Participation",
             "Direct Q&A with ISRO Tutors",
-            "No Equipment Needed (Household items)",
-            "Fun, Story-based Learning",
-            "Low Commitment, High Value"
+            "Digital 'Little Scientist' Certificate",
+            "No Equipment Needed",
+            "INCLUDES ₹5,000+ BONUS BUNDLE:",
+            "Study Materials & Activity Books",
+            "Video Recordings & Worksheets",
+            "Scientist Starter Pack (Digital)"
         ]
     },
     {

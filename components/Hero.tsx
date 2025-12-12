@@ -80,7 +80,7 @@ const StatsSection = () => (
 const HOME_PRODUCTS = [
     {
         title: "Little Scientist",
-        price: "₹199/-",
+        price: "₹99/-",
         description: "An expert-led live session to begin their scientist journey.",
         emoji: "🎫",
         color: "border-slate-400",

@@ -1,4 +1,5 @@
 
+
 import React, { useState } from 'react';
 import { User, ChildProfile } from '../types';
 
@@ -17,9 +18,16 @@ const LogoutIcon = () => (
     </svg>
 );
 
+const ChevronDownIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+    <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+  </svg>
+);
+
 
 export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedIn, onLogout, currentUser, activeChild }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isMobileProductsOpen, setIsMobileProductsOpen] = useState(false);
 
     const navLinkClasses = (page: string) => 
         `px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
@@ -27,6 +35,8 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
             ? 'text-brand-space font-bold' 
             : 'text-slate-600 hover:text-brand-space hover:bg-slate-200'
         }`;
+
+    const isProductsActive = ['courses', 'freecourses', 'weekend-rocket-blast-off', 'advanced-rocketry-workshop'].includes(currentPage);
 
     const handleMobileNav = (page: string) => {
         navigate(page);
@@ -37,7 +47,58 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
         <div className="hidden lg:flex items-center space-x-6">
             <nav className="flex items-center space-x-2">
                 <a href="#" onClick={(e) => {e.preventDefault(); navigate('about')}} className={navLinkClasses('about')}>About Us</a>
-                <a href="#" onClick={(e) => {e.preventDefault(); navigate('courses')}} className={navLinkClasses('courses')}>Products</a>
+                
+                {/* Products Dropdown */}
+                <div className="relative group">
+                    <button 
+                        className={`px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-1 ${
+                            isProductsActive 
+                            ? 'text-brand-space font-bold' 
+                            : 'text-slate-600 hover:text-brand-space hover:bg-slate-200'
+                        }`}
+                        onClick={() => navigate('courses')}
+                    >
+                        Products
+                        <ChevronDownIcon />
+                    </button>
+                    
+                    {/* Dropdown Content */}
+                    <div className="absolute left-0 mt-0 w-64 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-slate-100 transform translate-y-2 group-hover:translate-y-0">
+                        <a 
+                            href="#" 
+                            onClick={(e) => {e.preventDefault(); navigate('freecourses')}} 
+                            className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-brand-space"
+                        >
+                            <span className="font-bold block">Little Scientist</span>
+                            <span className="text-xs text-slate-500">Trial Class (₹99)</span>
+                        </a>
+                        <a 
+                            href="#" 
+                            onClick={(e) => {e.preventDefault(); navigate('weekend-rocket-blast-off')}} 
+                            className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-brand-space"
+                        >
+                            <span className="font-bold block">Rising Scientist</span>
+                            <span className="text-xs text-slate-500">5-Week Program</span>
+                        </a>
+                        <a 
+                            href="#" 
+                            onClick={(e) => {e.preventDefault(); navigate('advanced-rocketry-workshop')}} 
+                            className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-50 hover:text-brand-space"
+                        >
+                            <span className="font-bold block">Future Scientist</span>
+                            <span className="text-xs text-slate-500">12-Week Mentorship</span>
+                        </a>
+                        <div className="border-t border-slate-100 my-1"></div>
+                        <a 
+                            href="#" 
+                            onClick={(e) => {e.preventDefault(); navigate('courses')}} 
+                            className="block px-4 py-2 text-sm text-brand-space font-semibold hover:bg-slate-50 text-center"
+                        >
+                            View All Products
+                        </a>
+                    </div>
+                </div>
+
                 <a href="#" onClick={(e) => {e.preventDefault(); navigate('contact')}} className={navLinkClasses('contact')}>Contact</a>
             </nav>
 
@@ -68,7 +129,53 @@ export const Header: React.FC<HeaderProps> = ({ navigate, currentPage, isLoggedI
          <div className="lg:hidden absolute top-16 left-0 w-full bg-white shadow-xl animate-fade-in-up transition-all duration-300 max-h-[calc(100vh-64px)] overflow-y-auto">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                 <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('about'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">About Us</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('courses'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Products</a>
+                
+                {/* Mobile Products Accordion */}
+                <div>
+                    <button 
+                        onClick={() => setIsMobileProductsOpen(!isMobileProductsOpen)}
+                        className={`flex items-center justify-between w-full text-left px-4 py-3 rounded-md text-base font-medium hover:bg-slate-200 ${isProductsActive ? 'text-brand-space' : 'text-slate-700'}`}
+                    >
+                        Products
+                        <span className={`transform transition-transform duration-200 ${isMobileProductsOpen ? 'rotate-180' : ''}`}>
+                            <ChevronDownIcon />
+                        </span>
+                    </button>
+                    
+                    {isMobileProductsOpen && (
+                        <div className="bg-slate-50 rounded-md mb-2 mx-2">
+                            <a 
+                                href="#" 
+                                onClick={(e) => { e.preventDefault(); handleMobileNav('freecourses'); }} 
+                                className="block w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:text-brand-space hover:bg-slate-100 rounded-md"
+                            >
+                                Little Scientist (₹99)
+                            </a>
+                            <a 
+                                href="#" 
+                                onClick={(e) => { e.preventDefault(); handleMobileNav('weekend-rocket-blast-off'); }} 
+                                className="block w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:text-brand-space hover:bg-slate-100 rounded-md"
+                            >
+                                Rising Scientist
+                            </a>
+                            <a 
+                                href="#" 
+                                onClick={(e) => { e.preventDefault(); handleMobileNav('advanced-rocketry-workshop'); }} 
+                                className="block w-full text-left px-6 py-3 text-sm font-medium text-slate-600 hover:text-brand-space hover:bg-slate-100 rounded-md"
+                            >
+                                Future Scientist
+                            </a>
+                             <a 
+                                href="#" 
+                                onClick={(e) => { e.preventDefault(); handleMobileNav('courses'); }} 
+                                className="block w-full text-left px-6 py-3 text-sm font-bold text-brand-space hover:bg-slate-100 rounded-md"
+                            >
+                                View All Products
+                            </a>
+                        </div>
+                    )}
+                </div>
+
                 <a href="#" onClick={(e) => { e.preventDefault(); handleMobileNav('contact'); }} className="block w-full text-left px-4 py-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-200">Contact</a>
                 
                 <div className="border-t border-slate-200 my-2"></div>

@@ -34,6 +34,18 @@ const CheckCircleIcon = () => (
     </svg>
 );
 
+const WhiteCheckIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+    </svg>
+);
+
+const GiftIcon = () => (
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+    </svg>
+);
+
 interface FreeCoursesPageProps extends PageProps {
     activeChild: ChildProfile | null;
 }
@@ -42,20 +54,10 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
     const handleBooking = () => {
         navigate('checkout', {
             name: 'Little Scientist Session',
-            slot: '29 Nov | Saturday, 05:30 PM - 06:30 PM IST',
-            price: '₹199/-'
+            slot: '14th December',
+            price: '₹99/-'
         });
     };
-
-    const passFeatures = [
-        "1 Live Interactive Session (90 Mins)",
-        "Taught by Real Aerospace Engineers",
-        "Digital Certificate of Participation",
-        "Direct Q&A with ISRO Tutors",
-        "No Equipment Needed (Household items)",
-        "Fun, Story-based Learning",
-        "Low Commitment, High Value"
-    ];
 
     return (
         <div className="animate-fade-in-up">
@@ -69,21 +71,24 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="text-center lg:text-left order-2 lg:order-1">
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight mb-4">
-                                Take the First Step of Your Child Towards <span className="text-brand-space">Space</span>
+                                The <span className="text-brand-space">Little Scientist</span> Program
                             </h1>
-                            <h2 className="text-xl md:text-2xl font-medium text-slate-600 mb-8 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                                An Online, Fun, Weekend Activity designed to spark the scientist within.
-                            </h2>
                             
-                            <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-10">
-                                <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-lg text-slate-700 font-bold text-sm">
-                                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span> Online Live
+                            <div className="mt-4 mb-8">
+                                <p className="text-xl font-bold text-slate-800">
+                                    Topic: <span className="text-brand-space">How Can We Visit Space? 🚀</span>
+                                </p>
+                            </div>
+                            
+                            <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-10">
+                                <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-50 text-blue-700 border border-blue-100 rounded-full font-bold text-sm shadow-sm transition-transform hover:scale-105">
+                                    📅 14th December
                                 </span>
-                                <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-lg text-slate-700 font-bold text-sm">
-                                    🚀 Weekend Fun
+                                <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-50 text-amber-700 border border-amber-100 rounded-full font-bold text-sm shadow-sm transition-transform hover:scale-105">
+                                    ⏰ 05:30 PM - 06:30 PM IST
                                 </span>
-                                <span className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-lg text-slate-700 font-bold text-sm">
-                                    ✂️ Activity Based
+                                <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-green-50 text-green-700 border border-green-100 rounded-full font-bold text-sm shadow-sm transition-transform hover:scale-105">
+                                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Live Interactive
                                 </span>
                             </div>
 
@@ -92,7 +97,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                                     onClick={handleBooking}
                                     className="bg-[#e40917] hover:bg-[#c10714] text-white font-bold px-8 py-4 rounded-full shadow-lg transition-all hover:scale-105 text-lg"
                                 >
-                                    Get Little Scientist Pass - ₹199
+                                    Join Now
                                 </button>
                             </div>
                         </div>
@@ -142,43 +147,83 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                 </div>
             </section>
 
-            {/* 3. Deliverables Section */}
+            {/* 3. What They Get (Session + Bonuses) - Redesigned */}
             <section className="py-20 bg-white">
                 <div className="container mx-auto px-6">
-                    <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
-                        <div>
-                            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-8">
-                                What's Inside the Pass?
-                            </h2>
-                            <ul className="space-y-4">
-                                {passFeatures.map((feature, index) => (
-                                    <li 
-                                        key={index}
-                                        className="bg-white p-5 rounded-xl shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-default flex items-center group border border-slate-100"
-                                    >
-                                        <div className="flex-shrink-0 mr-4 transition-transform duration-300 group-hover:scale-110">
-                                            <CheckCircleIcon />
-                                        </div>
-                                        <span className="font-semibold text-lg text-slate-700 group-hover:text-brand-space transition-colors">{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                        <div className="relative">
-                            <div className="absolute inset-0 bg-brand-space/5 rounded-3xl transform rotate-3"></div>
-                            <div className="relative bg-white border-2 border-brand-space/10 rounded-3xl p-8 shadow-xl text-center">
-                                <div className="w-20 h-20 bg-brand-space rounded-full flex items-center justify-center mx-auto mb-6 text-4xl shadow-lg">
-                                    🏆
+                    <div className="text-center mb-12">
+                        <span className="text-brand-space font-bold tracking-wider uppercase text-sm">Value Packed</span>
+                        <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 mt-2">
+                            Everything Your Child Gets for ₹99
+                        </h2>
+                    </div>
+                    
+                    <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                        
+                        {/* Left: The Live Session Details */}
+                        <div className="space-y-6">
+                            <h3 className="text-2xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                                <span className="bg-red-100 text-red-600 p-2 rounded-lg text-lg">📹</span>
+                                <span>The Live Experience</span>
+                            </h3>
+                            
+                            <div className="grid sm:grid-cols-2 gap-4">
+                                <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 transition-hover hover:border-brand-space/30">
+                                    <div className="text-3xl mb-3">👨‍🔬</div>
+                                    <h4 className="font-bold text-slate-900 text-lg">Real Engineers</h4>
+                                    <p className="text-sm text-slate-600 font-medium">Taught by ISRO Tutors, not normal teachers.</p>
                                 </div>
-                                <h3 className="text-2xl font-bold text-brand-space mb-2">Certificate of Achievement</h3>
-                                <p className="text-slate-600 mb-6">
-                                    Every participant receives a personalized digital certificate signed by ISRO Space Tutors.
-                                </p>
-                                <div className="inline-block bg-slate-100 text-slate-500 text-xs px-3 py-1 rounded">
-                                    Sent via Email after session
+                                <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 transition-hover hover:border-brand-space/30">
+                                    <div className="text-3xl mb-3">🗣️</div>
+                                    <h4 className="font-bold text-slate-900 text-lg">Live Q&A</h4>
+                                    <p className="text-sm text-slate-600 font-medium">Kids can ask doubts directly to scientists.</p>
+                                </div>
+                                <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 transition-hover hover:border-brand-space/30">
+                                    <div className="text-3xl mb-3">🏠</div>
+                                    <h4 className="font-bold text-slate-900 text-lg">No Kits Needed</h4>
+                                    <p className="text-sm text-slate-600 font-medium">We use simple household items like paper & tape.</p>
+                                </div>
+                                <div className="bg-slate-50 p-5 rounded-xl border border-slate-100 transition-hover hover:border-brand-space/30">
+                                    <div className="text-3xl mb-3">📜</div>
+                                    <h4 className="font-bold text-slate-900 text-lg">Certification</h4>
+                                    <p className="text-sm text-slate-600 font-medium">"Little Scientist" certificate from ISRO Tutor.</p>
                                 </div>
                             </div>
                         </div>
+
+                        {/* Right: The Bonus Bundle */}
+                        <div className="bg-gradient-to-br from-slate-900 to-brand-space p-8 rounded-2xl shadow-xl text-white relative overflow-hidden flex flex-col justify-center">
+                            <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full blur-3xl -mr-10 -mt-10"></div>
+                            
+                            <div className="relative z-10">
+                                <div className="inline-block bg-yellow-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-full mb-4 shadow-lg">
+                                    BONUS BUNDLE INCLUDED
+                                </div>
+                                <h3 className="text-2xl font-bold mb-1">
+                                    ₹5,000 Worth of Learning Material
+                                </h3>
+                                <p className="text-slate-300 text-sm mb-6 font-medium">Yours to keep forever, even after the class.</p>
+
+                                <ul className="space-y-4">
+                                    <li className="flex items-start gap-3">
+                                        <div className="bg-white/10 p-1 rounded-full mt-0.5"><WhiteCheckIcon /></div> 
+                                        <span className="font-medium text-slate-50">Space Science E-Books & Guides</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="bg-white/10 p-1 rounded-full mt-0.5"><WhiteCheckIcon /></div> 
+                                        <span className="font-medium text-slate-50">DIY Rocket & Glider Activity Sheets</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="bg-white/10 p-1 rounded-full mt-0.5"><WhiteCheckIcon /></div> 
+                                        <span className="font-medium text-slate-50">Lifetime Access to Class Recordings</span>
+                                    </li>
+                                    <li className="flex items-start gap-3">
+                                        <div className="bg-white/10 p-1 rounded-full mt-0.5"><WhiteCheckIcon /></div> 
+                                        <span className="font-medium text-slate-50">Scientist Starter Pack (Quizzes & Logs)</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
@@ -228,7 +273,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                             <div className="flex flex-col sm:flex-row justify-center items-center mb-6 text-slate-600 text-sm font-semibold space-y-2 sm:space-y-0 sm:space-x-4">
                                 <div className="flex items-center">
                                     <svg className="w-5 h-5 text-brand-sun mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                    <span>29 Nov | Saturday</span>
+                                    <span>14th December</span>
                                 </div>
                                 <div className="flex items-center">
                                     <svg className="w-5 h-5 text-brand-sun mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
