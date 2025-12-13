@@ -16,29 +16,45 @@ jobs:
       - name: Upload to Azure Blob Storage
         run: |
           # Install Azure CLI
-sudo apt-get update && sudo apt-get install -y azure-cli          
-          # Set storage account name
-          STORAGE_ACCOUNT="brahmastrakids"
-          CONTAINER="content"
+pip install azure-storage-blob          # Set storage account name
+          python3 << 'EOF'
+          from azure.storage.blob import BlobServiceClient
+          import os
+          from pathlib import Path
           
-          # Upload build files (adjust path as needed)
-          # For example, if you have a dist or build folder
-          if [ -d "dist" ]; then
-            az storage blob upload-batch \
-              --account-name $STORAGE_ACCOUNT \
-              --container-name $CONTAINER \
-              --source "dist" \
-              --destination-path "" \
-              --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}"
-          fi
+          # Configuration
+          storage_account = "brahmastrakids"
+          container = "content"
+          connection_string = os.environ['AZURE_BLOB_STORAGE_CONNECTION_STRING']
           
-          echo "Files uploaded to Azure Blob Storage successfully!"
-      
+          # Create blob service client
+          blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+          container_client = blob_service_client.get_container_client(container)
+          
+          # Upload files from dist folder
+          if os.path.exists("dist"):
+              for file_path in Path("dist").rglob("*"):
+                  if file_path.is_file():
+                      blob_name = str(file_path.relative_to("dist"))
+                      print(f"Uploading {blob_name}...")
+                      with open(file_path, "rb") as data:
+                          container_client.upload_blob(blob_name, data, overwrite=True)
+              print("\nFiles uploaded to Azure Blob Storage successfully!")
+          else:
+              print("dist folder not found")
+          EOF
       - name: Verify Upload
         run: |
-          # List uploaded files
-          az storage blob list \
-            --account-name brahmastrakids \
-            --container-name content \
-            --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}" \
-            --output table
+python3 << 'EOF'
+          from azure.storage.blob import BlobServiceClient
+          import os
+          
+          connection_string = os.environ['AZURE_BLOB_STORAGE_CONNECTION_STRING']
+          blob_service_client = BlobServiceClient.from_connection_string(connection_string)
+          container_client = blob_service_client.get_container_client("content")
+          
+          print("\nUploaded files:")
+          blobs = container_client.list_blobs()
+          for blob in blobs:
+              print(f"  - {blob.name} ({blob.size} bytes)")
+          EOF
