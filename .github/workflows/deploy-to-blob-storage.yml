@@ -1,11 +1,9 @@
 name: Deploy to Azure Blob Storage
 
 on:
-  # Runs automatically whenever code is pushed to the 'main' branch
   push:
     branches:
       - main
-  # Allows manual running from the 'Actions' tab in GitHub
   workflow_dispatch:
 
 jobs:
@@ -27,31 +25,27 @@ jobs:
         run: npm install
 
       - name: Build Static Files (React App)
-        # This command creates the 'dist' folder which contains your static website
         run: npm run build 
 
-      # Step 3: Use the Azure CLI action to upload files securely
-      # Note: We do NOT need a separate 'curl | bash' install step here.
+      # Step 3: Upload the built files to Azure Blob Storage
       - name: Upload to Azure Blob Storage
-        uses: azure/cli@v1 # Official action that pre-installs and uses the Azure CLI
+        uses: azure/cli@v1
         with:
-          # We pass the connection string directly to the inline script
           inlineScript: |
             STORAGE_ACCOUNT="brahmastrakids1"
             SOURCE_FOLDER="dist"
-            CONTAINER_NAME='$web'
+            CONTAINER_NAME='$web' # The default container for static websites
             CONNECTION_STRING="${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}"
             
             echo "Starting upload of files from /$SOURCE_FOLDER to $CONTAINER_NAME container."
             
-            # Check if the build folder exists and upload the contents recursively
             if [ -d "$SOURCE_FOLDER" ]; then
               az storage blob upload-batch \
                 --account-name $STORAGE_ACCOUNT \
-                --container-name $CONTAINER_NAME \
+                --destination $CONTAINER_NAME \  # <-- FIX IS HERE: Used --destination
                 --source $SOURCE_FOLDER \
                 --connection-string "$CONNECTION_STRING" \
-                --overwrite true # Ensures updated files replace old ones
+                --overwrite true
             else
               echo "Error: The build folder '$SOURCE_FOLDER' was not found. Deployment failed."
               exit 1
