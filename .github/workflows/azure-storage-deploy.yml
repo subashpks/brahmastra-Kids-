@@ -1,0 +1,62 @@
+name: Build and Deploy to Azure Storage
+
+on:
+  push:
+      branches:
+            - main
+              pull_request:
+                  types: [opened, synchronize, reopened, closed]
+                      branches:
+                            - main
+
+                            jobs:
+                              build:
+                                  runs-on: ubuntu-latest
+                                      name: Build Project
+                                          steps:
+                                                - uses: actions/checkout@v3
+                                                        with:
+                                                                  submodules: true
+                                                                            lfs: false
+                                                                                  - name: Setup Node.js
+                                                                                          uses: actions/setup-node@v3
+                                                                                                  with:
+                                                                                                            node-version: '18'
+                                                                                                                      cache: 'npm'
+                                                                                                                            - name: Install dependencies
+                                                                                                                                    run: npm install
+                                                                                                                                          - name: Build project
+                                                                                                                                                  run: npm run build
+                                                                                                                                                        - name: Upload build artifacts
+                                                                                                                                                                uses: actions/upload-artifact@v3
+                                                                                                                                                                        with:
+                                                                                                                                                                                  name: build-dist
+                                                                                                                                                                                            path: dist/
+                                                                                                                                                                                                      retention-days: 7
+                                                                                                                                                                                                      
+                                                                                                                                                                                                        deploy:
+                                                                                                                                                                                                            needs: build
+                                                                                                                                                                                                                runs-on: ubuntu-latest
+                                                                                                                                                                                                                    name: Deploy to Azure Storage
+                                                                                                                                                                                                                        if: github.event_name == 'push'
+                                                                                                                                                                                                                            steps:
+                                                                                                                                                                                                                                  - name: Checkout code
+                                                                                                                                                                                                                                          uses: actions/checkout@v3
+                                                                                                                                                                                                                                                - name: Download build artifacts
+                                                                                                                                                                                                                                                        uses: actions/download-artifact@v3
+                                                                                                                                                                                                                                                                with:
+                                                                                                                                                                                                                                                                          name: build-dist
+                                                                                                                                                                                                                                                                                    path: dist/
+                                                                                                                                                                                                                                                                                          - name: Upload to Azure Blob Storage
+                                                                                                                                                                                                                                                                                                  uses: azure/CLI@v1
+                                                                                                                                                                                                                                                                                                          with:
+                                                                                                                                                                                                                                                                                                                    inlineScript: |
+                                                                                                                                                                                                                                                                                                                                az storage blob upload-batch \
+                                                                                                                                                                                                                                                                                                                                              --account-name brahmastrakids1 \
+                                                                                                                                                                                                                                                                                                                                                            --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+                                                                                                                                                                                                                                                                                                                                                                          -d '$web' \
+                                                                                                                                                                                                                                                                                                                                                                                        -s dist/ \
+                                                                                                                                                                                                                                                                                                                                                                                                      --overwrite
+                                                                                                                                                                                                                                                                                                                                                                                                            - name: Clear cache (optional)
+                                                                                                                                                                                                                                                                                                                                                                                                                    run: |
+                                                                                                                                                                                                                                                                                                                                                                                                                              echo 'Deployment to Azure Storage completed successfully'
