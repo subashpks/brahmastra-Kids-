@@ -6,15 +6,27 @@
     <link rel="icon" type="image/png" href="https://files.catbox.moe/npfo8v.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brahmastra Aerospace Academy for Kids | Where Kids Learn to Build & Fly</title>
+    
+    <!-- Performance: Preconnect to critical domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://files.catbox.moe">
+    <link rel="preconnect" href="https://checkout.razorpay.com">
+    <link rel="preconnect" href="https://www.canva.com">
+    <link rel="preconnect" href="https://i.postimg.cc">
+    <link rel="preconnect" href="https://upload.wikimedia.org">
+    
+    <!-- Performance: DNS Prefetch as fallback -->
+    <link rel="dns-prefetch" href="https://checkout.razorpay.com">
+    <link rel="dns-prefetch" href="https://api.qrserver.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Preload Hero Image for Speed -->
     <link rel="preload" as="image" href="https://files.catbox.moe/cticic.png">
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Defer heavy scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script>
       tailwind.config = {
         theme: {
@@ -71,6 +83,8 @@
     <style>
       body {
         font-family: 'Montserrat', sans-serif;
+        /* Promote scrolling to compositor layer */
+        will-change: scroll-position;
       }
     </style>
     <script type="text/javascript">

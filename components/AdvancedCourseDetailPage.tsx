@@ -67,7 +67,13 @@ export const AdvancedCourseDetailPage: React.FC<PageProps> = ({ navigate }) => {
             <div className="absolute -top-4 -left-4 w-48 h-48 bg-brand-sky rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob"></div>
             <div className="absolute -top-4 -right-4 w-48 h-48 bg-brand-sun rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
             <div className="absolute -bottom-8 left-20 w-48 h-48 bg-green-300 rounded-full opacity-20 mix-blend-multiply filter blur-xl animate-blob animation-delay-4000"></div>
-            <img src="https://files.catbox.moe/r27c2u.png" alt="Cartoon Satellite orbiting a planet" className="relative animate-float" />
+            <img 
+                src="https://files.catbox.moe/r27c2u.png" 
+                alt="Cartoon Satellite orbiting a planet" 
+                className="relative animate-float" 
+                fetchPriority="high"
+                loading="eager"
+            />
         </div>
     );
 

@@ -47,7 +47,10 @@ const DomainsMarqueeSection: React.FC<{ navigate: (page: string) => void }> = ({
     const marqueeData = [...COURSES_DATA, ...COURSES_DATA];
     return (
         <section className="py-8 bg-slate-50 overflow-hidden border-b border-slate-200">
-            <div className="flex w-max animate-marquee hover:[animation-play-state:paused]">
+            <div 
+                className="flex w-max animate-marquee hover:[animation-play-state:paused]"
+                style={{ willChange: 'transform' }} // GPU Acceleration hint
+            >
                 {marqueeData.map((course, index) => (
                     <DomainCard key={`${course.title}-${index}`} {...course} onClick={() => navigate(course.page)} />
                 ))}
@@ -89,11 +92,13 @@ export const HomePage: React.FC<PageProps> = ({ navigate }) => {
               </div>
             </div>
             <div className="order-1 lg:order-2 flex justify-center">
-                {/* Optimized LCP Image */}
+                {/* Optimized LCP Image: fetchPriority high + Explicit Dimensions */}
                 <img 
                     src="https://files.catbox.moe/cticic.png" 
                     alt="Astronaut" 
                     className="w-64 md:w-80 animate-float" 
+                    width="320"
+                    height="320"
                     loading="eager" 
                     fetchPriority="high" 
                 />

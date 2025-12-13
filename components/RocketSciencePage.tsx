@@ -20,7 +20,13 @@ export const RocketSciencePage: React.FC<PageProps> = ({ navigate }) => {
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="flex justify-center lg:order-2">
-                <img src="https://files.catbox.moe/knklae.png" alt="Cartoon Rocket" className="w-full max-w-md" />
+                <img 
+                    src="https://files.catbox.moe/knklae.png" 
+                    alt="Cartoon Rocket" 
+                    className="w-full max-w-md" 
+                    fetchPriority="high"
+                    loading="eager"
+                />
             </div>
             <div className="text-center lg:text-left lg:order-1">
                 <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-brand-sun">

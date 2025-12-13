@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useTransition } from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { FreeCoursePopup } from './FreeCoursePopup';
@@ -84,6 +84,7 @@ class ErrorBoundary extends React.Component<{children: React.ReactNode}, {hasErr
 }
 
 export function App() {
+  const [isPending, startTransition] = useTransition();
   // Initialize state directly from URL to prevent "Home flash" or routing errors
   const [currentPage, setCurrentPage] = useState(() => {
     try {
@@ -137,7 +138,9 @@ export function App() {
     const handlePopState = () => {
         const newParams = new URLSearchParams(window.location.search);
         const newPage = newParams.get('page');
-        setCurrentPage(newPage ? newPage.toLowerCase() : 'home');
+        startTransition(() => {
+            setCurrentPage(newPage ? newPage.toLowerCase() : 'home');
+        });
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -155,8 +158,13 @@ export function App() {
     if (page === 'payment-success' && data) {
         setTransactionData(data);
     }
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
+    
+    // React 18+ useTransition: keeps the old UI visible while the new one loads
+    startTransition(() => {
+        setCurrentPage(page);
+    });
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     
     try {
         const url = new URL(window.location.href);
@@ -221,7 +229,13 @@ export function App() {
         <div className="flex flex-col min-h-screen bg-slate-50 font-sans">
           {showPopup && <FreeCoursePopup onClose={handleClosePopup} onRedirect={handlePopupRedirect} />}
           <Header navigate={navigate} currentPage={currentPage} isLoggedIn={false} onLogout={() => {}} currentUser={null} activeChild={null} />
-          <main className="flex-grow">
+          <main className="flex-grow relative">
+            {/* Show a subtle top-bar loader if transition is pending */}
+            {isPending && (
+                <div className="absolute top-0 left-0 w-full h-1 bg-blue-100 z-50 overflow-hidden">
+                    <div className="h-full bg-brand-space animate-marquee"></div>
+                </div>
+            )}
             <Suspense fallback={<LoadingSpinner />}>
                 {renderPage()}
             </Suspense>

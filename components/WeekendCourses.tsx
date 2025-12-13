@@ -112,7 +112,14 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                              <div className="relative w-full max-w-md">
                                 <div className="absolute -top-4 -left-4 w-32 h-32 bg-yellow-200 rounded-full opacity-50 mix-blend-multiply filter blur-xl animate-blob"></div>
                                 <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-blue-200 rounded-full opacity-50 mix-blend-multiply filter blur-xl animate-blob animation-delay-2000"></div>
-                                <img src="https://files.catbox.moe/cticic.png" alt="Astronaut" className="relative z-10 animate-float w-full h-auto drop-shadow-2xl" />
+                                <img 
+                                    src="https://files.catbox.moe/cticic.png" 
+                                    alt="Astronaut" 
+                                    className="relative z-10 animate-float w-full h-auto drop-shadow-2xl" 
+                                    width="400"
+                                    height="400"
+                                    fetchPriority="high"
+                                />
                             </div>
                         </div>
                     </div>
@@ -296,7 +303,7 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                                     <p className="mt-2 font-semibold text-slate-800">Topic: How to Become a Pilot? ✈️</p>
                                 </div>
 
-                                {/* New Cost Card */}
+                                {/* Cost Card */}
                                 <div className="bg-green-50 p-4 rounded-lg border border-green-200 text-center">
                                     <p className="text-sm text-green-800 font-semibold mb-1">Session Fee</p>
                                     <div className="text-3xl font-extrabold text-green-700">₹99/-</div>
@@ -313,7 +320,6 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                                 </div>
                             </div>
                             
-                            {/* Replaced Manual Booking Button with Razorpay Payment Button */}
                             <RazorpayButton />
                         </div>
                     </div>
