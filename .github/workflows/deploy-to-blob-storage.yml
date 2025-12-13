@@ -1,9 +1,11 @@
 name: Deploy to Azure Blob Storage
 
 on:
+  # Runs automatically whenever code is pushed to the 'main' branch
   push:
     branches:
       - main
+  # Allows manual running from the 'Actions' tab in GitHub
   workflow_dispatch:
 
 jobs:
@@ -15,22 +17,25 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js environment for building the React app
+      # Step 2: Set up Node.js environment and build the React app
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Set this to your required Node.js version
+          node-version: '18' # Adjust if your project requires a different version
           
       - name: Install Dependencies
         run: npm install
 
       - name: Build Static Files (React App)
+        # Confirmed: This command creates the 'dist' folder
         run: npm run build 
 
       # Step 3: Upload the built files to Azure Blob Storage
       - name: Upload to Azure Blob Storage
         uses: azure/cli@v1
         with:
+          # CRITICAL FIX: Ensures the 'dist' folder is visible to the Azure CLI container
+          working-directory: ${{ github.workspace }}
           inlineScript: |
             STORAGE_ACCOUNT="brahmastrakids1"
             SOURCE_FOLDER="dist"
@@ -42,7 +47,7 @@ jobs:
             if [ -d "$SOURCE_FOLDER" ]; then
               az storage blob upload-batch \
                 --account-name $STORAGE_ACCOUNT \
-                --destination $CONTAINER_NAME \  # <-- FIX IS HERE: Used --destination
+                --destination $CONTAINER_NAME \  # FIX: Correctly uses --destination flag
                 --source $SOURCE_FOLDER \
                 --connection-string "$CONNECTION_STRING" \
                 --overwrite true
@@ -57,7 +62,9 @@ jobs:
       - name: Verify Upload
         uses: azure/cli@v1
         with:
+          working-directory: ${{ github.workspace }}
           inlineScript: |
+            echo "Verifying uploaded files:"
             az storage blob list \
               --account-name brahmastrakids1 \
               --container-name '$web' \
