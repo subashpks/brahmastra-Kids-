@@ -1,12 +1,11 @@
 name: Deploy to Azure Blob Storage
 
-# Controls when the workflow will run
 on:
-  # Runs on pushes to the main branch
+  # Runs automatically whenever code is pushed to the 'main' branch
   push:
     branches:
       - main
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows manual running from the 'Actions' tab in GitHub
   workflow_dispatch:
 
 jobs:
@@ -14,59 +13,59 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # Step 1: Checks out your repository code
+      # Step 1: Checkout the repository code
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js and build the static website
+      # Step 2: Set up Node.js environment for building the React app
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Adjust version as needed (e.g., '20')
+          node-version: '18' # Set this to your required Node.js version
           
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Static Files
-        # This command creates the 'dist' folder which contains your website
+      - name: Build Static Files (React App)
+        # This command creates the 'dist' folder which contains your static website
         run: npm run build 
 
-      # Step 3: Upload the built files to Azure Blob Storage
+      # Step 3: Use the Azure CLI action to upload files securely
+      # Note: We do NOT need a separate 'curl | bash' install step here.
       - name: Upload to Azure Blob Storage
-        run: |
-          # Install Azure CLI tool used for the upload
-          curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-          
-          # Define variables for the deployment
-          STORAGE_ACCOUNT="brahmastrakids1"
-          SOURCE_FOLDER="dist"
-          CONTAINER_NAME='$web' # The default container for static websites
+        uses: azure/cli@v1 # Official action that pre-installs and uses the Azure CLI
+        with:
+          # We pass the connection string directly to the inline script
+          inlineScript: |
+            STORAGE_ACCOUNT="brahmastrakids1"
+            SOURCE_FOLDER="dist"
+            CONTAINER_NAME='$web'
+            CONNECTION_STRING="${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}"
+            
+            echo "Starting upload of files from /$SOURCE_FOLDER to $CONTAINER_NAME container."
+            
+            # Check if the build folder exists and upload the contents recursively
+            if [ -d "$SOURCE_FOLDER" ]; then
+              az storage blob upload-batch \
+                --account-name $STORAGE_ACCOUNT \
+                --container-name $CONTAINER_NAME \
+                --source $SOURCE_FOLDER \
+                --connection-string "$CONNECTION_STRING" \
+                --overwrite true # Ensures updated files replace old ones
+            else
+              echo "Error: The build folder '$SOURCE_FOLDER' was not found. Deployment failed."
+              exit 1
+            fi
+            
+            echo "Files uploaded to Azure Blob Storage successfully!"
 
-          echo "Uploading files from $SOURCE_FOLDER to $CONTAINER_NAME container in $STORAGE_ACCOUNT"
-          
-          # Check if the build folder exists before uploading
-          if [ -d "$SOURCE_FOLDER" ]; then
-            az storage blob upload-batch \
-              --account-name $STORAGE_ACCOUNT \
-              --container-name $CONTAINER_NAME \
-              --source $SOURCE_FOLDER \
-              --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}"
-          else
-            echo "Error: The build folder '$SOURCE_FOLDER' was not found. Check 'npm run build' output."
-            exit 1
-          fi
-          
-          echo "Files uploaded to Azure Blob Storage successfully!"
-
-      # Optional: Verify upload by listing files
+      # Optional Step 4: Verify upload by listing files
       - name: Verify Upload
-        run: |
-          curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-          
-          echo "Listing files in $CONTAINER_NAME container:"
-          
-          az storage blob list \
-            --account-name brahmastrakids1 \
-            --container-name '$web' \
-            --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}" \
-            --output table
+        uses: azure/cli@v1
+        with:
+          inlineScript: |
+            az storage blob list \
+              --account-name brahmastrakids1 \
+              --container-name '$web' \
+              --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}" \
+              --output table
