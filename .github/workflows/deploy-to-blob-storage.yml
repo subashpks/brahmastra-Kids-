@@ -1,0 +1,45 @@
+name: Deploy to Azure Blob Storage
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Upload to Azure Blob Storage
+        run: |
+          # Install Azure CLI
+          curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+          
+          # Set storage account name
+          STORAGE_ACCOUNT="brahmastrakids"
+          CONTAINER="content"
+          
+          # Upload build files (adjust path as needed)
+          # For example, if you have a dist or build folder
+          if [ -d "dist" ]; then
+            az storage blob upload-batch \
+              --account-name $STORAGE_ACCOUNT \
+              --container-name $CONTAINER \
+              --source "dist" \
+              --destination-path "" \
+              --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}"
+          fi
+          
+          echo "Files uploaded to Azure Blob Storage successfully!"
+      
+      - name: Verify Upload
+        run: |
+          # List uploaded files
+          az storage blob list \
+            --account-name brahmastrakids \
+            --container-name content \
+            --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}" \
+            --output table
