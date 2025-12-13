@@ -48,7 +48,7 @@ const RazorpayButton = () => {
         }
     }, []);
 
-    return <form ref={containerRef} className="flex justify-center mt-8 min-h-[50px]"></form>;
+    return <form ref={containerRef} className="flex justify-center mt-4 min-h-[50px]"></form>;
 };
 
 interface FreeCoursesPageProps extends PageProps {
@@ -294,6 +294,22 @@ export const FreeCoursesPage: React.FC<FreeCoursesPageProps> = ({ activeChild, n
                                         Grades 3-8
                                     </span>
                                     <p className="mt-2 font-semibold text-slate-800">Topic: How to Become a Pilot? ✈️</p>
+                                </div>
+
+                                {/* New Cost Card */}
+                                <div className="bg-green-50 p-4 rounded-lg border border-green-200 text-center">
+                                    <p className="text-sm text-green-800 font-semibold mb-1">Session Fee</p>
+                                    <div className="text-3xl font-extrabold text-green-700">₹99/-</div>
+                                    <p className="text-xs text-green-600 mb-3">Inclusive of all taxes</p>
+                                    
+                                    <div className="flex flex-wrap justify-center gap-2">
+                                        <span className="bg-white text-green-700 text-[10px] font-bold px-2 py-1 rounded border border-green-200 shadow-sm flex items-center gap-1">
+                                            🔴 Live Session
+                                        </span>
+                                        <span className="bg-white text-green-700 text-[10px] font-bold px-2 py-1 rounded border border-green-200 shadow-sm flex items-center gap-1">
+                                            🎁 Activities worth ₹5,000
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             

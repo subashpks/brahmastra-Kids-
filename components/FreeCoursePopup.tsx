@@ -47,10 +47,10 @@ export const FreeCoursePopup: React.FC<FreeCoursePopupProps> = ({ onClose, onRed
 
                 <div className="p-5 text-center">
                     <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2 leading-tight">
-                        Rocket Science for Kids! 🚀
+                        The Little Scientist Program 🚀
                     </h2>
                     <p className="text-slate-600 mb-5 text-xs sm:text-sm leading-relaxed">
-                        Join our live "Little Scientist" workshop. Build models & learn from ISRO Tutors.
+                        Join our live workshop. Build models & learn from ISRO Tutors.
                     </p>
                     
                     <button 
