@@ -1,9 +1,12 @@
 name: Deploy to Azure Blob Storage
 
+# Controls when the workflow will run
 on:
+  # Runs on pushes to the main branch
   push:
     branches:
       - main
+  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 jobs:
@@ -11,50 +14,59 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v3
-      
+      # Step 1: Checks out your repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js and build the static website
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Adjust version as needed (e.g., '20')
+          
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Static Files
+        # This command creates the 'dist' folder which contains your website
+        run: npm run build 
+
+      # Step 3: Upload the built files to Azure Blob Storage
       - name: Upload to Azure Blob Storage
         run: |
-          # Install Azure CLI
-pip install azure-storage-blob          # Set storage account name
-          python3 << 'EOF'
-          from azure.storage.blob import BlobServiceClient
-          import os
-          from pathlib import Path
+          # Install Azure CLI tool used for the upload
+          curl -sL https://aka.ms/InstallAzureCLIDeb | bash
           
-          # Configuration
-          storage_account = "brahmastrakids"
-          container = "content"
-          connection_string = os.environ['AZURE_BLOB_STORAGE_CONNECTION_STRING']
+          # Define variables for the deployment
+          STORAGE_ACCOUNT="brahmastrakids1"
+          SOURCE_FOLDER="dist"
+          CONTAINER_NAME='$web' # The default container for static websites
+
+          echo "Uploading files from $SOURCE_FOLDER to $CONTAINER_NAME container in $STORAGE_ACCOUNT"
           
-          # Create blob service client
-          blob_service_client = BlobServiceClient.from_connection_string(connection_string)
-          container_client = blob_service_client.get_container_client(container)
+          # Check if the build folder exists before uploading
+          if [ -d "$SOURCE_FOLDER" ]; then
+            az storage blob upload-batch \
+              --account-name $STORAGE_ACCOUNT \
+              --container-name $CONTAINER_NAME \
+              --source $SOURCE_FOLDER \
+              --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}"
+          else
+            echo "Error: The build folder '$SOURCE_FOLDER' was not found. Check 'npm run build' output."
+            exit 1
+          fi
           
-          # Upload files from dist folder
-          if os.path.exists("dist"):
-              for file_path in Path("dist").rglob("*"):
-                  if file_path.is_file():
-                      blob_name = str(file_path.relative_to("dist"))
-                      print(f"Uploading {blob_name}...")
-                      with open(file_path, "rb") as data:
-                          container_client.upload_blob(blob_name, data, overwrite=True)
-              print("\nFiles uploaded to Azure Blob Storage successfully!")
-          else:
-              print("dist folder not found")
-          EOF
+          echo "Files uploaded to Azure Blob Storage successfully!"
+
+      # Optional: Verify upload by listing files
       - name: Verify Upload
         run: |
-python3 << 'EOF'
-          from azure.storage.blob import BlobServiceClient
-          import os
+          curl -sL https://aka.ms/InstallAzureCLIDeb | bash
           
-          connection_string = os.environ['AZURE_BLOB_STORAGE_CONNECTION_STRING']
-          blob_service_client = BlobServiceClient.from_connection_string(connection_string)
-          container_client = blob_service_client.get_container_client("content")
+          echo "Listing files in $CONTAINER_NAME container:"
           
-          print("\nUploaded files:")
-          blobs = container_client.list_blobs()
-          for blob in blobs:
-              print(f"  - {blob.name} ({blob.size} bytes)")
-          EOF
+          az storage blob list \
+            --account-name brahmastrakids1 \
+            --container-name '$web' \
+            --connection-string "${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}" \
+            --output table
