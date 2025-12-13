@@ -1,11 +1,9 @@
 name: Deploy to Azure Blob Storage
 
 on:
-  # Runs automatically whenever code is pushed to the 'main' branch
   push:
     branches:
       - main
-  # Allows manual running from the 'Actions' tab in GitHub
   workflow_dispatch:
 
 jobs:
@@ -13,52 +11,66 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # Step 1: Checkout the repository code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # Step 2: Set up Node.js environment and build the React app
+      # Step 1: Build the Static Website
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18' # Adjust if your project requires a different version
+          node-version: '18'
           
       - name: Install Dependencies
         run: npm install
 
-      - name: Build Static Files (React App)
-        # Confirmed: This command creates the 'dist' folder
-        run: npm run build 
+      - name: Build Static Files (Creates 'dist' folder)
+        run: npm run build
+        
+      # --- DIAGNOSTIC STEP ---
+      # This step checks if the 'dist' folder was created and what's inside it.
+      - name: Check Build Output Directory
+        run: |
+          echo "Listing contents of the GitHub workspace after build:"
+          ls -R 
+          
+          if [ -d "dist" ]; then
+            echo "SUCCESS: 'dist' folder FOUND."
+          else
+            echo "FAILURE: 'dist' folder NOT FOUND. Check the 'Build Static Files' step logs for errors."
+            exit 1
+          fi
+      # -----------------------
 
-      # Step 3: Upload the built files to Azure Blob Storage
+      # Step 2: Upload the built files to Azure Blob Storage
       - name: Upload to Azure Blob Storage
         uses: azure/cli@v1
         with:
-          # CRITICAL FIX: Ensures the 'dist' folder is visible to the Azure CLI container
+          # CRITICAL: Ensures the CLI container sees the files
           working-directory: ${{ github.workspace }}
           inlineScript: |
             STORAGE_ACCOUNT="brahmastrakids1"
-            SOURCE_FOLDER="dist"
-            CONTAINER_NAME='$web' # The default container for static websites
+            # Using an absolute path ensures the container knows exactly where to look
+            SOURCE_FOLDER="${{ github.workspace }}/dist" 
+            CONTAINER_NAME='$web' 
             CONNECTION_STRING="${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}"
             
-            echo "Starting upload of files from /$SOURCE_FOLDER to $CONTAINER_NAME container."
+            echo "Starting upload from absolute path: $SOURCE_FOLDER to $CONTAINER_NAME container."
             
             if [ -d "$SOURCE_FOLDER" ]; then
               az storage blob upload-batch \
                 --account-name $STORAGE_ACCOUNT \
-                --destination $CONTAINER_NAME \  # FIX: Correctly uses --destination flag
-                --source $SOURCE_FOLDER \
+                --destination $CONTAINER_NAME \
+                --source "$SOURCE_FOLDER" \ # SOURCE_FOLDER is now an absolute path
                 --connection-string "$CONNECTION_STRING" \
                 --overwrite true
             else
-              echo "Error: The build folder '$SOURCE_FOLDER' was not found. Deployment failed."
+              echo "Error: The build folder '$SOURCE_FOLDER' was not found during upload."
               exit 1
             fi
             
             echo "Files uploaded to Azure Blob Storage successfully!"
 
-      # Optional Step 4: Verify upload by listing files
+      # Step 3: Verify upload by listing files
       - name: Verify Upload
         uses: azure/cli@v1
         with:
