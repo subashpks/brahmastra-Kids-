@@ -13,11 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          connection-string: ${{ secrets.AZURE_BLOB_STORAGE_CONNECTION_STRING }}
-      
       - name: Upload to Azure Blob Storage
         run: |
           # Install Azure CLI
