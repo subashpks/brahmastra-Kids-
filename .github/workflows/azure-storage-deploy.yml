@@ -3,11 +3,16 @@ name: Deploy Static Website to Azure Storage
 on:
   push:
     branches: [ main ]
-  # Allows you to manually trigger the workflow from the GitHub UI
   workflow_dispatch:
 
 jobs:
   build_and_deploy:
+    
+    # 🚨 FIX 1: Add permissions block to prevent ID-token error
+    permissions:
+      contents: read # Allows checking out code
+      id-token: write # Allows the Azure login action to attempt WIF (safest for Azure actions)
+
     runs-on: ubuntu-latest
     
     steps:
@@ -20,7 +25,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          # Caching relies on package-lock.json (which you must commit!)
           cache: 'npm' 
           
       # 3. Install Dependencies
@@ -29,20 +33,20 @@ jobs:
         
       # 4. Build Project
       - name: 🏗️ Build Project (vite build)
-        # This executes the 'npm run build' script from your package.json
-        # and creates the distributable files in the 'dist' folder.
         run: npm run build
         
-      # 5. Azure Login (FIXED: Using Individual Secrets)
+      # 5. Azure Login (FIXED: Correct Inputs)
       - name: 🔑 Azure Login
         uses: azure/login@v1
         with:
-          # Use individual secrets you created in GitHub
+          # Map individual secrets to the correct inputs
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          secret: ${{ secrets.AZURE_CLIENT_SECRET }}
-          auth-type: SERVICE_PRINCIPAL # Explicitly use Service Principal
+          # 🚨 FIX 2: The client secret value must be passed via the 'creds' input 
+          # when using the individual ID inputs.
+          creds: ${{ secrets.AZURE_CLIENT_SECRET }} 
+          auth-type: SERVICE_PRINCIPAL
         
       # 6. Upload to Blob Storage
       - name: 🚀 Upload to Azure Blob Storage ($web container)
@@ -50,8 +54,6 @@ jobs:
         with:
           inlineScript: |
             echo "Starting upload to Azure Storage Account: brahmastrakids1"
-            # Uploads the contents of the local './dist' folder to the '$web' container 
-            # (which is used for Azure Static Website Hosting).
             az storage blob upload-batch \
               --account-name brahmastrakids1 \
               --container-name '$web' \
@@ -64,4 +66,4 @@ jobs:
       - name: 🚪 Azure Logout (Guaranteed to run)
         run: |
           az logout
-        if: always() # Ensures logout runs even if deployment fails
+        if: always()
