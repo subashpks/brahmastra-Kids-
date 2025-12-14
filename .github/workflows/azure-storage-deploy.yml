@@ -8,10 +8,10 @@ on:
 jobs:
   build_and_deploy:
     
-    # 1. FIX: Add permissions block to satisfy azure/login@v1 requirements
+    # 1. FINAL FIX: Set permissions to only what is needed (no id-token write)
     permissions:
-      contents: read # Allows checking out source code
-      id-token: write # Prevents the "id-token must have write permission" error
+      contents: read 
+      id-token: none 
 
     runs-on: ubuntu-latest
     
@@ -29,27 +29,22 @@ jobs:
           
       # 3. Install Dependencies
       - name: ⬇️ Install Dependencies
-        # This step relies on the committed package-lock.json
         run: npm install
         
       # 4. Build Project
       - name: 🏗️ Build Project (vite build)
-        # Creates the distributable files in the 'dist' folder
         run: npm run build
         
-      # 5. Azure Login (FINAL FIX)
+      # 5. Azure Login (Enforcing Service Principal with secrets)
       - name: 🔑 Azure Login
         uses: azure/login@v1
         with:
-          # Use individual secrets for Service Principal IDs
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          
-          # FINAL FIX: Use the 'secret' input for the client secret value.
-          # This avoids the "Content is not a valid JSON object" error.
           secret: ${{ secrets.AZURE_CLIENT_SECRET }} 
-          auth-type: SERVICE_PRINCIPAL
+          # 🚨 This enforces the use of the secrets provided above.
+          auth-type: service_principal 
         
       # 6. Upload to Blob Storage
       - name: 🚀 Upload to Azure Blob Storage ($web container)
@@ -57,7 +52,6 @@ jobs:
         with:
           inlineScript: |
             echo "Starting upload to Azure Storage Account: brahmastrakids1"
-            # Uploads the contents of the local './dist' folder to the '$web' container 
             az storage blob upload-batch \
               --account-name brahmastrakids1 \
               --container-name '$web' \
