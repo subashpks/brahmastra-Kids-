@@ -8,11 +8,11 @@ on:
 jobs:
   build_and_deploy:
     
-    # 1. FIX: Add permissions block (The ID-Token error requires this)
+    # 1. FIX: Explicitly grant write permission for id-token (as the error requested) 
+    # to allow the azure/login action to proceed past its initial check.
     permissions:
       contents: read 
-      # Setting id-token to none forces the action away from WIF and back to Service Principal secrets
-      id-token: none 
+      id-token: write 
 
     runs-on: ubuntu-latest
     
@@ -36,16 +36,16 @@ jobs:
       - name: 🏗️ Build Project (vite build)
         run: npm run build
         
-      # 5. Azure Login (The combination that works for individual secrets)
+      # 5. Azure Login (Final robust configuration)
       - name: 🔑 Azure Login
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          # FIX: This input name causes a warning, but passes the secret value correctly.
+          # This input passes the secret value correctly.
           secret: ${{ secrets.AZURE_CLIENT_SECRET }} 
-          # FIX: Explicitly forces the use of the secrets provided above.
+          # Explicitly forces the use of the secrets provided above.
           auth-type: service_principal 
         
       # 6. Upload to Blob Storage
