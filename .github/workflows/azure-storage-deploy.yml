@@ -43,7 +43,7 @@ jobs:
           auth-type: SERVICE_PRINCIPAL
           allow-no-subscriptions: true
 
-      # 6. Upload to Azure Blob Storage ($web)
+      # 6. Upload to Azure Blob Storage ($web) - CORRECTED
       - name: 🚀 Upload to Azure Blob Storage
         uses: azure/cli@v1
         with:
@@ -51,10 +51,10 @@ jobs:
             echo "Uploading files to Azure Static Website..."
             az storage blob upload-batch \
               --account-name brahmastrakids1 \
-              --container-name '$web' \
+              --destination '$web' \
+              --source ./dist \
               --auth-mode login \
-              --overwrite \
-              --source ./dist
+              --overwrite
 
       # 7. Logout (always runs)
       - name: 🚪 Azure Logout
