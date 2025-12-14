@@ -1,0 +1,51 @@
+name: Deploy Static Website to Azure Storage
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: 📦 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: ⬇️ Install Dependencies
+        run: npm install
+
+      - name: 🏗️ Build Project
+        run: npm run build
+
+      - name: 🔑 Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: 🚀 Upload to Azure Blob Storage
+        uses: azure/cli@v1
+        with:
+          inlineScript: |
+            az storage blob upload-batch \
+              --account-name brahmastrakids1 \
+              --destination '$web' \
+              --source ./dist \
+              --auth-mode login \
+              --overwrite
+
+      - name: 🚪 Azure Logout
+        if: always()
+        run: az logout
