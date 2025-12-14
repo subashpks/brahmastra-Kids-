@@ -7,62 +7,55 @@ on:
 
 jobs:
   build_and_deploy:
-    
-    # 1. FIX: Explicitly grant write permission for id-token (as the error requested) 
-    # to allow the azure/login action to proceed past its initial check.
-    permissions:
-      contents: read 
-      id-token: write 
-
     runs-on: ubuntu-latest
-    
+
+    # Required for Azure OIDC login
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
       # 1. Checkout Repository
       - name: 📦 Checkout Repository
         uses: actions/checkout@v3
 
-      # 2. Setup Node.js Environment
+      # 2. Setup Node.js
       - name: ⚙️ Setup Node.js v18
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm' 
-          
+          cache: 'npm'
+
       # 3. Install Dependencies
       - name: ⬇️ Install Dependencies
         run: npm install
-        
-      # 4. Build Project
-      - name: 🏗️ Build Project (vite build)
+
+      # 4. Build Vite Project
+      - name: 🏗️ Build Project
         run: npm run build
-        
-      # 5. Azure Login (Final robust configuration)
+
+      # 5. Azure Login (OIDC – Service Principal)
       - name: 🔑 Azure Login
         uses: azure/login@v1
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          auth-type: SERVICE_PRINCIPAL
-                  allow-no-subscriptions: true
-        
-      # 6. Upload to Blob Storage
-      - name: 🚀 Upload to Azure Blob Storage ($web container)
+
+      # 6. Upload to Azure Blob Storage ($web)
+      - name: 🚀 Upload to Azure Blob Storage
         uses: azure/cli@v1
         with:
           inlineScript: |
-            echo "Starting upload to Azure Storage Account: brahmastrakids1"
+            echo "Uploading files to Azure Static Website..."
             az storage blob upload-batch \
               --account-name brahmastrakids1 \
               --container-name '$web' \
-              --auth-mode key \
-              --account-key ${{ secrets.AZURE_STORAGE_KEY }} \
+              --auth-mode login \
               --overwrite \
               --source ./dist
 
-      # 7. Azure Logout
-      - name: 🚪 Azure Logout (Guaranteed to run)
-        run: |
-          az logout
+      # 7. Logout (always runs)
+      - name: 🚪 Azure Logout
         if: always()
-      
+        run: az logout
