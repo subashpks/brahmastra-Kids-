@@ -8,10 +8,10 @@ on:
 jobs:
   build_and_deploy:
     
-    # 🚨 FIX 1: Add permissions block to prevent ID-token error
+    # 1. FIX: Add permissions block to satisfy azure/login@v1 requirements
     permissions:
-      contents: read # Allows checking out code
-      id-token: write # Allows the Azure login action to attempt WIF (safest for Azure actions)
+      contents: read # Allows checking out source code
+      id-token: write # Prevents the "id-token must have write permission" error
 
     runs-on: ubuntu-latest
     
@@ -29,23 +29,26 @@ jobs:
           
       # 3. Install Dependencies
       - name: ⬇️ Install Dependencies
+        # This step relies on the committed package-lock.json
         run: npm install
         
       # 4. Build Project
       - name: 🏗️ Build Project (vite build)
+        # Creates the distributable files in the 'dist' folder
         run: npm run build
         
-      # 5. Azure Login (FIXED: Correct Inputs)
+      # 5. Azure Login (FINAL FIX)
       - name: 🔑 Azure Login
         uses: azure/login@v1
         with:
-          # Map individual secrets to the correct inputs
+          # Use individual secrets for Service Principal IDs
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-          # 🚨 FIX 2: The client secret value must be passed via the 'creds' input 
-          # when using the individual ID inputs.
-          creds: ${{ secrets.AZURE_CLIENT_SECRET }} 
+          
+          # FINAL FIX: Use the 'secret' input for the client secret value.
+          # This avoids the "Content is not a valid JSON object" error.
+          secret: ${{ secrets.AZURE_CLIENT_SECRET }} 
           auth-type: SERVICE_PRINCIPAL
         
       # 6. Upload to Blob Storage
@@ -54,6 +57,7 @@ jobs:
         with:
           inlineScript: |
             echo "Starting upload to Azure Storage Account: brahmastrakids1"
+            # Uploads the contents of the local './dist' folder to the '$web' container 
             az storage blob upload-batch \
               --account-name brahmastrakids1 \
               --container-name '$web' \
