@@ -1,3 +1,4 @@
+
 name: Deploy to Azure Storage
 
 on:
@@ -36,14 +37,23 @@ jobs:
             exit 1
           fi
 
-          # Fix SAS URL if it points to the account root instead of the $web container
-          # The error "service level URLs ... are not supported in sync" happens when the URL is missing /$web
-          if [[ "$SAS_URL" != *"/$web"* ]]; then
-            echo "⚠️  SAS URL appears to be missing the container path. Attempting to inject '/\$web'..."
-            # Replace '.blob.core.windows.net?' with '.blob.core.windows.net/$web?'
-            # We use sed to safely insert the container name before the query string
-            # This ensures we target the static website container specifically
-            SAS_URL=$(echo "$SAS_URL" | sed 's/\.blob\.core\.windows\.net\?/\.blob\.core\.windows\.net\/\$web\?/')
+          # Robustly construct the Target URL
+          # 1. Split Base URL and Token to safely manipulate the path
+          BASE_URL=$(echo "$SAS_URL" | cut -d'?' -f1)
+          SAS_TOKEN=$(echo "$SAS_URL" | cut -d'?' -f2-)
+
+          # 2. Check if the base URL points to the $web container
+          # We check for /$web or /$web/ to be sure
+          if [[ "$BASE_URL" != *"/$web" ]] && [[ "$BASE_URL" != *"/$web/" ]]; then
+            echo "⚠️  SAS URL appears to be missing the '/\$web' container path. Attempting to fix..."
+            
+            # Remove trailing slash from base if exists
+            BASE_URL=${BASE_URL%/}
+            
+            # Reconstruct URL pointing specifically to the $web container
+            TARGET_URL="$BASE_URL/\$web?$SAS_TOKEN"
+          else
+            TARGET_URL="$SAS_URL"
           fi
 
           echo "Starting deployment via AzCopy..."
@@ -51,7 +61,6 @@ jobs:
           # 'azcopy sync' is faster than upload; it only transfers changed files.
           # --recursive: includes subdirectories
           # --delete-destination=true: deletes files in Azure that are no longer in the build folder (keeps site clean)
-          azcopy sync './dist' "$SAS_URL" --recursive --delete-destination=true
+          azcopy sync './dist' "$TARGET_URL" --recursive --delete-destination=true
           
           echo "✅ Deployment complete!"
-
