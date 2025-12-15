@@ -61,7 +61,7 @@ export const COURSES_DATA = [
         emoji: '✈️',
         color: 'border-brand-sky',
         page: 'aeronautics',
-        isComingSoon: false,
+        isComingSoon: true,
     },
     {
         title: 'Astronomy',
@@ -69,7 +69,7 @@ export const COURSES_DATA = [
         emoji: '🔭',
         color: 'border-indigo-500',
         page: 'astronomy',
-        isComingSoon: false,
+        isComingSoon: true,
     },
     { 
         title: 'Satellites',
@@ -77,7 +77,7 @@ export const COURSES_DATA = [
         emoji: '🛰️',
         color: 'border-brand-space',
         page: 'satellites',
-        isComingSoon: false,
+        isComingSoon: true,
     },
     { 
         title: 'Rocket Science',
@@ -85,7 +85,7 @@ export const COURSES_DATA = [
         emoji: '🚀',
         color: 'border-brand-sun',
         page: 'rocket-science',
-        isComingSoon: false,
+        isComingSoon: true,
     },
     { 
         title: 'Astrobiology',
@@ -93,7 +93,7 @@ export const COURSES_DATA = [
         emoji: '👽',
         color: 'border-lime-500',
         page: 'astrobiology',
-        isComingSoon: false,
+        isComingSoon: true,
     },
     { 
         title: 'Quantum Physics',
@@ -101,7 +101,7 @@ export const COURSES_DATA = [
         emoji: '⚛️',
         color: 'border-orange-500',
         page: 'quantum-physics',
-        isComingSoon: false,
+        isComingSoon: true,
     },
     { 
         title: 'Molecular Chemistry',
@@ -109,7 +109,7 @@ export const COURSES_DATA = [
         emoji: '🧪',
         color: 'border-teal-500',
         page: 'molecular-chemistry',
-        isComingSoon: false,
+        isComingSoon: true,
     },
     { 
         title: 'Data Mathematics',
@@ -117,7 +117,7 @@ export const COURSES_DATA = [
         emoji: '🧮',
         color: 'border-purple-500',
         page: 'data-mathematics',
-        isComingSoon: false,
+        isComingSoon: true,
     },
 ];
 

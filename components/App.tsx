@@ -7,21 +7,13 @@ import { User, ChildProfile } from '../types';
 
 // Lazy Load Pages for Performance
 const HomePage = React.lazy(() => import('./Hero').then(module => ({ default: module.HomePage })));
-const AeronauticsPage = React.lazy(() => import('./Services').then(module => ({ default: module.AeronauticsPage })));
-const RocketSciencePage = React.lazy(() => import('./RocketSciencePage').then(module => ({ default: module.RocketSciencePage })));
-const SatellitesPage = React.lazy(() => import('./WhySpeedMatters').then(module => ({ default: module.SatellitesPage })));
 const FreeCoursesPage = React.lazy(() => import('./WeekendCourses').then(module => ({ default: module.FreeCoursesPage })));
 const AboutUsPage = React.lazy(() => import('./AboutUs').then(module => ({ default: module.AboutUsPage })));
 const AgeCategoryPage = React.lazy(() => import('./AgeCategory').then(module => ({ default: module.AgeCategoryPage })));
 const FaqPage = React.lazy(() => import('./FaqPage').then(module => ({ default: module.FaqPage })));
 const ContactPage = React.lazy(() => import('./ContactPage').then(module => ({ default: module.ContactPage })));
-const DataMathematicsPage = React.lazy(() => import('./DataMathematicsPage').then(module => ({ default: module.DataMathematicsPage })));
-const QuantumPhysicsPage = React.lazy(() => import('./QuantumPhysicsPage').then(module => ({ default: module.QuantumPhysicsPage })));
-const MolecularChemistryPage = React.lazy(() => import('./MolecularChemistryPage').then(module => ({ default: module.MolecularChemistryPage })));
-const AstrobiologyPage = React.lazy(() => import('./AstrobiologyPage').then(module => ({ default: module.AstrobiologyPage })));
 const Differentiators = React.lazy(() => import('./Differentiators').then(module => ({ default: module.Differentiators })));
 const CoursesPage = React.lazy(() => import('./CoursesPage').then(module => ({ default: module.CoursesPage })));
-const AstronomyPage = React.lazy(() => import('./AstronomyPage').then(module => ({ default: module.AstronomyPage })));
 const LoginPage = React.lazy(() => import('./LoginPage').then(module => ({ default: module.LoginPage })));
 const SignUpPage = React.lazy(() => import('./SignUpPage').then(module => ({ default: module.SignUpPage })));
 const DashboardPage = React.lazy(() => import('./DashboardPage').then(module => ({ default: module.DashboardPage })));
@@ -190,14 +182,6 @@ export function App() {
 
     // Ensure enrollment matching is case-insensitive and robust
     switch (activePage) {
-      case 'aeronautics': return <AeronauticsPage {...pageProps} />;
-      case 'rocket-science': return <RocketSciencePage {...pageProps} />;
-      case 'satellites': return <SatellitesPage {...pageProps} />;
-      case 'data-mathematics': return <DataMathematicsPage {...pageProps} />;
-      case 'quantum-physics': return <QuantumPhysicsPage {...pageProps} />;
-      case 'molecular-chemistry': return <MolecularChemistryPage {...pageProps} />;
-      case 'astrobiology': return <AstrobiologyPage {...pageProps} />;
-      case 'astronomy': return <AstronomyPage {...pageProps} />;
       case 'philosophy': return <Differentiators navigate={navigate} />;
       case 'courses': return <CoursesPage {...pageProps} />;
       case 'weekend-rocket-blast-off': return <CourseDetailPage {...pageProps} />;
@@ -218,6 +202,9 @@ export function App() {
       case 'privacy': return <PrivacyPolicy />;
       case 'terms': return <TermsAndConditions />;
       case 'refund': return <RefundPolicy />;
+      case 'dashboard': return <DashboardPage currentUser={{ name: 'Demo User', email: 'demo@user.com', password: '' }} activeChild={null} setActiveChild={() => {}} navigate={navigate} />; // Mock user for now
+      case 'login': return <LoginPage navigate={navigate} onLoginSuccess={() => navigate('dashboard')} />;
+      case 'signup': return <SignUpPage navigate={navigate} />;
       case 'home':
       default:
         return <HomePage navigate={navigate} />;
