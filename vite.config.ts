@@ -6,13 +6,14 @@ export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
-    sourcemap: false, // Disable sourcemaps in production for security
+    sourcemap: false, // Disable sourcemaps in production for performance/security
     minify: 'esbuild',
     chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom']
+          // Split React into a separate chunk so it can be cached longer by the browser
+          'vendor-react': ['react', 'react-dom'],
         }
       }
     }
