@@ -1,0 +1,50 @@
+
+name: Deploy to Azure Storage
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: ⬇️ Install Dependencies
+        run: npm install
+
+      - name: 🏗️ Build Project
+        run: npm run build
+
+      - name: 🚀 Deploy to Azure Blob Storage
+        env:
+          # Go to GitHub Repo -> Settings -> Secrets and variables -> Actions
+          # Create a new Repository Secret named 'DEPLOY_SAS_URL'
+          # Value should be the full Blob Service SAS URL (e.g., https://<account>.blob.core.windows.net/$web?sv=...)
+          SAS_URL: ${{ secrets.DEPLOY_SAS_URL }}
+        run: |
+          if [ -z "$SAS_URL" ]; then
+            echo "::error::DEPLOY_SAS_URL secret is missing!"
+            exit 1
+          fi
+
+          echo "Starting deployment via AzCopy..."
+          
+          # 'azcopy sync' is faster than upload; it only transfers changed files.
+          # --recursive: includes subdirectories
+          # --delete-destination=true: deletes files in Azure that are no longer in the build folder (keeps site clean)
+          azcopy sync './dist' "$SAS_URL" --recursive --delete-destination=true
+          
+          echo "✅ Deployment complete!"
