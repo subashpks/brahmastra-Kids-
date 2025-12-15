@@ -1,34 +1,48 @@
-name: Deploy website
-
+name: Deploy to Azure Storage
 
 on:
-  workflow_dispatch:
   push:
     branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: 📦 Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: 'npm'
 
-      - name: Install dependencies
-        # Use npm install to generate/update lockfile if versions mismatch
+      - name: ⬇️ Install Dependencies
         run: npm install
 
-      - name: Build website
+      - name: 🏗️ Build Project
         run: npm run build
 
-      - name: Deploy to Azure Storage
-        uses: TravisSpomer/deploy-to-azure-storage@v1.5.0
-        with:
-          source-path: dist
-          sas-url: ${{ secrets.DEPLOY_SAS_URL }}
+      - name: 🚀 Deploy to Azure Blob Storage
+        env:
+          # Ensure 'DEPLOY_SAS_URL' is set in your GitHub Repository Secrets
+          # Format: https://<storage_account>.blob.core.windows.net/$web?<sas_token>
+          SAS_URL: ${{ secrets.DEPLOY_SAS_URL }}
+        run: |
+          if [ -z "$SAS_URL" ]; then
+            echo "::error::DEPLOY_SAS_URL secret is missing!"
+            exit 1
+          fi
+
+          echo "Starting deployment via AzCopy..."
+          
+          # 'azcopy sync' is much faster than upload as it only transfers changed files.
+          # --recursive: includes all subdirectories (css, assets, etc.)
+          # --delete-destination=true: removes old files in Azure that are no longer in your build (keeps it clean)
+          azcopy sync './dist' "$SAS_URL" --recursive --delete-destination=true
+          
+          echo "✅ Deployment complete!"
