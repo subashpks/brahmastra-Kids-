@@ -1,0 +1,64 @@
+name: Deploy to Azure Storage
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: ⬇️ Install Dependencies
+        run: npm install
+
+      - name: 🏗️ Build Project
+        run: npm run build
+
+      - name: 🚀 Deploy to Azure Blob Storage
+        env:
+          SAS_URL: ${{ secrets.DEPLOY_SAS_URL }}
+        run: |
+          if [ -z "$SAS_URL" ]; then
+            echo "::error::DEPLOY_SAS_URL secret is missing!"
+            exit 1
+          fi
+
+          # 1. Parse the Secret
+          # Split into Base URL (before ?) and Token (after ?)
+          RAW_BASE=$(echo "$SAS_URL" | cut -d'?' -f1)
+          SAS_TOKEN=$(echo "$SAS_URL" | cut -d'?' -f2-)
+
+          # 2. Normalize the Base URL (Strip and Rebuild Strategy)
+          # First, remove any trailing slash
+          CLEAN_BASE=${RAW_BASE%/}
+          
+          # Next, remove '/$web' from the end if the user already included it.
+          # This ensures we have the pure Account URL (e.g., https://account.blob.core.windows.net)
+          # We use variable substitution: ${VAR%pattern} removes suffix.
+          CLEAN_BASE=${CLEAN_BASE%/\$web}
+
+          # 3. Construct the Final Target URL
+          # We explicitly append /$web here to ensure it is ALWAYS present.
+          # We escape the $ sign so bash treats it as text, not a variable.
+          TARGET_URL="${CLEAN_BASE}/\$web?${SAS_TOKEN}"
+
+          echo "Targeting Container: ${CLEAN_BASE}/\$web"
+          echo "Starting deployment via AzCopy..."
+          
+          # azcopy sync is faster than upload; it only transfers changed files.
+          azcopy sync './dist' "$TARGET_URL" --recursive --delete-destination=true
+          
+          echo "✅ Deployment complete!"
