@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://brahmastra.ltd/sitemap.xml
