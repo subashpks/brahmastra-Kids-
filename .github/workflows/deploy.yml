@@ -1,4 +1,3 @@
-
 name: Deploy to Azure Storage
 
 on:
@@ -30,14 +29,21 @@ jobs:
 
       - name: 🚀 Deploy to Azure Blob Storage
         env:
-          # Go to GitHub Repo -> Settings -> Secrets and variables -> Actions
-          # Create a new Repository Secret named 'DEPLOY_SAS_URL'
-          # Value should be the full Blob Service SAS URL (e.g., https://<account>.blob.core.windows.net/$web?sv=...)
           SAS_URL: ${{ secrets.DEPLOY_SAS_URL }}
         run: |
           if [ -z "$SAS_URL" ]; then
             echo "::error::DEPLOY_SAS_URL secret is missing!"
             exit 1
+          fi
+
+          # Fix SAS URL if it points to the account root instead of the $web container
+          # The error "service level URLs ... are not supported in sync" happens when the URL is missing /$web
+          if [[ "$SAS_URL" != *"/$web"* ]]; then
+            echo "⚠️  SAS URL appears to be missing the container path. Attempting to inject '/\$web'..."
+            # Replace '.blob.core.windows.net?' with '.blob.core.windows.net/$web?'
+            # We use sed to safely insert the container name before the query string
+            # This ensures we target the static website container specifically
+            SAS_URL=$(echo "$SAS_URL" | sed 's/\.blob\.core\.windows\.net\?/\.blob\.core\.windows\.net\/\$web\?/')
           fi
 
           echo "Starting deployment via AzCopy..."
@@ -48,3 +54,4 @@ jobs:
           azcopy sync './dist' "$SAS_URL" --recursive --delete-destination=true
           
           echo "✅ Deployment complete!"
+
